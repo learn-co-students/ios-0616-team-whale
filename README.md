@@ -1,4 +1,5 @@
 # 🐋 Team Whale 🐋
+Number one in the game
 
 ## Welcome to your new project!
 
