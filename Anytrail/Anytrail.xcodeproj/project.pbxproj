@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2E7B02845A404C04E0D92E5E /* Pods_Anytrail.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 599CF5E42324548824DD0368 /* Pods_Anytrail.framework */; };
+		681BF710713DEB89F836003E /* Pods_AnytrailTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB2E3A25BA33F309140861F9 /* Pods_AnytrailTests.framework */; };
 		9424A7701D53D5DA00CE8D42 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9424A76F1D53D5DA00CE8D42 /* AppDelegate.swift */; };
 		9424A7721D53D5DA00CE8D42 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9424A7711D53D5DA00CE8D42 /* FirstViewController.swift */; };
 		9424A7741D53D5DA00CE8D42 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9424A7731D53D5DA00CE8D42 /* SecondViewController.swift */; };
@@ -28,6 +30,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3417C12B1559CD326FE9F852 /* Pods-Anytrail.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Anytrail.release.xcconfig"; path = "Pods/Target Support Files/Pods-Anytrail/Pods-Anytrail.release.xcconfig"; sourceTree = "<group>"; };
+		5661F119B27C682B7C9BCB04 /* Pods-AnytrailTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnytrailTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-AnytrailTests/Pods-AnytrailTests.release.xcconfig"; sourceTree = "<group>"; };
+		599CF5E42324548824DD0368 /* Pods_Anytrail.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Anytrail.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9424A76C1D53D5DA00CE8D42 /* Anytrail.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Anytrail.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9424A76F1D53D5DA00CE8D42 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9424A7711D53D5DA00CE8D42 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -40,6 +45,9 @@
 		9424A7861D53D5DA00CE8D42 /* AnytrailTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnytrailTests.swift; sourceTree = "<group>"; };
 		9424A7881D53D5DA00CE8D42 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9424A7921D53D6C900CE8D42 /* Keys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
+		DAD2C8D70B6029D7314DD479 /* Pods-AnytrailTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnytrailTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AnytrailTests/Pods-AnytrailTests.debug.xcconfig"; sourceTree = "<group>"; };
+		DB2E3A25BA33F309140861F9 /* Pods_AnytrailTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AnytrailTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F4AC6E6A90B2DC273C8971C2 /* Pods-Anytrail.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Anytrail.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Anytrail/Pods-Anytrail.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +55,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2E7B02845A404C04E0D92E5E /* Pods_Anytrail.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -54,6 +63,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				681BF710713DEB89F836003E /* Pods_AnytrailTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -66,6 +76,8 @@
 				9424A76E1D53D5DA00CE8D42 /* Anytrail */,
 				9424A7851D53D5DA00CE8D42 /* AnytrailTests */,
 				9424A76D1D53D5DA00CE8D42 /* Products */,
+				E51CB3F131D7F2E3E53360EE /* Pods */,
+				987972257156501B9FC0529B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -110,6 +122,26 @@
 			name = Controllers;
 			sourceTree = "<group>";
 		};
+		987972257156501B9FC0529B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				599CF5E42324548824DD0368 /* Pods_Anytrail.framework */,
+				DB2E3A25BA33F309140861F9 /* Pods_AnytrailTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E51CB3F131D7F2E3E53360EE /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F4AC6E6A90B2DC273C8971C2 /* Pods-Anytrail.debug.xcconfig */,
+				3417C12B1559CD326FE9F852 /* Pods-Anytrail.release.xcconfig */,
+				DAD2C8D70B6029D7314DD479 /* Pods-AnytrailTests.debug.xcconfig */,
+				5661F119B27C682B7C9BCB04 /* Pods-AnytrailTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -117,9 +149,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9424A78B1D53D5DA00CE8D42 /* Build configuration list for PBXNativeTarget "Anytrail" */;
 			buildPhases = (
+				A725E52D38DF161F7C7256A7 /* [CP] Check Pods Manifest.lock */,
 				9424A7681D53D5DA00CE8D42 /* Sources */,
 				9424A7691D53D5DA00CE8D42 /* Frameworks */,
 				9424A76A1D53D5DA00CE8D42 /* Resources */,
+				FE01C712D6BEFFE09883933B /* [CP] Embed Pods Frameworks */,
+				4DEC2CD0B03C11E59203DB92 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -134,9 +169,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9424A78E1D53D5DA00CE8D42 /* Build configuration list for PBXNativeTarget "AnytrailTests" */;
 			buildPhases = (
+				519782D0E52AB9478379D543 /* [CP] Check Pods Manifest.lock */,
 				9424A77E1D53D5DA00CE8D42 /* Sources */,
 				9424A77F1D53D5DA00CE8D42 /* Frameworks */,
 				9424A7801D53D5DA00CE8D42 /* Resources */,
+				E847FF11171FCE07D443F53F /* [CP] Embed Pods Frameworks */,
+				405CD53F962F476C2175958C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -205,6 +243,99 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		405CD53F962F476C2175958C /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AnytrailTests/Pods-AnytrailTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4DEC2CD0B03C11E59203DB92 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Anytrail/Pods-Anytrail-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		519782D0E52AB9478379D543 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		A725E52D38DF161F7C7256A7 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		E847FF11171FCE07D443F53F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AnytrailTests/Pods-AnytrailTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FE01C712D6BEFFE09883933B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Anytrail/Pods-Anytrail-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		9424A7681D53D5DA00CE8D42 /* Sources */ = {
@@ -341,6 +472,7 @@
 		};
 		9424A78C1D53D5DA00CE8D42 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F4AC6E6A90B2DC273C8971C2 /* Pods-Anytrail.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Anytrail/Info.plist;
@@ -352,6 +484,7 @@
 		};
 		9424A78D1D53D5DA00CE8D42 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3417C12B1559CD326FE9F852 /* Pods-Anytrail.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Anytrail/Info.plist;
@@ -363,6 +496,7 @@
 		};
 		9424A78F1D53D5DA00CE8D42 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DAD2C8D70B6029D7314DD479 /* Pods-AnytrailTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = AnytrailTests/Info.plist;
@@ -375,6 +509,7 @@
 		};
 		9424A7901D53D5DA00CE8D42 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5661F119B27C682B7C9BCB04 /* Pods-AnytrailTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = AnytrailTests/Info.plist;
