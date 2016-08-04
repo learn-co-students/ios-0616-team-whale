@@ -1,5 +1,5 @@
-# 🐋 Team Whale 🐋
-Number one in the game
+# Anytrail
+Brought to you by team 🐋
 
 ## Welcome to your new project!
 
