@@ -34,6 +34,12 @@ class MapViewController: UIViewController, MGLMapViewDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        
+        FoursquareAPIClient.getQueryForSearchLandmarks { (data) in
+            
+        }
+        
+        
         addAnnotation()
     }
 
