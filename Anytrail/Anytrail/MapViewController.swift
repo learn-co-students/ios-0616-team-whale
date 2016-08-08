@@ -13,6 +13,8 @@ class MapViewController: UIViewController, MGLMapViewDelegate {
     
     @IBOutlet var mapView: MGLMapView!
     
+    let store = FoursquareDataStore.sharedInstance
+    
     // MARK: - Mapbox
     
     func mapView(mapView: MGLMapView, annotationCanShowCallout annotation: MGLAnnotation) -> Bool {
@@ -26,6 +28,12 @@ class MapViewController: UIViewController, MGLMapViewDelegate {
         pin.subtitle = "Bowling Green Offices"
         
         mapView.addAnnotation(pin)
+        
+        let testPin = MGLPointAnnotation()
+        let object = store.data[0]
+        testPin.coordinate = CLLocationCoordinate2D(latitude: object.placeLatitude, longitude: object.placeLongitude)
+        pin.title = object.placeName
+        mapView.addAnnotation(testPin)
     }
     
     // MARK: - View
@@ -40,11 +48,11 @@ class MapViewController: UIViewController, MGLMapViewDelegate {
         }
         
         FoursquareDataStore.sharedInstance.getDataWithCompletion { 
-            
+            self.addAnnotation()
         }
         
         
-        addAnnotation()
+        
     }
 
     override func didReceiveMemoryWarning() {

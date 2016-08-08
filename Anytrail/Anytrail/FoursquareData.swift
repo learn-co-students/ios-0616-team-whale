@@ -12,8 +12,8 @@ import UIKit
 
 class FoursquareData {
     var placeVenue : [String: JSON]
-    var placeLongitude : Float
-    var placeLatitude : Float
+    var placeLongitude : Double
+    var placeLatitude : Double
     var placeName : String
     //    var placeName : String
     //    var placeLocation : [String : JSON]
@@ -56,8 +56,8 @@ class FoursquareData {
     init(json: JSON){
         guard let
             venue = json["venue"].dictionary,
-            longitude = venue["location"]!["lng"].float,
-            latitude = venue["location"]!["lat"].float,
+            longitude = venue["location"]!["lng"].double,
+            latitude = venue["location"]!["lat"].double,
             name = venue["name"]!.string
         
             //        name = json["name"].string,
