@@ -39,6 +39,10 @@ class MapViewController: UIViewController, MGLMapViewDelegate {
             
         }
         
+        FoursquareDataStore.sharedInstance.getDataWithCompletion { 
+            
+        }
+        
         
         addAnnotation()
     }

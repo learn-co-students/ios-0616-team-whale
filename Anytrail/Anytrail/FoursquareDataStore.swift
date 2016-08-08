@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class FoursquareDataStore {
     
@@ -21,9 +22,15 @@ class FoursquareDataStore {
             self.data.removeAll()
             guard let json = json else { print("error: no data recieved from API Client"); return}
             for object in json {
-                let dataFS = object.1
+                if let dataFS = object.1["groups"][0]["items"].array {
                 
-                self.data.append(FoursquareData(json: dataFS))
+                    for i in 0..<dataFS.count {
+                        self.data.append(FoursquareData(json: dataFS[i]))
+                    }
+                    
+                    
+//                    print(FoursquareData(json: dataFS))
+                }
             }
             completion()
             

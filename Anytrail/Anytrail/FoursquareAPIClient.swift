@@ -32,7 +32,7 @@ class FoursquareAPIClient {
                         print(item.1.dictionary!["venue"]!["name"])
                     }
                 }
-                //                    completion(jsonData)
+                completion(jsonData)
             }
         }
     }
