@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		2E7B02845A404C04E0D92E5E /* Pods_Anytrail.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 599CF5E42324548824DD0368 /* Pods_Anytrail.framework */; };
+		4DB2D95F1D58DDBB007BD4A5 /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB2D95E1D58DDBB007BD4A5 /* Keys.swift */; };
+		4DB2D9611D58DEBA007BD4A5 /* FoursquareAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB2D9601D58DEBA007BD4A5 /* FoursquareAPIClient.swift */; };
 		681BF710713DEB89F836003E /* Pods_AnytrailTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB2E3A25BA33F309140861F9 /* Pods_AnytrailTests.framework */; };
 		9424A7701D53D5DA00CE8D42 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9424A76F1D53D5DA00CE8D42 /* AppDelegate.swift */; };
 		9424A7721D53D5DA00CE8D42 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9424A7711D53D5DA00CE8D42 /* MapViewController.swift */; };
@@ -15,7 +17,6 @@
 		9424A7791D53D5DA00CE8D42 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9424A7781D53D5DA00CE8D42 /* Assets.xcassets */; };
 		9424A77C1D53D5DA00CE8D42 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9424A77A1D53D5DA00CE8D42 /* LaunchScreen.storyboard */; };
 		9424A7871D53D5DA00CE8D42 /* AnytrailTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9424A7861D53D5DA00CE8D42 /* AnytrailTests.swift */; };
-		9424A7931D53D6C900CE8D42 /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9424A7921D53D6C900CE8D42 /* Keys.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,6 +31,8 @@
 
 /* Begin PBXFileReference section */
 		3417C12B1559CD326FE9F852 /* Pods-Anytrail.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Anytrail.release.xcconfig"; path = "Pods/Target Support Files/Pods-Anytrail/Pods-Anytrail.release.xcconfig"; sourceTree = "<group>"; };
+		4DB2D95E1D58DDBB007BD4A5 /* Keys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
+		4DB2D9601D58DEBA007BD4A5 /* FoursquareAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoursquareAPIClient.swift; sourceTree = "<group>"; };
 		5661F119B27C682B7C9BCB04 /* Pods-AnytrailTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnytrailTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-AnytrailTests/Pods-AnytrailTests.release.xcconfig"; sourceTree = "<group>"; };
 		599CF5E42324548824DD0368 /* Pods_Anytrail.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Anytrail.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9424A76C1D53D5DA00CE8D42 /* Anytrail.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Anytrail.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -42,7 +45,6 @@
 		9424A7821D53D5DA00CE8D42 /* AnytrailTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AnytrailTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9424A7861D53D5DA00CE8D42 /* AnytrailTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnytrailTests.swift; sourceTree = "<group>"; };
 		9424A7881D53D5DA00CE8D42 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9424A7921D53D6C900CE8D42 /* Keys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		DAD2C8D70B6029D7314DD479 /* Pods-AnytrailTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnytrailTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AnytrailTests/Pods-AnytrailTests.debug.xcconfig"; sourceTree = "<group>"; };
 		DB2E3A25BA33F309140861F9 /* Pods_AnytrailTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AnytrailTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4AC6E6A90B2DC273C8971C2 /* Pods-Anytrail.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Anytrail.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Anytrail/Pods-Anytrail.debug.xcconfig"; sourceTree = "<group>"; };
@@ -91,7 +93,8 @@
 		9424A76E1D53D5DA00CE8D42 /* Anytrail */ = {
 			isa = PBXGroup;
 			children = (
-				9424A7921D53D6C900CE8D42 /* Keys.swift */,
+				4DB2D95E1D58DDBB007BD4A5 /* Keys.swift */,
+				4DB2D9601D58DEBA007BD4A5 /* FoursquareAPIClient.swift */,
 				9424A76F1D53D5DA00CE8D42 /* AppDelegate.swift */,
 				9424A7911D53D6B500CE8D42 /* Controllers */,
 				9424A7751D53D5DA00CE8D42 /* Main.storyboard */,
@@ -339,8 +342,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9424A7931D53D6C900CE8D42 /* Keys.swift in Sources */,
 				9424A7701D53D5DA00CE8D42 /* AppDelegate.swift in Sources */,
+				4DB2D95F1D58DDBB007BD4A5 /* Keys.swift in Sources */,
+				4DB2D9611D58DEBA007BD4A5 /* FoursquareAPIClient.swift in Sources */,
 				9424A7721D53D5DA00CE8D42 /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
