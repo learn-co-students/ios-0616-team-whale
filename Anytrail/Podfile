@@ -6,6 +6,9 @@ target 'Anytrail' do
 
   # Pods for Anytrail
   pod 'Alamofire'
+  pod 'SwiftyJSON'
+  pod 'SlideMenuControllerSwift'
+  pod 'Mapbox-iOS-SDK', '~> 3.3.3'
 
   target 'AnytrailTests' do
     inherit! :search_paths

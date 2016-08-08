@@ -1,12 +1,21 @@
 PODS:
   - Alamofire (3.4.1)
+  - Mapbox-iOS-SDK (3.3.3)
+  - SlideMenuControllerSwift (2.2.2)
+  - SwiftyJSON (2.3.2)
 
 DEPENDENCIES:
   - Alamofire
+  - Mapbox-iOS-SDK (~> 3.3.3)
+  - SlideMenuControllerSwift
+  - SwiftyJSON
 
 SPEC CHECKSUMS:
   Alamofire: 01a82e2f6c0f860ade35534c8dd88be61bdef40c
+  Mapbox-iOS-SDK: 13cd4d7e118acae2782a1bdc5947164d8f6d80fd
+  SlideMenuControllerSwift: e257221100c39d49edccaaeb0238b55a0c67953a
+  SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
 
-PODFILE CHECKSUM: 036f7a7ad19d670f6d0100580a5a72e4e225943a
+PODFILE CHECKSUM: 532b4583f0ef66b144111df9b297856cfcf81788
 
 COCOAPODS: 1.0.1
