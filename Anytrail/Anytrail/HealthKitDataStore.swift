@@ -17,21 +17,18 @@ class HealthKitDataStore {
     var healthKitDataTypesToRead = Set<HKObjectType>()
     var healthKitDataTypesToWrite = Set<HKSampleType>()
     
-    
     func prepareHealthKitTypesToRead() {
         
-        let stepCount = HKObjectType.quantityTypeForIdentifier(HKQuantityTypeIdentifierStepCount)
-        let basalEnergyBurned = HKObjectType.quantityTypeForIdentifier(HKQuantityTypeIdentifierBasalEnergyBurned)
-        let flightsClimbed = HKObjectType.quantityTypeForIdentifier(HKQuantityTypeIdentifierFlightsClimbed)
-        let walkingRunningDistance = HKObjectType.quantityTypeForIdentifier(HKQuantityTypeIdentifierDistanceWalkingRunning)
-        let exerciseTime = HKObjectType.quantityTypeForIdentifier(HKQuantityTypeIdentifierAppleExerciseTime)
-        let activeEnergyBurned = HKObjectType.quantityTypeForIdentifier(HKQuantityTypeIdentifierActiveEnergyBurned)
-        let heartRate = HKObjectType.quantityTypeForIdentifier(HKQuantityTypeIdentifierHeartRate)
-        let userHeight = HKObjectType.quantityTypeForIdentifier(HKQuantityTypeIdentifierHeight)
-        let userWeight = HKObjectType.quantityTypeForIdentifier(HKQuantityTypeIdentifierBodyMass)
-        let waterConsumption = HKObjectType.quantityTypeForIdentifier(HKQuantityTypeIdentifierDietaryWater)
-        
-        let healthKitDataTypes = [stepCount, basalEnergyBurned, flightsClimbed, walkingRunningDistance, exerciseTime, activeEnergyBurned, heartRate, userHeight, userWeight, waterConsumption]
+        let healthKitDataTypes = [HealthKitDataTypes.stepCountRead,
+                                  HealthKitDataTypes.basalEnergyBurnedRead,
+                                  HealthKitDataTypes.flightsClimbedRead,
+                                  HealthKitDataTypes.walkingRunningDistanceRead,
+                                  HealthKitDataTypes.exerciseTimeRead,
+                                  HealthKitDataTypes.activeEnergyBurnedRead,
+                                  HealthKitDataTypes.heartRateRead,
+                                  HealthKitDataTypes.userHeightRead,
+                                  HealthKitDataTypes.userWeightRead,
+                                  HealthKitDataTypes.waterConsumptionRead]
         
         for dataType in healthKitDataTypes {
             if let dataType = dataType {
@@ -42,17 +39,10 @@ class HealthKitDataStore {
     
     func prepareHealthKitTypesToWrite() {
         
-        let stepCount = HKSampleType.quantityTypeForIdentifier(HKQuantityTypeIdentifierStepCount)
-        let basalEnergyBurned = HKSampleType.quantityTypeForIdentifier(HKQuantityTypeIdentifierBasalEnergyBurned)
-        let flightsClimbed = HKSampleType.quantityTypeForIdentifier(HKQuantityTypeIdentifierFlightsClimbed)
-        let walkingRunningDistance = HKSampleType.quantityTypeForIdentifier(HKQuantityTypeIdentifierDistanceWalkingRunning)
-        let activeEnergyBurned = HKSampleType.quantityTypeForIdentifier(HKQuantityTypeIdentifierActiveEnergyBurned)
-        let heartRate = HKSampleType.quantityTypeForIdentifier(HKQuantityTypeIdentifierHeartRate)
-        let userHeight = HKSampleType.quantityTypeForIdentifier(HKQuantityTypeIdentifierHeight)
-        let userWeight = HKSampleType.quantityTypeForIdentifier(HKQuantityTypeIdentifierBodyMass)
-        let waterConsumption = HKSampleType.quantityTypeForIdentifier(HKQuantityTypeIdentifierDietaryWater)
-        
-        let healthKitDataTypes = [stepCount, basalEnergyBurned, flightsClimbed, walkingRunningDistance, activeEnergyBurned, heartRate, userHeight, userWeight, waterConsumption]
+        let healthKitDataTypes = [HealthKitDataTypes.stepCountWrite,
+                                  HealthKitDataTypes.flightsClimbedWrite,
+                                  HealthKitDataTypes.walkingRunningDistanceWrite,
+                                  HealthKitDataTypes.waterConsumptionWrite]
         
         for dataType in healthKitDataTypes {
             if let dataType = dataType {
