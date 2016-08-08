@@ -11,7 +11,7 @@ import HealthKit
 
 class HealthKitDataStore {
     
-    typealias authorizationResponse = (success: Bool, error: NSError?)
+    typealias authorizationResponse = (success: Bool?, error: NSError?)
     
     let healthKitStore = HKHealthStore()
     var healthKitDataTypesToRead = Set<HKObjectType>()
@@ -46,14 +46,13 @@ class HealthKitDataStore {
         let basalEnergyBurned = HKSampleType.quantityTypeForIdentifier(HKQuantityTypeIdentifierBasalEnergyBurned)
         let flightsClimbed = HKSampleType.quantityTypeForIdentifier(HKQuantityTypeIdentifierFlightsClimbed)
         let walkingRunningDistance = HKSampleType.quantityTypeForIdentifier(HKQuantityTypeIdentifierDistanceWalkingRunning)
-        let exerciseTime = HKSampleType.quantityTypeForIdentifier(HKQuantityTypeIdentifierAppleExerciseTime)
         let activeEnergyBurned = HKSampleType.quantityTypeForIdentifier(HKQuantityTypeIdentifierActiveEnergyBurned)
         let heartRate = HKSampleType.quantityTypeForIdentifier(HKQuantityTypeIdentifierHeartRate)
         let userHeight = HKSampleType.quantityTypeForIdentifier(HKQuantityTypeIdentifierHeight)
         let userWeight = HKSampleType.quantityTypeForIdentifier(HKQuantityTypeIdentifierBodyMass)
         let waterConsumption = HKSampleType.quantityTypeForIdentifier(HKQuantityTypeIdentifierDietaryWater)
         
-        let healthKitDataTypes = [stepCount, basalEnergyBurned, flightsClimbed, walkingRunningDistance, exerciseTime, activeEnergyBurned, heartRate, userHeight, userWeight, waterConsumption]
+        let healthKitDataTypes = [stepCount, basalEnergyBurned, flightsClimbed, walkingRunningDistance, activeEnergyBurned, heartRate, userHeight, userWeight, waterConsumption]
         
         for dataType in healthKitDataTypes {
             if let dataType = dataType {
@@ -65,5 +64,16 @@ class HealthKitDataStore {
     
     func authorizeHealthKit(completion: authorizationResponse -> Void) {
         
+        healthKitStore.requestAuthorizationToShareTypes(healthKitDataTypesToWrite, readTypes: healthKitDataTypesToRead) { (success, error) in
+            if success {
+                completion((success: true, error: nil))
+            } else {
+                completion((success: false, error: nil))
+            }
+            
+            if let error = error {
+                completion((success: nil, error: error))
+            }
+        }
     }
 }

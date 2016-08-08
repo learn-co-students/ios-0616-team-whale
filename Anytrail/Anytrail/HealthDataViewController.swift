@@ -10,9 +10,17 @@ import UIKit
 
 class HealthDataViewController: UIViewController {
     
+    let healthKitStore = HealthKitDataStore()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.whiteColor()
+        healthKitStore.prepareHealthKitTypesToRead()
+        healthKitStore.prepareHealthKitTypesToWrite()
+        healthKitStore.authorizeHealthKit { (response) in
+            print(response.success)
+            print(response.error)
+        }
         
         // Do any additional setup after loading the view.
     }
