@@ -17,14 +17,11 @@ class FoursquareAPIClient {
         let v = "20160808"
         let ll = "40.7,-74"
         let query = "monuments/landmarks"
-        let OAuth = "0MFRNVCCXU3IBMPCZHNMQ2315JXOOVPTDRPLKVAUXX0N4VOG"
         let parameter = ["client_id": clientID,
                          "client_secret":clientSecret,
                          "v":v,
                          "ll": ll,
-                         "query" : query,
-                         "oauth_token": OAuth
-        ]
+                         "query" : query]
         
         
         Alamofire.request(.GET, "https://api.foursquare.com/v2/venues/explore", parameters: parameter, headers: nil).responseJSON { (response) in
