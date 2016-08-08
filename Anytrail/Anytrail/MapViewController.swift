@@ -35,10 +35,22 @@ class MapViewController: UIViewController, MGLMapViewDelegate {
         // Do any additional setup after loading the view, typically from a nib.
         
         addAnnotation()
+        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    @IBAction func userProfileTapped(sender: AnyObject) {
+        presentUserDataView()
+    }
+    
+    func presentUserDataView() {
+        let userHealthDataView = HealthDataViewController()
+        presentViewController(userHealthDataView, animated: true) {
+            print("Health View Presented")
+        }
     }
 }
