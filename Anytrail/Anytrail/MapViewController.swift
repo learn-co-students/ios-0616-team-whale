@@ -42,6 +42,7 @@ class MapViewController: UIViewController, MGLMapViewDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+
         
         FoursquareAPIClient.getQueryForSearchLandmarks { (data) in
             
@@ -52,11 +53,23 @@ class MapViewController: UIViewController, MGLMapViewDelegate {
         }
         
         
+
         
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    @IBAction func userProfileTapped(sender: AnyObject) {
+        presentUserDataView()
+    }
+    
+    func presentUserDataView() {
+        let userHealthDataView = HealthDataViewController()
+        presentViewController(userHealthDataView, animated: true) {
+            print("Health View Presented")
+        }
     }
 }
