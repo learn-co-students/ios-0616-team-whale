@@ -19,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Assign Mapbox token
         MGLAccountManager.setAccessToken(Keys.mapBoxToken)
         
+        
         return true
     }
 
