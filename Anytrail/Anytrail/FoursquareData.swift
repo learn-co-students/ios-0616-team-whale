@@ -22,20 +22,24 @@ class FoursquareData {
             venue = json["venue"].dictionary,
             longitude = venue["location"]!["lng"].double,
             latitude = venue["location"]!["lat"].double,
-            name = venue["name"]!.string,
-            address = venue["location"]!["formattedAddress"].string
-        
+            address = venue["location"]!["formattedAddress"].array,
+//            address = venue["location"]!["formattedAddress"].string,
+            name = venue["name"]!.string
             //        name = json["name"].string,
             //        location = json["location"].dictionary
         
             else {
                 fatalError("There was an error retrieving the information from FourSquare")
         }
+        var addressStringConverter = ""
+        for i in 0..<address.count {
+          addressStringConverter.appendContentsOf(address[i].stringValue)
+        }
         placeVenue = venue
         placeLatitude = (latitude)
         placeLongitude = (longitude)
         placeName = name
-        placeAddress = address
+        placeAddress = addressStringConverter
         //        placeName = name
         //        placeLocation = location
         

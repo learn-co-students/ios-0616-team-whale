@@ -27,6 +27,7 @@ class MapViewController: UIViewController, MGLMapViewDelegate {
             let pin = MGLPointAnnotation()
             pin.coordinate = CLLocationCoordinate2D(latitude: location.placeLatitude, longitude: location.placeLongitude)
             pin.title = location.placeName
+            
             pin.subtitle = location.placeAddress
             mapView.addAnnotation(pin)
             
