@@ -9,50 +9,23 @@
 import Foundation
 import HealthKit
 import WatchConnectivity
-import DeviceKit
 
 class HealthKitClient {
     typealias authorizationResponse = (success: Bool?, error: NSError?)
-    typealias hardwareTypeAvailable = (phoneType: String, appleWatch: Bool)
     
     var healthKitDataReadTypes = Set<HKSampleType>()
     
-    func checkAvaliableHardware() -> hardwareTypeAvailable {
-        let deviceType = Device().description
-        let appleWatchAvailable = WCSession.isSupported()
-        return hardwareTypeAvailable(phoneType: deviceType, appleWatch: appleWatchAvailable)
-    }
-    
-    func prepareHealthKitReadTypes(hardwareType: hardwareTypeAvailable) {
+    func prepareHealthKitReadTypes() {
         
-        switch hardwareType {
-        case ("iPhone 5s", false), ("iPhone SE", false):
-            let healthKitDataTypesOptionals = [HealthKitDataTypes.stepCount,
-                                               HealthKitDataTypes.walkingRunningDistance,
-                                               HealthKitDataTypes.waterConsumption]
-
-        case ("iPhone 6", false), ("iPhone 6s", false):
-            let healthKitDataTypesOptionals = [HealthKitDataTypes.stepCount,
-                                               HealthKitDataTypes.walkingRunningDistance,
-                                               HealthKitDataTypes.flightsClimbed,
-                                               HealthKitDataTypes.waterConsumption]
-        default:
-            let healthKitDataTypesOptionals = [HealthKitDataTypes.stepCount,
-                                               HealthKitDataTypes.basalEnergyBurned,
-                                               HealthKitDataTypes.walkingRunningDistance,
-                                               HealthKitDataTypes.exerciseTime,
-                                               HealthKitDataTypes.activeEnergyBurned,
-                                               HealthKitDataTypes.heartRate,
-                                               HealthKitDataTypes.waterConsumption]
-        }
-        
-        let healthKitDataTypesOptionals = [HealthKitDataTypes.stepCount,
-                                           HealthKitDataTypes.basalEnergyBurned,
-                                           HealthKitDataTypes.walkingRunningDistance,
-                                           HealthKitDataTypes.exerciseTime,
-                                           HealthKitDataTypes.activeEnergyBurned,
-                                           HealthKitDataTypes.heartRate,
-                                           HealthKitDataTypes.waterConsumption]
+        let healthKitDataTypesOptionals: [HKSampleType?] = [HealthKitDataTypes.stepCount,
+                                                            HealthKitDataTypes.walkingRunningDistance,
+                                                            HealthKitDataTypes.flightsClimbed,
+                                                            HealthKitDataTypes.activeEnergyBurned,
+                                                            HealthKitDataTypes.exerciseTime,
+                                                            HealthKitDataTypes.heartRate,
+                                                            HealthKitDataTypes.basalEnergyBurned,
+                                                            HealthKitDataTypes.workouts,
+                                                            HealthKitDataTypes.waterConsumption]
         
         for dataType in healthKitDataTypesOptionals {
             if let dataType = dataType {
