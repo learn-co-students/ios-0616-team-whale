@@ -12,14 +12,16 @@ import HealthKit
 class HealthKitDataStore {
     
     typealias healthKitSamplesData = (dataSamples: [HKQuantitySample], error: NSError?)
-    static let healthKitStore = HKHealthStore()
+    typealias authorizationResponse = (success: Bool?, error: NSError?)
+    
+    static let sharedInstance = HealthKitDataStore()
+    
+    let healthKitStore = HKHealthStore()
+    var healthKitDataReadTypes = Set<HKSampleType>()
     
     class func getSampleDataWithInDates(sampleType:HKSampleType, startDate: NSDate, endDate: NSDate, limit: Int, ascendingValue: Bool, completion: healthKitSamplesData -> Void) {
-        
         let dateRangePredicate = HKQuery.predicateForSamplesWithStartDate(startDate, endDate: endDate, options: .None)
-        
         let sortDescriptor = NSSortDescriptor(key:HKSampleSortIdentifierStartDate, ascending: ascendingValue)
-        
         let sampleQuery = HKSampleQuery(sampleType: sampleType, predicate: dateRangePredicate, limit: limit, sortDescriptors: [sortDescriptor]) { (sampleQuery, results, error ) -> Void in
             
             guard let results = results where error == nil else {
@@ -34,6 +36,41 @@ class HealthKitDataStore {
                 completion((dataSamples: samplesArray, error: nil))
             }
         }
-        healthKitStore.executeQuery(sampleQuery)
+        sharedInstance.healthKitStore.executeQuery(sampleQuery)
     }
+    
+    func prepareHealthKitReadTypes() {
+        let healthKitDataTypesOptionals: [HKSampleType?] = [HealthKitDataTypes.stepCount,
+                                                            HealthKitDataTypes.walkingRunningDistance,
+                                                            HealthKitDataTypes.flightsClimbed,
+                                                            HealthKitDataTypes.activeEnergyBurned,
+                                                            HealthKitDataTypes.exerciseTime,
+                                                            HealthKitDataTypes.heartRate,
+                                                            HealthKitDataTypes.basalEnergyBurned,
+                                                            HealthKitDataTypes.workouts,
+                                                            HealthKitDataTypes.waterConsumption]
+        
+        for dataType in healthKitDataTypesOptionals {
+            if let dataType = dataType {
+                HealthKitDataStore.sharedInstance.healthKitDataReadTypes.insert(dataType)
+            }
+        }
+    }
+    
+    func authorizeHealthKit(completion: authorizationResponse -> Void) {
+        prepareHealthKitReadTypes()
+        
+        healthKitStore.requestAuthorizationToShareTypes(Set(arrayLiteral: HealthKitDataTypes.workouts), readTypes: HealthKitDataStore.sharedInstance.healthKitDataReadTypes) { (success, error) in
+            if success {
+                completion((success: true, error: nil))
+            } else {
+                completion((success: false, error: nil))
+            }
+            
+            if let error = error {
+                completion((success: nil, error: error))
+            }
+        }
+    }
+    
 }

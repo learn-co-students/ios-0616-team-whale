@@ -10,6 +10,7 @@ import Foundation
 import HealthKit
 
 struct HealthKitDataTypes {
+    static let healthKitDataSampleTypes: [HKSampleType] = []
     static let workouts = HKSampleType.workoutType()
     static let stepCount = HKSampleType.quantityTypeForIdentifier(HKQuantityTypeIdentifierStepCount)
     static let basalEnergyBurned = HKSampleType.quantityTypeForIdentifier(HKQuantityTypeIdentifierBasalEnergyBurned)

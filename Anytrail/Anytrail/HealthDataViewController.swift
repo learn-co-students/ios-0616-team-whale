@@ -7,21 +7,24 @@
 //
 
 import UIKit
+import HealthKit
 
 class HealthDataViewController: UIViewController {
     
-    let healthKitStore = HealthKitDataStore.healthKitStore
+    let healthKitStore = HealthKitDataStore.sharedInstance.healthKitStore
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.whiteColor()
         
-        HealthKitClient().authorizeHealthKit { (response) in
-            print(response.success)
-            print(response.error)
+        if HKHealthStore.isHealthDataAvailable() {
+            
+            HealthKitDataStore.sharedInstance.authorizeHealthKit { (response) in
+                print(response.success)
+                print(response.error)
+            }
+            
         }
-        
-        
         //        healthKitStore.prepareHealthKitTypesToRead()
         //        healthKitStore.prepareHealthKitTypesToWrite()
         //        healthKitStore.authorizeHealthKit { (response) in
@@ -36,6 +39,7 @@ class HealthDataViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
     
     
     /*
