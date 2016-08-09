@@ -20,7 +20,7 @@ class MashapeData {
     
     init(json: JSON){
         guard let
-            activity = json["activities"]["activity_type_name"].string,
+            activity = json["activity_type_name"].string,
             name = json["name"].string,
             latitude = json["lat"].double,
             longitude = json["lon"].double
