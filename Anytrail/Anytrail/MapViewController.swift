@@ -33,16 +33,16 @@ class MapViewController: UIViewController, MGLMapViewDelegate {
             mapView.addAnnotation(pin)
             
         }
-        
-        for trail in store.mashapeData {
-            let pin = MGLPointAnnotation()
-            pin.coordinate = CLLocationCoordinate2D(latitude: trail.placeLatitude, longitude: trail.placeLongitude)
-            pin.title = trail.placeName
-            
-            pin.subtitle = trail.isHiking.description
-            mapView.addAnnotation(pin)
-        }
-//        let pin = MGLPointAnnotation()
+//        
+//        for trail in store.mashapeData {
+//            let pin = MGLPointAnnotation()
+//            pin.coordinate = CLLocationCoordinate2D(latitude: trail.placeLatitude, longitude: trail.placeLongitude)
+//            pin.title = trail.placeName
+//            
+//            pin.subtitle = trail.isHiking.description
+//            mapView.addAnnotation(pin)
+//        }
+////        let pin = MGLPointAnnotation()
 //        pin.coordinate = CLLocationCoordinate2D(latitude: 40.70528, longitude: -74.014025)
 //        pin.title = "Flatiron School"
 //        pin.subtitle = "Bowling Green Offices"
