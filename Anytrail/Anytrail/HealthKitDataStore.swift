@@ -32,7 +32,6 @@ class HealthKitDataStore {
         let sampleQuery = HKSampleQuery(sampleType: sampleType, predicate: dateRangePredicate, limit: limit, sortDescriptors: [sortDescriptor]) { (sampleQuery, results, error ) -> Void in
             
             guard let results = results where error == nil else {
-                print(error)
                 completion((dataSamples: [], error: error))
                 return
             }

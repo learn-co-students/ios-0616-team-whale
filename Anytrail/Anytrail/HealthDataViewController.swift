@@ -18,8 +18,6 @@ class HealthDataViewController: UIViewController {
         view.backgroundColor = UIColor.whiteColor()
         
         healthKitDataStore.authorizeHealthKit { (response) in
-            print(response.success)
-            print(response.error)
         }
         
         getHealthData()
@@ -38,24 +36,11 @@ class HealthDataViewController: UIViewController {
             healthKitDataStore.getSampleDataWithInDates(sampleType,
                                                         startDate: NSDate.distantPast(),
                                                         endDate: NSDate(),
-                                                        limit: 0,
+                                                        limit: 2,
                                                         ascendingValue: true,
                                                         completion: { (result) in
-                                                            print(result.dataSamples)
+                                                            //print(result.dataSamples)
             })
         }
     }
-    
-    
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
 }
