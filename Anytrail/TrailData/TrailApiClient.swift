@@ -8,53 +8,83 @@
 
 import Foundation
 import Alamofire
+import SwiftyJSON
 
-
-protocol AllActivitiesProtocol {
-    func generateData(category: String, completion: [InitActivities] -> Void)
-}
-
-
-class AllActivitiesClass: AllActivitiesProtocol {
-    
-    func generateData(category: String, completion: [InitActivities] -> Void) {
+class TrailApiClient {
+    class func getTrails(completion: (JSON?) -> ()){
+        let clientID = Keys.trailClientID
+        let hikingId = 14
+        let parameter = ["apikey" : clientID]
+        let url = "https://ridb.recreation.gov/api/v1/"
         
-        let keyAndURL = "https://ridb.recreation.gov/api/v1/\(category)?apikey=\(Keys.trailClientID)"
         
-        Alamofire.request(.GET, keyAndURL)
-            .responseJSON { response in
-                if let JSON = response.result.value {
-                    if let recData = JSON["RECDATA"] as? [AnyObject] {
-                        print(recData.count)
-                        var allActivities: [InitActivities] = []
-                        
-                        for item in recData {
-                            
-                            var name: String = ""
-                            var numberOfActivities: String = ""
-                            
-                            if let unwrappedName = item["RecAreaName"] as? String {
-                                name = unwrappedName
+        Alamofire.request(.GET, url, parameters: parameter, headers: nil).responseJSON { (response) in
+            if let data = response.data {
+                let jsonData = JSON(data : data)
+                if let places = jsonData["places"].array{
+                    for place in places {
+                        if let activities = place["activities"].array {
+                            for activity in activities {
+                                print("##########\(activity["activity_type_name"].string)")
                             }
-                            
-                            if let unwrappedActivity = item["RecAreaDescription"] as? String {
-                                numberOfActivities = unwrappedActivity
-                            }
-                            
-                            allActivities.append(InitActivities(activityID: numberOfActivities, name: name))
+                            print(place)
                         }
-                        completion(allActivities)
                     }
+                    
                 }
+                completion(jsonData)
+            }
         }
     }
 }
 
-struct InitActivities: CustomStringConvertible {
-    let activityID: String?
-    let name: String?
-    
-    var description: String {return "\(name ?? ""), \(activityID ?? "")" }
-}
 
+//
+//protocol AllActivitiesProtocol {
+//    func generateData(category: String, completion: [InitActivities] -> Void)
+//}
+//
+//
+//class AllActivitiesClass: AllActivitiesProtocol {
+//    
+//    func generateData(category: String, completion: [InitActivities] -> Void) {
+//        
+//        let keyAndURL = "\(category)?apikey=\(Keys.trailClientID)"
+//        
+//        Alamofire.request(.GET, keyAndURL)
+//            .responseJSON { response in
+//                if let JSON = response.result.value {
+//                    if let recData = JSON["RECDATA"] as? [AnyObject] {
+//                        print(recData.count)
+//                        var allActivities: [InitActivities] = []
+//                        
+//                        for item in recData {
+//                            
+//                            var name: String = ""
+//                            var numberOfActivities: String = ""
+//                            
+//                            if let unwrappedName = item["RecAreaName"] as? String {
+//                                name = unwrappedName
+//                            }
+//                            
+//                            if let unwrappedActivity = item["RecAreaDescription"] as? String {
+//                                numberOfActivities = unwrappedActivity
+//                            }
+//                            
+//                            allActivities.append(InitActivities(activityID: numberOfActivities, name: name))
+//                        }
+//                        completion(allActivities)
+//                    }
+//                }
+//        }
+//    }
+//}
+//
+//struct InitActivities: CustomStringConvertible {
+//    let activityID: String?
+//    let name: String?
+//    
+//    var description: String {return "\(name ?? ""), \(activityID ?? "")" }
+//}
+//
 

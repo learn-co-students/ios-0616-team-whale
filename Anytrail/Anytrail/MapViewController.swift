@@ -42,7 +42,7 @@ class MapViewController: UIViewController, MGLMapViewDelegate {
                 let pin = MGLPointAnnotation()
                 pin.coordinate = CLLocationCoordinate2D(latitude: trail.placeLatitude, longitude: trail.placeLongitude)
                 pin.title = trail.placeName
-//                pin.subtitle = trail.isHiking.description
+//                pin.subtitle = trail.isHiking?.description
                 mapView.addAnnotation(pin)
             }
             
@@ -69,11 +69,9 @@ class MapViewController: UIViewController, MGLMapViewDelegate {
         }
         
         ApisDataStore.sharedInstance.getDataWithCompletion {
-//            self.addFoursquareAnnotations()
+            self.addFoursquareAnnotations()
         }
         
-        
-
         
     }
 

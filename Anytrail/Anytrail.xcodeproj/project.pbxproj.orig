@@ -13,14 +13,12 @@
 		2ECF502D1D590D430072732B /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2ECF502C1D590D430072732B /* HealthKit.framework */; };
 		2ECF50511D5929700072732B /* HealthKitConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECF50501D5929700072732B /* HealthKitConstants.swift */; };
 
-		4D225C1B1D5A0FF600360AB8 /* MashapeAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D225C1A1D5A0FF600360AB8 /* MashapeAPIClient.swift */; };
-		4D225C1F1D5A100800360AB8 /* MashapeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D225C1E1D5A100800360AB8 /* MashapeData.swift */; };
 		4DB2D9611D58DEBA007BD4A5 /* FoursquareAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB2D9601D58DEBA007BD4A5 /* FoursquareAPIClient.swift */; };
-		4DB2D9631D58DF04007BD4A5 /* ApisDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB2D9621D58DF04007BD4A5 /* ApisDataStore.swift */; };
+		4DB2D9631D58DF04007BD4A5 /* FoursquareDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB2D9621D58DF04007BD4A5 /* FoursquareDataStore.swift */; };
 		4DB2D9651D58DF18007BD4A5 /* FoursquareData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB2D9641D58DF18007BD4A5 /* FoursquareData.swift */; };
+		4DB2D9671D593FB9007BD4A5 /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB2D9661D593FB9007BD4A5 /* Keys.swift */; };
 		681BF710713DEB89F836003E /* Pods_AnytrailTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB2E3A25BA33F309140861F9 /* Pods_AnytrailTests.framework */; };
 		8A53F2EC1D594A4A00F244BE /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A53F2EB1D594A4A00F244BE /* Keys.swift */; };
-		8A53F2F11D594E3E00F244BE /* TrailApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A53F2F01D594E3E00F244BE /* TrailApiClient.swift */; };
 		9424A7701D53D5DA00CE8D42 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9424A76F1D53D5DA00CE8D42 /* AppDelegate.swift */; };
 		9424A7721D53D5DA00CE8D42 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9424A7711D53D5DA00CE8D42 /* MapViewController.swift */; };
 		9424A7771D53D5DA00CE8D42 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9424A7751D53D5DA00CE8D42 /* Main.storyboard */; };
@@ -46,15 +44,12 @@
 		2ECF502E1D590D430072732B /* Anytrail.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Anytrail.entitlements; sourceTree = "<group>"; };
 		2ECF50501D5929700072732B /* HealthKitConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthKitConstants.swift; sourceTree = "<group>"; };
 		3417C12B1559CD326FE9F852 /* Pods-Anytrail.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Anytrail.release.xcconfig"; path = "Pods/Target Support Files/Pods-Anytrail/Pods-Anytrail.release.xcconfig"; sourceTree = "<group>"; };
-		4D225C1A1D5A0FF600360AB8 /* MashapeAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MashapeAPIClient.swift; sourceTree = "<group>"; };
-		4D225C1E1D5A100800360AB8 /* MashapeData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MashapeData.swift; sourceTree = "<group>"; };
 		4DB2D9601D58DEBA007BD4A5 /* FoursquareAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoursquareAPIClient.swift; sourceTree = "<group>"; };
-		4DB2D9621D58DF04007BD4A5 /* ApisDataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApisDataStore.swift; sourceTree = "<group>"; };
+		4DB2D9621D58DF04007BD4A5 /* FoursquareDataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoursquareDataStore.swift; sourceTree = "<group>"; };
 		4DB2D9641D58DF18007BD4A5 /* FoursquareData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoursquareData.swift; sourceTree = "<group>"; };
-		5661F119B27C682B7C9BCB04 /* Pods-AnytrailTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnytrailTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-AnytrailTests/Pods-AnytrailTests.release.xcconfig"; sourceTree = "<group>"; };
+        5661F119B27C682B7C9BCB04 /* Pods-AnytrailTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnytrailTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-AnytrailTests/Pods-AnytrailTests.release.xcconfig"; sourceTree = "<group>"; };
 		599CF5E42324548824DD0368 /* Pods_Anytrail.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Anytrail.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A53F2EB1D594A4A00F244BE /* Keys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
-		8A53F2F01D594E3E00F244BE /* TrailApiClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrailApiClient.swift; sourceTree = "<group>"; };
 		9424A76C1D53D5DA00CE8D42 /* Anytrail.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Anytrail.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9424A76F1D53D5DA00CE8D42 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9424A7711D53D5DA00CE8D42 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -91,19 +86,10 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		8A53F2ED1D594D8700F244BE /* TrailData */ = {
-			isa = PBXGroup;
-			children = (
-				8A53F2F01D594E3E00F244BE /* TrailApiClient.swift */,
-			);
-			path = TrailData;
-			sourceTree = "<group>";
-		};
 		9424A7631D53D5DA00CE8D42 = {
 			isa = PBXGroup;
 			children = (
 				9424A76E1D53D5DA00CE8D42 /* Anytrail */,
-				8A53F2ED1D594D8700F244BE /* TrailData */,
 				9424A7851D53D5DA00CE8D42 /* AnytrailTests */,
 				9424A76D1D53D5DA00CE8D42 /* Products */,
 				E51CB3F131D7F2E3E53360EE /* Pods */,
@@ -124,10 +110,8 @@
 			isa = PBXGroup;
 			children = (
 				8A53F2EB1D594A4A00F244BE /* Keys.swift */,
-				4D225C1A1D5A0FF600360AB8 /* MashapeAPIClient.swift */,
-				4D225C1E1D5A100800360AB8 /* MashapeData.swift */,
 				4DB2D9601D58DEBA007BD4A5 /* FoursquareAPIClient.swift */,
-				4DB2D9621D58DF04007BD4A5 /* ApisDataStore.swift */,
+				4DB2D9621D58DF04007BD4A5 /* FoursquareDataStore.swift */,
 				4DB2D9641D58DF18007BD4A5 /* FoursquareData.swift */,
 				2ECF502E1D590D430072732B /* Anytrail.entitlements */,
 				9424A76F1D53D5DA00CE8D42 /* AppDelegate.swift */,
@@ -387,16 +371,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8A53F2F11D594E3E00F244BE /* TrailApiClient.swift in Sources */,
+
 				2ECF50291D58E2500072732B /* HealthDataViewController.swift in Sources */,
-				4D225C1B1D5A0FF600360AB8 /* MashapeAPIClient.swift in Sources */,
 				2ECF50511D5929700072732B /* HealthKitConstants.swift in Sources */,
 				9424A7701D53D5DA00CE8D42 /* AppDelegate.swift in Sources */,
-				4D225C1F1D5A100800360AB8 /* MashapeData.swift in Sources */,
 				4DB2D9651D58DF18007BD4A5 /* FoursquareData.swift in Sources */,
 				4DB2D9611D58DEBA007BD4A5 /* FoursquareAPIClient.swift in Sources */,
 				8A53F2EC1D594A4A00F244BE /* Keys.swift in Sources */,
-				4DB2D9631D58DF04007BD4A5 /* ApisDataStore.swift in Sources */,
+				4DB2D9631D58DF04007BD4A5 /* FoursquareDataStore.swift in Sources */,
 				9424A7721D53D5DA00CE8D42 /* MapViewController.swift in Sources */,
 				2ECF502B1D5902890072732B /* HealthKitDataStore.swift in Sources */,
 			);
@@ -529,11 +511,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Anytrail/Anytrail.entitlements;
+
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Anytrail/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+<<<<<<< HEAD
 				PRODUCT_BUNDLE_IDENTIFIER = edu.self.Anytrail;
+=======
+				PRODUCT_BUNDLE_IDENTIFIER = com.whiteHouse.Anytrail;
+
+>>>>>>> 0037968bfc34155648f0474cffb4e695670fccda
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -549,7 +537,12 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Anytrail/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-                PRODUCT_BUNDLE_IDENTIFIER = edu.self.Anytrail;
+<<<<<<< HEAD
+				PRODUCT_BUNDLE_IDENTIFIER = edu.self.Anytrail;
+=======
+				PRODUCT_BUNDLE_IDENTIFIER = com.whiteHouse.Anytrail;
+
+>>>>>>> 0037968bfc34155648f0474cffb4e695670fccda
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
