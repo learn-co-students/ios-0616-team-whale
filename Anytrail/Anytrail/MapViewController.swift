@@ -22,7 +22,7 @@ class MapViewController: UIViewController, MGLMapViewDelegate {
         return true
     }
     
-    func addAnnotation() {
+    func addFoursquareAnnotations() {
         
         for location in store.foursquareData {
             let pin = MGLPointAnnotation()
@@ -33,27 +33,20 @@ class MapViewController: UIViewController, MGLMapViewDelegate {
             mapView.addAnnotation(pin)
             
         }
-//        
-//        for trail in store.mashapeData {
-//            let pin = MGLPointAnnotation()
-//            pin.coordinate = CLLocationCoordinate2D(latitude: trail.placeLatitude, longitude: trail.placeLongitude)
-//            pin.title = trail.placeName
-//            
-//            pin.subtitle = trail.isHiking.description
-//            mapView.addAnnotation(pin)
-//        }
-////        let pin = MGLPointAnnotation()
-//        pin.coordinate = CLLocationCoordinate2D(latitude: 40.70528, longitude: -74.014025)
-//        pin.title = "Flatiron School"
-//        pin.subtitle = "Bowling Green Offices"
-//        
-//        mapView.addAnnotation(pin)
-//        
-//        let testPin = MGLPointAnnotation()
-//        let object = store.data[0]
-//        testPin.coordinate = CLLocationCoordinate2D(latitude: object.placeLatitude, longitude: object.placeLongitude)
-//        pin.title = object.placeName
-//        mapView.addAnnotation(testPin)
+        
+    }
+    
+    func addTrailsAnnotations() {
+        for trail in store.mashapeData {
+            if trail.isHiking == true {
+                let pin = MGLPointAnnotation()
+                pin.coordinate = CLLocationCoordinate2D(latitude: trail.placeLatitude, longitude: trail.placeLongitude)
+                pin.title = trail.placeName
+//                pin.subtitle = trail.isHiking.description
+                mapView.addAnnotation(pin)
+            }
+            
+        }
     }
     
     // MARK: - View
@@ -66,16 +59,17 @@ class MapViewController: UIViewController, MGLMapViewDelegate {
         MashapeAPIClient.getTrails { (data) in
             
         }
-        ApisDataStore.sharedInstance.getTrailsWithCompletion { 
-            self.addAnnotation()
-        }
-        
+    
         FoursquareAPIClient.getQueryForSearchLandmarks { (data) in
             
         }
         
+        ApisDataStore.sharedInstance.getTrailsWithCompletion {
+            self.addTrailsAnnotations()
+        }
+        
         ApisDataStore.sharedInstance.getDataWithCompletion {
-            self.addAnnotation()
+//            self.addFoursquareAnnotations()
         }
         
         

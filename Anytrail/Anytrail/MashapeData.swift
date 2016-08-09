@@ -12,15 +12,15 @@ import SwiftyJSON
 import UIKit
 
 class MashapeData {
-    var activityType : String
-    var isHiking : Bool
+    
+    var isHiking : Bool?
     var placeLongitude : Double
     var placeLatitude : Double
     var placeName : String
     
     init(json: JSON){
         guard let
-            activity = json["activity_type_name"].string,
+            activities = json["activities"].array,
             name = json["name"].string,
             latitude = json["lat"].double,
             longitude = json["lon"].double
@@ -28,13 +28,16 @@ class MashapeData {
                 fatalError("There was an error retrieving the information from Mashape")
         }
         
-        
-        if activity.containsString("hiking") || activity.containsString("hike") {
-            isHiking = true
-        } else {
-            isHiking = false
+        for activity in activities {
+            if activity["activity_type_name"].string!.containsString("hiking"){
+                isHiking = true
+                print("***********\(activity) \(name) **************")
+            } else {
+                isHiking = false
+            }
         }
-        activityType = activity
+        
+        
         placeLatitude = latitude
         placeLongitude = longitude
         placeName = name

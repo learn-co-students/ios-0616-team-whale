@@ -25,13 +25,14 @@ class MashapeAPIClient {
                     for place in places {
                         if let activities = place["activities"].array {
                             for activity in activities {
-                                print(activity["activity_type_name"].string)
+                                print("##########\(activity["activity_type_name"].string)")
                             }
                             print(place)
                         }
                     }
-                    completion(jsonData)
+                    
                 }
+                completion(jsonData)
             }
         }
     }

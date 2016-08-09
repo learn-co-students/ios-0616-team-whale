@@ -47,8 +47,13 @@ class ApisDataStore {
             self.mashapeData.removeAll()
             guard let json = json else { print("error: no data recieved from mashape API Client"); return}
             for object in json {
-                let trailData = object.1
-                self.mashapeData.append(MashapeData(json: trailData))
+                if let trailData = object.1.array {
+                    for i in 0..<trailData.count{
+                        self.mashapeData.append(MashapeData(json: trailData[i]))
+                        print("@@@@@@@@@@@@@@\(trailData[i])")
+                    }
+
+                }
                 
             }
             completion()
