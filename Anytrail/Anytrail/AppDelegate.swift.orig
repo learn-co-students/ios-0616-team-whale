@@ -24,11 +24,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         UITabBar.appearance().translucent = false
         
+<<<<<<< HEAD
+        // Assign Mapbox token
+        
+        
+        MGLAccountManager.setAccessToken(Keys.mapBoxToken)
+        
+=======
         // Set Mapbox token
         MGLAccountManager.setAccessToken(Keys.mapBoxToken)
         
         // Setup Firebase
         FIRApp.configure()
+>>>>>>> 444294ceb97b357ab6f7744acb869d23c4dad591
         
         return true
     }

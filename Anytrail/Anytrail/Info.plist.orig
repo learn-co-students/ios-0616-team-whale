@@ -48,6 +48,8 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
+<<<<<<< HEAD
+=======
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
     <key>CFBundleURLTypes</key>
@@ -70,5 +72,6 @@
         <string>fbauth2</string>
         <string>fbshareextension</string>
     </array>
+>>>>>>> 444294ceb97b357ab6f7744acb869d23c4dad591
 </dict>
 </plist>
