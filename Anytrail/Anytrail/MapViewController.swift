@@ -13,7 +13,8 @@ class MapViewController: UIViewController, MGLMapViewDelegate {
     
     @IBOutlet var mapView: MGLMapView!
     
-    let store = FoursquareDataStore.sharedInstance
+    let store = ApisDataStore.sharedInstance
+
     
     // MARK: - Mapbox
     
@@ -23,7 +24,7 @@ class MapViewController: UIViewController, MGLMapViewDelegate {
     
     func addAnnotation() {
         
-        for location in store.data {
+        for location in store.foursquareData {
             let pin = MGLPointAnnotation()
             pin.coordinate = CLLocationCoordinate2D(latitude: location.placeLatitude, longitude: location.placeLongitude)
             pin.title = location.placeName
@@ -31,6 +32,15 @@ class MapViewController: UIViewController, MGLMapViewDelegate {
             pin.subtitle = location.placeAddress
             mapView.addAnnotation(pin)
             
+        }
+        
+        for trail in store.mashapeData {
+            let pin = MGLPointAnnotation()
+            pin.coordinate = CLLocationCoordinate2D(latitude: trail.placeLatitude, longitude: trail.placeLongitude)
+            pin.title = trail.placeName
+            
+            pin.subtitle = trail.isHiking.description
+            mapView.addAnnotation(pin)
         }
 //        let pin = MGLPointAnnotation()
 //        pin.coordinate = CLLocationCoordinate2D(latitude: 40.70528, longitude: -74.014025)
@@ -53,12 +63,18 @@ class MapViewController: UIViewController, MGLMapViewDelegate {
         // Do any additional setup after loading the view, typically from a nib.
         
 
+        MashapeAPIClient.getTrails { (data) in
+            
+        }
+        ApisDataStore.sharedInstance.getTrailsWithCompletion { 
+            self.addAnnotation()
+        }
         
         FoursquareAPIClient.getQueryForSearchLandmarks { (data) in
             
         }
         
-        FoursquareDataStore.sharedInstance.getDataWithCompletion { 
+        ApisDataStore.sharedInstance.getDataWithCompletion {
             self.addAnnotation()
         }
         
