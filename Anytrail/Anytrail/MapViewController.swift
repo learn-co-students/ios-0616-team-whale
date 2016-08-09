@@ -22,18 +22,28 @@ class MapViewController: UIViewController, MGLMapViewDelegate {
     }
     
     func addAnnotation() {
-        let pin = MGLPointAnnotation()
-        pin.coordinate = CLLocationCoordinate2D(latitude: 40.70528, longitude: -74.014025)
-        pin.title = "Flatiron School"
-        pin.subtitle = "Bowling Green Offices"
         
-        mapView.addAnnotation(pin)
-        
-        let testPin = MGLPointAnnotation()
-        let object = store.data[0]
-        testPin.coordinate = CLLocationCoordinate2D(latitude: object.placeLatitude, longitude: object.placeLongitude)
-        pin.title = object.placeName
-        mapView.addAnnotation(testPin)
+        for location in store.data {
+            let pin = MGLPointAnnotation()
+            pin.coordinate = CLLocationCoordinate2D(latitude: location.placeLatitude, longitude: location.placeLongitude)
+            pin.title = location.placeName
+            
+            pin.subtitle = location.placeAddress
+            mapView.addAnnotation(pin)
+            
+        }
+//        let pin = MGLPointAnnotation()
+//        pin.coordinate = CLLocationCoordinate2D(latitude: 40.70528, longitude: -74.014025)
+//        pin.title = "Flatiron School"
+//        pin.subtitle = "Bowling Green Offices"
+//        
+//        mapView.addAnnotation(pin)
+//        
+//        let testPin = MGLPointAnnotation()
+//        let object = store.data[0]
+//        testPin.coordinate = CLLocationCoordinate2D(latitude: object.placeLatitude, longitude: object.placeLongitude)
+//        pin.title = object.placeName
+//        mapView.addAnnotation(testPin)
     }
     
     // MARK: - View
