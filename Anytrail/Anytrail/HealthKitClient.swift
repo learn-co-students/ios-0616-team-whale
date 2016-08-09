@@ -50,30 +50,4 @@ class HealthKitClient {
         }
     }
     
-    //    func healthKitSearchQuery() {
-    //
-    //        let dataArray = Array(healthKitDataTypesTo)
-    ////        let sampleType =
-    ////            HKObjectType.quantityTypeForIdentifier(HKQuantityTypeIdentifierStepCount)
-    //
-    //        let query = HKObserverQuery(sampleType: HealthKitDataTypes.stepCount, predicate: nil) {
-    //            query, completionHandler, error in
-    //
-    //            if error != nil {
-    //
-    //                // Perform Proper Error Handling Here...
-    //                println("*** An error occured while setting up the stepCount observer. \(error.localizedDescription) ***")
-    //                abort()
-    //            }
-    //
-    //            // Take whatever steps are necessary to update your app's data and UI
-    //            // This may involve executing other queries
-    //            self.updateDailyStepCount()
-    //
-    //            // If you have subscribed for background updates you must call the completion handler here.
-    //            // completionHandler()
-    //        }
-    //
-    //        healthStore.executeQuery(query)
-    //    }
 }
