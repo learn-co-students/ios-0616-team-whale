@@ -20,12 +20,12 @@ class MashapeData {
     
     init(json: JSON){
         guard let
-            activity = json["places"]["activities"][0]["activity_type_name"].string,
-            name = json["places"]["name"].string,
-            latitude = json["places"]["lat"].double,
-            longitude = json["places"]["lon"].double
+            activity = json["activities"]["activity_type_name"].string,
+            name = json["name"].string,
+            latitude = json["lat"].double,
+            longitude = json["lon"].double
         else {
-                fatalError("There was an error retrieving the information from FourSquare")
+                fatalError("There was an error retrieving the information from Mashape")
         }
         
         

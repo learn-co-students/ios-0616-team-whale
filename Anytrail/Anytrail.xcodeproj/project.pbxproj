@@ -13,10 +13,9 @@
 		2ECF502D1D590D430072732B /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2ECF502C1D590D430072732B /* HealthKit.framework */; };
 		2ECF50511D5929700072732B /* HealthKitConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECF50501D5929700072732B /* HealthKitConstants.swift */; };
 		4D225C1B1D5A0FF600360AB8 /* MashapeAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D225C1A1D5A0FF600360AB8 /* MashapeAPIClient.swift */; };
-		4D225C1D1D5A100200360AB8 /* MashapeDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D225C1C1D5A100200360AB8 /* MashapeDataStore.swift */; };
 		4D225C1F1D5A100800360AB8 /* MashapeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D225C1E1D5A100800360AB8 /* MashapeData.swift */; };
 		4DB2D9611D58DEBA007BD4A5 /* FoursquareAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB2D9601D58DEBA007BD4A5 /* FoursquareAPIClient.swift */; };
-		4DB2D9631D58DF04007BD4A5 /* FoursquareDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB2D9621D58DF04007BD4A5 /* FoursquareDataStore.swift */; };
+		4DB2D9631D58DF04007BD4A5 /* ApisDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB2D9621D58DF04007BD4A5 /* ApisDataStore.swift */; };
 		4DB2D9651D58DF18007BD4A5 /* FoursquareData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB2D9641D58DF18007BD4A5 /* FoursquareData.swift */; };
 		681BF710713DEB89F836003E /* Pods_AnytrailTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB2E3A25BA33F309140861F9 /* Pods_AnytrailTests.framework */; };
 		8A53F2EC1D594A4A00F244BE /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A53F2EB1D594A4A00F244BE /* Keys.swift */; };
@@ -46,10 +45,9 @@
 		2ECF50501D5929700072732B /* HealthKitConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthKitConstants.swift; sourceTree = "<group>"; };
 		3417C12B1559CD326FE9F852 /* Pods-Anytrail.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Anytrail.release.xcconfig"; path = "Pods/Target Support Files/Pods-Anytrail/Pods-Anytrail.release.xcconfig"; sourceTree = "<group>"; };
 		4D225C1A1D5A0FF600360AB8 /* MashapeAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MashapeAPIClient.swift; sourceTree = "<group>"; };
-		4D225C1C1D5A100200360AB8 /* MashapeDataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MashapeDataStore.swift; sourceTree = "<group>"; };
 		4D225C1E1D5A100800360AB8 /* MashapeData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MashapeData.swift; sourceTree = "<group>"; };
 		4DB2D9601D58DEBA007BD4A5 /* FoursquareAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoursquareAPIClient.swift; sourceTree = "<group>"; };
-		4DB2D9621D58DF04007BD4A5 /* FoursquareDataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoursquareDataStore.swift; sourceTree = "<group>"; };
+		4DB2D9621D58DF04007BD4A5 /* ApisDataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApisDataStore.swift; sourceTree = "<group>"; };
 		4DB2D9641D58DF18007BD4A5 /* FoursquareData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoursquareData.swift; sourceTree = "<group>"; };
 		5661F119B27C682B7C9BCB04 /* Pods-AnytrailTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnytrailTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-AnytrailTests/Pods-AnytrailTests.release.xcconfig"; sourceTree = "<group>"; };
 		599CF5E42324548824DD0368 /* Pods_Anytrail.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Anytrail.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -115,10 +113,9 @@
 			children = (
 				8A53F2EB1D594A4A00F244BE /* Keys.swift */,
 				4D225C1A1D5A0FF600360AB8 /* MashapeAPIClient.swift */,
-				4D225C1C1D5A100200360AB8 /* MashapeDataStore.swift */,
 				4D225C1E1D5A100800360AB8 /* MashapeData.swift */,
 				4DB2D9601D58DEBA007BD4A5 /* FoursquareAPIClient.swift */,
-				4DB2D9621D58DF04007BD4A5 /* FoursquareDataStore.swift */,
+				4DB2D9621D58DF04007BD4A5 /* ApisDataStore.swift */,
 				4DB2D9641D58DF18007BD4A5 /* FoursquareData.swift */,
 				2ECF502E1D590D430072732B /* Anytrail.entitlements */,
 				9424A76F1D53D5DA00CE8D42 /* AppDelegate.swift */,
@@ -381,13 +378,12 @@
 				2ECF50291D58E2500072732B /* HealthDataViewController.swift in Sources */,
 				4D225C1B1D5A0FF600360AB8 /* MashapeAPIClient.swift in Sources */,
 				2ECF50511D5929700072732B /* HealthKitConstants.swift in Sources */,
-				4D225C1D1D5A100200360AB8 /* MashapeDataStore.swift in Sources */,
 				9424A7701D53D5DA00CE8D42 /* AppDelegate.swift in Sources */,
 				4D225C1F1D5A100800360AB8 /* MashapeData.swift in Sources */,
 				4DB2D9651D58DF18007BD4A5 /* FoursquareData.swift in Sources */,
 				4DB2D9611D58DEBA007BD4A5 /* FoursquareAPIClient.swift in Sources */,
 				8A53F2EC1D594A4A00F244BE /* Keys.swift in Sources */,
-				4DB2D9631D58DF04007BD4A5 /* FoursquareDataStore.swift in Sources */,
+				4DB2D9631D58DF04007BD4A5 /* ApisDataStore.swift in Sources */,
 				9424A7721D53D5DA00CE8D42 /* MapViewController.swift in Sources */,
 				2ECF502B1D5902890072732B /* HealthKitDataStore.swift in Sources */,
 			);

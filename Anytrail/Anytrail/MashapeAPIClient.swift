@@ -15,15 +15,21 @@ class MashapeAPIClient {
     class func getTrails(completion: (JSON?) -> ()){
         let clientID = Keys.mashapeKey
         let parameter = ["mashape-key" : clientID]
+        let url = "https://trailapi-trailapi.p.mashape.com"
         
-        Alamofire.request(.GET, "https://trailapi-trailapi.p.mashape.com", parameters: parameter, headers: nil).responseJSON { (response) in
+        
+        Alamofire.request(.GET, url, parameters: parameter, headers: nil).responseJSON { (response) in
             if let data = response.data {
                 let jsonData = JSON(data : data)
-//                for venue in jsonData["response"]["groups"].array! {
-//                    for item in venue["items"] {
-//                        print(item.1.dictionary!["venue"]!["name"])
-//                    }
-//                }
+                if let places = jsonData["places"].array{
+                    for place in places {
+                        if let activities = places["activities"].dictionary {
+                        for activity in places["activities"].dictionary!{
+                            print(activity["activity_type_name"].string)
+                        }
+                    print(place)
+                    }
+                }
                 completion(jsonData)
             }
         }
@@ -31,3 +37,5 @@ class MashapeAPIClient {
     
     
 }
+
+      
