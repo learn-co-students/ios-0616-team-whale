@@ -8,24 +8,50 @@
 
 import Foundation
 import HealthKit
+import WatchConnectivity
+import DeviceKit
 
 class HealthKitClient {
     typealias authorizationResponse = (success: Bool?, error: NSError?)
+    typealias hardwareTypeAvailable = (phoneType: String, appleWatch: Bool)
     
     var healthKitDataReadTypes = Set<HKSampleType>()
-    var healthKitDataWriteTypes = Set<HKSampleType>()
     
-    func prepareHealthKitReadTypes() {
+    func checkAvaliableHardware() -> hardwareTypeAvailable {
+        let deviceType = Device().description
+        let appleWatchAvailable = WCSession.isSupported()
+        return hardwareTypeAvailable(phoneType: deviceType, appleWatch: appleWatchAvailable)
+    }
+    
+    func prepareHealthKitReadTypes(hardwareType: hardwareTypeAvailable) {
+        
+        switch hardwareType {
+        case ("iPhone 5s", false), ("iPhone SE", false):
+            let healthKitDataTypesOptionals = [HealthKitDataTypes.stepCount,
+                                               HealthKitDataTypes.walkingRunningDistance,
+                                               HealthKitDataTypes.waterConsumption]
+
+        case ("iPhone 6", false), ("iPhone 6s", false):
+            let healthKitDataTypesOptionals = [HealthKitDataTypes.stepCount,
+                                               HealthKitDataTypes.walkingRunningDistance,
+                                               HealthKitDataTypes.flightsClimbed,
+                                               HealthKitDataTypes.waterConsumption]
+        default:
+            let healthKitDataTypesOptionals = [HealthKitDataTypes.stepCount,
+                                               HealthKitDataTypes.basalEnergyBurned,
+                                               HealthKitDataTypes.walkingRunningDistance,
+                                               HealthKitDataTypes.exerciseTime,
+                                               HealthKitDataTypes.activeEnergyBurned,
+                                               HealthKitDataTypes.heartRate,
+                                               HealthKitDataTypes.waterConsumption]
+        }
         
         let healthKitDataTypesOptionals = [HealthKitDataTypes.stepCount,
                                            HealthKitDataTypes.basalEnergyBurned,
-                                           HealthKitDataTypes.flightsClimbed,
                                            HealthKitDataTypes.walkingRunningDistance,
                                            HealthKitDataTypes.exerciseTime,
                                            HealthKitDataTypes.activeEnergyBurned,
                                            HealthKitDataTypes.heartRate,
-                                           HealthKitDataTypes.userHeight,
-                                           HealthKitDataTypes.userWeight,
                                            HealthKitDataTypes.waterConsumption]
         
         for dataType in healthKitDataTypesOptionals {
@@ -35,25 +61,10 @@ class HealthKitClient {
         }
     }
     
-    func prepareHealthKitTypesToWrite() {
-        
-        let healthKitDataTypes = [HealthKitDataTypes.stepCount,
-                                  HealthKitDataTypes.flightsClimbed,
-                                  HealthKitDataTypes.walkingRunningDistance,
-                                  HealthKitDataTypes.waterConsumption]
-        
-        for dataType in healthKitDataTypes {
-            if let dataType = dataType {
-                healthKitDataWriteTypes.insert(dataType)
-            }
-        }
-    }
-    
     func authorizeHealthKit(completion: authorizationResponse -> Void) {
         prepareHealthKitReadTypes()
-        prepareHealthKitTypesToWrite()
         
-        HealthKitDataStore.healthKitStore.requestAuthorizationToShareTypes(healthKitDataWriteTypes, readTypes: healthKitDataReadTypes) { (success, error) in
+        HealthKitDataStore.healthKitStore.requestAuthorizationToShareTypes(Set(arrayLiteral: HealthKitDataTypes.workouts), readTypes: healthKitDataReadTypes) { (success, error) in
             if success {
                 completion((success: true, error: nil))
             } else {
