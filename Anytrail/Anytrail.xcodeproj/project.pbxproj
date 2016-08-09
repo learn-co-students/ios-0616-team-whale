@@ -12,6 +12,7 @@
 		2ECF50511D5929700072732B /* (null) in Sources */ = {isa = PBXBuildFile; };
 		4D225C1B1D5A0FF600360AB8 /* MashapeAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D225C1A1D5A0FF600360AB8 /* MashapeAPIClient.swift */; };
 		4D225C1F1D5A100800360AB8 /* MashapeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D225C1E1D5A100800360AB8 /* MashapeData.swift */; };
+		2ECF50511D5929700072732B /* HealthKitConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECF50501D5929700072732B /* HealthKitConstants.swift */; };
 		4DB2D9611D58DEBA007BD4A5 /* FoursquareAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB2D9601D58DEBA007BD4A5 /* FoursquareAPIClient.swift */; };
 		4DB2D9631D58DF04007BD4A5 /* ApisDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB2D9621D58DF04007BD4A5 /* ApisDataStore.swift */; };
 		4DB2D9651D58DF18007BD4A5 /* FoursquareData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB2D9641D58DF18007BD4A5 /* FoursquareData.swift */; };
@@ -144,6 +145,8 @@
 				945F35EE1D5A306A002F9C1E /* UI */,
 				945F35EB1D593648002F9C1E /* Utility */,
 				945F35E51D5911A1002F9C1E /* Cells */,
+				2ECF502A1D5902890072732B /* HealthKitDataStore.swift */,
+				2ECF50501D5929700072732B /* HealthKitConstants.swift */,
 				9424A7911D53D6B500CE8D42 /* Controllers */,
 				9424A7751D53D5DA00CE8D42 /* Main.storyboard */,
 				9424A77A1D53D5DA00CE8D42 /* LaunchScreen.storyboard */,
@@ -170,6 +173,7 @@
 				945F35DD1D58F377002F9C1E /* ATSignupViewController.swift */,
 				945F35E11D58F390002F9C1E /* ATLoginViewController.swift */,
 				945F35DF1D58F381002F9C1E /* ATMapViewController.swift */,
+				2ECF50281D58E2500072732B /* HealthDataViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -438,6 +442,8 @@
 				8A53F2F11D594E3E00F244BE /* TrailApiClient.swift in Sources */,
 				4D225C1B1D5A0FF600360AB8 /* MashapeAPIClient.swift in Sources */,
 				2ECF50511D5929700072732B /* (null) in Sources */,
+				2ECF50291D58E2500072732B /* HealthDataViewController.swift in Sources */,
+				2ECF50511D5929700072732B /* HealthKitConstants.swift in Sources */,
 				9424A7701D53D5DA00CE8D42 /* AppDelegate.swift in Sources */,
 				4D225C1F1D5A100800360AB8 /* MashapeData.swift in Sources */,
 				4DB2D9651D58DF18007BD4A5 /* FoursquareData.swift in Sources */,
