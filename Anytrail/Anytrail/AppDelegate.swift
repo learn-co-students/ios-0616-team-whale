@@ -6,7 +6,10 @@
 //  Copyright © 2016 Flatiron School. All rights reserved.
 //
 
+import FBSDKLoginKit
+import Firebase
 import Mapbox
+
 import UIKit
 
 @UIApplicationMain
@@ -15,11 +18,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        UINavigationBar.appearance().setBackgroundImage(UIImage(), forBarMetrics: .Default)
+        UINavigationBar.appearance().backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.0)
+        UINavigationBar.appearance().translucent = false
         
-        // Assign Mapbox token
+        UITabBar.appearance().translucent = false
+        
+        // Set Mapbox token
         MGLAccountManager.setAccessToken(Keys.mapBoxToken)
         
+        // Setup Firebase
+        FIRApp.configure()
+        
         return true
+    }
+    
+    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
+        return FBSDKApplicationDelegate.sharedInstance().application(application, openURL: url,
+                                                                        sourceApplication: sourceApplication,
+                                                                               annotation: annotation)
     }
 
     func applicationWillResignActive(application: UIApplication) {
@@ -43,7 +60,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
-
 }
-

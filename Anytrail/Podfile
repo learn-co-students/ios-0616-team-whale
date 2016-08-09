@@ -7,8 +7,13 @@ target 'Anytrail' do
   # Pods for Anytrail
   pod 'Alamofire'
   pod 'SwiftyJSON'
-  pod 'SlideMenuControllerSwift'
+  pod 'Firebase'
+  pod 'Firebase/Auth'
+  pod 'Firebase/Database'
+  pod 'FBSDKLoginKit'
+  pod 'JSSAlertView'
   pod 'Mapbox-iOS-SDK', '~> 3.3.3'
+  pod 'MapboxDirections.swift', :git => 'https://github.com/mapbox/MapboxDirections.swift.git', :tag => 'v0.6.0'
 
   target 'AnytrailTests' do
     inherit! :search_paths
