@@ -15,11 +15,18 @@ class HealthKitDataStore {
     typealias authorizationResponse = (success: Bool?, error: NSError?)
     
     static let sharedInstance = HealthKitDataStore()
-    
-    let healthKitStore = HKHealthStore()
+    let healthKitStore: HKHealthStore?
     var healthKitDataReadTypes = Set<HKSampleType>()
     
-    class func getSampleDataWithInDates(sampleType:HKSampleType, startDate: NSDate, endDate: NSDate, limit: Int, ascendingValue: Bool, completion: healthKitSamplesData -> Void) {
+    init() {
+        if HKHealthStore.isHealthDataAvailable() {
+            healthKitStore = HKHealthStore()
+        } else {
+            healthKitStore = nil
+        }
+    }
+    
+    func getSampleDataWithInDates(sampleType:HKSampleType, startDate: NSDate, endDate: NSDate, limit: Int, ascendingValue: Bool, completion: healthKitSamplesData -> Void) {
         let dateRangePredicate = HKQuery.predicateForSamplesWithStartDate(startDate, endDate: endDate, options: .None)
         let sortDescriptor = NSSortDescriptor(key:HKSampleSortIdentifierStartDate, ascending: ascendingValue)
         let sampleQuery = HKSampleQuery(sampleType: sampleType, predicate: dateRangePredicate, limit: limit, sortDescriptors: [sortDescriptor]) { (sampleQuery, results, error ) -> Void in
@@ -36,7 +43,7 @@ class HealthKitDataStore {
                 completion((dataSamples: samplesArray, error: nil))
             }
         }
-        sharedInstance.healthKitStore.executeQuery(sampleQuery)
+        HealthKitDataStore.sharedInstance.healthKitStore?.executeQuery(sampleQuery)
     }
     
     func prepareHealthKitReadTypes() {
@@ -60,7 +67,7 @@ class HealthKitDataStore {
     func authorizeHealthKit(completion: authorizationResponse -> Void) {
         prepareHealthKitReadTypes()
         
-        healthKitStore.requestAuthorizationToShareTypes(Set(arrayLiteral: HealthKitDataTypes.workouts), readTypes: HealthKitDataStore.sharedInstance.healthKitDataReadTypes) { (success, error) in
+        healthKitStore?.requestAuthorizationToShareTypes(Set(arrayLiteral: HealthKitDataTypes.workouts), readTypes: HealthKitDataStore.sharedInstance.healthKitDataReadTypes) { (success, error) in
             if success {
                 completion((success: true, error: nil))
             } else {

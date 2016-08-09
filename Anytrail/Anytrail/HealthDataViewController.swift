@@ -11,26 +11,18 @@ import HealthKit
 
 class HealthDataViewController: UIViewController {
     
-    let healthKitStore = HealthKitDataStore.sharedInstance.healthKitStore
+    let healthKitDataStore = HealthKitDataStore.sharedInstance
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.whiteColor()
         
-        if HKHealthStore.isHealthDataAvailable() {
-            
-            HealthKitDataStore.sharedInstance.authorizeHealthKit { (response) in
-                print(response.success)
-                print(response.error)
-            }
-            
+        healthKitDataStore.authorizeHealthKit { (response) in
+            print(response.success)
+            print(response.error)
         }
-        //        healthKitStore.prepareHealthKitTypesToRead()
-        //        healthKitStore.prepareHealthKitTypesToWrite()
-        //        healthKitStore.authorizeHealthKit { (response) in
-        //            print(response.success)
-        //            print(response.error)
-        //        }
+        
+        getHealthData()
         
         // Do any additional setup after loading the view.
     }
@@ -38,6 +30,20 @@ class HealthDataViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func getHealthData() {
+        
+        for sampleType in HealthKitDataTypes.healthKitDataSampleTypes {
+            healthKitDataStore.getSampleDataWithInDates(sampleType,
+                                                        startDate: NSDate.distantPast(),
+                                                        endDate: NSDate(),
+                                                        limit: 0,
+                                                        ascendingValue: true,
+                                                        completion: { (result) in
+                                                            print(result.dataSamples)
+            })
+        }
     }
     
     
