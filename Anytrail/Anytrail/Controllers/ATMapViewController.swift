@@ -12,6 +12,8 @@ import UIKit
 
 class ATMapViewController: UIViewController, MGLMapViewDelegate {
     
+    let store = ApisDataStore.sharedInstance
+    
     @IBOutlet var mapView: MGLMapView!
     
     // MARK: - Mapbox
@@ -24,25 +26,31 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate {
         return UIColor.orangeColor()
     }
     
-    func addAnnotations() {
-        let me = MGLPointAnnotation()
-        me.coordinate = CLLocationCoordinate2D(latitude: 40.733683, longitude: -73.9911419)
-        me.title = "Home"
-        me.subtitle = "New York, NY"
+    func addFoursquareAnnotations() {
         
-        let station = MGLPointAnnotation()
-        station.coordinate = CLLocationCoordinate2D(latitude: 40.7184948, longitude: -73.9962917)
-        station.title = "2nd Av"
-        station.subtitle = "Subway Station"
+        for location in store.foursquareData {
+            let pin = MGLPointAnnotation()
+            pin.coordinate = CLLocationCoordinate2D(latitude: location.placeLatitude, longitude: location.placeLongitude)
+            pin.title = location.placeName
+            
+            pin.subtitle = location.placeAddress
+            mapView.addAnnotation(pin)
+            
+        }
         
-        let flatiron = MGLPointAnnotation()
-        flatiron.coordinate = CLLocationCoordinate2D(latitude: 40.70528, longitude: -74.014025)
-        flatiron.title = "Flatiron School"
-        flatiron.subtitle = "Bowling Green Offices"
-        
-        mapView.addAnnotation(me)
-        mapView.addAnnotation(station)
-        mapView.addAnnotation(flatiron)
+    }
+    
+    func addTrailsAnnotations() {
+        for trail in store.mashapeData {
+            if trail.isHiking == true {
+                let pin = MGLPointAnnotation()
+                pin.coordinate = CLLocationCoordinate2D(latitude: trail.placeLatitude, longitude: trail.placeLongitude)
+                pin.title = trail.placeName
+                //                pin.subtitle = trail.isHiking?.description
+                mapView.addAnnotation(pin)
+            }
+            
+        }
     }
     
     func drawPath() {
@@ -101,8 +109,22 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        addAnnotations()
-        // drawPath()
+        
+        MashapeAPIClient.getTrails { (data) in
+            
+        }
+        
+        FoursquareAPIClient.getQueryForSearchLandmarks { (data) in
+            
+        }
+        
+        ApisDataStore.sharedInstance.getTrailsWithCompletion {
+            self.addTrailsAnnotations()
+        }
+        
+        ApisDataStore.sharedInstance.getDataWithCompletion {
+            self.addFoursquareAnnotations()
+        }
     }
 
     override func didReceiveMemoryWarning() {

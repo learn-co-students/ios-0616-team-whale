@@ -13,7 +13,7 @@ import SwiftyJSON
 class TrailApiClient {
     class func getTrails(completion: (JSON?) -> ()){
         let clientID = Keys.trailClientID
-        let hikingId = 14
+        //let hikingId = 14
         let parameter = ["apikey" : clientID]
         let url = "https://ridb.recreation.gov/api/v1/"
         
