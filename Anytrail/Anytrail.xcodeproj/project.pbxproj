@@ -146,9 +146,10 @@
 				4D225C1E1D5A100800360AB8 /* MashapeData.swift */,
 				4DB2D9601D58DEBA007BD4A5 /* FoursquareAPIClient.swift */,
 				4DB2D9621D58DF04007BD4A5 /* ApisDataStore.swift */,
+				9424A76F1D53D5DA00CE8D42 /* AppDelegate.swift */,
+
 				4DB2D9641D58DF18007BD4A5 /* FoursquareData.swift */,
 				2ECF502E1D590D430072732B /* Anytrail.entitlements */,
-				9424A76F1D53D5DA00CE8D42 /* AppDelegate.swift */,
 				945F35EE1D5A306A002F9C1E /* UI */,
 				945F35EB1D593648002F9C1E /* Utility */,
 				945F35E51D5911A1002F9C1E /* Cells */,

@@ -100,7 +100,6 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate {
                 }
             }
         }
-        
     }
     
     // MARK: - View
