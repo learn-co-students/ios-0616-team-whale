@@ -139,7 +139,6 @@
 		9424A76E1D53D5DA00CE8D42 /* Anytrail */ = {
 			isa = PBXGroup;
 			children = (
-<<<<<<< Updated upstream
 				8A53F2EB1D594A4A00F244BE /* Keys.swift */,
 				8A66242D1D5A8DCB009760DA /* HealthKitConstants.swift */,
 				8A66242E1D5A8DCB009760DA /* HealthKitDataStore.swift */,
@@ -147,12 +146,8 @@
 				4D225C1E1D5A100800360AB8 /* MashapeData.swift */,
 				4DB2D9601D58DEBA007BD4A5 /* FoursquareAPIClient.swift */,
 				4DB2D9621D58DF04007BD4A5 /* ApisDataStore.swift */,
-=======
-				2E5C32791D5A4CE90003F40A /* Keys.swift */,
-				4DB2D9601D58DEBA007BD4A5 /* FoursquareAPIClient.swift */,
 				9424A76F1D53D5DA00CE8D42 /* AppDelegate.swift */,
-				4DB2D9621D58DF04007BD4A5 /* FoursquareDataStore.swift */,
->>>>>>> Stashed changes
+
 				4DB2D9641D58DF18007BD4A5 /* FoursquareData.swift */,
 				2ECF502E1D590D430072732B /* Anytrail.entitlements */,
 				945F35EE1D5A306A002F9C1E /* UI */,
