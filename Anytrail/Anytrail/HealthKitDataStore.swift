@@ -70,29 +70,18 @@ class HealthKitDataStore {
             if success {
                 completion((success: true, error: nil))
             } else {
-                completion((success: false, error: nil))
-            }
-            
-            if let error = error {
-                completion((success: nil, error: error))
+                completion((success: false, error: error))
             }
         }
     }
     
-    ////////https://www.appcoda.com/healthkit-introduction////////////
-    func saveDistance(distanceRecorded: Double, date: NSDate ) {
+    func saveWalk(distanceRecorded: Double, timeRecorded: NSTimeInterval, startDate: NSDate, endDate: NSDate) {
         
-        // Set the quantity type to the running/walking distance.
-        let distanceType = HKQuantityType.quantityTypeForIdentifier(HKQuantityTypeIdentifierDistanceWalkingRunning)
-        
-        // Set the unit of measurement to miles.
         let distanceQuantity = HKQuantity(unit: HKUnit.mileUnit(), doubleValue: distanceRecorded)
         
-        // Set the official Quantity Sample.
-        let distance = HKQuantitySample(type: distanceType!, quantity: distanceQuantity, startDate: date, endDate: date)
-        
-        // Save the distance quantity sample to the HealthKit Store.
-        healthKitStore.saveObject(distance, withCompletion: { (success, error) -> Void in
+        let workoutSession = HKWorkout(activityType: .Walking, startDate: startDate, endDate: endDate, duration: timeRecorded, totalEnergyBurned: nil, totalDistance: distanceQuantity, metadata: nil)
+
+        healthKitStore?.saveObject(workoutSession, withCompletion: { (success, error) -> Void in
             if( error != nil ) {
                 print(error)
             } else {

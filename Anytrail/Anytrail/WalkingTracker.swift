@@ -9,8 +9,11 @@
 import Foundation
 import CoreLocation
 import HealthKit
+import Mapbox
 
 class WalkingTracker: NSObject {
+    
+    @IBOutlet var mapView: MGLMapView!
     
     var seconds = 0.0
     var distance = 0.0
@@ -66,6 +69,7 @@ class WalkingTracker: NSObject {
                                                        userInfo: nil,
                                                        repeats: true)
         startLocationUpdates()
+
     }
     
 }
@@ -86,7 +90,7 @@ extension WalkingTracker: CLLocationManagerDelegate {
                 self.locations.append(location)
             }
         }
-
+        
     }
     
 }

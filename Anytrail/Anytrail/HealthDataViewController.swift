@@ -18,6 +18,8 @@ class HealthDataViewController: UIViewController {
         view.backgroundColor = UIColor.whiteColor()
         
         healthKitDataStore.authorizeHealthKit { (response) in
+            print(response.success)
+            print(response.error)
         }
         
         getHealthData()
