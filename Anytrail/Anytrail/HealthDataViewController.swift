@@ -14,6 +14,9 @@ class HealthDataViewController: UIViewController {
     let healthKitDataStore = HealthKitDataStore.sharedInstance
     
     override func viewDidLoad() {
+        
+        
+        
         super.viewDidLoad()
         view.backgroundColor = UIColor.whiteColor()
         

@@ -10,6 +10,8 @@ import Alamofire
 import SwiftyJSON
 
 class UnderArmourAPIClient {
+    
+
     class func getHikingNearby(completion: (JSON?) -> ()){
         let clientKey = Keys.underArmourKey
         let clientSecret = Keys.underArmourSecret
@@ -28,8 +30,11 @@ class UnderArmourAPIClient {
         let url = "https://oauth2-api.mapmyapi.com/v7.1/route/"
         let headers = ["Api-Key": clientKey,
                        "Authorization": clientAuth]
+        
+        
         Alamofire.request(.GET, url, parameters: parameters, headers: headers).responseJSON { (response) in
             if let data = response.data {
+                
                 let jsonData = JSON(data : data)
                 print(jsonData)
                     completion(jsonData)
@@ -48,7 +53,7 @@ class UnderArmourAPIClient {
         Alamofire.request(.GET, url, parameters: parameter, headers: header).responseJSON { (response) in
             if let data = response.data {
                 let jsonData = JSON(data:data)
-                completion(jsonData)
+                completion(jsonData["_embedded"]["activity_types"])
             }
         }
 

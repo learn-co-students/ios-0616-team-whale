@@ -103,17 +103,28 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate {
     }
     
     // MARK: - View
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+       
+        
+        
         UnderArmourAPIClient.getHikingOrWalkingIDs { (data) in
-         print(data)
+            if let data = data {
+               let uaID = UAActivityType.init(idJson: data)
+                print(uaID.activityID)
+//                for activityIDGroup in self.store.underArmourActivityIdDataArray {
+//                    self.store.underArmourActivityIdDataArray.append(activityIDGroup)
+//                }
+            }
         }
         
-        store.getUnderArmourActivityIdDataWithCompletion { 
-           
+        store.getUnderArmourActivityIdDataWithCompletion {
+            for id in self.store.underArmourActivityIdDataArray {
+                print(id.activityID)
+            }
         }
         
         MashapeAPIClient.getTrails { (data) in
@@ -132,7 +143,7 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate {
             self.addFoursquareAnnotations()
         }
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

@@ -1,8 +1,8 @@
 //
-//  UnderArmourIDData.swift
+//  UATrails.swift
 //  Anytrail
 //
-//  Created by Elli Scharlin on 8/10/16.
+//  Created by Elli Scharlin on 8/11/16.
 //  Copyright © 2016 Flatiron School. All rights reserved.
 //
 
@@ -10,7 +10,7 @@ import Foundation
 import SwiftyJSON
 import UIKit
 
-class UnderArmourIDData {
+class UATrails {
     
     
     var activityIDs : [String]?
@@ -33,21 +33,23 @@ class UnderArmourIDData {
         isLocationAware = isItLocationAware
         let keyWordSearch = ["walking", "hiking", "run", "jog"]
         var activityIdArrayInitial: [String] = []
-        if isLocationAware {
-            for keyWord in keyWordSearch {
+        for keyWord in keyWordSearch {
+            if isLocationAware{
                 if activityName.containsString(keyWord) {
                     for activityLink in activityLinks {
-                        guard let activityLinkArray = activityLink.array,
-                            activityDictionary = activityLinkArray[0].dictionary,
-                            idNum = activityDictionary["id"]?.string
-                            else {
-                                print("There was an error while accessing activity links")
-                                return }
-                        activityIdArrayInitial.append(idNum)
+                        if let activityLinkArray = activityLink.array{
+                            if let activityDictionary = activityLinkArray[0].dictionary {
+                                if let idNum = activityDictionary["id"]?.string {
+                                    activityIdArrayInitial.append(idNum)
+                                }
+                            }
+                        }
                     }
                 }
             }
         }
+        
         activityIDs = activityIdArrayInitial
+        
     }
 }

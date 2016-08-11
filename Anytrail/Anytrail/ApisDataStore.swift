@@ -15,9 +15,9 @@ class ApisDataStore {
     static let sharedInstance = ApisDataStore()
     var mashapeDataArray:[MashapeData] = []
     var foursquareDataArray:[FoursquareData] = []
-    var underArmourActivityIdDataArray:[UnderArmourIDData] = []
-    var underArmourLocationDataArray:[UnderArmourTrailsData] = []
-
+    var underArmourActivityIdDataArray:[UAActivityType] = []
+    var underArmourLocationDataArray:[UATrails] = []
+    
     private init() {}
     
     
@@ -36,7 +36,7 @@ class ApisDataStore {
                 
             }
             completion()
-
+            
         }
         
     }
@@ -52,30 +52,6 @@ class ApisDataStore {
                     for i in 0..<trailData.count{
                         self.mashapeDataArray.append(MashapeData(json: trailData[i]))
                     }
-
-                }
-                
-            }
-            completion()
-
-        }
-        
-        
-    }
-    
-    func getUnderArmourActivityIdDataWithCompletion(completion: () -> ()) {
-        UnderArmourAPIClient.getHikingOrWalkingIDs{ (json) in
-            self.underArmourActivityIdDataArray.removeAll()
-            guard let json = json else {print("error: no data recieved form underArmour api client.");return}
-        
-            for object in json {
-                if let dataUA = object.1[""][0]["items"].array {
-                    
-                    for i in 0..<dataUA.count {
-                        self.underArmourActivityIdDataArray.append(UnderArmourIDData(idJson: dataUA[i]))
-                        print(dataUA[i])
-                    }
-                    
                     
                 }
                 
@@ -84,10 +60,25 @@ class ApisDataStore {
             
         }
         
+        
     }
-
     
+    
+    func getUnderArmourActivityIdDataWithCompletion(completion: () -> ()) {
+        UnderArmourAPIClient.getHikingOrWalkingIDs{ (json) in
+            self.underArmourActivityIdDataArray.removeAll()
+            guard let json = json else {print("error: no data recieved form underArmour api client.");return}
+            
+            
+            self.underArmourActivityIdDataArray.append(UAActivityType(idJson: json))
+            print(json)
+            print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+        }
+        completion()
+    }
 }
+
+
 
 
 
