@@ -10,6 +10,9 @@
 		2E7B02845A404C04E0D92E5E /* Pods_Anytrail.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 599CF5E42324548824DD0368 /* Pods_Anytrail.framework */; };
 		2ECF502D1D590D430072732B /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2ECF502C1D590D430072732B /* HealthKit.framework */; };
 		2ECF50511D5929700072732B /* (null) in Sources */ = {isa = PBXBuildFile; };
+		4D223E781D5B7D8700E0B5EF /* UnderArmourAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D223E771D5B7D8700E0B5EF /* UnderArmourAPIClient.swift */; };
+		4D223E7A1D5B823C00E0B5EF /* UnderArmourIDData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D223E791D5B823C00E0B5EF /* UnderArmourIDData.swift */; };
+		4D223E7C1D5CAF1100E0B5EF /* UnderArmourTrailsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D223E7B1D5CAF1100E0B5EF /* UnderArmourTrailsData.swift */; };
 		4D225C1B1D5A0FF600360AB8 /* MashapeAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D225C1A1D5A0FF600360AB8 /* MashapeAPIClient.swift */; };
 		4D225C1F1D5A100800360AB8 /* MashapeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D225C1E1D5A100800360AB8 /* MashapeData.swift */; };
 		4DB2D9611D58DEBA007BD4A5 /* FoursquareAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB2D9601D58DEBA007BD4A5 /* FoursquareAPIClient.swift */; };
@@ -52,6 +55,9 @@
 		2ECF502E1D590D430072732B /* Anytrail.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Anytrail.entitlements; sourceTree = "<group>"; };
 		2EDDFE291D5A868900B36853 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3417C12B1559CD326FE9F852 /* Pods-Anytrail.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Anytrail.release.xcconfig"; path = "Pods/Target Support Files/Pods-Anytrail/Pods-Anytrail.release.xcconfig"; sourceTree = "<group>"; };
+		4D223E771D5B7D8700E0B5EF /* UnderArmourAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnderArmourAPIClient.swift; sourceTree = "<group>"; };
+		4D223E791D5B823C00E0B5EF /* UnderArmourIDData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnderArmourIDData.swift; sourceTree = "<group>"; };
+		4D223E7B1D5CAF1100E0B5EF /* UnderArmourTrailsData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnderArmourTrailsData.swift; sourceTree = "<group>"; };
 		4D225C1A1D5A0FF600360AB8 /* MashapeAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MashapeAPIClient.swift; sourceTree = "<group>"; };
 		4D225C1E1D5A100800360AB8 /* MashapeData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MashapeData.swift; sourceTree = "<group>"; };
 		4DB2D9601D58DEBA007BD4A5 /* FoursquareAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoursquareAPIClient.swift; sourceTree = "<group>"; };
@@ -59,7 +65,7 @@
 		4DB2D9641D58DF18007BD4A5 /* FoursquareData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoursquareData.swift; sourceTree = "<group>"; };
 		5661F119B27C682B7C9BCB04 /* Pods-AnytrailTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnytrailTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-AnytrailTests/Pods-AnytrailTests.release.xcconfig"; sourceTree = "<group>"; };
 		599CF5E42324548824DD0368 /* Pods_Anytrail.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Anytrail.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		8A53F2EB1D594A4A00F244BE /* Keys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
+		8A53F2EB1D594A4A00F244BE /* Keys.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 5; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		8A53F2F01D594E3E00F244BE /* TrailApiClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrailApiClient.swift; sourceTree = "<group>"; };
 		8A66242C1D5A8DCB009760DA /* HealthDataViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthDataViewController.swift; sourceTree = "<group>"; };
 		8A66242D1D5A8DCB009760DA /* HealthKitConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthKitConstants.swift; sourceTree = "<group>"; };
@@ -140,6 +146,9 @@
 			isa = PBXGroup;
 			children = (
 				8A53F2EB1D594A4A00F244BE /* Keys.swift */,
+				4D223E771D5B7D8700E0B5EF /* UnderArmourAPIClient.swift */,
+				4D223E791D5B823C00E0B5EF /* UnderArmourIDData.swift */,
+				4D223E7B1D5CAF1100E0B5EF /* UnderArmourTrailsData.swift */,
 				8A66242D1D5A8DCB009760DA /* HealthKitConstants.swift */,
 				8A66242E1D5A8DCB009760DA /* HealthKitDataStore.swift */,
 				4D225C1A1D5A0FF600360AB8 /* MashapeAPIClient.swift */,
@@ -147,7 +156,6 @@
 				4DB2D9601D58DEBA007BD4A5 /* FoursquareAPIClient.swift */,
 				4DB2D9621D58DF04007BD4A5 /* ApisDataStore.swift */,
 				9424A76F1D53D5DA00CE8D42 /* AppDelegate.swift */,
-
 				4DB2D9641D58DF18007BD4A5 /* FoursquareData.swift */,
 				2ECF502E1D590D430072732B /* Anytrail.entitlements */,
 				945F35EE1D5A306A002F9C1E /* UI */,
@@ -438,6 +446,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				945F35F01D5A45A6002F9C1E /* ATErrorTranslator.swift in Sources */,
+				4D223E7A1D5B823C00E0B5EF /* UnderArmourIDData.swift in Sources */,
 				945F35F21D5A45B0002F9C1E /* UIViewController+Keyboard.swift in Sources */,
 				8A66242F1D5A8DCB009760DA /* HealthDataViewController.swift in Sources */,
 				945F35DC1D58F30B002F9C1E /* ATSplashViewController.swift in Sources */,
@@ -447,8 +456,10 @@
 				945F35DE1D58F377002F9C1E /* ATSignupViewController.swift in Sources */,
 				945F35E21D58F390002F9C1E /* ATLoginViewController.swift in Sources */,
 				8A53F2F11D594E3E00F244BE /* TrailApiClient.swift in Sources */,
+				4D223E7C1D5CAF1100E0B5EF /* UnderArmourTrailsData.swift in Sources */,
 				8A6624301D5A8DCB009760DA /* HealthKitConstants.swift in Sources */,
 				4D225C1B1D5A0FF600360AB8 /* MashapeAPIClient.swift in Sources */,
+				4D223E781D5B7D8700E0B5EF /* UnderArmourAPIClient.swift in Sources */,
 				2ECF50511D5929700072732B /* (null) in Sources */,
 				2ECF50511D5929700072732B /* (null) in Sources */,
 				9424A7701D53D5DA00CE8D42 /* AppDelegate.swift in Sources */,

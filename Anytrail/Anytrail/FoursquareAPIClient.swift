@@ -27,12 +27,7 @@ class FoursquareAPIClient {
         Alamofire.request(.GET, "https://api.foursquare.com/v2/venues/explore", parameters: parameter, headers: nil).responseJSON { (response) in
             if let data = response.data {
                 let jsonData = JSON(data : data)
-                for venue in jsonData["response"]["groups"].array! {
-                    for item in venue["items"] {
-                        print(item.1.dictionary!["venue"]!["name"])
-                    }
-                }
-                completion(jsonData)
+                    completion(jsonData)
             }
         }
     }

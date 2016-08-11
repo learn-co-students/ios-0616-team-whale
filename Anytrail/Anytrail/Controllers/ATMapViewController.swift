@@ -28,7 +28,7 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate {
     
     func addFoursquareAnnotations() {
         
-        for location in store.foursquareData {
+        for location in store.foursquareDataArray {
             let pin = MGLPointAnnotation()
             pin.coordinate = CLLocationCoordinate2D(latitude: location.placeLatitude, longitude: location.placeLongitude)
             pin.title = location.placeName
@@ -41,7 +41,7 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate {
     }
     
     func addTrailsAnnotations() {
-        for trail in store.mashapeData {
+        for trail in store.mashapeDataArray {
             if trail.isHiking == true {
                 let pin = MGLPointAnnotation()
                 pin.coordinate = CLLocationCoordinate2D(latitude: trail.placeLatitude, longitude: trail.placeLongitude)
@@ -108,6 +108,13 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        UnderArmourAPIClient.getHikingOrWalkingIDs { (data) in
+         print(data)
+        }
+        
+        store.getUnderArmourActivityIdDataWithCompletion { 
+           
+        }
         
         MashapeAPIClient.getTrails { (data) in
             
@@ -117,11 +124,11 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate {
             
         }
         
-        ApisDataStore.sharedInstance.getTrailsWithCompletion {
+        store.getTrailsWithCompletion {
             self.addTrailsAnnotations()
         }
         
-        ApisDataStore.sharedInstance.getDataWithCompletion {
+        store.getDataWithCompletion {
             self.addFoursquareAnnotations()
         }
     }

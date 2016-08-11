@@ -31,7 +31,6 @@ class MashapeData {
         for activity in activities {
             if activity["activity_type_name"].string!.containsString("hiking"){
                 isHiking = true
-                print("***********\(activity) \(name) **************")
             } else {
                 isHiking = false
             }
