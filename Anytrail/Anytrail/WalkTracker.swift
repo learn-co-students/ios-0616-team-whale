@@ -8,23 +8,42 @@
 
 import Foundation
 import HealthKit
+import CoreMotion
 
-class WalkTracker {
+class WalkTracker: NSObject {
     
-    let walkStartDate: NSDate
-    var walkDistance = 0.0
+    let walkStartDate = NSDate()
+    var timer = NSTimer()
+    let pedometer = CMPedometer()
     var currentWalkTime = 0.0
     
-    init() {
-        self.walkStartDate = NSDate()
+    var walkDistance: Double {
+        return updateDistance()
     }
     
-    func updateDistance(timer: NSTimer) {
-        HealthKitDataStore.sharedInstance.getSampleDataWithInDates(HealthKitDataTypes.walkingRunningDistance!, startDate: walkStartDate, endDate: NSDate(), limit: 0, ascendingValue: true) { distanceHealthKitResponse in
-            let distanceDataSamplesArray = distanceHealthKitResponse.dataSamples
-            for distanceSample in distanceDataSamplesArray {
-                self.walkDistance += distanceSample.quantity.doubleValueForUnit(HKUnit.mileUnit())
-            }
+    
+    
+    func startWalk() {
+        self.timer = NSTimer.scheduledTimerWithTimeInterval(1,
+                                                            target: self,
+                                                            selector: #selector(updateDistanceAndWalkTime(_:)),
+                                                            userInfo: nil,
+                                                            repeats: true)
+    }
+    
+    
+    func updateDistanceAndWalkTime(timer: NSTimer) {
+        currentWalkTime += 1
+        print(walkDistance)
+        print(currentWalkTime)
+    }
+    
+    func updateDistance() -> Double {
+        var returnDistance = 0.0
+        pedometer.startPedometerUpdatesFromDate(walkStartDate) { (pedometerData, error) in
+            let distance = Double((pedometerData?.distance ?? 0))
+            returnDistance += distance
         }
+        return returnDistance
     }
 }
