@@ -13,8 +13,6 @@ import Mapbox
 
 class WalkingTracker: NSObject {
     
-    @IBOutlet var mapView: MGLMapView!
-    
     var seconds = 0.0
     var distance = 0.0
     
