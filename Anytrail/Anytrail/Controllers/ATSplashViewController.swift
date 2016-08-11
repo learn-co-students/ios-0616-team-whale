@@ -22,6 +22,8 @@ class ATSplashViewController: UIViewController {
         let manager = FBSDKLoginManager()
         let permissions = ["email"]
         
+        // TODO: Check facebook login errors
+        
         manager.logInWithReadPermissions(permissions, fromViewController: self) { (result, error) in
             if error == nil {
                 if let token = result.token {

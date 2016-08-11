@@ -83,32 +83,18 @@ class ATSignupViewController: UIViewController, UITableViewDelegate, UITableView
         let cell = tableView.dequeueReusableCellWithIdentifier("CellId", forIndexPath: indexPath) as! ATInputCell
         
         if indexPath.row == 0 {
-            cell.type = .Name
-            cell.iconImageView.image = UIImage(named: "person")
-            cell.textField.tag = 0
-            cell.textField.placeholder = "John Doe"
-            cell.textField.autocorrectionType = .No
-            cell.textField.autocapitalizationType = .Words
-            cell.textField.returnKeyType = .Next
+            cell.type = ATInputCell.ATInputCellType.Name
+            cell.configure(cell.type)
             
             cell.textField.becomeFirstResponder()
             
         } else if indexPath.row == 1 {
-            cell.type = .Email
-            cell.iconImageView.image = UIImage(named: "email")
-            cell.textField.tag = 1
-            cell.textField.placeholder = "john@email.com"
-            cell.textField.autocorrectionType = .No
-            cell.textField.keyboardType = .EmailAddress
-            cell.textField.returnKeyType = .Next
+            cell.type = ATInputCell.ATInputCellType.Email
+            cell.configure(cell.type)
             
-        } else {
-            cell.type = .Password
-            cell.iconImageView.image = UIImage(named: "password")
-            cell.textField.tag = 2
-            cell.textField.placeholder = "•••••••••"
-            cell.textField.secureTextEntry = true
-            cell.textField.returnKeyType = .Done
+        } else if indexPath.row == 2 {
+            cell.type = ATInputCell.ATInputCellType.Password
+            cell.configure(cell.type)
         }
         
         if (!cells.contains(cell)) {
