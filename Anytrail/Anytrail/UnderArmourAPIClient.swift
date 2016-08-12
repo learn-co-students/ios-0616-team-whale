@@ -10,15 +10,17 @@ import Alamofire
 import SwiftyJSON
 
 class UnderArmourAPIClient {
+    let store = ApisDataStore.sharedInstance
     
-    
-    class func getHikingNearby(completion: (JSON?) -> ()){
+    class func getHikingNearby(completion: ([UATrails]) -> ()){
+        var trailsArray = [UATrails]()
         let clientKey = Keys.underArmourKey
         let clientSecret = Keys.underArmourSecret
         let clientAuth = Keys.underArmourAuthToken
-        var currentLocation = "38.95,-77.35"
-        var maximumDistance = "5000"
-        var minimumDistance = "1"
+        //MARK: TODO get current location for parameter.
+        var currentLocation = "40.733683,-73.9911419"
+        let maximumDistance = "5000"
+        let minimumDistance = "1"
         
         let parameters = ["Content-Type":"application/json",
                           "Api-Key":clientKey,
@@ -34,11 +36,14 @@ class UnderArmourAPIClient {
         
         Alamofire.request(.GET, url, parameters: parameters, headers: headers).responseJSON { (response) in
             if let data = response.data {
-                
-                let jsonData = JSON(data : data)
-                print(jsonData)
-                completion(jsonData)
+                let jsonData = JSON(data:data)
+                if let trailData = jsonData["_embedded"]["routes"].array {
+                    for trail in trailData {
+                        trailsArray.append((UATrails(json: trail)))
+                    }
+                }
             }
+                completion(trailsArray)
         }
     }
     //send array of model

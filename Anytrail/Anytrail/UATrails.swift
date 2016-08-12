@@ -12,44 +12,19 @@ import UIKit
 
 class UATrails {
     
-    
-    var activityIDs : [String]?
-    var isLocationAware : Bool = false
-    
-    init(idJson:JSON){
+    var coordinatesOfTrail : [Double] = []
+    var trailActivityType : String = ""
+    init(json:JSON) {
         guard let
-            embeddedDictionary = idJson["_embedded"].dictionary
-            else { print("this was an error reaching underArmour")
+            longitude = json["starting_location"]["coordinates"][0].double,
+            latitude = json["starting_location"]["coordinates"][1].double,
+            trailActivityID = json["_links"]["activity_types"][0]["id"].string
+            else { print("this was an error reaching underArmour trails portion")
                 return }
-        
-        guard let
-            activityName = embeddedDictionary["name"]?.string,
-            activityLinks = embeddedDictionary["_links"]?.array,
-            isItLocationAware = embeddedDictionary["location_aware"]?.bool
-            else { print("this was an error reaching underArmour")
-                return }
-        
-        
-        isLocationAware = isItLocationAware
-        let keyWordSearch = ["walking", "hiking", "run", "jog"]
-        var activityIdArrayInitial: [String] = []
-        for keyWord in keyWordSearch {
-            if isLocationAware{
-                if activityName.containsString(keyWord) {
-                    for activityLink in activityLinks {
-                        if let activityLinkArray = activityLink.array{
-                            if let activityDictionary = activityLinkArray[0].dictionary {
-                                if let idNum = activityDictionary["id"]?.string {
-                                    activityIdArrayInitial.append(idNum)
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        
-        activityIDs = activityIdArrayInitial
-        
+      
+        trailActivityType = trailActivityID
+        let coordinates = [longitude, latitude]
+        coordinatesOfTrail = coordinates
+
     }
 }

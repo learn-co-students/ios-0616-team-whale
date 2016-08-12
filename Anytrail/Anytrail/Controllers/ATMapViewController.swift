@@ -40,7 +40,7 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate {
         
     }
     
-    func addTrailsAnnotations() {
+    func addMashapeTrailsAnnotations() {
         for trail in store.mashapeDataArray {
             if trail.isHiking == true {
                 let pin = MGLPointAnnotation()
@@ -50,6 +50,22 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate {
                 mapView.addAnnotation(pin)
             }
             
+        }
+    }
+    
+    func addUATrailsAnnotations(){
+        for trail in store.UALocationDataArray {
+            let pin = MGLPointAnnotation()
+            pin.coordinate = CLLocationCoordinate2D(latitude: trail.coordinatesOfTrail[1], longitude: trail.coordinatesOfTrail[0])
+//            UnderArmourAPIClient.getHikingOrWalkingIDs { (activityArray) in
+////                for activity in activityArray{
+////                    if activity.activityID  == trail.trailActivityType {
+////                        pin.title = activity.activityTypeName
+////                    }
+////                }
+//            }
+            mapView.addAnnotation(pin)
+
         }
     }
     
@@ -108,23 +124,19 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+
         
-    
-        store.getUnderArmourActivityIdDataWithCompletion {
-            for activity in self.store.underArmourActivityIdDataArray {
-                print(activity.activityID)
-                print(activity.activityTypeName)
-            }
-            
+        store.getUATrailsWithCompletion {
+           self.addUATrailsAnnotations()
         }
-        
-        store.getTrailsWithCompletion {
-            self.addTrailsAnnotations()
-        }
-        
-        store.getDataWithCompletion {
-            self.addFoursquareAnnotations()
-        }
+//        
+//        store.getMashapeTrailsWithCompletion {
+//            self.addMashapeTrailsAnnotations()
+//        }
+//        
+//        store.getFSDataWithCompletion {
+//            self.addFoursquareAnnotations()
+//        }
     }
     
     override func didReceiveMemoryWarning() {

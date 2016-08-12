@@ -15,13 +15,13 @@ class ApisDataStore {
     static let sharedInstance = ApisDataStore()
     var mashapeDataArray:[MashapeData] = []
     var foursquareDataArray:[FoursquareData] = []
-    var underArmourActivityIdDataArray:[UAActivityType] = []
-    var underArmourLocationDataArray:[UATrails] = []
+    var UAActivityIdDataArray:[String] = []
+    var UALocationDataArray:[UATrails] = []
     
     private init() {}
     
     
-    func getDataWithCompletion(completion: () -> ()) {
+    func getFSDataWithCompletion(completion: () -> ()) {
         FoursquareAPIClient.getQueryForSearchLandmarks { (json) in
             self.foursquareDataArray.removeAll()
             guard let json = json else { print("error: no data recieved from API Client"); return}
@@ -41,9 +41,10 @@ class ApisDataStore {
         
     }
     
-    
-    
-    func getTrailsWithCompletion(completion: () -> ()) {
+    func getMashapeTrailsWithCompletion(completion: () -> ()) {
+        
+        
+        
         MashapeAPIClient.getTrails { (json) in
             self.mashapeDataArray.removeAll()
             guard let json = json else { print("error: no data recieved from mashape API Client"); return}
@@ -64,20 +65,37 @@ class ApisDataStore {
     }
     
     
-    func getUnderArmourActivityIdDataWithCompletion(completion: () -> ()) {
+    
+    func getUATrailsWithCompletion(completion: () -> ()) {
         
-        UnderArmourAPIClient.getHikingOrWalkingIDs { (activityArray) in
-            for activity in activityArray{
-                if activity.doesQualify{
-                    self.underArmourActivityIdDataArray.append(activity)
-                    
+        UnderArmourAPIClient.getHikingNearby { (trailArray) in
+            for trail in trailArray{
+                self.UALocationDataArray.append(trail)
+            }
+            completion()
+            
+            
+            
+            
+            
+        }
+        
+        
+        func getUAActivityIdDataWithCompletion(completion: () -> ()) {
+            
+            UnderArmourAPIClient.getHikingOrWalkingIDs { (activityArray) in
+                for activity in activityArray{
+                    if activity.doesQualify{
+                        if let activityID = activity.activityID{
+                            self.UAActivityIdDataArray.append(activityID)
+                            
+                        }
+                    }
                 }
+                completion()
                 
             }
-        completion()
-
+        }
     }
-}
-
 }
 
