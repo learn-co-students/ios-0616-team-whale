@@ -26,6 +26,10 @@ class WalkTracker: NSObject {
         self.walkDistance = 0.0
     }
     
+    deinit {
+        HealthKitDataStore.sharedInstance.saveWalk(walkDistance, timeRecorded: currentWalkTime, startDate: walkStartDate, endDate: walkEndDate)
+    }
+    
     
     func startWalk() {
         walkTimer = NSTimer.scheduledTimerWithTimeInterval(1,
