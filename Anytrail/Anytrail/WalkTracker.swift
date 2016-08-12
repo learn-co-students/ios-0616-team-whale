@@ -13,23 +13,12 @@ class WalkTracker: NSObject {
     
     let pedometer = CMPedometer()
     var walkTimer = NSTimer()
-    let walkStartDate: NSDate
-    var walkEndDate: NSDate
-    var currentWalkTime: Double
-    var walkDistance: Double
+    var walkStartDate = NSDate()
+    var walkEndDate = NSDate()
+    var currentWalkTime = 0.0
+    var walkDistance = 0.0
     
-    
-    override init() {
-        self.walkStartDate = NSDate()
-        self.walkEndDate = NSDate()
-        self.currentWalkTime = 0.0
-        self.walkDistance = 0.0
-    }
-    
-    deinit {
-        HealthKitDataStore.sharedInstance.saveWalk(walkDistance, timeRecorded: currentWalkTime, startDate: walkStartDate, endDate: walkEndDate)
-    }
-    
+    static let walkTrackerSharedSession = WalkTracker()
     
     func startWalk() {
         walkTimer = NSTimer.scheduledTimerWithTimeInterval(1,
@@ -41,7 +30,7 @@ class WalkTracker: NSObject {
     
     func updateWalkDistance() {
         pedometer.startPedometerUpdatesFromDate(walkStartDate) { pedometerData, error in
-            guard let pedometerData = pedometerData where error != nil else {
+            guard let pedometerData = pedometerData where error == nil else {
                 self.walkTimer.invalidate()
                 print("Please start your walk again: \(error)")
                 return
@@ -64,5 +53,7 @@ class WalkTracker: NSObject {
         walkEndDate = NSDate()
         pedometer.stopPedometerUpdates()
         walkTimer.invalidate()
+
+        HealthKitDataStore.sharedInstance.saveWalk(walkDistance, timeRecorded: currentWalkTime, startDate: walkStartDate, endDate: walkEndDate)
     }
 }
