@@ -57,13 +57,13 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate {
         for trail in store.UALocationDataArray {
             let pin = MGLPointAnnotation()
             pin.coordinate = CLLocationCoordinate2D(latitude: trail.coordinatesOfTrail[1], longitude: trail.coordinatesOfTrail[0])
-//            UnderArmourAPIClient.getHikingOrWalkingIDs { (activityArray) in
-////                for activity in activityArray{
-////                    if activity.activityID  == trail.trailActivityType {
-////                        pin.title = activity.activityTypeName
-////                    }
-////                }
-//            }
+            UnderArmourAPIClient.getHikingOrWalkingIDs { (activityArray) in
+                for activity in activityArray{
+                    if activity.activityID  == trail.trailActivityType {
+                        pin.title = activity.activityTypeName
+                    }
+                }
+            }
             mapView.addAnnotation(pin)
 
         }
