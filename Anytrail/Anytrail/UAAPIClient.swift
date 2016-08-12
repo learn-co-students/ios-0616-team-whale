@@ -19,7 +19,7 @@ class UAAPIClient {
         let clientAuth = Keys.underArmourAuthToken
         //MARK: TODO get current location for parameter.
         var currentLocation = "40.733683,-73.9911419"
-        let maximumDistance = "5000"
+        let maximumDistance = "200"
         let minimumDistance = "1"
         
         let parameters = ["Content-Type":"application/json",
