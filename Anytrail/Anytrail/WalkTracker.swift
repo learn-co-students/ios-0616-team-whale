@@ -7,43 +7,53 @@
 //
 
 import Foundation
-import HealthKit
 import CoreMotion
 
 class WalkTracker: NSObject {
     
-    let walkStartDate = NSDate()
-    var timer = NSTimer()
     let pedometer = CMPedometer()
+    var walkTimer = NSTimer()
+    var walkStartDate = NSDate()
+    var walkEndDate = NSDate()
     var currentWalkTime = 0.0
+    var walkDistance = 0.0
     
-    var walkDistance: Double {
-        return updateDistance()
-    }
-    
-    
+    static let walkTrackerSharedSession = WalkTracker()
     
     func startWalk() {
-        self.timer = NSTimer.scheduledTimerWithTimeInterval(1,
-                                                            target: self,
-                                                            selector: #selector(updateDistanceAndWalkTime(_:)),
-                                                            userInfo: nil,
-                                                            repeats: true)
+        walkTimer = NSTimer.scheduledTimerWithTimeInterval(1,
+                                                           target: self,
+                                                           selector: #selector(updateWalkDistanceAndTime(_:)),
+                                                           userInfo: nil,
+                                                           repeats: true)
     }
     
-    
-    func updateDistanceAndWalkTime(timer: NSTimer) {
-        currentWalkTime += 1
-        print(walkDistance)
-        print(currentWalkTime)
-    }
-    
-    func updateDistance() -> Double {
-        var returnDistance = 0.0
-        pedometer.startPedometerUpdatesFromDate(walkStartDate) { (pedometerData, error) in
-            let distance = Double((pedometerData?.distance ?? 0))
-            returnDistance += distance
+    func updateWalkDistance() {
+        pedometer.startPedometerUpdatesFromDate(walkStartDate) { pedometerData, error in
+            guard let pedometerData = pedometerData where error == nil else {
+                self.walkTimer.invalidate()
+                print("Please start your walk again: \(error)")
+                return
+            }
+            
+            let distanceWalked = pedometerData.distance
+            
+            if let distanceWalked = distanceWalked {
+                self.walkDistance = Double(distanceWalked)
+            }
         }
-        return returnDistance
+    }
+    
+    func updateWalkDistanceAndTime(timer: NSTimer) {
+        currentWalkTime += 1
+        updateWalkDistance()
+    }
+    
+    func stopWalk() {
+        walkEndDate = NSDate()
+        pedometer.stopPedometerUpdates()
+        walkTimer.invalidate()
+
+        HealthKitDataStore.sharedInstance.saveWalk(walkDistance, timeRecorded: currentWalkTime, startDate: walkStartDate, endDate: walkEndDate)
     }
 }
