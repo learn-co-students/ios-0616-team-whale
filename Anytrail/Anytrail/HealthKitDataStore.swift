@@ -70,13 +70,24 @@ class HealthKitDataStore {
             if success {
                 completion((success: true, error: nil))
             } else {
-                completion((success: false, error: nil))
-            }
-            
-            if let error = error {
-                completion((success: nil, error: error))
+                completion((success: false, error: error))
             }
         }
+    }
+    
+    func saveWalk(distanceRecorded: Double, timeRecorded: NSTimeInterval, startDate: NSDate, endDate: NSDate) {
+        
+        let distanceQuantity = HKQuantity(unit: HKUnit.mileUnit(), doubleValue: distanceRecorded)
+        
+        let workoutSession = HKWorkout(activityType: .Walking, startDate: startDate, endDate: endDate, duration: timeRecorded, totalEnergyBurned: nil, totalDistance: distanceQuantity, metadata: nil)
+
+        healthKitStore?.saveObject(workoutSession, withCompletion: { (success, error) -> Void in
+            if( error != nil ) {
+                print(error)
+            } else {
+                print("The distance has been recorded! Better go check!")
+            }
+        })
     }
     
 }

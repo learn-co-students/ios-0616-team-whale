@@ -9,12 +9,14 @@
 import UIKit
 import Firebase
 
-class ATLoginViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
+// TODO: Subclass signup controller
+
+class ATLoginViewController: ATSignupViewController {
     
-    var cells: [ATInputCell] = []
-    
-    @IBOutlet weak var nextButton: UIBarButtonItem!
-    @IBOutlet weak var tableView: UITableView!
+//    var cells: [ATInputCell] = []
+//    
+//    @IBOutlet weak var nextButton: UIBarButtonItem!
+//    @IBOutlet weak var tableView: UITableView!
     
     // MARK: - Actions
     
@@ -40,48 +42,33 @@ class ATLoginViewController: UIViewController, UITableViewDelegate, UITableViewD
         })
     }
     
-    @IBAction func cancel() {
-        self.dismissViewControllerAnimated(true, completion: nil)
-    }
-    
     // MARK: - Table
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 2
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 55
-    }
-    
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("CellId", forIndexPath: indexPath) as! ATInputCell
         
         if indexPath.row == 0 {
-            cell.type = .Email
-            cell.iconImageView.image = UIImage(named: "email")
+            cell.type = ATInputCell.ATInputCellType.Email
+            cell.configure(cell.type)
             cell.textField.tag = 0
-            cell.textField.placeholder = "john@email.com"
-            cell.textField.autocorrectionType = .No
-            cell.textField.keyboardType = .EmailAddress
-            cell.textField.returnKeyType = .Next
             
             cell.textField.becomeFirstResponder()
             
         } else {
-            cell.type = .Password
-            cell.iconImageView.image = UIImage(named: "password")
+            cell.type = ATInputCell.ATInputCellType.Password
+            cell.configure(cell.type)
             cell.textField.tag = 1
-            cell.textField.placeholder = "•••••••••"
-            cell.textField.secureTextEntry = true
-            cell.textField.returnKeyType = .Done
         }
         
         if (!cells.contains(cell)) {
+            cells.append(cell)
+        }
+        
+        if !cells.contains(cell) {
             cells.append(cell)
         }
         
@@ -89,14 +76,10 @@ class ATLoginViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         return cell
     }
-    
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
-    }
-    
+
     // MARK: - Textfields
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    override func textFieldShouldReturn(textField: UITextField) -> Bool {
         if textField.tag < 1 {
             let nextCell = cells[textField.tag + 1]
             nextCell.textField.becomeFirstResponder()
@@ -108,12 +91,8 @@ class ATLoginViewController: UIViewController, UITableViewDelegate, UITableViewD
         return false
     }
     
-    func textFieldDidEndEditing(textField: UITextField) {
+    override func textFieldDidEndEditing(textField: UITextField) {
         let cell = cells[textField.tag]
-        
-        if !cells.contains(cell) {
-            cells.append(cell)
-        }
         
         if textField.tag < 1 {
             let nextCell = cells[textField.tag + 1]
@@ -151,45 +130,5 @@ class ATLoginViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         //
-    }
-}
-
-extension ATLoginViewController {
-    
-    func textFieldIsValid(cell: ATInputCell) -> Bool {
-        let text = cell.textField.text
-        var isValid = false
-        
-        if cell.type == .Email {
-            let regex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
-            let emailTest = NSPredicate(format:"SELF MATCHES %@", regex)
-            
-            isValid = emailTest.evaluateWithObject(text)
-            
-        } else if cell.type == .Password {
-            if text?.characters.count >= 8 {
-                isValid = true
-            }
-        }
-        
-        if isValid {
-            cell.indicateTextField(cell.type, valid: true)
-        } else {
-            cell.indicateTextField(cell.type, valid: false)
-        }
-        
-        return isValid
-    }
-    
-    func allFieldsValid() -> Bool {
-        var valid = true
-        
-        for cell in cells {
-            if !textFieldIsValid(cell) {
-                valid = false
-            }
-        }
-        
-        return valid
     }
 }

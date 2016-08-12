@@ -26,31 +26,62 @@ class ATInputCell: UITableViewCell {
     func indicateTextField(type: ATInputCellType, valid: Bool) {
         var imageName: String = ""
         
+        // TODO: Convert to switch
         if valid {
-            if type == .Name {
+            switch type {
+            case .Name:
                 imageName = "person"
-                
-            } else if type == .Email {
+                break
+            case .Email:
                 imageName = "email"
-                
-            } else if type == .Password {
+                break
+            case .Password:
                 imageName = "password"
+                break
             }
             
             self.iconImageView.image = UIImage(named: "\(imageName)-valid")
             
         } else {
-            if type == .Name {
+            switch type {
+            case .Name:
                 imageName = "person"
-                
-            } else if type == .Email {
+                break
+            case .Email:
                 imageName = "email"
-                
-            } else if type == .Password {
+                break
+            case .Password:
                 imageName = "password"
+                break
             }
             
             self.iconImageView.image = UIImage(named: "\(imageName)-error")
+        }
+    }
+    
+    func configure(type: ATInputCellType) {
+        if type == .Name {
+            self.textField.tag = 0
+            self.textField.placeholder = "John Doe"
+            self.iconImageView.image = UIImage(named: "person")
+            self.textField.autocorrectionType = .No
+            self.textField.autocapitalizationType = .Words
+            self.textField.returnKeyType = .Next
+            
+        } else if type == .Email {
+            self.textField.tag = 1
+            self.textField.placeholder = "john@email.com"
+            self.iconImageView.image = UIImage(named: "email")
+            self.textField.autocorrectionType = .No
+            self.textField.keyboardType = .EmailAddress
+            self.textField.returnKeyType = .Next
+            
+        } else if type == .Password {
+            self.textField.tag = 2
+            self.textField.placeholder = "•••••••••"
+            self.iconImageView.image = UIImage(named: "password")
+            self.textField.secureTextEntry = true
+            self.textField.returnKeyType = .Done
         }
     }
     
