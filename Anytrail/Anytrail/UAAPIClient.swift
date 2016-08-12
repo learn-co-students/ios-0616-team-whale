@@ -1,5 +1,5 @@
 //
-//  UnderArmourAPIClient.swift
+//  UAAPIClient.swift
 //  Anytrail
 //
 //  Created by Elli Scharlin on 8/10/16.
@@ -9,7 +9,7 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 
-class UnderArmourAPIClient {
+class UAAPIClient {
     let store = ApisDataStore.sharedInstance
     
     class func getHikingNearby(completion: ([UATrails]) -> ()){

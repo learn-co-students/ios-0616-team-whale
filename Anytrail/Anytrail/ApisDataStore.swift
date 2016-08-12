@@ -68,7 +68,7 @@ class ApisDataStore {
     
     func getUATrailsWithCompletion(completion: () -> ()) {
         
-        UnderArmourAPIClient.getHikingNearby { (trailArray) in
+        UAAPIClient.getHikingNearby { (trailArray) in
             for trail in trailArray{
                 self.UALocationDataArray.append(trail)
             }
@@ -83,7 +83,7 @@ class ApisDataStore {
         
         func getUAActivityIdDataWithCompletion(completion: () -> ()) {
             
-            UnderArmourAPIClient.getHikingOrWalkingIDs { (activityArray) in
+            UAAPIClient.getHikingOrWalkingIDs { (activityArray) in
                 for activity in activityArray{
                     if activity.doesQualify{
                         if let activityID = activity.activityID{

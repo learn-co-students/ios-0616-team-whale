@@ -10,7 +10,7 @@
 		2E7B02845A404C04E0D92E5E /* Pods_Anytrail.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 599CF5E42324548824DD0368 /* Pods_Anytrail.framework */; };
 		2ECF502D1D590D430072732B /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2ECF502C1D590D430072732B /* HealthKit.framework */; };
 		2ECF50511D5929700072732B /* (null) in Sources */ = {isa = PBXBuildFile; };
-		4D223E781D5B7D8700E0B5EF /* UnderArmourAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D223E771D5B7D8700E0B5EF /* UnderArmourAPIClient.swift */; };
+		4D223E781D5B7D8700E0B5EF /* UAAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D223E771D5B7D8700E0B5EF /* UAAPIClient.swift */; };
 		4D223E7A1D5B823C00E0B5EF /* UAActivityType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D223E791D5B823C00E0B5EF /* UAActivityType.swift */; };
 		4D223E7C1D5CAF1100E0B5EF /* UATrails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D223E7B1D5CAF1100E0B5EF /* UATrails.swift */; };
 		4D225C1B1D5A0FF600360AB8 /* MashapeAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D225C1A1D5A0FF600360AB8 /* MashapeAPIClient.swift */; };
@@ -55,7 +55,7 @@
 		2ECF502E1D590D430072732B /* Anytrail.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Anytrail.entitlements; sourceTree = "<group>"; };
 		2EDDFE291D5A868900B36853 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3417C12B1559CD326FE9F852 /* Pods-Anytrail.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Anytrail.release.xcconfig"; path = "Pods/Target Support Files/Pods-Anytrail/Pods-Anytrail.release.xcconfig"; sourceTree = "<group>"; };
-		4D223E771D5B7D8700E0B5EF /* UnderArmourAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnderArmourAPIClient.swift; sourceTree = "<group>"; };
+		4D223E771D5B7D8700E0B5EF /* UAAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UAAPIClient.swift; sourceTree = "<group>"; };
 		4D223E791D5B823C00E0B5EF /* UAActivityType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UAActivityType.swift; sourceTree = "<group>"; };
 		4D223E7B1D5CAF1100E0B5EF /* UATrails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UATrails.swift; sourceTree = "<group>"; };
 		4D225C1A1D5A0FF600360AB8 /* MashapeAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MashapeAPIClient.swift; sourceTree = "<group>"; };
@@ -146,7 +146,7 @@
 			isa = PBXGroup;
 			children = (
 				8A53F2EB1D594A4A00F244BE /* Keys.swift */,
-				4D223E771D5B7D8700E0B5EF /* UnderArmourAPIClient.swift */,
+				4D223E771D5B7D8700E0B5EF /* UAAPIClient.swift */,
 				4D223E791D5B823C00E0B5EF /* UAActivityType.swift */,
 				4D223E7B1D5CAF1100E0B5EF /* UATrails.swift */,
 				8A66242D1D5A8DCB009760DA /* HealthKitConstants.swift */,
@@ -459,7 +459,7 @@
 				4D223E7C1D5CAF1100E0B5EF /* UATrails.swift in Sources */,
 				8A6624301D5A8DCB009760DA /* HealthKitConstants.swift in Sources */,
 				4D225C1B1D5A0FF600360AB8 /* MashapeAPIClient.swift in Sources */,
-				4D223E781D5B7D8700E0B5EF /* UnderArmourAPIClient.swift in Sources */,
+				4D223E781D5B7D8700E0B5EF /* UAAPIClient.swift in Sources */,
 				2ECF50511D5929700072732B /* (null) in Sources */,
 				2ECF50511D5929700072732B /* (null) in Sources */,
 				9424A7701D53D5DA00CE8D42 /* AppDelegate.swift in Sources */,

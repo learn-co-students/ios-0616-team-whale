@@ -57,7 +57,7 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate {
         for trail in store.UALocationDataArray {
             let pin = MGLPointAnnotation()
             pin.coordinate = CLLocationCoordinate2D(latitude: trail.coordinatesOfTrail[1], longitude: trail.coordinatesOfTrail[0])
-            UnderArmourAPIClient.getHikingOrWalkingIDs { (activityArray) in
+            UAAPIClient.getHikingOrWalkingIDs { (activityArray) in
                 for activity in activityArray{
                     if activity.activityID  == trail.trailActivityType {
                         pin.title = activity.activityTypeName
@@ -129,14 +129,14 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate {
         store.getUATrailsWithCompletion {
            self.addUATrailsAnnotations()
         }
-//        
-//        store.getMashapeTrailsWithCompletion {
-//            self.addMashapeTrailsAnnotations()
-//        }
-//        
-//        store.getFSDataWithCompletion {
-//            self.addFoursquareAnnotations()
-//        }
+        
+        store.getMashapeTrailsWithCompletion {
+            self.addMashapeTrailsAnnotations()
+        }
+        
+        store.getFSDataWithCompletion {
+            self.addFoursquareAnnotations()
+        }
     }
     
     override func didReceiveMemoryWarning() {
