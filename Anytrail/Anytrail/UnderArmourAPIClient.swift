@@ -11,7 +11,7 @@ import SwiftyJSON
 
 class UnderArmourAPIClient {
     
-
+    
     class func getHikingNearby(completion: (JSON?) -> ()){
         let clientKey = Keys.underArmourKey
         let clientSecret = Keys.underArmourSecret
@@ -19,7 +19,7 @@ class UnderArmourAPIClient {
         var currentLocation = "38.95,-77.35"
         var maximumDistance = "5000"
         var minimumDistance = "1"
-
+        
         let parameters = ["Content-Type":"application/json",
                           "Api-Key":clientKey,
                           "Authorization": clientAuth,
@@ -37,26 +37,36 @@ class UnderArmourAPIClient {
                 
                 let jsonData = JSON(data : data)
                 print(jsonData)
-                    completion(jsonData)
+                completion(jsonData)
             }
         }
     }
-    
-    class func getHikingOrWalkingIDs(completion: (JSON?)->()){
+    //send array of model
+    class func getHikingOrWalkingIDs(completion: ([UAActivityType])->()){
+        var activitiesArray = [UAActivityType]()
         let clientKey = Keys.underArmourKey
         let clientAuth = Keys.underArmourAuthToken
         let parameter = ["Api-Key":clientKey,
-                                  "Authorization": clientAuth]
+                         "Authorization": clientAuth]
         let header = ["Api-Key":clientKey,
-                                  "Authorization": clientAuth]
+                      "Authorization": clientAuth]
         let url = "https://oauth2-api.mapmyapi.com/v7.1/activity_type/"
         Alamofire.request(.GET, url, parameters: parameter, headers: header).responseJSON { (response) in
             if let data = response.data {
                 let jsonData = JSON(data:data)
-                completion(jsonData["_embedded"]["activity_types"])
+                if let activityTypesData = jsonData["_embedded"]["activity_types"].array {
+                    
+                    
+                    for activity in activityTypesData{
+                        let currentActivity = (UAActivityType(idJson: activity))
+                        if currentActivity.doesQualify == true {
+                            activitiesArray.append(currentActivity)
+                        }
+                    }
+                }
+                completion(activitiesArray)
             }
         }
-
     }
 }
 

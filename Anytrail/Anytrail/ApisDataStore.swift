@@ -65,20 +65,19 @@ class ApisDataStore {
     
     
     func getUnderArmourActivityIdDataWithCompletion(completion: () -> ()) {
-        UnderArmourAPIClient.getHikingOrWalkingIDs{ (json) in
-            self.underArmourActivityIdDataArray.removeAll()
-            guard let json = json else {print("error: no data recieved form underArmour api client.");return}
-            
-            
-            self.underArmourActivityIdDataArray.append(UAActivityType(idJson: json))
-            print(json)
-            print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
-        }
+        
+        UnderArmourAPIClient.getHikingOrWalkingIDs { (activityArray) in
+            for activity in activityArray{
+                if activity.doesQualify{
+                    self.underArmourActivityIdDataArray.append(activity)
+                    
+                }
+                
+            }
         completion()
+
     }
 }
 
-
-
-
+}
 

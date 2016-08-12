@@ -101,6 +101,7 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate {
             }
         }
     }
+
     
     // MARK: - View
     
@@ -108,30 +109,12 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-       
-        
-        
-        UnderArmourAPIClient.getHikingOrWalkingIDs { (data) in
-            if let data = data {
-               let uaID = UAActivityType.init(idJson: data)
-                print(uaID.activityID)
-//                for activityIDGroup in self.store.underArmourActivityIdDataArray {
-//                    self.store.underArmourActivityIdDataArray.append(activityIDGroup)
-//                }
-            }
-        }
-        
+    
         store.getUnderArmourActivityIdDataWithCompletion {
-            for id in self.store.underArmourActivityIdDataArray {
-                print(id.activityID)
+            for activity in self.store.underArmourActivityIdDataArray {
+                print(activity.activityID)
+                print(activity.activityTypeName)
             }
-        }
-        
-        MashapeAPIClient.getTrails { (data) in
-            
-        }
-        
-        FoursquareAPIClient.getQueryForSearchLandmarks { (data) in
             
         }
         

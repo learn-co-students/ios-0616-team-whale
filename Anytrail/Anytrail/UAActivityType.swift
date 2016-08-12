@@ -14,29 +14,28 @@
     
     
     var activityID : String?
-    var isLocationAware : Bool?
+    var doesQualify : Bool = false
+    var activityTypeName : String?
     
     init(idJson:JSON){
         
+        
+        
         guard let
             activityName = idJson["name"].string,
-            isItLocationAware = idJson["location_aware"].bool
+            isItLocationAware = idJson["location_aware"].bool,
+            selfDictionary = idJson["_links"]["self"][0].dictionary,
+            currentActivityID = selfDictionary["id"]!.string
             else { print("this was an error reaching underArmour")
                 return }
+        let keywords = ["Walk","Hik","Jog","Run"]
         
-        let keyWordSearch = ["walking", "hiking", "run", "jog"]
-        
-        isLocationAware = isItLocationAware
-        
-        if isLocationAware != false {
-            for keyWord in keyWordSearch {
-                if activityName.containsString(keyWord) || activityName == keyWord {
-                    if let selfDictionary = idJson["_links"]["self"][0].dictionary {
-                        activityID = selfDictionary["id"]?.string
-                        print(activityID)
-                        print("******************************************")
-                    
-                    }
+        activityTypeName = activityName
+        activityID = currentActivityID
+        if isItLocationAware {
+            for keyword in keywords {
+                if ((activityTypeName!.containsString(keyword))) {
+                    doesQualify = true
                 }
             }
         }
