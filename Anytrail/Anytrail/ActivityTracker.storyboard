@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="79P-0d-htp">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <scenes>
+        <!--Health Data View Controller-->
+        <scene sceneID="osS-wA-rcU">
+            <objects>
+                <viewController id="79P-0d-htp" customClass="HealthDataViewController" customModule="Anytrail" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="fOv-P2-frE"/>
+                        <viewControllerLayoutGuide type="bottom" id="9YS-N5-XQ7"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ny2-7R-0lq">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="YbJ-aY-Qp5">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lxu-Pd-jsM">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="300"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eaf-Mk-VEk">
+                                        <rect key="frame" x="0.0" y="300" width="600" height="300"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="YbJ-aY-Qp5" firstAttribute="centerX" secondItem="ny2-7R-0lq" secondAttribute="centerX" id="2gm-u2-Esh"/>
+                            <constraint firstItem="YbJ-aY-Qp5" firstAttribute="height" secondItem="ny2-7R-0lq" secondAttribute="height" id="ObG-Yn-l1i"/>
+                            <constraint firstItem="YbJ-aY-Qp5" firstAttribute="centerY" secondItem="ny2-7R-0lq" secondAttribute="centerY" id="uYl-24-ZZD"/>
+                            <constraint firstItem="YbJ-aY-Qp5" firstAttribute="width" secondItem="ny2-7R-0lq" secondAttribute="width" id="zFw-us-7JS"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="bottomLabel" destination="Eaf-Mk-VEk" id="Iev-fw-9e9"/>
+                        <outlet property="topLabel" destination="lxu-Pd-jsM" id="Me4-Pa-4dh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4Mg-NR-SOi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="898" y="270"/>
+        </scene>
+    </scenes>
+</document>
