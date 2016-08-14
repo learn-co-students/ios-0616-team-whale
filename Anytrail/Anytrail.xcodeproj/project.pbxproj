@@ -18,6 +18,8 @@
 		4DB2D9611D58DEBA007BD4A5 /* FoursquareAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB2D9601D58DEBA007BD4A5 /* FoursquareAPIClient.swift */; };
 		4DB2D9631D58DF04007BD4A5 /* ApisDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB2D9621D58DF04007BD4A5 /* ApisDataStore.swift */; };
 		4DB2D9651D58DF18007BD4A5 /* FoursquareData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB2D9641D58DF18007BD4A5 /* FoursquareData.swift */; };
+		4DE1D0A91D60D5F500911AA8 /* UserStory.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4DE1D0A81D60D5F500911AA8 /* UserStory.storyboard */; };
+		4DE1D0AB1D60D61F00911AA8 /* UserStoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE1D0AA1D60D61F00911AA8 /* UserStoryViewController.swift */; };
 		681BF710713DEB89F836003E /* Pods_AnytrailTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB2E3A25BA33F309140861F9 /* Pods_AnytrailTests.framework */; };
 		8A53F2EC1D594A4A00F244BE /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A53F2EB1D594A4A00F244BE /* Keys.swift */; };
 		8A53F2F11D594E3E00F244BE /* TrailApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A53F2F01D594E3E00F244BE /* TrailApiClient.swift */; };
@@ -63,6 +65,8 @@
 		4DB2D9601D58DEBA007BD4A5 /* FoursquareAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoursquareAPIClient.swift; sourceTree = "<group>"; };
 		4DB2D9621D58DF04007BD4A5 /* ApisDataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApisDataStore.swift; sourceTree = "<group>"; };
 		4DB2D9641D58DF18007BD4A5 /* FoursquareData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoursquareData.swift; sourceTree = "<group>"; };
+		4DE1D0A81D60D5F500911AA8 /* UserStory.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = UserStory.storyboard; sourceTree = "<group>"; };
+		4DE1D0AA1D60D61F00911AA8 /* UserStoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserStoryViewController.swift; sourceTree = "<group>"; };
 		5661F119B27C682B7C9BCB04 /* Pods-AnytrailTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnytrailTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-AnytrailTests/Pods-AnytrailTests.release.xcconfig"; sourceTree = "<group>"; };
 		599CF5E42324548824DD0368 /* Pods_Anytrail.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Anytrail.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A53F2EB1D594A4A00F244BE /* Keys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
@@ -153,6 +157,7 @@
 				945F35E51D5911A1002F9C1E /* Cell */,
 				9424A7911D53D6B500CE8D42 /* Controller */,
 				9424A7751D53D5DA00CE8D42 /* Main.storyboard */,
+				4DE1D0A81D60D5F500911AA8 /* UserStory.storyboard */,
 				2E1DA87E1D5E0DEB00F83DFD /* ActivityTracker.storyboard */,
 				9424A77A1D53D5DA00CE8D42 /* LaunchScreen.storyboard */,
 				9424A7781D53D5DA00CE8D42 /* Assets.xcassets */,
@@ -179,6 +184,7 @@
 				945F35E11D58F390002F9C1E /* ATLoginViewController.swift */,
 				945F35DF1D58F381002F9C1E /* ATMapViewController.swift */,
 				2E1DA8821D5E3B5B00F83DFD /* WalkTrackerViewController.swift */,
+				4DE1D0AA1D60D61F00911AA8 /* UserStoryViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -328,6 +334,7 @@
 				945F35E71D592179002F9C1E /* GoogleService-Info.plist in Resources */,
 				9424A7791D53D5DA00CE8D42 /* Assets.xcassets in Resources */,
 				9424A7771D53D5DA00CE8D42 /* Main.storyboard in Resources */,
+				4DE1D0A91D60D5F500911AA8 /* UserStory.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -445,6 +452,7 @@
 				945F35E01D58F381002F9C1E /* ATMapViewController.swift in Sources */,
 				945F35E41D590DBE002F9C1E /* ATInputCell.swift in Sources */,
 				945F35DE1D58F377002F9C1E /* ATSignupViewController.swift in Sources */,
+				4DE1D0AB1D60D61F00911AA8 /* UserStoryViewController.swift in Sources */,
 				9458E8D91D5CF44B007CDD47 /* ATDropdownView.swift in Sources */,
 				945F35E21D58F390002F9C1E /* ATLoginViewController.swift in Sources */,
 				8A53F2F11D594E3E00F244BE /* TrailApiClient.swift in Sources */,

@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:UserStory.storyboard">
+   </FileRef>
+   <FileRef
       location = "group:Anytrail.xcodeproj">
    </FileRef>
    <FileRef
