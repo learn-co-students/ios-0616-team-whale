@@ -10,9 +10,9 @@ import UIKit
 import Mapbox
 
 class UserStoryViewController: UIViewController {
-    @IBOutlet weak var flightsClimbedLabel: UILabel!
-    @IBOutlet weak var distanceTravelledLabel: UILabel!
-    
+    @IBOutlet weak var distanceTravelledCell: UITableViewCell!
+    @IBOutlet weak var stepsTakenCell: UITableViewCell!
+    @IBOutlet weak var flightsClimbedCell: UITableViewCell!
     
     let walkTrackerSharedSession = WalkTracker.walkTrackerSharedSession
     

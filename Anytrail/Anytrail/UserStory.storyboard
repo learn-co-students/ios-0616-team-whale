@@ -6,10 +6,10 @@
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Story-->
         <scene sceneID="8ja-WW-seq">
             <objects>
-                <viewController storyboardIdentifier="Walk Tracker" id="S9A-4V-2nO" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="User Story" id="S9A-4V-2nO" customClass="UserStoryViewController" customModule="Anytrail" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="JnF-Xj-fZz"/>
                         <viewControllerLayoutGuide type="bottom" id="02f-k9-Tvg"/>
@@ -18,90 +18,80 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="QPc-iq-7BD" userLabel="WalkTracker">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fAJ-68-22B" customClass="MGLMapView">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="300"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                        <color key="tintColor" red="0.90823972230000005" green="0.92638683320000004" blue="0.93171715740000005" alpha="1" colorSpace="calibratedRGB"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="styleURL__" value="mapbox://styles/imryan/cirhys2ik000igjnoz92eencj"/>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="latitude">
-                                                <real key="value" value="40.705280000000002"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="longitude">
-                                                <real key="value" value="-74.014025000000004"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="zoomLevel">
-                                                <real key="value" value="11.5"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="showsUserLocation" value="YES"/>
-                                        </userDefinedRuntimeAttributes>
-                                    </view>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="TUL-I5-0Eo" userLabel="Workout Data">
-                                        <rect key="frame" x="0.0" y="300" width="600" height="240"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="749" text="Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y6W-Bt-Yqi">
-                                                <rect key="frame" x="0.0" y="0.0" width="600" height="112"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Distance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ciZ-C5-0e6">
-                                                <rect key="frame" x="0.0" y="128" width="600" height="112"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                        <constraints>
-                                            <constraint firstItem="ciZ-C5-0e6" firstAttribute="width" secondItem="TUL-I5-0Eo" secondAttribute="width" id="h1m-0A-WNq"/>
-                                        </constraints>
-                                    </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="100" translatesAutoresizingMaskIntoConstraints="NO" id="zay-16-SRn" userLabel="User Interaction">
-                                        <rect key="frame" x="0.0" y="540" width="600" height="60"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WR2-T6-o8Z">
-                                                <rect key="frame" x="0.0" y="0.0" width="250" height="60"/>
-                                                <state key="normal" title="Start"/>
-                                                <connections>
-                                                    <action selector="startTapped:" destination="S9A-4V-2nO" eventType="touchUpInside" id="gjn-Xu-6Zg"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dQJ-wu-B1z">
-                                                <rect key="frame" x="350" y="0.0" width="250" height="60"/>
-                                                <state key="normal" title="Stop"/>
-                                                <connections>
-                                                    <action selector="stopTapped:" destination="S9A-4V-2nO" eventType="touchUpInside" id="wVG-lf-7hg"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                    </stackView>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstItem="zay-16-SRn" firstAttribute="height" secondItem="QPc-iq-7BD" secondAttribute="height" multiplier="0.1" id="aJk-bk-Hqg"/>
-                                    <constraint firstItem="fAJ-68-22B" firstAttribute="height" secondItem="QPc-iq-7BD" secondAttribute="height" multiplier="0.5" id="eZD-ye-JTX"/>
-                                    <constraint firstItem="TUL-I5-0Eo" firstAttribute="height" secondItem="QPc-iq-7BD" secondAttribute="height" multiplier="0.4" id="qF3-3r-SFK"/>
-                                </constraints>
-                            </stackView>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fAJ-68-22B" customClass="MGLMapView">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="240"/>
+                                <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" red="0.90823972230000005" green="0.92638683320000004" blue="0.93171715740000005" alpha="1" colorSpace="calibratedRGB"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="styleURL__" value="mapbox://styles/imryan/cirhys2ik000igjnoz92eencj"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="latitude">
+                                        <real key="value" value="40.705280000000002"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="longitude">
+                                        <real key="value" value="-74.014025000000004"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="zoomLevel">
+                                        <real key="value" value="11.5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="showsUserLocation" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" selectionStyle="default" indentationWidth="10" translatesAutoresizingMaskIntoConstraints="NO" id="5bC-M9-N3f" userLabel="StepsTakenCell">
+                                <rect key="frame" x="140" y="278" width="320" height="44"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5bC-M9-N3f" id="7HF-cj-wRg">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" selectionStyle="default" indentationWidth="10" translatesAutoresizingMaskIntoConstraints="NO" id="XPt-o7-jqy" userLabel="FlightsClimbedCell">
+                                <rect key="frame" x="140" y="358" width="320" height="44"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XPt-o7-jqy" id="cuV-nZ-nlT">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" selectionStyle="none" indentationWidth="10" translatesAutoresizingMaskIntoConstraints="NO" id="2N1-Lt-MmX" userLabel="DistanceTravelledCell">
+                                <rect key="frame" x="140" y="463" width="320" height="44"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2N1-Lt-MmX" id="z7i-V4-TTi">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="QPc-iq-7BD" firstAttribute="width" secondItem="uvT-S6-IXc" secondAttribute="width" id="8dM-GH-he1"/>
-                            <constraint firstItem="QPc-iq-7BD" firstAttribute="height" secondItem="uvT-S6-IXc" secondAttribute="height" id="IeI-t5-9y6"/>
-                            <constraint firstItem="QPc-iq-7BD" firstAttribute="leading" secondItem="uvT-S6-IXc" secondAttribute="leading" id="MnO-Ye-Y7Z"/>
-                            <constraint firstItem="QPc-iq-7BD" firstAttribute="top" secondItem="uvT-S6-IXc" secondAttribute="top" id="ale-JQ-olY"/>
+                            <constraint firstItem="fAJ-68-22B" firstAttribute="centerX" secondItem="uvT-S6-IXc" secondAttribute="centerX" id="NSU-Cq-W18"/>
+                            <constraint firstItem="fAJ-68-22B" firstAttribute="width" secondItem="uvT-S6-IXc" secondAttribute="width" id="Szt-Wu-2Vm"/>
+                            <constraint firstItem="fAJ-68-22B" firstAttribute="top" secondItem="JnF-Xj-fZz" secondAttribute="bottom" constant="-20" id="t2V-98-Vho"/>
+                            <constraint firstItem="fAJ-68-22B" firstAttribute="height" secondItem="uvT-S6-IXc" secondAttribute="height" multiplier="0.4" id="zHj-dA-SUV"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Story" id="dlD-bc-MpD"/>
                     <connections>
-                        <outlet property="distanceLabel" destination="ciZ-C5-0e6" id="Vyc-Wm-nre"/>
-                        <outlet property="startButton" destination="WR2-T6-o8Z" id="Xpx-fs-oQ6"/>
-                        <outlet property="stopButton" destination="dQJ-wu-B1z" id="DBr-cp-kcG"/>
-                        <outlet property="timeLabel" destination="Y6W-Bt-Yqi" id="c9f-To-T4N"/>
+                        <outlet property="distanceTravelledCell" destination="2N1-Lt-MmX" id="Pe9-SG-4Wc"/>
+                        <outlet property="flightsClimbedCell" destination="XPt-o7-jqy" id="iGW-eN-GE1"/>
+                        <outlet property="stepsTakenCell" destination="5bC-M9-N3f" id="eXc-W1-Jf1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mjo-Ah-tjK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2368" y="270"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Bla-be-vGT">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Mvc-v5-tc0" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="x3Q-hH-S5F">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="S9A-4V-2nO" kind="relationship" relationship="rootViewController" id="puv-Cy-Z59"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rCe-1l-cjH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1556" y="270"/>
         </scene>
