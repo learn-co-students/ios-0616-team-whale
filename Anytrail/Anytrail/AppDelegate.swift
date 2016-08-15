@@ -41,7 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let continueDate = NSDate()
             
             if let startDate = startDate {
-                WalkTracker.walkTrackerSharedSession = WalkTracker.init(startDate: startDate, continueDate: continueDate)
+                WalkTrackerViewController.walkTrackerSession = WalkTracker.init(startDate: startDate, continueDate: continueDate)
             }
         }
         
@@ -60,7 +60,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func applicationDidEnterBackground(application: UIApplication) {
-        AppDelegate.userDefaultWalkData.setValue(WalkTracker.walkTrackerSharedSession.walkStartDate, forKey: "walkStartDate")
+        AppDelegate.userDefaultWalkData.setValue(WalkTrackerViewController.walkTrackerSession.walkStartDate, forKey: "walkStartDate")
         AppDelegate.userDefaultWalkData.setValue(AppDelegate.activeWorkout, forKey: "workoutActive")
     }
     
@@ -74,13 +74,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let continueDate = NSDate()
             
             if let startDate = startDate {
-                WalkTracker.walkTrackerSharedSession = WalkTracker.init(startDate: startDate, continueDate: continueDate)
+                WalkTrackerViewController.walkTrackerSession = WalkTracker.init(startDate: startDate, continueDate: continueDate)
+                WalkTrackerViewController.walkTrackerSession.startWalk()
             }
         }
     }
     
     func applicationWillTerminate(application: UIApplication) {
-        AppDelegate.userDefaultWalkData.setValue(WalkTracker.walkTrackerSharedSession.walkStartDate, forKey: "walkStartDate")
+        AppDelegate.userDefaultWalkData.setValue(WalkTrackerViewController.walkTrackerSession.walkStartDate, forKey: "walkStartDate")
         AppDelegate.userDefaultWalkData.setValue(AppDelegate.activeWorkout, forKey: "workoutActive")
+        WalkTrackerViewController.walkTrackerSession.walkTimer.invalidate()
     }
 }

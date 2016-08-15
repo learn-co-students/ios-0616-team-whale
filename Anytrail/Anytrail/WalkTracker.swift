@@ -43,17 +43,22 @@ class WalkTracker: NSObject {
     }
     
     func getWalkDistance(startDate: NSDate, endDate: NSDate) {
-        HealthKitDataStore.sharedInstance.getSampleDataWithInDates(HealthKitDataTypes.walkingRunningDistance!, startDate: startDate, endDate: endDate, limit: 0, ascendingValue: true) { distanceData in
+        guard let distanceType = HealthKitDataTypes.walkingRunningDistance where HealthKitDataTypes.walkingRunningDistance != nil else {
+            print("There is an issue with access healthkit walkingRunning type")
+            return
+        }
+        HealthKitDataStore.sharedInstance.getSampleDataWithInDates(distanceType, startDate: startDate, endDate: endDate, limit: 0, ascendingValue: true) { distanceData in
             let distanceSamples = distanceData.dataSamples
-            for distanceSample in distanceSamples {
-                let distanceValue = distanceSample.quantity.doubleValueForUnit(HKUnit.meterUnit())
-                self.walkDistance += distanceValue
-            }
+            dispatch_async(dispatch_get_main_queue(),{
+                self.walkDistance = distanceSamples.reduce(0.0) {
+                    $0 + $1.quantity.doubleValueForUnit(HKUnit.meterUnit())
+                }
+            })
         }
     }
     
     func startWalk() {
-        walkTimer = NSTimer.scheduledTimerWithTimeInterval(1,
+        walkTimer = NSTimer.scheduledTimerWithTimeInterval(0.1,
                                                            target: self,
                                                            selector: #selector(updateWalkDistanceAndTime(_:)),
                                                            userInfo: nil,
@@ -68,9 +73,7 @@ class WalkTracker: NSObject {
                 print("Please start your walk again: \(error)")
                 return
             }
-            
             let distanceWalked = pedometerData.distance
-            
             if let distanceWalked = distanceWalked {
                 self.walkDistance = Double(distanceWalked)
             }
@@ -78,7 +81,7 @@ class WalkTracker: NSObject {
     }
     
     func updateWalkDistanceAndTime(timer: NSTimer) {
-        currentWalkTime += 1
+        currentWalkTime = secondsBetweenDates(walkStartDate, endDate: NSDate())
         updateWalkDistance()
     }
     

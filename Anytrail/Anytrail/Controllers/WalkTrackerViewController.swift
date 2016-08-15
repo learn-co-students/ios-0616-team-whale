@@ -20,6 +20,12 @@ class WalkTrackerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if AppDelegate.activeWorkout {
+            startButton.enabled = false
+        }
+        
+        HealthKitDataStore.sharedInstance.authorizeHealthKit {_ in}
+        
         let timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(updateLabels(_:)), userInfo: nil, repeats: true)
         timer.fire()
         
@@ -37,17 +43,17 @@ class WalkTrackerViewController: UIViewController {
     
     @IBAction func startTapped(sender: AnyObject) {
         WalkTrackerViewController.walkTrackerSession.startWalk()
+        WalkTrackerViewController.walkTrackerSession.walkStartDate = NSDate()
         startButton.enabled = false
         stopButton.enabled = true
-        
     }
     
     @IBAction func stopTapped(sender: AnyObject) {
         WalkTrackerViewController.walkTrackerSession.stopWalk()
+        WalkTrackerViewController.walkTrackerSession = WalkTracker()
         startButton.enabled = true
         stopButton.enabled = false
         dismissViewControllerAnimated(true) {
-            
         }
     }
     
