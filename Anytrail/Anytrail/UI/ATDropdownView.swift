@@ -7,12 +7,10 @@
 //
 
 import UIKit
+import CoreLocation
 import SnapKit
 
 protocol ATDropdownViewDelegate {
-//    func updateOriginPin()
-//    func updateDestinationPin()
-    
     func dropdownDidUpdateOrigin(location: String)
     func dropdownDidUpdateDestination(location: String)
 }
@@ -61,6 +59,14 @@ class ATDropdownView: UIView, UITextFieldDelegate {
         }
     }
     
+    func updateOriginTextField(location: String) {
+        originTextField.text = location
+    }
+    
+    func updateDestinationTextField(location: String) {
+        destinationTextField.text = location
+    }
+    
     // MARK: - Textfields
     
     func textFieldDidEndEditing(textField: UITextField) {
@@ -87,10 +93,10 @@ class ATDropdownView: UIView, UITextFieldDelegate {
         self.backgroundColor = UIColor(red: 248/255, green: 248/255, blue: 248/255, alpha: 0.7)
         
         originPinImageView = UIImageView(frame: CGRectMake(0, 0, 10, 10))
-        originPinImageView.image = UIImage(named: "first")
+        originPinImageView.image = UIImage(named: "origin-dot")
         
         destinationPinImageView = UIImageView(frame: CGRectMake(0, 0, 10, 10))
-        destinationPinImageView.image = UIImage(named: "first")
+        destinationPinImageView.image = UIImage(named: "destination-dot")
         
         originTextField = UITextField(frame: CGRectMake(self.view.frame.origin.x + 10, self.view.center.y - 265, self.frame.size.width - 20, 30))
         originTextField = configureTextField(originTextField)
@@ -101,7 +107,7 @@ class ATDropdownView: UIView, UITextFieldDelegate {
         destinationTextField = UITextField(frame: CGRectMake(self.view.frame.origin.x + 10, self.view.center.y - 230, self.frame.size.width - 20, 30))
         destinationTextField = configureTextField(destinationTextField)
         destinationTextField.returnKeyType = .Done
-        destinationTextField.placeholder = "Destination location"
+        destinationTextField.placeholder = "123 West 42nd St"
         
         addSubview(originPinImageView)
         addSubview(destinationPinImageView)
@@ -116,7 +122,7 @@ class ATDropdownView: UIView, UITextFieldDelegate {
         textField.backgroundColor = UIColor.whiteColor()
         textField.layer.masksToBounds = true
         textField.layer.cornerRadius = 4
-        textField.layer.sublayerTransform = CATransform3DMakeTranslation(10, 0, 0)
+        textField.layer.sublayerTransform = CATransform3DMakeTranslation(10, 0, 5)
         textField.textColor = UIColor(red: 80/255, green: 80/255, blue: 80/255, alpha: 1)
         textField.font = UIFont.systemFontOfSize(13)
         textField.autocapitalizationType = .Words
@@ -145,15 +151,17 @@ class ATDropdownView: UIView, UITextFieldDelegate {
         }
         
         originPinImageView.snp.makeConstraints { (make) in
-            make.top.equalTo(self.originTextField.snp.top)
-            make.left.equalTo(self.snp.left).offset(1)
-            make.right.equalTo(originTextField.snp.left).offset(-1)
+            make.top.equalTo(originTextField.snp.top).offset(4)
+            make.bottom.equalTo(originTextField.snp.bottom).offset(-4)
+            make.left.equalTo(self.snp.left).offset(4)
+            make.right.equalTo(originTextField.snp.left).offset(-4)
         }
         
         destinationPinImageView.snp.makeConstraints { (make) in
-            make.top.equalTo(self.destinationTextField.snp.top)
-            make.left.equalTo(self.snp.left).offset(1)
-            make.right.equalTo(destinationTextField.snp.left).offset(-1)
+            make.top.equalTo(destinationTextField.snp.top).offset(4)
+            make.bottom.equalTo(destinationTextField.snp.bottom).offset(-4)
+            make.left.equalTo(self.snp.left).offset(4)
+            make.right.equalTo(destinationTextField.snp.left).offset(-4)
         }
     }
 }

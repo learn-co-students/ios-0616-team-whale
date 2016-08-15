@@ -15,7 +15,8 @@ class FoursquareAPIClient {
         let clientID = Keys.fourSquareClientID
         let clientSecret = Keys.fourSquareClientSecret
         let v = "20160808"
-        let ll = "40.7,-74"
+//        let ll = "40.7,-74"
+        let ll = "40.759211000000001, -73.984638000000004"
         let query = "monuments/landmarks"
         let parameter = ["client_id": clientID,
                          "client_secret":clientSecret,
