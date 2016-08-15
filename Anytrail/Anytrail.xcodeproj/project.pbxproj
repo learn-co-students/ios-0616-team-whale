@@ -38,6 +38,7 @@
 		945F35ED1D5A3066002F9C1E /* ATAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945F35EC1D5A3066002F9C1E /* ATAlertView.swift */; };
 		945F35F01D5A45A6002F9C1E /* ATErrorTranslator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945F35EF1D5A45A6002F9C1E /* ATErrorTranslator.swift */; };
 		945F35F21D5A45B0002F9C1E /* UIViewController+Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945F35F11D5A45B0002F9C1E /* UIViewController+Keyboard.swift */; };
+		94B1ABEB1D5E4AD800D3DA8E /* ATAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B1ABEA1D5E4AD800D3DA8E /* ATAnnotationView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +88,7 @@
 		945F35EC1D5A3066002F9C1E /* ATAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ATAlertView.swift; path = UI/ATAlertView.swift; sourceTree = "<group>"; };
 		945F35EF1D5A45A6002F9C1E /* ATErrorTranslator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ATErrorTranslator.swift; path = Utility/ATErrorTranslator.swift; sourceTree = "<group>"; };
 		945F35F11D5A45B0002F9C1E /* UIViewController+Keyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIViewController+Keyboard.swift"; path = "Utility/UIViewController+Keyboard.swift"; sourceTree = "<group>"; };
+		94B1ABEA1D5E4AD800D3DA8E /* ATAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ATAnnotationView.swift; path = UI/ATAnnotationView.swift; sourceTree = "<group>"; };
 		DAD2C8D70B6029D7314DD479 /* Pods-AnytrailTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnytrailTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AnytrailTests/Pods-AnytrailTests.debug.xcconfig"; sourceTree = "<group>"; };
 		DB2E3A25BA33F309140861F9 /* Pods_AnytrailTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AnytrailTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4AC6E6A90B2DC273C8971C2 /* Pods-Anytrail.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Anytrail.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Anytrail/Pods-Anytrail.debug.xcconfig"; sourceTree = "<group>"; };
@@ -205,6 +207,7 @@
 			children = (
 				945F35EC1D5A3066002F9C1E /* ATAlertView.swift */,
 				9458E8D81D5CF44B007CDD47 /* ATDropdownView.swift */,
+				94B1ABEA1D5E4AD800D3DA8E /* ATAnnotationView.swift */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -440,6 +443,8 @@
 			files = (
 				945F35F01D5A45A6002F9C1E /* ATErrorTranslator.swift in Sources */,
 				945F35F21D5A45B0002F9C1E /* UIViewController+Keyboard.swift in Sources */,
+				8A66242F1D5A8DCB009760DA /* HealthDataViewController.swift in Sources */,
+				94B1ABEB1D5E4AD800D3DA8E /* ATAnnotationView.swift in Sources */,
 				945F35DC1D58F30B002F9C1E /* ATSplashViewController.swift in Sources */,
 				945F35ED1D5A3066002F9C1E /* ATAlertView.swift in Sources */,
 				945F35E01D58F381002F9C1E /* ATMapViewController.swift in Sources */,

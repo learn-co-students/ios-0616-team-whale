@@ -21,13 +21,17 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
     let store = ApisDataStore.sharedInstance
     var geocoder: Geocoder!
     
-    var gestureRecognizer: UILongPressGestureRecognizer! = nil // Use for dropping destination pin
+    var gestureRecognizer: UILongPressGestureRecognizer! = nil // Use for dropping origin/destination pin
     
     var drawMode: Bool = false
     var pins: [MGLAnnotation] = []
     
     var dropdownView: ATDropdownView! = nil
     var dropdownDisplayed = false
+    
+    var origin: MGLAnnotation!
+    var destination: MGLPointAnnotation! = nil
+    var waypoints: [Waypoint] = []
     
     // MARK: - Actions
     
@@ -54,6 +58,12 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
     
     // MARK: - Mapbox
     
+    func mapView(mapView: MGLMapView, didUpdateUserLocation userLocation: MGLUserLocation?) {
+        if let location = mapView.userLocation {
+             self.pins.append(location)
+        }
+    }
+    
     func mapView(mapView: MGLMapView, annotationCanShowCallout annotation: MGLAnnotation) -> Bool {
         return true
     }
@@ -65,14 +75,11 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
     func mapView(mapView: MGLMapView, didSelectAnnotation annotation: MGLAnnotation) {
         // Add annotation to selected point to pass
         // Be sure to check for duplicates (e.g same pin)
-        //
-        // Maybe add overlayed list of selected waypoints?
-        // Or badge for counter on selected points icon
         // Color pin if selected
-        
+
         if drawMode {
             // Confirm/Undo?
-            ATAlertView.alertWithTitle(self, title: "Waypoint", text: "Selected \(annotation.title!!)", callback: {
+            ATAlertView.alertWithTitle(self, type: ATAlertView.ATAlertViewType.Success, title: "Waypoint" ,text: "Added \(annotation.title!!)", callback: {
                 self.pins.append(annotation)
                 return
             })
@@ -81,22 +88,110 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
         // Otherwise, display point info?
     }
     
+    func mapView(mapView: MGLMapView, viewForAnnotation annotation: MGLAnnotation) -> MGLAnnotationView? {
+        guard annotation is MGLPointAnnotation else {
+            return nil
+        }
+        
+        let reuseIdentifier = "AnnotationId"
+        var annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseIdentifier)
+        
+        if annotationView == nil {
+            annotationView = ATAnnotationView(reuseIdentifier: reuseIdentifier) 
+            annotationView!.frame = CGRectMake(0, 0, 25, 25)
+            
+            let pin = annotationView as! ATAnnotationView
+            pin.type = ATAnnotationView.ATAnnotationType.PointOfInterest
+            
+            // Determine type of pin and assign it
+        }
+        
+        return annotationView
+    }
+    
+//    func mapView(mapView: MGLMapView, leftCalloutAccessoryViewForAnnotation annotation: MGLAnnotation) -> UIView? {
+//        if annotation.isKindOfClass(MGLUserLocation) {
+//            return nil
+//        }
+//        
+//        // Change pin color once the pin has been formally selected
+//        // Change waypoint-add image to waypoint-added
+//
+//    }
+    
+    func mapView(mapView: MGLMapView, annotation: MGLAnnotation, calloutAccessoryControlTapped control: UIControl) {
+        // Change image/color and dismiss
+        
+        // let buttonImageView = control.subviews[0] as! UIImageView
+        // buttonImageView.image = UIImage(named: "waypoint-added")
+        
+        mapView.deselectAnnotation(annotation, animated: true)
+    }
+    
     func geocodeWithQuery(query: String) {
         let options = ForwardGeocodeOptions(query: query)
-        
-        // Limit the search radius
-        // options.focalLocation = mapView.userLocation?.location
+        options.focalLocation = mapView.userLocation?.location
         
         geocoder.geocode(options: options) { (placemarks, attribution, error) in
             if error == nil {
-                let placemark = placemarks![0]
-                
-                let pin = MGLPointAnnotation()
-                pin.coordinate = placemark.location.coordinate
-                pin.title = placemark.name
-                pin.subtitle = placemark.qualifiedName
-                
-                self.mapView.addAnnotation(pin)
+                if let placemarks = placemarks {
+                    if placemarks.isEmpty {
+                        ATAlertView.alertWithTitle(self, type: ATAlertView.ATAlertViewType.Error, title: "Whoops", text: "We couldn't find an address matching your query", callback: {
+                            return
+                        })
+                        
+                    } else {
+                        let placemark = placemarks[0]
+                        
+                        let pin = MGLPointAnnotation()
+                        pin.coordinate = placemark.location.coordinate
+                        pin.title = placemark.name
+                        pin.subtitle = placemark.qualifiedName
+                        
+                        self.mapView.addAnnotation(pin)
+                        
+                        // Load foursquare data when user initiates
+                        // self.addFoursquareAnnotations()
+                        
+                        if !self.pinIsDuplicate(pin) {
+                            self.pins.append(pin)
+                            self.mapView.addAnnotation(pin)
+                            
+                        } else {
+                            // Pin already exists as destination
+                        }
+                        
+                        // Destination will always be inserted at end, after POIs are selected and route is starting
+                        // print("Destination: \(self.destination.title)")
+                        // self.pins.insert(pin, atIndex: self.pins.endIndex)
+                        
+                        
+                        // TODO: Change this to remove specific destination pins
+                        
+                        self.mapView.removeAnnotations(self.mapView.annotations!)
+                        self.assignDestination(pin)
+                    }
+                    
+                } else {
+                    ATAlertView.alertWithTitle(self, type: ATAlertView.ATAlertViewType.Error, title: "Whoops", text: "We couldn't find an address matching your query", callback: {
+                        return
+                    })
+                }
+            }
+        }
+    }
+    
+    func reverseGeocode(location: CLLocation, completion: (address: String?) -> ()) {
+        let options = ReverseGeocodeOptions(location: location)
+        
+        geocoder.geocode(options: options) { (placemarks, attribution, error) in
+            if error == nil {
+                if let placemarks = placemarks {
+                    completion(address: placemarks[0].qualifiedName)
+                }
+            } else {
+                print("Error reverse-geocoding: \(error)")
+                completion(address: nil)
             }
         }
     }
@@ -147,9 +242,19 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
     
     // MARK: - Paths
     
+    func assignDestination(destination: MGLPointAnnotation) {
+        self.destination = destination
+        self.mapView.addAnnotation(destination)
+    }
+    
+    func addWaypoint(sender: UIButton) {
+        // Add from pin callout view
+        print("Add waypoint")
+    }
+    
     func drawPath() {
-        if pins.count < 2 {
-            ATAlertView.alertWithTitle(self, title: "Paths", text: "Please select at least two points to pass", callback: {
+        if pins.count < 1 {
+            ATAlertView.alertWithTitle(self, type: ATAlertView.ATAlertViewType.Normal, title: "Paths", text: "Please select at least one point to pass", callback: {
                 return
             })
         }
@@ -220,14 +325,23 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
         
         // Check if pins array already contains pin
         
-        pins.append(pin)
-        mapView.addAnnotation(pin)
-        
-        if let annotations = mapView.annotations {
-            for pin in annotations {
-                print("Pin: \(pin.coordinate)")
-            }
+        if !pinIsDuplicate(pin) {
+            pins.append(pin)
+            mapView.addAnnotation(pin)
+            
+        } else {
+            ATAlertView.alertWithTitle(self, type: ATAlertView.ATAlertViewType.Normal, title: "Whoops", text: "You've already added this pin", callback: {
+                return
+            })
+            
+            // May just return instead of alert
         }
+        
+//        if let annotations = mapView.annotations {
+//            for pin in annotations {
+//                print("Pin: \(pin.coordinate)")
+//            }
+//        }
         
         // let polyline = MGLPolyline(coordinates: &coordinates, count: UInt(coordinates.count))
         // mapView.addAnnotation(polyline)
@@ -243,9 +357,9 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
         dropdownView = ATDropdownView(view: self.view)
         dropdownView.delegate = self
         
-        // Custom path drawing
-        // gestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(dropPin))
-        // mapView.addGestureRecognizer(gestureRecognizer)
+        
+        gestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(dropPin))
+        mapView.addGestureRecognizer(gestureRecognizer)
         
         //        addFoursquareAnnotations()
         
@@ -265,5 +379,21 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+}
+
+extension ATMapViewController {
+    
+    func pinIsDuplicate(pin: MGLAnnotation) -> Bool {
+        let latitude = pin.coordinate.latitude
+        let longitude = pin.coordinate.longitude
+        
+        for pin in pins {
+            if pin.coordinate.latitude == latitude && pin.coordinate.longitude == longitude {
+                return true
+            }
+        }
+        
+        return false
     }
 }

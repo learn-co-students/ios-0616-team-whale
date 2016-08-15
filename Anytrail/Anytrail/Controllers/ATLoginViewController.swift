@@ -31,7 +31,7 @@ class ATLoginViewController: ATSignupViewController {
             } else {
                 let errorString = ATErrorTranslator.translate(error!)
                 
-                ATAlertView.alertWithTitle(self, title: "Whoa!", text: "\(errorString)", callback: {
+                ATAlertView.alertWithTitle(self, type: ATAlertView.ATAlertViewType.Error, title: "Whoa!", text: "\(errorString)", callback: {
                     self.cells[1].textField.text = ""
                     self.cells[1].textField.becomeFirstResponder()
                     
