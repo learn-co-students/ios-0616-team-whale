@@ -12,7 +12,7 @@ import HealthKit
 
 class WalkTracker: NSObject {
     
-    let pedometer = CMPedometer()
+    var pedometer = CMPedometer()
     var walkTimer = NSTimer()
     var walkStartDate = NSDate()
     var walkEndDate = NSDate()
@@ -25,6 +25,7 @@ class WalkTracker: NSObject {
     override init() {
         self.walkStartDate = NSDate()
         self.walkEndDate = NSDate()
+        self.pedometer = CMPedometer()
     }
     
     convenience init(startDate: NSDate, continueDate: NSDate) {
@@ -33,6 +34,7 @@ class WalkTracker: NSObject {
         self.walkEndDate = continueDate
         self.currentWalkTime = secondsBetweenDates(startDate, endDate: continueDate)
         getWalkDistance(startDate, endDate: continueDate)
+        startWalk()
     }
     
     func secondsBetweenDates(startDate: NSDate, endDate: NSDate) -> Double {
