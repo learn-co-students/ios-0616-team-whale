@@ -9,10 +9,8 @@
 /* Begin PBXBuildFile section */
 		2E1DA87D1D5E057500F83DFD /* WalkTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E1DA87B1D5E057500F83DFD /* WalkTracker.swift */; };
 		2E1DA87F1D5E0DEB00F83DFD /* ActivityTracker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E1DA87E1D5E0DEB00F83DFD /* ActivityTracker.storyboard */; };
-		2E1DA8811D5E1EEA00F83DFD /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E1DA8801D5E1EEA00F83DFD /* HealthKit.framework */; };
 		2E1DA8831D5E3B5B00F83DFD /* WalkTrackerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E1DA8821D5E3B5B00F83DFD /* WalkTrackerViewController.swift */; };
 		2E7B02845A404C04E0D92E5E /* Pods_Anytrail.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 599CF5E42324548824DD0368 /* Pods_Anytrail.framework */; };
-		2ECF50511D5929700072732B /* (null) in Sources */ = {isa = PBXBuildFile; };
 		4D225C1B1D5A0FF600360AB8 /* MashapeAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D225C1A1D5A0FF600360AB8 /* MashapeAPIClient.swift */; };
 		4D225C1F1D5A100800360AB8 /* MashapeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D225C1E1D5A100800360AB8 /* MashapeData.swift */; };
 		4DB2D9611D58DEBA007BD4A5 /* FoursquareAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB2D9601D58DEBA007BD4A5 /* FoursquareAPIClient.swift */; };
@@ -23,6 +21,7 @@
 		8A53F2F11D594E3E00F244BE /* TrailApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A53F2F01D594E3E00F244BE /* TrailApiClient.swift */; };
 		8A6624301D5A8DCB009760DA /* HealthKitConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A66242D1D5A8DCB009760DA /* HealthKitConstants.swift */; };
 		8A6624311D5A8DCB009760DA /* HealthKitDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A66242E1D5A8DCB009760DA /* HealthKitDataStore.swift */; };
+		940F071E1D626B8C00666F2B /* (null) in Sources */ = {isa = PBXBuildFile; };
 		9424A7701D53D5DA00CE8D42 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9424A76F1D53D5DA00CE8D42 /* AppDelegate.swift */; };
 		9424A7771D53D5DA00CE8D42 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9424A7751D53D5DA00CE8D42 /* Main.storyboard */; };
 		9424A7791D53D5DA00CE8D42 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9424A7781D53D5DA00CE8D42 /* Assets.xcassets */; };
@@ -38,6 +37,8 @@
 		945F35ED1D5A3066002F9C1E /* ATAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945F35EC1D5A3066002F9C1E /* ATAlertView.swift */; };
 		945F35F01D5A45A6002F9C1E /* ATErrorTranslator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945F35EF1D5A45A6002F9C1E /* ATErrorTranslator.swift */; };
 		945F35F21D5A45B0002F9C1E /* UIViewController+Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945F35F11D5A45B0002F9C1E /* UIViewController+Keyboard.swift */; };
+		949370331D62412200C696AE /* ATAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949370321D62412200C696AE /* ATAnnotation.swift */; };
+		949370351D62515900C696AE /* ATConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949370341D62515900C696AE /* ATConstants.swift */; };
 		94B1ABEB1D5E4AD800D3DA8E /* ATAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B1ABEA1D5E4AD800D3DA8E /* ATAnnotationView.swift */; };
 /* End PBXBuildFile section */
 
@@ -54,7 +55,6 @@
 /* Begin PBXFileReference section */
 		2E1DA87B1D5E057500F83DFD /* WalkTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalkTracker.swift; sourceTree = "<group>"; };
 		2E1DA87E1D5E0DEB00F83DFD /* ActivityTracker.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ActivityTracker.storyboard; sourceTree = "<group>"; };
-		2E1DA8801D5E1EEA00F83DFD /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		2E1DA8821D5E3B5B00F83DFD /* WalkTrackerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WalkTrackerViewController.swift; path = Controllers/WalkTrackerViewController.swift; sourceTree = "<group>"; };
 		2ECF502E1D590D430072732B /* Anytrail.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Anytrail.entitlements; sourceTree = "<group>"; };
 		2EDDFE291D5A868900B36853 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -88,6 +88,8 @@
 		945F35EC1D5A3066002F9C1E /* ATAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ATAlertView.swift; path = UI/ATAlertView.swift; sourceTree = "<group>"; };
 		945F35EF1D5A45A6002F9C1E /* ATErrorTranslator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ATErrorTranslator.swift; path = Utility/ATErrorTranslator.swift; sourceTree = "<group>"; };
 		945F35F11D5A45B0002F9C1E /* UIViewController+Keyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIViewController+Keyboard.swift"; path = "Utility/UIViewController+Keyboard.swift"; sourceTree = "<group>"; };
+		949370321D62412200C696AE /* ATAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ATAnnotation.swift; path = UI/ATAnnotation.swift; sourceTree = "<group>"; };
+		949370341D62515900C696AE /* ATConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ATConstants.swift; sourceTree = "<group>"; };
 		94B1ABEA1D5E4AD800D3DA8E /* ATAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ATAnnotationView.swift; path = UI/ATAnnotationView.swift; sourceTree = "<group>"; };
 		DAD2C8D70B6029D7314DD479 /* Pods-AnytrailTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnytrailTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AnytrailTests/Pods-AnytrailTests.debug.xcconfig"; sourceTree = "<group>"; };
 		DB2E3A25BA33F309140861F9 /* Pods_AnytrailTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AnytrailTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -100,7 +102,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2E7B02845A404C04E0D92E5E /* Pods_Anytrail.framework in Frameworks */,
-				2E1DA8811D5E1EEA00F83DFD /* HealthKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -139,6 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				8A53F2EB1D594A4A00F244BE /* Keys.swift */,
+				9424A76F1D53D5DA00CE8D42 /* AppDelegate.swift */,
 				8A66242D1D5A8DCB009760DA /* HealthKitConstants.swift */,
 				8A66242E1D5A8DCB009760DA /* HealthKitDataStore.swift */,
 				4D225C1A1D5A0FF600360AB8 /* MashapeAPIClient.swift */,
@@ -147,8 +149,8 @@
 				2E1DA87B1D5E057500F83DFD /* WalkTracker.swift */,
 				8A53F2F01D594E3E00F244BE /* TrailApiClient.swift */,
 				4DB2D9621D58DF04007BD4A5 /* ApisDataStore.swift */,
-				9424A76F1D53D5DA00CE8D42 /* AppDelegate.swift */,
 				4DB2D9641D58DF18007BD4A5 /* FoursquareData.swift */,
+				949370341D62515900C696AE /* ATConstants.swift */,
 				2ECF502E1D590D430072732B /* Anytrail.entitlements */,
 				945F35EE1D5A306A002F9C1E /* UI */,
 				945F35EB1D593648002F9C1E /* Utility */,
@@ -208,6 +210,7 @@
 				945F35EC1D5A3066002F9C1E /* ATAlertView.swift */,
 				9458E8D81D5CF44B007CDD47 /* ATDropdownView.swift */,
 				94B1ABEA1D5E4AD800D3DA8E /* ATAnnotationView.swift */,
+				949370321D62412200C696AE /* ATAnnotation.swift */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -215,7 +218,6 @@
 		987972257156501B9FC0529B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				2E1DA8801D5E1EEA00F83DFD /* HealthKit.framework */,
 				599CF5E42324548824DD0368 /* Pods_Anytrail.framework */,
 				DB2E3A25BA33F309140861F9 /* Pods_AnytrailTests.framework */,
 			);
@@ -289,10 +291,9 @@
 				TargetAttributes = {
 					9424A76B1D53D5DA00CE8D42 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = 8522JF7Z74;
 						SystemCapabilities = {
 							com.apple.HealthKit = {
-								enabled = 1;
+								enabled = 0;
 							};
 						};
 					};
@@ -443,8 +444,8 @@
 			files = (
 				945F35F01D5A45A6002F9C1E /* ATErrorTranslator.swift in Sources */,
 				945F35F21D5A45B0002F9C1E /* UIViewController+Keyboard.swift in Sources */,
-				8A66242F1D5A8DCB009760DA /* HealthDataViewController.swift in Sources */,
 				94B1ABEB1D5E4AD800D3DA8E /* ATAnnotationView.swift in Sources */,
+				949370331D62412200C696AE /* ATAnnotation.swift in Sources */,
 				945F35DC1D58F30B002F9C1E /* ATSplashViewController.swift in Sources */,
 				945F35ED1D5A3066002F9C1E /* ATAlertView.swift in Sources */,
 				945F35E01D58F381002F9C1E /* ATMapViewController.swift in Sources */,
@@ -453,10 +454,10 @@
 				9458E8D91D5CF44B007CDD47 /* ATDropdownView.swift in Sources */,
 				945F35E21D58F390002F9C1E /* ATLoginViewController.swift in Sources */,
 				8A53F2F11D594E3E00F244BE /* TrailApiClient.swift in Sources */,
+				949370351D62515900C696AE /* ATConstants.swift in Sources */,
 				8A6624301D5A8DCB009760DA /* HealthKitConstants.swift in Sources */,
 				4D225C1B1D5A0FF600360AB8 /* MashapeAPIClient.swift in Sources */,
-				2ECF50511D5929700072732B /* (null) in Sources */,
-				2ECF50511D5929700072732B /* (null) in Sources */,
+				940F071E1D626B8C00666F2B /* (null) in Sources */,
 				2E1DA87D1D5E057500F83DFD /* WalkTracker.swift in Sources */,
 				9424A7701D53D5DA00CE8D42 /* AppDelegate.swift in Sources */,
 				4D225C1F1D5A100800360AB8 /* MashapeData.swift in Sources */,
@@ -595,7 +596,6 @@
 			baseConfigurationReference = F4AC6E6A90B2DC273C8971C2 /* Pods-Anytrail.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = Anytrail/Anytrail.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Anytrail/Info.plist;
@@ -611,7 +611,6 @@
 			baseConfigurationReference = 3417C12B1559CD326FE9F852 /* Pods-Anytrail.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = Anytrail/Anytrail.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Anytrail/Info.plist;
