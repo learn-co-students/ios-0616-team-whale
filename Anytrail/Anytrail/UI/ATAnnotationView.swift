@@ -17,7 +17,7 @@ class ATAnnotationView: MGLAnnotationView {
         case Destination
     }
     
-    var type: ATAnnotationType!
+    var type: ATAnnotationType?
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -27,18 +27,6 @@ class ATAnnotationView: MGLAnnotationView {
         layer.cornerRadius = frame.width / 2
         layer.borderWidth = 2
         layer.borderColor = UIColor.whiteColor().CGColor
-        
-        let color: UIColor
-        
-        if type == .Origin {
-            color = UIColor.blueColor()
-        } else if type == .PointOfInterest {
-            color = UIColor.orangeColor()
-        } else {
-            color = UIColor.redColor()
-        }
-        
-        backgroundColor = color
     }
     
     override func setSelected(selected: Bool, animated: Bool) {

@@ -23,15 +23,14 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
     
     var gestureRecognizer: UILongPressGestureRecognizer! = nil // Use for dropping origin/destination pin
     
+    var origin: MGLAnnotation!
+    var destination: MGLPointAnnotation!
+    
     var drawMode: Bool = false
     var pins: [MGLAnnotation] = []
     
     var dropdownView: ATDropdownView! = nil
     var dropdownDisplayed = false
-    
-    var origin: MGLAnnotation!
-    var destination: MGLPointAnnotation! = nil
-    var waypoints: [Waypoint] = []
     
     // MARK: - Actions
     
@@ -51,16 +50,17 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
     
     @IBAction func draw() {
         drawMode = true
+        addFoursquareAnnotations()
         
-        // Change color of pins when selected to indicate
-        // which are the selected waypoints
+        //
     }
     
     // MARK: - Mapbox
     
     func mapView(mapView: MGLMapView, didUpdateUserLocation userLocation: MGLUserLocation?) {
-        if let location = mapView.userLocation {
-             self.pins.append(location)
+        if let _ = mapView.userLocation {
+             // Set the origin field to current location address
+             // self.pins.append(location)
         }
     }
     
@@ -73,14 +73,27 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
     }
     
     func mapView(mapView: MGLMapView, didSelectAnnotation annotation: MGLAnnotation) {
-        // Add annotation to selected point to pass
-        // Be sure to check for duplicates (e.g same pin)
-        // Color pin if selected
-
+        if annotation.isKindOfClass(MGLUserLocation) {
+            return
+        }
+        
         if drawMode {
+            
             // Confirm/Undo?
+            
+            if pins.count == 3 {
+                drawPath()
+            }
+            
+            let pin = annotation as! ATAnnotation
+            pin.type = .Waypoint
+            
+            let annotationView = mapView.viewForAnnotation(annotation)
+            annotationView?.backgroundColor = pin.backgroundColor
+            
             ATAlertView.alertWithTitle(self, type: ATAlertView.ATAlertViewType.Success, title: "Waypoint" ,text: "Added \(annotation.title!!)", callback: {
                 self.pins.append(annotation)
+                mapView.deselectAnnotation(annotation, animated: true)
                 return
             })
         }
@@ -100,10 +113,8 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
             annotationView = ATAnnotationView(reuseIdentifier: reuseIdentifier) 
             annotationView!.frame = CGRectMake(0, 0, 25, 25)
             
-            let pin = annotationView as! ATAnnotationView
-            pin.type = ATAnnotationView.ATAnnotationType.PointOfInterest
-            
-            // Determine type of pin and assign it
+            let pin = annotation as! ATAnnotation
+            annotationView?.backgroundColor = pin.backgroundColor
         }
         
         return annotationView
@@ -120,15 +131,10 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
 //    }
     
     func mapView(mapView: MGLMapView, annotation: MGLAnnotation, calloutAccessoryControlTapped control: UIControl) {
-        // Change image/color and dismiss
-        
-        // let buttonImageView = control.subviews[0] as! UIImageView
-        // buttonImageView.image = UIImage(named: "waypoint-added")
-        
         mapView.deselectAnnotation(annotation, animated: true)
     }
     
-    func geocodeWithQuery(query: String) {
+    func geocodeWithQuery(query: String, type: ATAnnotation.ATAnnotationType) {
         let options = ForwardGeocodeOptions(query: query)
         options.focalLocation = mapView.userLocation?.location
         
@@ -143,15 +149,27 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
                     } else {
                         let placemark = placemarks[0]
                         
-                        let pin = MGLPointAnnotation()
+                        let pin = ATAnnotation()
                         pin.coordinate = placemark.location.coordinate
                         pin.title = placemark.name
                         pin.subtitle = placemark.qualifiedName
+                        pin.type = type
                         
-                        self.mapView.addAnnotation(pin)
+                        if type == .Origin {
+                            self.assignOrigin(pin)
+                            return
+                            
+                        } else if type == .Destination {
+                            self.assignDestination(pin)
+                            return
+                        }
                         
-                        // Load foursquare data when user initiates
-                        // self.addFoursquareAnnotations()
+                        // Destination will always be inserted at end, after POIs are selected and route is starting
+                        // print("Destination: \(self.destination.title)")
+                        // self.pins.insert(pin, atIndex: self.pins.endIndex)
+                        
+                        // TODO: Change this to remove specific destination pins
+                        // self.mapView.removeAnnotations(self.mapView.annotations!)
                         
                         if !self.pinIsDuplicate(pin) {
                             self.pins.append(pin)
@@ -160,16 +178,6 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
                         } else {
                             // Pin already exists as destination
                         }
-                        
-                        // Destination will always be inserted at end, after POIs are selected and route is starting
-                        // print("Destination: \(self.destination.title)")
-                        // self.pins.insert(pin, atIndex: self.pins.endIndex)
-                        
-                        
-                        // TODO: Change this to remove specific destination pins
-                        
-                        self.mapView.removeAnnotations(self.mapView.annotations!)
-                        self.assignDestination(pin)
                     }
                     
                 } else {
@@ -200,13 +208,13 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
     
     func dropdownDidUpdateOrigin(location: String) {
         if location.characters.count > 3 {
-            geocodeWithQuery(location)
+            geocodeWithQuery(location, type: .Origin)
         }
     }
     
     func dropdownDidUpdateDestination(location: String) {
         if location.characters.count > 3 {
-            geocodeWithQuery(location)
+            geocodeWithQuery(location, type: .Destination)
         }
     }
     
@@ -215,10 +223,11 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
     func addFoursquareAnnotations() {
         ApisDataStore.sharedInstance.getDataWithCompletion {
             for location in self.store.foursquareData {
-                let pin = MGLPointAnnotation()
+                let pin = ATAnnotation()
                 pin.coordinate = CLLocationCoordinate2D(latitude: location.placeLatitude, longitude: location.placeLongitude)
                 pin.title = location.placeName
                 pin.subtitle = location.placeAddress
+                pin.type = .PointOfInterest
                 
                 self.mapView.addAnnotation(pin)
             }
@@ -230,10 +239,11 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
     func addTrailsAnnotations() {
         for trail in store.mashapeData {
             if trail.isHiking == true {
-                let pin = MGLPointAnnotation()
+                let pin = ATAnnotation()
                 pin.coordinate = CLLocationCoordinate2D(latitude: trail.placeLatitude, longitude: trail.placeLongitude)
                 pin.title = trail.placeName
-                // pin.subtitle = trail.isHiking?.description
+                pin.subtitle = trail.isHiking?.description
+                pin.type = .PointOfInterest // Trail (green)?
                 
                 mapView.addAnnotation(pin)
             }
@@ -242,7 +252,20 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
     
     // MARK: - Paths
     
-    func assignDestination(destination: MGLPointAnnotation) {
+    func assignOrigin(origin: ATAnnotation) {
+        if self.origin != nil {
+            self.mapView.removeAnnotation(self.origin)
+        }
+        
+        self.origin = origin
+        self.mapView.addAnnotation(origin)
+    }
+    
+    func assignDestination(destination: ATAnnotation) {
+        if self.destination != nil {
+            self.mapView.removeAnnotation(self.destination)
+        }
+        
         self.destination = destination
         self.mapView.addAnnotation(destination)
     }
@@ -259,12 +282,26 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
             })
         }
         
+        // Animate
+        removeUnusedWaypoints()
+        
         var waypoints: [Waypoint] = []
         
         for pin in pins {
             let waypoint = Waypoint(coordinate: pin.coordinate)
             waypoints.append(waypoint)
         }
+        
+        let originWaypoint = Waypoint(coordinate: origin.coordinate)
+        let destinationWaypoint = Waypoint(coordinate: destination.coordinate)
+        
+        waypoints.insert(originWaypoint, atIndex: 0)
+        waypoints.insert(destinationWaypoint, atIndex: waypoints.endIndex-1)
+        
+        // TODO: Remove
+        print(waypoints)
+        
+        // Directions
         
         let directions = Directions(accessToken: Keys.mapBoxToken)
         
@@ -311,19 +348,11 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
     func dropPin(tap: UIGestureRecognizer) {
         let location: CLLocationCoordinate2D = mapView.convertPoint(tap.locationInView(mapView), toCoordinateFromView: mapView)
         let coordinate = CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
-        
-        // var coordinates: [CLLocationCoordinate2D] = [mapView.centerCoordinate, location]
-        
-        // if mapView.annotations?.count != nil {
-        //     mapView.removeAnnotations(mapView.annotations!)
-        // }
-        
+
         let pin = MGLPointAnnotation()
         pin.coordinate = coordinate
         pin.title = "Hello!"
         pin.subtitle = "You placed me at (\(coordinate.latitude), \(coordinate.longitude))"
-        
-        // Check if pins array already contains pin
         
         if !pinIsDuplicate(pin) {
             pins.append(pin)
@@ -357,11 +386,9 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
         dropdownView = ATDropdownView(view: self.view)
         dropdownView.delegate = self
         
-        
-        gestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(dropPin))
-        mapView.addGestureRecognizer(gestureRecognizer)
-        
-        //        addFoursquareAnnotations()
+        // TODO: Implement for dropping origin/destination with alert prompt for each
+        // gestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(dropPin))
+        // mapView.addGestureRecognizer(gestureRecognizer)
         
         //        MashapeAPIClient.getTrails { (data) in
         //
@@ -395,5 +422,15 @@ extension ATMapViewController {
         }
         
         return false
+    }
+    
+    func removeUnusedWaypoints() {
+        for pin in pins {
+            let view = mapView.viewForAnnotation(pin)
+            
+            if view?.backgroundColor == ATConstants.Colors.ORANGE {
+                mapView.removeAnnotation(pin)
+            }
+        }
     }
 }
