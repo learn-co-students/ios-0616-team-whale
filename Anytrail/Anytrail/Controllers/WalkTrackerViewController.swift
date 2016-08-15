@@ -15,7 +15,7 @@ class WalkTrackerViewController: UIViewController {
     @IBOutlet weak var startButton: UIButton!
     @IBOutlet weak var stopButton: UIButton!
     
-    let walkTrackerSharedSession = WalkTracker.walkTrackerSharedSession
+    static var walkTrackerSession = WalkTracker()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,25 +31,24 @@ class WalkTrackerViewController: UIViewController {
     }
     
     func updateLabels(timer: NSTimer) {
-        timeLabel.text = "\(walkTrackerSharedSession.currentWalkTime)"
-        distanceLabel.text = "\(walkTrackerSharedSession.walkDistance)"
+        timeLabel.text = "\(WalkTrackerViewController.walkTrackerSession.currentWalkTime)"
+        distanceLabel.text = "\(WalkTrackerViewController.walkTrackerSession.walkDistance)"
     }
     
     @IBAction func startTapped(sender: AnyObject) {
-        walkTrackerSharedSession.startWalk()
+        WalkTrackerViewController.walkTrackerSession.startWalk()
         startButton.enabled = false
         stopButton.enabled = true
         
     }
     
     @IBAction func stopTapped(sender: AnyObject) {
-        walkTrackerSharedSession.stopWalk()
+        WalkTrackerViewController.walkTrackerSession.stopWalk()
         startButton.enabled = true
         stopButton.enabled = false
-        dismissViewControllerAnimated(true) { 
+        dismissViewControllerAnimated(true) {
             
         }
     }
-    
     
 }
