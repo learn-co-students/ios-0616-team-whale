@@ -34,8 +34,8 @@ class UserProfileCell: UITableViewCell {
         self.userCellBackgroundView.backgroundColor = UIColor.lightGrayColor()
     }
     
-    func giveCellData(dataIconStringName: UIImageView, dataLabel: String) {
-        dataIconView = dataIconStringName
+    func giveCellData(dataIconStringName: UIImage, dataLabel: String) {
+        dataIconView.image = dataIconStringName
         self.dataLabel?.text = dataLabel
     }
     

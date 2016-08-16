@@ -83,52 +83,28 @@ class ProfileTableViewController: UIViewController, UITableViewDelegate,UITableV
         
             switch(singleHealth.1) {
             case "steps":
-                
-
-                cell.dataIconView.image = stepsIcon
-                cell.dataLabel?.text = singleHealth.0
-                
+                cell.giveCellData(stepsIcon, dataLabel: singleHealth.0)
                 return cell
             case "flight":
-
-                cell.dataIconView.image = flightsIcon
-                cell.dataLabel?.text = singleHealth.0
-                
+                cell.giveCellData(flightsIcon, dataLabel: singleHealth.0)
                 return cell
             case "distance":
-                
-                cell.dataIconView.image = distanceIcon
-                cell.dataLabel?.text = singleHealth.0
-                
+                cell.giveCellData(distanceIcon, dataLabel: singleHealth.0)
                 return cell
             case "workout":
-                cell.dataIconView.image = workoutIcon
-                cell.dataLabel?.text = singleHealth.0
-                
+                cell.giveCellData(workoutIcon, dataLabel: singleHealth.0)
                 return cell
             case "energy-burn":
-                
-                cell.dataIconView.image = energyIcon
-                cell.dataLabel?.text = singleHealth.0
-                
+                cell.giveCellData(energyIcon, dataLabel: singleHealth.0)
                 return cell
             case "water":
-                
-                cell.dataIconView.image = waterIcon
-                cell.dataLabel?.text = singleHealth.0
-                
+                cell.giveCellData(waterIcon, dataLabel: singleHealth.0)
                 return cell
             case "exercise-time":
-                
-                cell.dataIconView.image = exerciseTimeIcon
-                cell.dataLabel?.text = singleHealth.0
-                
+                cell.giveCellData(exerciseTimeIcon, dataLabel: singleHealth.0)
                 return cell
             case "heartrate":
-                
-                cell.dataIconView.image = heartrateIcon
-                cell.dataLabel?.text = singleHealth.0
-                
+                cell.giveCellData(heartrateIcon, dataLabel: singleHealth.0)
                 return cell
 
             default:
