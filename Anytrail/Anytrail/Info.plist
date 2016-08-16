@@ -33,6 +33,8 @@
 	<string>1</string>
 	<key>FacebookAppID</key>
 	<string>784981694974813</string>
+	<key>FirebaseAppDelegateProxyEnabled</key>
+	<true/>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>fbapi</string>
