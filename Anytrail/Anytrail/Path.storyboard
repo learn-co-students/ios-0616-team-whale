@@ -6,7 +6,7 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Path View Controller-->
+        <!--My Paths-->
         <scene sceneID="IUs-MO-jw3">
             <objects>
                 <viewController id="aaE-kx-MHZ" customClass="ATPathViewController" customModule="Anytrail" customModuleProvider="target" sceneMemberID="viewController">
@@ -34,6 +34,9 @@
                                     <segment title="My Paths"/>
                                     <segment title="Community Paths"/>
                                 </segments>
+                                <connections>
+                                    <action selector="controllerTapped:" destination="aaE-kx-MHZ" eventType="valueChanged" id="43z-c7-dAb"/>
+                                </connections>
                             </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="140" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="yof-tk-zpx">
                                 <rect key="frame" x="20" y="166" width="560" height="414"/>
@@ -154,8 +157,15 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" id="qaj-BR-4Oe"/>
+                    <navigationItem key="navigationItem" title="My Paths" id="qaj-BR-4Oe">
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="nFy-tt-kEc">
+                            <connections>
+                                <action selector="refreshButtonTapped:" destination="aaE-kx-MHZ" id="wzd-jL-Gec"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="controller" destination="Yie-iB-nMf" id="fXV-UA-dki"/>
                         <outlet property="tableView" destination="yof-tk-zpx" id="FbZ-AW-VhG"/>
                     </connections>
                 </viewController>

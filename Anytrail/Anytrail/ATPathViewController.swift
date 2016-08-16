@@ -10,6 +10,7 @@ import UIKit
 
 class ATPathViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
+    @IBOutlet weak var controller: UISegmentedControl!
     @IBOutlet weak var tableView: UITableView!
     
     var images = [UIImage(named: "path1"), UIImage(named: "path2"), UIImage(named: "path3"), UIImage(named: "path4"), UIImage(named: "path5")]
@@ -79,5 +80,25 @@ class ATPathViewController: UIViewController, UITableViewDataSource, UITableView
         shareAction.backgroundColor = UIColor.blueColor()
         
         return [shareAction]
+    }
+    @IBAction func refreshButtonTapped(sender: AnyObject) {
+        
+        
+        
+    }
+    
+    
+    
+    @IBAction func controllerTapped(sender: AnyObject) {
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     }
 }
