@@ -395,9 +395,7 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
         }
         
         // TODO: Sort waypoints
-        waypoints.sortInPlace { (loc1, loc2) -> Bool in
-            return loc1.coordinate.latitude > loc2.coordinate.latitude && loc1.coordinate.longitude > loc2.coordinate.longitude
-        }
+        
         
         let originWaypoint = Waypoint(coordinate: origin.coordinate)
         let destinationWaypoint = Waypoint(coordinate: destination.coordinate)
