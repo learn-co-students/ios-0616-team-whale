@@ -26,7 +26,6 @@
 		8A53F2F11D594E3E00F244BE /* TrailApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A53F2F01D594E3E00F244BE /* TrailApiClient.swift */; };
 		8A6624301D5A8DCB009760DA /* HealthKitConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A66242D1D5A8DCB009760DA /* HealthKitConstants.swift */; };
 		8A6624311D5A8DCB009760DA /* HealthKitDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A66242E1D5A8DCB009760DA /* HealthKitDataStore.swift */; };
-		940F071E1D626B8C00666F2B /* (null) in Sources */ = {isa = PBXBuildFile; };
 		9424A7701D53D5DA00CE8D42 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9424A76F1D53D5DA00CE8D42 /* AppDelegate.swift */; };
 		9424A7771D53D5DA00CE8D42 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9424A7751D53D5DA00CE8D42 /* Main.storyboard */; };
 		9424A7791D53D5DA00CE8D42 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9424A7781D53D5DA00CE8D42 /* Assets.xcassets */; };
@@ -474,8 +473,6 @@
 				949370351D62515900C696AE /* ATConstants.swift in Sources */,
 				8A6624301D5A8DCB009760DA /* HealthKitConstants.swift in Sources */,
 				4D225C1B1D5A0FF600360AB8 /* MashapeAPIClient.swift in Sources */,
-				2ECF50511D5929700072732B /* (null) in Sources */,
-				2ECF50511D5929700072732B /* (null) in Sources */,
 				8A3948F91D621C23004A4B94 /* ATPathViewController.swift in Sources */,
 				2E1DA87D1D5E057500F83DFD /* WalkTracker.swift in Sources */,
 				9424A7701D53D5DA00CE8D42 /* AppDelegate.swift in Sources */,
