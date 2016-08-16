@@ -12,6 +12,7 @@ import HealthKit
 class HealthKitDataStore {
     
     typealias healthKitSamplesData = (dataSamples: [HKQuantitySample], error: NSError?)
+    typealias healthKitStatisticData = (statisticValue: Double?, error: NSError?)
     typealias authorizationResponse = (success: Bool?, error: NSError?)
     
     static let sharedInstance = HealthKitDataStore()
@@ -43,6 +44,33 @@ class HealthKitDataStore {
             }
         }
         HealthKitDataStore.sharedInstance.healthKitStore?.executeQuery(sampleQuery)
+    }
+    
+    func healthKitStatisticQueryWithCompletionHandler(sampleType: HKQuantityType, startDate: NSDate, endDate: NSDate, statisticResultType: String, HKUnitType: HKUnit, completionHandler: healthKitStatisticData -> Void) {
+        let sampleDateRangePredicate = HKQuery.predicateForSamplesWithStartDate(startDate, endDate: endDate, options: [])
+        let query = HKStatisticsQuery(quantityType: sampleType, quantitySamplePredicate: sampleDateRangePredicate, options: .CumulativeSum) { query, result, error in
+            switch statisticResultType {
+            case "sum":
+                if let quantity = result?.sumQuantity() {
+                    completionHandler((statisticValue: quantity.doubleValueForUnit(HKUnitType), error: nil))
+                }
+            case "average":
+                if let quantity = result?.averageQuantity() {
+                    completionHandler((statisticValue: quantity.doubleValueForUnit(HKUnitType), error: nil))
+                }
+            case "minimum":
+                if let quantity = result?.minimumQuantity() {
+                    completionHandler((statisticValue: quantity.doubleValueForUnit(HKUnitType), error: nil))
+                }
+            case "maximum":
+                if let quantity = result?.maximumQuantity() {
+                    completionHandler((statisticValue: quantity.doubleValueForUnit(HKUnitType), error: nil))
+                }
+            default:
+                completionHandler((statisticValue: nil, error: error))
+            }
+        }
+        HealthKitDataStore.sharedInstance.healthKitStore?.executeQuery(query)
     }
     
     func prepareHealthKitReadTypes() {
@@ -80,7 +108,7 @@ class HealthKitDataStore {
         let distanceQuantity = HKQuantity(unit: HKUnit.meterUnit(), doubleValue: distanceRecorded)
         
         let workoutSession = HKWorkout(activityType: .Walking, startDate: startDate, endDate: endDate, duration: timeRecorded, totalEnergyBurned: nil, totalDistance: distanceQuantity, metadata: nil)
-
+        
         healthKitStore?.saveObject(workoutSession, withCompletion: { (success, error) -> Void in
             if( error != nil ) {
                 print(error)
