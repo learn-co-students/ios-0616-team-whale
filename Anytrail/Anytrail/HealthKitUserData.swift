@@ -26,13 +26,6 @@ class HealthKitUserData {
     
     init() {
         self.userHealthData = []
-        getStepCountForToday()
-        getBasalEnergyForToday()
-        getFlightCountForToday()
-        getDistanceForToday()
-        getExerciseForToday()
-        getActiveEnergyForToday()
-        getWaterConsumptionToday()
     }
     
     func getStepCountForToday() {
