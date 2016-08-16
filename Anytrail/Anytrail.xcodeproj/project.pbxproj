@@ -22,6 +22,9 @@
 		8A3948FB1D623743004A4B94 /* ATPathCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3948FA1D623743004A4B94 /* ATPathCell.swift */; };
 		8A3948FD1D623972004A4B94 /* Paths.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8A3948FC1D623972004A4B94 /* Paths.xcassets */; };
 		8A3949091D62549E004A4B94 /* ATPathDetailedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3949081D62549E004A4B94 /* ATPathDetailedController.swift */; };
+		8A39490B1D637C4E004A4B94 /* SplashScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A39490A1D637C4E004A4B94 /* SplashScreen.storyboard */; };
+		8A39490D1D637CC6004A4B94 /* ATSplashScreenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A39490C1D637CC6004A4B94 /* ATSplashScreenController.swift */; };
+		8A39490F1D637CF7004A4B94 /* SplashScreen.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8A39490E1D637CF7004A4B94 /* SplashScreen.xcassets */; };
 		8A53F2EC1D594A4A00F244BE /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A53F2EB1D594A4A00F244BE /* Keys.swift */; };
 		8A53F2F11D594E3E00F244BE /* TrailApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A53F2F01D594E3E00F244BE /* TrailApiClient.swift */; };
 		8A6624301D5A8DCB009760DA /* HealthKitConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A66242D1D5A8DCB009760DA /* HealthKitConstants.swift */; };
@@ -75,6 +78,9 @@
 		8A3948FA1D623743004A4B94 /* ATPathCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ATPathCell.swift; sourceTree = "<group>"; };
 		8A3948FC1D623972004A4B94 /* Paths.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Paths.xcassets; sourceTree = "<group>"; };
 		8A3949081D62549E004A4B94 /* ATPathDetailedController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ATPathDetailedController.swift; sourceTree = "<group>"; };
+		8A39490A1D637C4E004A4B94 /* SplashScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SplashScreen.storyboard; sourceTree = "<group>"; };
+		8A39490C1D637CC6004A4B94 /* ATSplashScreenController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ATSplashScreenController.swift; sourceTree = "<group>"; };
+		8A39490E1D637CF7004A4B94 /* SplashScreen.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = SplashScreen.xcassets; sourceTree = "<group>"; };
 		8A53F2EB1D594A4A00F244BE /* Keys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		8A53F2F01D594E3E00F244BE /* TrailApiClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TrailApiClient.swift; path = ../TrailData/TrailApiClient.swift; sourceTree = "<group>"; };
 		8A66242D1D5A8DCB009760DA /* HealthKitConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthKitConstants.swift; sourceTree = "<group>"; };
@@ -166,11 +172,13 @@
 				945F35E51D5911A1002F9C1E /* Cell */,
 				9424A7911D53D6B500CE8D42 /* Controller */,
 				9424A7751D53D5DA00CE8D42 /* Main.storyboard */,
+				8A39490A1D637C4E004A4B94 /* SplashScreen.storyboard */,
 				8A3948F61D620BC1004A4B94 /* Path.storyboard */,
 				2E1DA87E1D5E0DEB00F83DFD /* ActivityTracker.storyboard */,
 				9424A77A1D53D5DA00CE8D42 /* LaunchScreen.storyboard */,
 				9424A7781D53D5DA00CE8D42 /* Assets.xcassets */,
 				8A3948FC1D623972004A4B94 /* Paths.xcassets */,
+				8A39490E1D637CF7004A4B94 /* SplashScreen.xcassets */,
 				2EDDFE291D5A868900B36853 /* Info.plist */,
 				945F35E61D592179002F9C1E /* GoogleService-Info.plist */,
 			);
@@ -189,6 +197,7 @@
 		9424A7911D53D6B500CE8D42 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				8A39490C1D637CC6004A4B94 /* ATSplashScreenController.swift */,
 				8A3948F81D621C23004A4B94 /* ATPathViewController.swift */,
 				8A3949081D62549E004A4B94 /* ATPathDetailedController.swift */,
 				945F35DB1D58F30B002F9C1E /* ATSplashViewController.swift */,
@@ -342,9 +351,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				9424A77C1D53D5DA00CE8D42 /* LaunchScreen.storyboard in Resources */,
+				8A39490B1D637C4E004A4B94 /* SplashScreen.storyboard in Resources */,
 				2E1DA87F1D5E0DEB00F83DFD /* ActivityTracker.storyboard in Resources */,
 				945F35E71D592179002F9C1E /* GoogleService-Info.plist in Resources */,
 				9424A7791D53D5DA00CE8D42 /* Assets.xcassets in Resources */,
+				8A39490F1D637CF7004A4B94 /* SplashScreen.xcassets in Resources */,
 				8A3948FD1D623972004A4B94 /* Paths.xcassets in Resources */,
 				9424A7771D53D5DA00CE8D42 /* Main.storyboard in Resources */,
 				8A3948F71D620BC1004A4B94 /* Path.storyboard in Resources */,
@@ -463,6 +474,7 @@
 				94B1ABEB1D5E4AD800D3DA8E /* ATAnnotationView.swift in Sources */,
 				949370331D62412200C696AE /* ATAnnotation.swift in Sources */,
 				945F35DC1D58F30B002F9C1E /* ATSplashViewController.swift in Sources */,
+				8A39490D1D637CC6004A4B94 /* ATSplashScreenController.swift in Sources */,
 				945F35ED1D5A3066002F9C1E /* ATAlertView.swift in Sources */,
 				945F35E01D58F381002F9C1E /* ATMapViewController.swift in Sources */,
 				945F35E41D590DBE002F9C1E /* ATInputCell.swift in Sources */,
