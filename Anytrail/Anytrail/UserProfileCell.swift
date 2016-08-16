@@ -1,5 +1,5 @@
 //
-//  UserStoryCell.swift
+//  UserProfileCell.swift
 //  Anytrail
 //
 //  Created by Elli Scharlin on 8/15/16.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class UserStoryCell: UITableViewCell {
+class UserProfileCell: UITableViewCell {
     
     @IBOutlet weak var dataIconView: UIImageView!
     @IBOutlet weak var dataLabel: UILabel!
@@ -20,6 +20,8 @@ class UserStoryCell: UITableViewCell {
         dataLabel.text = "DATA"
         print("awake from nib")
         self.configureCell()
+        dataLabel.textColor = UIColor.blackColor()
+        self.backgroundColor = UIColor.whiteColor()
     }
     
     override func setSelected(selected: Bool, animated: Bool) {
@@ -29,7 +31,7 @@ class UserStoryCell: UITableViewCell {
     }
     func configureCell(){
         self.userCellBackgroundView?.layer.cornerRadius = 8.0
-        
+        self.userCellBackgroundView.backgroundColor = UIColor.lightGrayColor()
     }
     
     func giveCellData(dataIconStringName: UIImageView, dataLabel: String) {

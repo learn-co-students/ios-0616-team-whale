@@ -5,25 +5,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
-        <!--Navigation Controller-->
-        <scene sceneID="KQj-L4-xSm">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="xuG-RA-uvo" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="6ef-Ah-mo4">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="SwI-3V-K3d" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2237" y="270"/>
-        </scene>
-        <!--User Story Table View Controller-->
+        <!--Profile Table View Controller-->
         <scene sceneID="wXg-YR-Xwt">
             <objects>
-                <viewController id="fwV-at-Xh2" customClass="UserStoryTableViewController" customModule="Anytrail" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="fwV-at-Xh2" customClass="ProfileTableViewController" customModule="Anytrail" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Z8Z-hr-Wto"/>
                         <viewControllerLayoutGuide type="bottom" id="ud8-P1-E0A"/>
