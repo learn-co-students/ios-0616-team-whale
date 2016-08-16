@@ -23,6 +23,7 @@
 		8A3948F91D621C23004A4B94 /* ATPathViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3948F81D621C23004A4B94 /* ATPathViewController.swift */; };
 		8A3948FB1D623743004A4B94 /* ATPathCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3948FA1D623743004A4B94 /* ATPathCell.swift */; };
 		8A3948FD1D623972004A4B94 /* Paths.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8A3948FC1D623972004A4B94 /* Paths.xcassets */; };
+		8A3949091D62549E004A4B94 /* ATPathDetailedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3949081D62549E004A4B94 /* ATPathDetailedController.swift */; };
 		8A53F2EC1D594A4A00F244BE /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A53F2EB1D594A4A00F244BE /* Keys.swift */; };
 		8A53F2F11D594E3E00F244BE /* TrailApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A53F2F01D594E3E00F244BE /* TrailApiClient.swift */; };
 		8A6624301D5A8DCB009760DA /* HealthKitConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A66242D1D5A8DCB009760DA /* HealthKitConstants.swift */; };
@@ -73,6 +74,7 @@
 		8A3948F81D621C23004A4B94 /* ATPathViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ATPathViewController.swift; sourceTree = "<group>"; };
 		8A3948FA1D623743004A4B94 /* ATPathCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ATPathCell.swift; sourceTree = "<group>"; };
 		8A3948FC1D623972004A4B94 /* Paths.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Paths.xcassets; sourceTree = "<group>"; };
+		8A3949081D62549E004A4B94 /* ATPathDetailedController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ATPathDetailedController.swift; sourceTree = "<group>"; };
 		8A53F2EB1D594A4A00F244BE /* Keys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		8A53F2F01D594E3E00F244BE /* TrailApiClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TrailApiClient.swift; path = ../TrailData/TrailApiClient.swift; sourceTree = "<group>"; };
 		8A66242D1D5A8DCB009760DA /* HealthKitConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthKitConstants.swift; sourceTree = "<group>"; };
@@ -185,6 +187,7 @@
 			isa = PBXGroup;
 			children = (
 				8A3948F81D621C23004A4B94 /* ATPathViewController.swift */,
+				8A3949081D62549E004A4B94 /* ATPathDetailedController.swift */,
 				945F35DB1D58F30B002F9C1E /* ATSplashViewController.swift */,
 				945F35DD1D58F377002F9C1E /* ATSignupViewController.swift */,
 				945F35E11D58F390002F9C1E /* ATLoginViewController.swift */,
@@ -477,6 +480,7 @@
 				8A53F2EC1D594A4A00F244BE /* Keys.swift in Sources */,
 				8A3948FB1D623743004A4B94 /* ATPathCell.swift in Sources */,
 				4DB2D9631D58DF04007BD4A5 /* ApisDataStore.swift in Sources */,
+				8A3949091D62549E004A4B94 /* ATPathDetailedController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

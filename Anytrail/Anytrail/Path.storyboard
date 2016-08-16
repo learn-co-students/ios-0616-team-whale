@@ -125,7 +125,7 @@
                                             <outlet property="locationLabel" destination="Jlq-rq-cmF" id="Twm-5U-cUr"/>
                                             <outlet property="mapImage" destination="x3v-eL-1fV" id="a8P-1N-zTA"/>
                                             <outlet property="stepsLabel" destination="ldW-de-RFW" id="wk9-hi-LIA"/>
-                                            <segue destination="5DB-Kj-wUP" kind="show" id="XAS-zv-W9p"/>
+                                            <segue destination="5DB-Kj-wUP" kind="show" identifier="detailVC" id="XAS-zv-W9p"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -163,10 +163,10 @@
             </objects>
             <point key="canvasLocation" x="1524" y="353"/>
         </scene>
-        <!--View Controller-->
+        <!--Path Detailed Controller-->
         <scene sceneID="9e4-sy-OKq">
             <objects>
-                <viewController id="5DB-Kj-wUP" sceneMemberID="viewController">
+                <viewController id="5DB-Kj-wUP" customClass="ATPathDetailedController" customModule="Anytrail" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="yiv-rG-4Gm"/>
                         <viewControllerLayoutGuide type="bottom" id="TFg-pv-bJj"/>
@@ -174,8 +174,25 @@
                     <view key="view" contentMode="scaleToFill" id="BPU-t3-3F8">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0kK-xi-xvN">
+                                <rect key="frame" x="20" y="64" width="560" height="316"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="560" id="Lvn-GC-Ale"/>
+                                    <constraint firstAttribute="height" constant="316" id="Xn2-12-OtU"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="0kK-xi-xvN" firstAttribute="top" secondItem="yiv-rG-4Gm" secondAttribute="bottom" id="5dZ-GZ-pIs"/>
+                            <constraint firstItem="0kK-xi-xvN" firstAttribute="leading" secondItem="BPU-t3-3F8" secondAttribute="leadingMargin" id="G24-A6-Yr9"/>
+                            <constraint firstItem="0kK-xi-xvN" firstAttribute="trailing" secondItem="BPU-t3-3F8" secondAttribute="trailingMargin" id="Luv-vb-J3e"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="imageView" destination="0kK-xi-xvN" id="mHm-h1-S7B"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VBX-Dl-WEu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

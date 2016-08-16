@@ -18,7 +18,6 @@ class ATPathViewController: UIViewController, UITableViewDataSource, UITableView
     var distance = ["2.5 mi", "4.8 mi", "9.3 mi", "6.1 mi", "12.4"]
     var steps = ["5.934", "12.372", "24.153", "14.942", "28.337"]
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -44,24 +43,39 @@ class ATPathViewController: UIViewController, UITableViewDataSource, UITableView
         cell.distanceLabel.text = distance[indexPath.row]
         cell.stepsLabel.text = steps[indexPath.row]
         
-        
         return cell
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        if segue.identifier == "detailVC" {
+            if let destinationVC = segue.destinationViewController as? ATPathDetailedController {
+                
+                let path = tableView.indexPathForSelectedRow
+                guard let cell = tableView.cellForRowAtIndexPath(path!) as? ATPathCell else { return }
+                destinationVC.imageDetail = (cell.mapImage.image)!
+                
+            }
+        }
+    }
+    
+//    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+//        
+//        _ = tableView.indexPathForSelectedRow
+//        if let _ = tableView.cellForRowAtIndexPath(indexPath) {
+//            self.performSegueWithIdentifier("detailVC", sender: self)
+//        }
+    //}
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
     }
     
     func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
-        
         let shareAction = UITableViewRowAction(style: .Normal, title: "Share") { (action: UITableViewRowAction, indexPath: NSIndexPath!) in
-            
             let firstActivityItem = self.date[indexPath.row]
             let activityViewController = UIActivityViewController(activityItems: [firstActivityItem], applicationActivities: nil)
-            
             self.presentViewController(activityViewController, animated: true, completion: nil)
-            
         }
-        
         shareAction.backgroundColor = UIColor.blueColor()
         
         return [shareAction]
