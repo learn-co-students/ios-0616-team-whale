@@ -27,13 +27,20 @@ class ATDropdownView: UIView, UITextFieldDelegate {
     private var originTextField: UITextField!
     private var destinationTextField: UITextField!
     
+    private var hintLabel: UILabel!
+    
+    internal enum ATDropownViewType: Int {
+        case Default
+        case Label
+    }
+    
     // MARK: - Initialization
     
     init(view: UIView) {
         self.view = view
         
         super.init(frame: CGRectMake(view.frame.origin.x, view.frame.origin.y - 75, view.frame.size.width, 100))
-        configure()
+        configureDefaultView()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -44,7 +51,6 @@ class ATDropdownView: UIView, UITextFieldDelegate {
     
     func show() {
         view.addSubview(self)
-        // view.bringSubviewToFront(self) // May move to completion below
         
         UIView.animateWithDuration(0.2, animations: {
             self.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y - 75, self.view.frame.size.width, 85)
@@ -59,6 +65,16 @@ class ATDropdownView: UIView, UITextFieldDelegate {
         }
     }
     
+    func changeDropdownView(type: ATDropownViewType) {
+        if type == .Default {
+            configureDefaultView()
+        } else {
+            configureHintsView()
+        }
+    }
+    
+    // MARK: - Textfields
+    
     func updateOriginTextField(location: String) {
         originTextField.text = location
     }
@@ -66,8 +82,6 @@ class ATDropdownView: UIView, UITextFieldDelegate {
     func updateDestinationTextField(location: String) {
         destinationTextField.text = location
     }
-    
-    // MARK: - Textfields
     
     func textFieldDidEndEditing(textField: UITextField) {
         if textField == originTextField {
@@ -87,10 +101,18 @@ class ATDropdownView: UIView, UITextFieldDelegate {
         return true
     }
     
+    // MARK: - Labels
+    
+    func updateHintLabel(text: String) {
+        hintLabel.text = text
+    }
+    
     // MARK: - Configuration
     
-    func configure() {
+    func configureDefaultView() {
         self.backgroundColor = UIColor(red: 248/255, green: 248/255, blue: 248/255, alpha: 0.7)
+        
+        clearView()
         
         originPinImageView = UIImageView(frame: CGRectMake(0, 0, 10, 10))
         originPinImageView.image = UIImage(named: "origin-dot")
@@ -115,14 +137,26 @@ class ATDropdownView: UIView, UITextFieldDelegate {
         addSubview(originTextField)
         addSubview(destinationTextField)
         
-        makeConstraints()
+        makeDefaultConstraints()
+    }
+    
+    func configureHintsView() {
+        self.backgroundColor = UIColor(red: 248/255, green: 248/255, blue: 248/255, alpha: 0.7)
+        
+        clearView()
+        
+        hintLabel = UILabel(frame: CGRectMake(self.center.x, self.center.y, self.frame.size.width, 25))
+        hintLabel = configureHintLabel(hintLabel)
+        
+        addSubview(hintLabel)
+        makeHintLabelConstraints()
     }
     
     func configureTextField(textField: UITextField) -> UITextField {
         textField.backgroundColor = UIColor.whiteColor()
         textField.layer.masksToBounds = true
         textField.layer.cornerRadius = 4
-        textField.layer.sublayerTransform = CATransform3DMakeTranslation(10, 0, 5)
+        textField.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0)
         textField.textColor = UIColor(red: 80/255, green: 80/255, blue: 80/255, alpha: 1)
         textField.font = UIFont.systemFontOfSize(13)
         textField.autocapitalizationType = .Words
@@ -133,9 +167,22 @@ class ATDropdownView: UIView, UITextFieldDelegate {
         return textField
     }
     
+    func configureHintLabel(label: UILabel) -> UILabel {
+        label.textColor = UIColor(red: 80/255, green: 80/255, blue: 80/255, alpha: 1)
+        label.font = UIFont.boldSystemFontOfSize(13.5)
+        
+        return label
+    }
+    
+    func clearView() {
+        for component in self.subviews {
+            component.removeFromSuperview()
+        }
+    }
+    
     // MARK: - Constraints
     
-    func makeConstraints() {
+    func makeDefaultConstraints() {
         originTextField.snp.makeConstraints { (make) in
             make.left.equalTo(self.snp.left).offset(30)
             make.right.equalTo(self.snp.right).offset(-5)
@@ -162,6 +209,13 @@ class ATDropdownView: UIView, UITextFieldDelegate {
             make.bottom.equalTo(destinationTextField.snp.bottom).offset(-4)
             make.left.equalTo(self.snp.left).offset(4)
             make.right.equalTo(destinationTextField.snp.left).offset(-4)
+        }
+    }
+    
+    func makeHintLabelConstraints() {
+        hintLabel.snp.makeConstraints { (make) in
+            make.centerX.equalTo(self.snp.centerX)
+            make.centerY.equalTo(self.snp.centerY).offset(7)
         }
     }
 }
