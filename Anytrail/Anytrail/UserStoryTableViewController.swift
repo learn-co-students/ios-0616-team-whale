@@ -14,9 +14,9 @@ class UserStoryTableViewController: UIViewController, UITableViewDelegate,UITabl
     
     var tableView: UITableView = UITableView()
     let hkStore = HealthKitDataStore.sharedInstance
-    let daysOfData = [1,1,1] //This is hard coded until I know how to work the HK data and their date properties
-    let dayOfTheWeek = ["Monday","Tuesday"]
     
+    
+    var userInfoCell: ProfileMapCell = ProfileMapCell()
     var stepsTakenCell: UserStoryCell = UserStoryCell()
     var flightsClimbedCell: UserStoryCell = UserStoryCell()
     var distanceTravelledCell: UserStoryCell = UserStoryCell()
@@ -25,7 +25,7 @@ class UserStoryTableViewController: UIViewController, UITableViewDelegate,UITabl
     
     override func loadView() {
         super.loadView()
-        self.title = "User Name" //We need some kind of user data store where this information is stored, so it is easily accessible.
+        self.title = "Profile" //We need some kind of user data store where this information is stored, so it is easily accessible.
 //        let dummySteps = "1000"
 //        let dummyFlights = "50"
 //        let dummyDistance = "102.1 mi"
@@ -59,17 +59,17 @@ class UserStoryTableViewController: UIViewController, UITableViewDelegate,UITabl
 //        self.imageHeader.styleURL = NSURL(string: "mapbox://styles/imryan/cirhys2ik000igjnoz92eencj")
         
         
-        
-        let testHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: 100))
-        testHeaderView.backgroundColor = UIColor.purpleColor()
-        self.tableView.tableHeaderView = testHeaderView
+//        
+//        let testHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: 100))
+//        testHeaderView.backgroundColor = UIColor.purpleColor()
+//        self.tableView.tableHeaderView = testHeaderView
         
         
     }
     
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int{
-        return daysOfData.count
+        return 3
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
