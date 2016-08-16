@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "F980FC3913E592CE8ED4CBE0687C21439C2F3CC9",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "5A29B29B9B8CFBCA28F072170B70F021754525D7" : 0,
+    "F980FC3913E592CE8ED4CBE0687C21439C2F3CC9" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "0593A8DD-C935-4D80-AAEC-7F3588743624",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "5A29B29B9B8CFBCA28F072170B70F021754525D7" : "..",
+    "F980FC3913E592CE8ED4CBE0687C21439C2F3CC9" : "ios-0616-team-whale\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "Anytrail",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Anytrail\/Anytrail.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/Uskinn\/Uber-SplashScreen-Tutorial.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "5A29B29B9B8CFBCA28F072170B70F021754525D7"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/learn-co-students\/ios-0616-team-whale.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "F980FC3913E592CE8ED4CBE0687C21439C2F3CC9"
+    }
+  ]
+}
