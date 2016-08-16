@@ -21,6 +21,7 @@ class ATAlertView {
         case Normal = 1
         case Error = 2
         case Success = 3
+        case Origin = 4
     }
     
     class func alertWithTitle(controller: UIViewController, type: ATAlertViewType, title: String, text: String, callback: () -> Void) {
@@ -30,8 +31,10 @@ class ATAlertView {
             color = ATConstants.Colors.GRAY
         } else if type == .Error {
             color = ATConstants.Colors.RED
-        } else {
+        } else if type == .Success {
             color = ATConstants.Colors.GREEN
+        } else {
+            color = ATConstants.Colors.BLUE
         }
         
         let alert = JSSAlertView().show(
@@ -43,6 +46,29 @@ class ATAlertView {
         )
         
         alert.addAction(callback)
+        alert.setTextTheme(.Light)
+    }
+    
+    class func alertWithConfirmation(controller: UIViewController, title: String, text: String, action: String, callback: () -> Void, cancelCallback: () -> Void) {
+        let color: UIColor
+
+        if action == "Add" {
+            color = ATConstants.Colors.GREEN
+        } else {
+            color = ATConstants.Colors.RED
+        }
+        
+        let alert = JSSAlertView().show(
+            controller,
+            title: title,
+            text: text,
+            buttonText: action,
+            cancelButtonText: "Cancel",
+            color: color
+        )
+        
+        alert.addAction(callback)
+        alert.addCancelAction(cancelCallback)
         alert.setTextTheme(.Light)
     }
 }
