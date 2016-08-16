@@ -1,5 +1,5 @@
 //
-//  ProfileMapCell.swift
+//  ProfileMapHeader.swift
 //  Anytrail
 //
 //  Created by Elli Scharlin on 8/16/16.
@@ -7,8 +7,7 @@
 //
 
 import UIKit
-
-class ProfileMapCell: UITableViewCell {
+class ProfileMapHeader: UIView {
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var stepsWalkedLabel: UILabel!
     @IBOutlet weak var pathsTakenLabel: UILabel!
@@ -17,11 +16,4 @@ class ProfileMapCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
-
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-    
 }

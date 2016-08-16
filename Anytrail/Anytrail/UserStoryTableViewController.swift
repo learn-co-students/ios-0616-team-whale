@@ -15,66 +15,52 @@ class UserStoryTableViewController: UIViewController, UITableViewDelegate,UITabl
     var tableView: UITableView = UITableView()
     let hkStore = HealthKitDataStore.sharedInstance
     
-    
-    var userInfoCell: ProfileMapCell = ProfileMapCell()
+    var userInfoCell: ProfileMapHeader = ProfileMapHeader()
     var stepsTakenCell: UserStoryCell = UserStoryCell()
     var flightsClimbedCell: UserStoryCell = UserStoryCell()
     var distanceTravelledCell: UserStoryCell = UserStoryCell()
     
-    var imageHeader: MGLMapView = MGLMapView()
     
-    override func loadView() {
-        super.loadView()
-        self.title = "Profile" //We need some kind of user data store where this information is stored, so it is easily accessible.
-//        let dummySteps = "1000"
-//        let dummyFlights = "50"
-//        let dummyDistance = "102.1 mi"
-//        
-//        self.stepsTakenCell.dataIconView.image = UIImage(named: "steps-taken")
-//        self.stepsTakenCell.dataLabel.text = "\(dummySteps) steps taken"
-//    
-//        self.flightsClimbedCell.dataIconView.image = UIImage.init(named: "flights-climbed")
-//        self.flightsClimbedCell.dataLabel.text = "\(dummyFlights) flights climbed"
-//    
-//        self.distanceTravelledCell.dataIconView.image = UIImage.init(named: "distance-travelled-map")
-//        self.distanceTravelledCell.dataLabel.text = "\(dummyDistance) travelled"
-        
-    }
+    let stepsIcon : UIImage = UIImage(named: "steps-taken")!
+    let flightsIcon : UIImage = UIImage(named: "flights-climbed")!
+    let distanceIcon : UIImage = UIImage(named: "distance-travelled-map")!
     
+    
+ 
     override func viewDidLoad() {
         super.viewDidLoad()
         /*
          This is the part where we instantiate the above tableview. It will display the User's information."
          */
         
-        //        self.tableView = UITableView(frame: UIScreen.mainScreen().bounds, style: UITableViewStyle.Plain)
+        self.tableView = UITableView(frame: UIScreen.mainScreen().bounds, style: UITableViewStyle.Plain)
         tableView.delegate = self
         tableView.dataSource = self
         tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
         self.view.addSubview(self.tableView)
-        self.tableView.frame = UIScreen.mainScreen().bounds
-        self.tableView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
-        self.tableView.separatorStyle = .None
         
-//        self.imageHeader.styleURL = NSURL(string: "mapbox://styles/imryan/cirhys2ik000igjnoz92eencj")
+        tableView.registerNib(UINib(nibName: "UserStoryCell", bundle: nil), forCellReuseIdentifier: "userDataCell")
+        
+        let header:ProfileMapHeader = UINib(nibName: "ProfileMapHeader", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! ProfileMapHeader
+        self.tableView.tableHeaderView = header
         
         
-//        
-//        let testHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: 100))
-//        testHeaderView.backgroundColor = UIColor.purpleColor()
-//        self.tableView.tableHeaderView = testHeaderView
+        header.pathsTakenLabel?.text = "12 paths"
+        header.stepsWalkedLabel?.text = "10,000 steps"
+        header.userNameLabel?.text = "Elli Scharlin"
         
         
     }
     
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int{
-        return 3
+        return 1
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return 3
+        
         
     }
     
@@ -82,56 +68,58 @@ class UserStoryTableViewController: UIViewController, UITableViewDelegate,UITabl
     
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let healthDummy = [("10000","steps"), ("3","flight"),("10.5 mi", "distance")]
         
-        let cell = UserStoryCell()
-        print(cell)
-        cell.dataLabel.text = "test"
-        return cell
-//        switch(indexPath.section) {
-//        case 0:
-//            switch(indexPath.row) {
-//            case 0: return self.stepsTakenCell
-//            case 1: return self.flightsClimbedCell
-//            case 2: return self.distanceTravelledCell
-//            default: fatalError("Unknown row in section")
+        let cell: UserStoryCell = self.tableView.dequeueReusableCellWithIdentifier("userDataCell", forIndexPath: indexPath) as! UserStoryCell
+        
+        
+        
+        
+        
+        let singleHealth = healthDummy[indexPath.row]
+        
+//            switch(singleHealth.1) {
+//            case "steps":
+//                cell.giveCellData(UIImageView(image: stepsIcon), dataLabel: "steps data")
+//
+////                cell.dataIconView = UIImageView(image: stepsIcon)
+////                cell.dataLabel?.text = singleHealth.0
+//                print("steps case")
+//                return cell
+//            case "flight":
+//                cell.giveCellData(UIImageView(image: flightsIcon), dataLabel: "flights data")
+//
+////                cell.dataIconView = UIImageView(image: flightsIcon)
+////                cell.dataLabel?.text = singleHealth.0
+//                print("flights case")
+//                return cell
+//            case "distance":
+//                cell.giveCellData(UIImageView(image: distanceIcon), dataLabel: "distance data")
+                cell.dataIconView = UIImageView(image: distanceIcon)
+        cell.dataLabel?.text = "DATAAAA:"//singleHealth.0
+                print("distance case")
+                return cell
+//            default:
+//                cell.dataLabel?.text = "default cell returning"
+//                print("default case")
+//                return cell
+//                
+//                
+//                
+//                
 //            }
-//        case 1:
-//            switch(indexPath.row) {
-//            case 0: return self.stepsTakenCell
-//            case 1: return self.flightsClimbedCell
-//            case 2: return self.distanceTravelledCell
-//            default: fatalError("Unknown row in section")
-//            }
-//        case 2:
-//            switch(indexPath.row) {
-//            case 0: return self.stepsTakenCell
-//            case 1: return self.flightsClimbedCell
-//            case 2: return self.distanceTravelledCell
-//            default: fatalError("Unknown row in section")
-//            }
-//        default:
-//            fatalError("whoops")
-//        }
+        
+
     }
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        switch(section) {
-        case 0: return "Today"
-        case 1: return "Yesterday"
-        case 2: return "\(dayOfTheWeek.last)"
-        default: return "default day"
-        }
+        
+        return "Today"
+        
+        
+        
+        //    func updateHealthKitData
+        
+        
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    
-    
-    //    func updateHealthKitData
-    
-    
-    
 }
