@@ -21,13 +21,18 @@ class HealthKitUserData {
     var todayDistance: Double?
     var todayExercise: Double?
     var todayActiveEnergy: Double?
-    var todayHeartRate: Double?
     var todayWaterCosumed: Double?
     
     
     init() {
         self.userHealthData = []
-        
+        getStepCountForToday()
+        getBasalEnergyForToday()
+        getFlightCountForToday()
+        getDistanceForToday()
+        getExerciseForToday()
+        getActiveEnergyForToday()
+        getWaterConsumptionToday()
     }
     
     func getStepCountForToday() {
@@ -66,15 +71,9 @@ class HealthKitUserData {
         }
     }
     
-    func getHeartRateForToday() {
-        HealthKitDataStore.sharedInstance.healthKitStatisticQueryWithCompletionHandler(HealthKitDataTypes.heartRate!, startDate: yesterday!, endDate: today, statisticResultType: "average", HKUnitType: HKUnit.countUnit()) { healthKitStatisticData in
-            return healthKitStatisticData.statisticValue
-        }
-    }
-    
     func getWaterConsumptionToday() {
         HealthKitDataStore.sharedInstance.healthKitStatisticQueryWithCompletionHandler(HealthKitDataTypes.waterConsumption!, startDate: yesterday!, endDate: today, statisticResultType: "sum", HKUnitType: HKUnit.literUnit()) { healthKitStatisticData in
-            return healthKitStatisticData.statisticValue
+            self.todayWaterCosumed = healthKitStatisticData.statisticValue
         }
     }
 }
