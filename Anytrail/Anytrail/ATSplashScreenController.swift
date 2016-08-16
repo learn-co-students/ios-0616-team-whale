@@ -19,7 +19,7 @@ class ATSplashScreenController: UIViewController {
         super.viewDidLoad()
         
         self.mask = CALayer()
-        self.mask?.contents = UIImage(named: "shoePrint-2")!.CGImage
+        self.mask?.contents = UIImage(named: "shoePrint")!.CGImage
         self.mask?.contentsGravity = kCAGravityResizeAspect
         self.mask?.bounds = CGRect(x: 0, y: 0, width: 100, height: 100)
         self.mask?.anchorPoint = CGPoint(x: 0.5, y: 0.5)
@@ -28,14 +28,14 @@ class ATSplashScreenController: UIViewController {
         whaleImageView.layer.mask = mask
         //self.view.backgroundColor = UIColor(red: 107/255.0, green: 176/255.0, blue: 62/255.0, alpha: 1)
       
-        self.view.backgroundColor = UIColor(red: 41/255.0, green: 111/255.0, blue: 126/255.0, alpha: 1)
+//        self.view.backgroundColor = UIColor(red: 41/255.0, green: 111/255.0, blue: 126/255.0, alpha: 1)
+        self.view.backgroundColor = UIColor(red: 32/255.0, green: 32/255.0, blue: 32/255.0, alpha: 0.9)
         
         animate()
         
     }
     
     func animate() {
-        
         let keyFrameAnimation = CAKeyframeAnimation(keyPath: "bounds")
         keyFrameAnimation.delegate = self
         keyFrameAnimation.duration = 1
@@ -44,15 +44,14 @@ class ATSplashScreenController: UIViewController {
         let initialBounds = NSValue(CGRect: mask!.bounds)
         
         let middleBounds = NSValue(CGRect: CGRect(x: 0, y: 0, width: 90, height: 90))
-        let finalBounds =  NSValue(CGRect: CGRect(x: 0, y: 0, width: 2500, height: 2500))
+        let finalBounds =  NSValue(CGRect: CGRect(x: 0, y: 0, width: 1500, height: 1500))
         
         keyFrameAnimation.values = [initialBounds, middleBounds, finalBounds]
-        keyFrameAnimation.keyTimes = [0, 0.3, 1]
+        keyFrameAnimation.keyTimes = [0, 0.3, 1.8]
         
         keyFrameAnimation.timingFunctions = [CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut), CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)]
         
         self.mask?.addAnimation(keyFrameAnimation, forKey: "bounds")
-        
     }
     
     override func animationDidStop(anim: CAAnimation, finished flag: Bool) {
