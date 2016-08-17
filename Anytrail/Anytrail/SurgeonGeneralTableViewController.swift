@@ -79,6 +79,17 @@ class SurgeonGeneralTableViewController: UIViewController, UITableViewDataSource
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        <#code#>
+        
+        if segue.identifier == "TipsVC" {
+            if let destinationVC = segue.destinationViewController as? TipsAndTricksViewController {
+                
+                let path = tableView.indexPathForSelectedRow
+                guard let cell = tableView.cellForRowAtIndexPath(path!) as? UserProfileCell! else { return }
+                
+                destinationVC.categoryNumber = (path?.row)!
+                
+            }
+        }
     }
+
 }
