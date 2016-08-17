@@ -550,4 +550,43 @@ extension ATMapViewController {
         let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay * Double(NSEC_PER_SEC)))
         dispatch_after(time, dispatch_get_main_queue(), block)
     }
+
+    func settingRectangleForFoursquare()->([Double]){
+        if canCreatePath(){
+            
+            let north: Double
+            let south: Double
+            let east: Double
+            let west: Double
+            
+            let originLatitude = origin.coordinate.latitude
+            let originLongitude = origin.coordinate.longitude
+            let endLatitude = destination.coordinate.latitude
+            let endLongitude = destination.coordinate.longitude
+            
+            if originLatitude >= endLatitude {
+                north = originLatitude
+                south = endLatitude
+            } else {
+                north = endLatitude
+                south = originLatitude
+            }
+            if originLongitude >= endLongitude {
+                east = originLongitude
+                west = endLongitude
+            } else {
+                east = endLongitude
+                west = originLongitude
+                
+            }
+            
+            return [north, east, south, west]
+            
+        }
+        
+        return []
+    }
+
 }
+
+
