@@ -41,7 +41,7 @@ class HealthKitUserData {
         guard let basalEnergyType = HealthKitDataStoreSampleTypes.basalEnergyBurned else {
             return
         }
-        HealthKitDataStore.sharedInstance.sumOfData(basalEnergyType, fromDate: beginOfDay, toDate: currentDate, statisticOptions: .CumulativeSum, unitType: HKUnit.calorieUnit()) { basalEnergySum in
+        HealthKitDataStore.sharedInstance.sumOfData(basalEnergyType, fromDate: beginOfDay, toDate: currentDate, statisticOptions: .CumulativeSum, unitType: HKUnit.kilocalorieUnit()) { basalEnergySum in
             completion(basalEnergySum.value)
         }
     }
@@ -77,7 +77,7 @@ class HealthKitUserData {
         guard let activeEnergyType = HealthKitDataStoreSampleTypes.activeEnergyBurned else {
             return
         }
-        HealthKitDataStore.sharedInstance.sumOfData(activeEnergyType, fromDate: beginOfDay, toDate: currentDate, statisticOptions: .CumulativeSum, unitType: HKUnit.calorieUnit()) { activeEnergySum in
+        HealthKitDataStore.sharedInstance.sumOfData(activeEnergyType, fromDate: beginOfDay, toDate: currentDate, statisticOptions: .CumulativeSum, unitType: HKUnit.kilocalorieUnit()) { activeEnergySum in
             completion(activeEnergySum.value)
         }
     }
@@ -86,7 +86,7 @@ class HealthKitUserData {
         guard let waterConsumedType = HealthKitDataStoreSampleTypes.waterConsumption else {
             return
         }
-        HealthKitDataStore.sharedInstance.sumOfData(waterConsumedType, fromDate: beginOfDay, toDate: currentDate, statisticOptions: .CumulativeSum, unitType: HKUnit.literUnit()) { waterConsumedSum in
+        HealthKitDataStore.sharedInstance.sumOfData(waterConsumedType, fromDate: beginOfDay, toDate: currentDate, statisticOptions: .CumulativeSum, unitType: HKUnit.fluidOunceUSUnit()) { waterConsumedSum in
             completion(waterConsumedSum.value)
         }
     }
