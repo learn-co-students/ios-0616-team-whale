@@ -128,5 +128,26 @@ class HealthKitDataStore {
             }
             completion()
         }
+        
+        user.getActiveEnergyForToday { activeEnergySum in
+            if let activeEnergySum = activeEnergySum {
+                self.healthKitUserData.append((activeEnergySum.description, "energy-burn"))
+            }
+            completion()
+        }
+        user.getBasalEnergyForToday { basalEnergySum in
+            if let basalEnergySum = basalEnergySum {
+                self.healthKitUserData.append((basalEnergySum.description, "resting-burn"))
+            }
+            completion()
+        }
+        
+        user.getWaterConsumptionToday { waterConsumptionSum in
+            if let waterConsumptionSum = waterConsumptionSum {
+                let waterConsumed = round(waterConsumptionSum * 10) / 10
+                self.healthKitUserData.append((waterConsumed.description, "water"))
+            }
+            completion()
+        }
     }
 }
