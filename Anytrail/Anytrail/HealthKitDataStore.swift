@@ -99,18 +99,6 @@ class HealthKitDataStore {
     
     func getUserTodayHealthKitData(completion: () ->()) {
         let user = HealthKitUserData()
-//        user.getActiveEnergyForToday { activeEnergySum in
-//            if let activeEnergySum = activeEnergySum {
-//                self.healthKitUserData.append((activeEnergySum.description, "energy-burn"))
-//            }
-//            completion()
-//        }
-//        user.getBasalEnergyForToday { basalEnergySum in
-//            if let basalEnergySum = basalEnergySum {
-//                self.healthKitUserData.append((basalEnergySum.description, "resting-burn"))
-//            }
-//            completion()
-//        }
         
         user.getDistanceForToday { distanceSum in
             if let distanceSum = distanceSum {
@@ -132,13 +120,6 @@ class HealthKitDataStore {
             }
             completion()
         }
-        
-//        user.getWaterConsumptionToday { waterConsumptionSum in
-//            if let waterConsumptionSum = waterConsumptionSum {
-//                self.healthKitUserData.append((waterConsumptionSum.description, "water"))
-//            }
-//            completion()
-//        }
         
         user.getStepCountForToday { stepCountSum in
             if let stepCountSum = stepCountSum {
