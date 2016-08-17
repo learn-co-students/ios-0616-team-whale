@@ -12,63 +12,29 @@ import HealthKit
 class HealthKitDataStore {
     
     typealias healthKitSamplesData = (dataSamples: [HKQuantitySample], error: NSError?)
-    typealias healthKitStatisticData = (statisticValue: Double?, error: NSError?)
     typealias authorizationResponse = (success: Bool?, error: NSError?)
     
     static let sharedInstance = HealthKitDataStore()
-    let healthKitStore: HKHealthStore?
+    var healthKitStore: HKHealthStore?
     var healthKitDataReadTypes = Set<HKSampleType>()
     
+    struct StatisticData {
+        var value: Double?
+        var error: NSError?
+    }
+    
     init() {
-        if HKHealthStore.isHealthDataAvailable() {
-            healthKitStore = HKHealthStore()
-        } else {
-            healthKitStore = nil
+        guard HKHealthStore.isHealthDataAvailable() else {
+            return
         }
+        healthKitStore = HKHealthStore()
     }
     
-    func getSampleDataWithInDates(sampleType:HKSampleType, startDate: NSDate, endDate: NSDate, limit: Int, ascendingValue: Bool, completion: healthKitSamplesData -> Void) {
-        let dateRangePredicate = HKQuery.predicateForSamplesWithStartDate(startDate, endDate: endDate, options: .None)
-        let sortDescriptor = NSSortDescriptor(key:HKSampleSortIdentifierStartDate, ascending: ascendingValue)
-        let sampleQuery = HKSampleQuery(sampleType: sampleType, predicate: dateRangePredicate, limit: limit, sortDescriptors: [sortDescriptor]) { (sampleQuery, results, error ) -> Void in
+    func sumOfData(type: HKQuantityType, fromDate: NSDate, toDate: NSDate, statisticOptions: HKStatisticsOptions, unitType: HKUnit, completion: StatisticData -> Void) {
+        let dateRangePredicate = HKQuery.predicateForSamplesWithStartDate(fromDate, endDate: toDate, options: [])
+        let query =  HKStatisticsQuery(quantityType: type, quantitySamplePredicate: dateRangePredicate, options: statisticOptions) { query, result, error in
             
-            guard let results = results where error == nil else {
-                completion((dataSamples: [], error: error))
-                return
-            }
-            
-            let samplesArray = results as? [HKQuantitySample]
-            
-            if let samplesArray = samplesArray {
-                completion((dataSamples: samplesArray, error: nil))
-            }
-        }
-        HealthKitDataStore.sharedInstance.healthKitStore?.executeQuery(sampleQuery)
-    }
-    
-    func healthKitStatisticQueryWithCompletionHandler(sampleType: HKQuantityType, startDate: NSDate, endDate: NSDate, statisticResultType: String, HKUnitType: HKUnit, completionHandler: healthKitStatisticData -> Void) {
-        let sampleDateRangePredicate = HKQuery.predicateForSamplesWithStartDate(startDate, endDate: endDate, options: [])
-        let query = HKStatisticsQuery(quantityType: sampleType, quantitySamplePredicate: sampleDateRangePredicate, options: .CumulativeSum) { query, result, error in
-            switch statisticResultType {
-            case "sum":
-                if let quantity = result?.sumQuantity() {
-                    completionHandler((statisticValue: quantity.doubleValueForUnit(HKUnitType), error: nil))
-                }
-            case "average":
-                if let quantity = result?.averageQuantity() {
-                    completionHandler((statisticValue: quantity.doubleValueForUnit(HKUnitType), error: nil))
-                }
-            case "minimum":
-                if let quantity = result?.minimumQuantity() {
-                    completionHandler((statisticValue: quantity.doubleValueForUnit(HKUnitType), error: nil))
-                }
-            case "maximum":
-                if let quantity = result?.maximumQuantity() {
-                    completionHandler((statisticValue: quantity.doubleValueForUnit(HKUnitType), error: nil))
-                }
-            default:
-                completionHandler((statisticValue: nil, error: error))
-            }
+            completion(StatisticData(value: result?.sumQuantity()?.doubleValueForUnit(unitType), error: error))
         }
         HealthKitDataStore.sharedInstance.healthKitStore?.executeQuery(query)
     }
@@ -117,5 +83,4 @@ class HealthKitDataStore {
             }
         })
     }
-    
 }
