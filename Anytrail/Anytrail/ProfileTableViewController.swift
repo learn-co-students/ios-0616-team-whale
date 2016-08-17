@@ -45,6 +45,7 @@ class ProfileTableViewController: UIViewController, UITableViewDelegate, UITable
         header.userNameLabel?.text = "Elli Scharlin"
         
         self.tableView.backgroundColor = UIColor.whiteColor()
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
         
         HealthKitDataStore.sharedInstance.getUserTodayHealthKitData {
             self.healthDummy = HealthKitDataStore.sharedInstance.healthKitUserData
@@ -53,7 +54,9 @@ class ProfileTableViewController: UIViewController, UITableViewDelegate, UITable
             }
         }
     }
-    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 80.0
+    }
     func numberOfSectionsInTableView(tableView: UITableView) -> Int{
         return 1
     }
