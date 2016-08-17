@@ -38,6 +38,7 @@ class HealthKitDataStore {
     static let sharedInstance = HealthKitDataStore()
     var healthKitStore: HKHealthStore?
     var healthKitDataReadTypes = Set<HKSampleType>()
+    var healthKitUserData: [(String, String)] = []
     
     init() {
         guard HKHealthStore.isHealthDataAvailable() else {
@@ -93,6 +94,38 @@ class HealthKitDataStore {
         let workoutSession = HKWorkout(activityType: .Walking, startDate: startDate, endDate: endDate, duration: timeRecorded, totalEnergyBurned: nil, totalDistance: distanceQuantity, metadata: nil)
         healthKitStore?.saveObject(workoutSession) { success, error in
             completion(success, error)
+        }
+    }
+    
+    func getUserTodayHealthKitData(completion: () ->()) {
+        let user = HealthKitUserData()
+        
+        user.getDistanceForToday { distanceSum in
+            if let distanceSum = distanceSum {
+                self.healthKitUserData.append((distanceSum.description, "distance"))
+            }
+            completion()
+        }
+        
+        user.getExerciseForToday { exerciseTimeSum in
+            if let exerciseTimeSum = exerciseTimeSum {
+                self.healthKitUserData.append((exerciseTimeSum.description, "exercise-time"))
+            }
+            completion()
+        }
+        
+        user.getFlightCountForToday { flightClimbedSum in
+            if let flightClimbedSum = flightClimbedSum {
+                self.healthKitUserData.append((flightClimbedSum.description, "flight"))
+            }
+            completion()
+        }
+        
+        user.getStepCountForToday { stepCountSum in
+            if let stepCountSum = stepCountSum {
+                self.healthKitUserData.append((stepCountSum.description, "steps"))
+            }
+            completion()
         }
     }
 }

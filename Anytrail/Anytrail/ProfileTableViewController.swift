@@ -9,12 +9,11 @@
 import UIKit
 import Mapbox
 
-class ProfileTableViewController: UIViewController, UITableViewDelegate,UITableViewDataSource {
+class ProfileTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var tableView: UITableView = UITableView()
-    let hkStore = HealthKitDataStore.sharedInstance
     
-    let healthDummy = [("10000","steps"), ("3","flight"),("10.5 mi", "distance"), ("3","workout"), ("4000 cal","energy-burn"),("3 oz","water"), ("60bpm","heartrate"), ("3h","exercise-time")]
+    var healthDummy: [(String, String)] = []
     
     var userInfoCell: ProfileMapHeader = ProfileMapHeader()
     
@@ -46,6 +45,13 @@ class ProfileTableViewController: UIViewController, UITableViewDelegate,UITableV
         header.userNameLabel?.text = "Elli Scharlin"
         
         self.tableView.backgroundColor = UIColor.whiteColor()
+        
+        HealthKitDataStore.sharedInstance.getUserTodayHealthKitData {
+            self.healthDummy = HealthKitDataStore.sharedInstance.healthKitUserData
+            dispatch_async(dispatch_get_main_queue()) {
+                self.tableView.reloadData()
+            }
+        }
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int{
@@ -92,9 +98,6 @@ class ProfileTableViewController: UIViewController, UITableViewDelegate,UITableV
             cell.dataLabel?.text = "default cell returning"
             print("default case")
             return cell
-            
-            
-            
             
         }
         
