@@ -44,5 +44,8 @@ class FoursquareAPIClient {
         }
     }
     
+    
+    class func getImagesForPlaces(completion: ([IDs]) -> ()
+    
 
 }

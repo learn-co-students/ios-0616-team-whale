@@ -16,10 +16,12 @@ class FoursquareData {
     var placeLatitude : Double
     var placeName : String
     var placeAddress : String
+    var placeID : String
     
     init(json: JSON){
         guard let
             venue = json["venue"].dictionary,
+            id = venue["id"]!.string,
             longitude = venue["location"]!["lng"].double,
             latitude = venue["location"]!["lat"].double,
             address = venue["location"]!["formattedAddress"].array,
@@ -35,6 +37,7 @@ class FoursquareData {
         for i in 0..<address.count {
           addressStringConverter.appendContentsOf(address[i].stringValue)
         }
+        placeID = id
         placeVenue = venue
         placeLatitude = (latitude)
         placeLongitude = (longitude)
