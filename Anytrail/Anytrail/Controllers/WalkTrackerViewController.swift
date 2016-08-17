@@ -24,10 +24,17 @@ class WalkTrackerViewController: UIViewController {
             startButton.enabled = false
         }
         
-        HealthKitDataStore.sharedInstance.authorizeHealthKit {_ in}
+        HealthKitDataStore.sharedInstance.authorizeHealthKit { error in
+            print(error)
+        }
         
         let timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(updateLabels(_:)), userInfo: nil, repeats: true)
         timer.fire()
+        
+        let person = HealthKitUserData()
+        person.getStepCountForToday { sum in
+            print(sum)
+        }
         
     }
     
