@@ -24,10 +24,41 @@ class WalkTrackerViewController: UIViewController {
             startButton.enabled = false
         }
         
-        HealthKitDataStore.sharedInstance.authorizeHealthKit {_ in}
+        HealthKitDataStore.sharedInstance.authorizeHealthKit { error in
+            print(error)
+        }
         
         let timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(updateLabels(_:)), userInfo: nil, repeats: true)
         timer.fire()
+        
+        let person = HealthKitUserData()
+        person.getStepCountForToday { sum in
+            print("Steps: \(sum)")
+        }
+        
+        person.getActiveEnergyForToday { sum in
+            print("Active: \(sum)")
+        }
+        
+        person.getBasalEnergyForToday { sum in
+            print("Basal: \(sum)")
+        }
+        
+        person.getDistanceForToday { sum in
+            print("Distance: \(sum)")
+        }
+        
+        person.getExerciseForToday { sum in
+            print("Exercise: \(sum)")
+        }
+        
+        person.getFlightCountForToday { sum in
+            print("Flights: \(sum)")
+        }
+        
+        person.getWaterConsumptionToday { sum in
+            print("Water: \(sum)")
+        }
         
     }
     
