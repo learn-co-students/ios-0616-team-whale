@@ -19,6 +19,8 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
     @IBOutlet weak var dropdownBarButton: UIBarButtonItem!
     @IBOutlet weak var drawRouteButton: UIBarButtonItem!
     
+    var onceToken: dispatch_once_t = 0
+    
     let store = ApisDataStore.sharedInstance
     var geocoder: Geocoder!
     
@@ -64,7 +66,11 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
     func reshowDropdown(withView view: ATDropdownView.ATDropownViewType, hintText: String) {
         if !dropdownDisplayed {
             dropdownView.changeDropdownView(view)
-            dropdownView.updateHintLabel(hintText)
+            
+            if view == .Label {
+                dropdownView.updateHintLabel(hintText)
+            }
+            
             dropdownView.show()
             
         } else {
@@ -72,7 +78,11 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
             
             delay(0.3, block: {
                 self.dropdownView.changeDropdownView(view)
-                self.dropdownView.updateHintLabel(hintText)
+                
+                if view == .Label {
+                    self.dropdownView.updateHintLabel(hintText)
+                }
+                
                 self.dropdownView.show()
             })
         }
@@ -110,14 +120,16 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
     @IBAction func create() {
         if currentStage == .Default {
             createMode = true
-            addFoursquareAnnotations()
+            
             currentStage = .Waypoints
             
             UIView.animateWithDuration(0.3, animations: {
                 self.dropdownBarButton.image = UIImage(named: "back-arrow")
             })
             
-            reshowDropdown(withView: .Label, hintText: "Now let's select a few points of interest to pass by")
+            addFoursquareAnnotations({ (count) in
+                self.reshowDropdown(withView: .Label, hintText: "Awesome! We found \(count) places to pass on your way.\nStart by selecting some!")
+            })
             
         } else if currentStage == .Waypoints {
             // Waypoints selected, sort and generate route
@@ -138,7 +150,9 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
     
     func mapView(mapView: MGLMapView, didUpdateUserLocation userLocation: MGLUserLocation?) {
         if let location = mapView.userLocation {
-            mapView.setCenterCoordinate(location.coordinate, animated: true)
+            dispatch_once(&onceToken) { () -> Void in
+                mapView.setCenterCoordinate(location.coordinate, animated: true)
+            }
         }
     }
     
@@ -155,7 +169,7 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
             return
         }
         
-        if createMode {
+        if createMode && currentStage == .Waypoints {
             if coordinatesEqual(annotation.coordinate, other: origin.coordinate) {
                 ATAlertView.alertWithTitle(self, type: .Origin, title: origin.title!, text: "This is your origin.", callback: {
                     mapView.deselectAnnotation(annotation, animated: true)
@@ -172,7 +186,7 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
             pin.type = .Waypoint
             
             if self.containsPin(pin) {
-                ATAlertView.alertWithConfirmation(self, title: annotation.title!!, text: "Information about this place.", action: "Remove", callback: {
+                ATAlertView.alertWithConfirmationForVenue(self, image: UIImage(named: "venue")!, title: annotation.title!!, text: "You are about to remove this place as a waypoint.", action: "Remove", callback: {
                     self.pointsOfInterest.append(pin)
                     
                     if let index = self.pins.indexOf({ $0.title! == pin.title! }) {
@@ -200,7 +214,7 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
             
             // TODO: Fill text with cool detail info
             
-            ATAlertView.alertWithConfirmation(self, title: annotation.title!!, text: "Information about this place.", action: "Add", callback: {
+            ATAlertView.alertWithConfirmationForVenue(self, image: UIImage(named: "venue")!, title: annotation.title!!, text: "You are about to add this place as a waypoint.", action: "Add", callback: {
                 self.pins.append(annotation)
                 
                 let pin = annotation as! ATAnnotation
@@ -313,8 +327,13 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
     
     // MARK: - Foursquare API
     
-    func addFoursquareAnnotations() {
-        ApisDataStore.sharedInstance.getDataWithCompletion {
+    func addFoursquareAnnotations(completion: (count: Int) -> ()) {
+        pointsOfInterest.removeAll()
+        
+        // TODO: Fix. Temporary
+        store.coordinateString = "\(origin.coordinate.latitude), \(origin.coordinate.longitude)"
+        
+        store.getDataWithCompletion {
             for location in self.store.foursquareData {
                 let pin = ATAnnotation()
                 
@@ -326,6 +345,8 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
                 self.pointsOfInterest.append(pin)
                 self.mapView.addAnnotation(pin)
             }
+            
+            completion(count: self.pointsOfInterest.count)
         }
     }
     
@@ -484,6 +505,10 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
         
         dropdownView = ATDropdownView(view: self.view)
         dropdownView.delegate = self
+        
+        // TODO: Remove. Only for fast debugging and testing
+        // dropdownDidUpdateOrigin("11 Broadway New York, NY")
+        // dropdownDidUpdateDestination("Alphabet City")
         
         currentStage = .Default
         

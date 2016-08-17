@@ -12,35 +12,34 @@ import SwiftyJSON
 class ApisDataStore {
     
     static let sharedInstance = ApisDataStore()
+    var coordinateString: String!
     
-    private init() {}
+    private init() {
+        //
+    }
     
+    // TODO: Add current location into that fucking retarded foursquare method
     
-    var foursquareData:[FoursquareData] = []
+    var foursquareData: [FoursquareData] = []
+    
     func getDataWithCompletion(completion: () -> ()) {
-        FoursquareAPIClient.getQueryForSearchLandmarks { (json) in
+        FoursquareAPIClient.getQueryForSearchLandmarks(coordinateString) { (json) in
             self.foursquareData.removeAll()
-            guard let json = json else { print("error: no data recieved from API Client"); return}
+            guard let json = json else { print("error: no data recieved from API Client"); return }
+            
             for object in json {
                 if let dataFS = object.1["groups"][0]["items"].array {
                     
                     for i in 0..<dataFS.count {
                         self.foursquareData.append(FoursquareData(json: dataFS[i]))
                     }
-                    
-                    
-                    //                    print(FoursquareData(json: dataFS))
                 }
-                
             }
             completion()
-
         }
-        
     }
     
-    var mashapeData:[MashapeData] = []
-    
+    var mashapeData: [MashapeData] = []
     
     func getTrailsWithCompletion(completion: () -> ()) {
         MashapeAPIClient.getTrails { (json) in
@@ -52,17 +51,11 @@ class ApisDataStore {
                         self.mashapeData.append(MashapeData(json: trailData[i]))
                         print("@@@@@@@@@@@@@@\(trailData[i])")
                     }
-
                 }
-                
             }
             completion()
-
         }
-        
-        
     }
-    
 }
 
 

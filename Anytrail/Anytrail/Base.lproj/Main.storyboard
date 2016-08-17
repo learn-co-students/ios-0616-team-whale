@@ -222,7 +222,10 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
+                        <segue destination="SLJ-wA-XTi" kind="relationship" relationship="viewControllers" id="U9F-7r-ASZ"/>
                         <segue destination="0BR-xv-hSF" kind="relationship" relationship="viewControllers" id="YFc-95-Ali"/>
+                        <segue destination="RfK-PL-zJ9" kind="relationship" relationship="viewControllers" id="liU-Tt-fmv"/>
+                        <segue destination="p0F-yQ-RSu" kind="relationship" relationship="viewControllers" id="46O-QR-HhG"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nm2-Qg-L8c" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -274,10 +277,10 @@
                                 </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="CellId" rowHeight="55" id="0w2-L4-guP" customClass="ATInputCell" customModule="Anytrail" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="189.5" width="600" height="55"/>
+                                        <rect key="frame" x="0.0" y="190" width="600" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0w2-L4-guP" id="oUD-0e-Wj2">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="54.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="55"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person" translatesAutoresizingMaskIntoConstraints="NO" id="aJk-QF-6V5">
@@ -374,6 +377,36 @@
             </objects>
             <point key="canvasLocation" x="857" y="-74"/>
         </scene>
+        <!--ProfileStoryboard-->
+        <scene sceneID="FJJ-wz-ehc">
+            <objects>
+                <viewControllerPlaceholder storyboardName="ProfileStoryboard" id="RfK-PL-zJ9" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="ihQ-9P-tfV"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="13L-MB-kDe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-38" y="396"/>
+        </scene>
+        <!--Path-->
+        <scene sceneID="taO-lx-HkU">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Path" id="SLJ-wA-XTi" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="S6o-22-TVy"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Nuo-9I-emT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="113" y="396"/>
+        </scene>
+        <!--ActivityTracker-->
+        <scene sceneID="Vaw-hO-jQ4">
+            <objects>
+                <viewControllerPlaceholder storyboardName="ActivityTracker" id="p0F-yQ-RSu" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="4dN-3x-LCR"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bOz-CD-yKn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="270.5" y="396"/>
+        </scene>
         <!--Login-->
         <scene sceneID="MPv-XY-gjV">
             <objects>
@@ -419,10 +452,10 @@
                                 </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="CellId" rowHeight="55" id="2KG-cT-csr" customClass="ATInputCell" customModule="Anytrail" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="189.5" width="600" height="55"/>
+                                        <rect key="frame" x="0.0" y="190" width="600" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2KG-cT-csr" id="Cuu-eb-YhS">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="54.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="55"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="email" translatesAutoresizingMaskIntoConstraints="NO" id="9Fh-zu-guW">

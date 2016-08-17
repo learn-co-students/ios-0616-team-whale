@@ -53,8 +53,5 @@ class WalkTrackerViewController: UIViewController {
         WalkTrackerViewController.walkTrackerSession = WalkTracker()
         startButton.enabled = true
         stopButton.enabled = false
-        dismissViewControllerAnimated(true) {
-        }
     }
-    
 }

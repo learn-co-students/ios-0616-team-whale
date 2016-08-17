@@ -15,6 +15,11 @@ class ATConstants {
         // Key constants
     }
     
+    struct Endpoints {
+        static let FOURSQUARE_GET_VENUES = "https://api.foursquare.com/v2/venues/explore"
+        static let FOURSQUARE_GET_PHOTO = "https://api.foursquare.com/v2/venues/%@/photos?limit=1"
+    }
+    
     struct Colors {
         static let RED = UIColor(red: 231/255, green: 76/255, blue: 60/255, alpha: 0.9)
         static let ORANGE = UIColor(red: 255/255, green: 157/255, blue: 76/255, alpha: 0.9)

@@ -169,7 +169,9 @@ class ATDropdownView: UIView, UITextFieldDelegate {
     
     func configureHintLabel(label: UILabel) -> UILabel {
         label.textColor = UIColor(red: 80/255, green: 80/255, blue: 80/255, alpha: 1)
+        label.textAlignment = .Center
         label.font = UIFont.boldSystemFontOfSize(13.5)
+        label.numberOfLines = 0
         
         return label
     }
