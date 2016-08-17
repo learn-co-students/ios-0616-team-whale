@@ -12,18 +12,15 @@ import SwiftyJSON
 class ApisDataStore {
     
     static let sharedInstance = ApisDataStore()
-    var coordinateString: String!
     
     private init() {
         //
     }
     
-    // TODO: Add current location into that fucking retarded foursquare method
-    
     var foursquareData: [FoursquareData] = []
     
     func getDataWithCompletion(completion: () -> ()) {
-        FoursquareAPIClient.getQueryForSearchLandmarks(coordinateString) { (json) in
+        FoursquareAPIClient.getQueryForSearchLandmarks { (json) in
             self.foursquareData.removeAll()
             guard let json = json else { print("error: no data recieved from API Client"); return }
             
