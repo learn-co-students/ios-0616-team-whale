@@ -33,7 +33,31 @@ class WalkTrackerViewController: UIViewController {
         
         let person = HealthKitUserData()
         person.getStepCountForToday { sum in
-            print(sum)
+            print("Steps: \(sum)")
+        }
+        
+        person.getActiveEnergyForToday { sum in
+            print("Active: \(sum)")
+        }
+        
+        person.getBasalEnergyForToday { sum in
+            print("Basal: \(sum)")
+        }
+        
+        person.getDistanceForToday { sum in
+            print("Distance: \(sum)")
+        }
+        
+        person.getExerciseForToday { sum in
+            print("Exercise: \(sum)")
+        }
+        
+        person.getFlightCountForToday { sum in
+            print("Flights: \(sum)")
+        }
+        
+        person.getWaterConsumptionToday { sum in
+            print("Water: \(sum)")
         }
         
     }
