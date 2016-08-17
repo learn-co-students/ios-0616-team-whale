@@ -12,8 +12,8 @@ import HealthKit
 class HealthKitUserData {
     
     let userHealthData: [String]
-    let today = NSDate()
-    let yesterday = NSCalendar.currentCalendar().dateByAddingUnit(.Day, value: -1, toDate: NSDate(), options: []) ?? NSDate()
+    let currentDate = NSDate()
+    let beginOfDay = NSCalendar.currentCalendar().startOfDayForDate(NSDate())
     
     var todayStepCount: Double?
     var todayBasalEnergy: Double?
@@ -32,7 +32,7 @@ class HealthKitUserData {
         guard let stepCountType = HealthKitDataStoreSampleTypes.stepCount else {
             return
         }
-        HealthKitDataStore.sharedInstance.sumOfData(stepCountType, fromDate: yesterday, toDate: today, statisticOptions: .CumulativeSum, unitType: HKUnit.countUnit()) { stepCountSum in
+        HealthKitDataStore.sharedInstance.sumOfData(stepCountType, fromDate: beginOfDay, toDate: currentDate, statisticOptions: .CumulativeSum, unitType: HKUnit.countUnit()) { stepCountSum in
             completion(stepCountSum.value)
         }
     }
@@ -41,7 +41,7 @@ class HealthKitUserData {
         guard let basalEnergyType = HealthKitDataStoreSampleTypes.basalEnergyBurned else {
             return
         }
-        HealthKitDataStore.sharedInstance.sumOfData(basalEnergyType, fromDate: yesterday, toDate: today, statisticOptions: .CumulativeSum, unitType: HKUnit.calorieUnit()) { basalEnergySum in
+        HealthKitDataStore.sharedInstance.sumOfData(basalEnergyType, fromDate: beginOfDay, toDate: currentDate, statisticOptions: .CumulativeSum, unitType: HKUnit.calorieUnit()) { basalEnergySum in
             completion(basalEnergySum.value)
         }
     }
@@ -50,7 +50,7 @@ class HealthKitUserData {
         guard let flightClimbedType = HealthKitDataStoreSampleTypes.flightsClimbed else {
             return
         }
-        HealthKitDataStore.sharedInstance.sumOfData(flightClimbedType, fromDate: yesterday, toDate: today, statisticOptions: .CumulativeSum, unitType: HKUnit.countUnit()) { flightClimbedSum in
+        HealthKitDataStore.sharedInstance.sumOfData(flightClimbedType, fromDate: beginOfDay, toDate: currentDate, statisticOptions: .CumulativeSum, unitType: HKUnit.countUnit()) { flightClimbedSum in
             completion(flightClimbedSum.value)
         }
     }
@@ -59,7 +59,7 @@ class HealthKitUserData {
         guard let distanceWalkedType = HealthKitDataStoreSampleTypes.walkingRunningDistance else {
             return
         }
-        HealthKitDataStore.sharedInstance.sumOfData(distanceWalkedType, fromDate: yesterday, toDate: today, statisticOptions: .CumulativeSum, unitType: HKUnit.mileUnit()) { distanceWalkedSum in
+        HealthKitDataStore.sharedInstance.sumOfData(distanceWalkedType, fromDate: beginOfDay, toDate: currentDate, statisticOptions: .CumulativeSum, unitType: HKUnit.mileUnit()) { distanceWalkedSum in
             completion(distanceWalkedSum.value)
         }
     }
@@ -68,7 +68,7 @@ class HealthKitUserData {
         guard let exerciseTimeType = HealthKitDataStoreSampleTypes.exerciseTime else {
             return
         }
-        HealthKitDataStore.sharedInstance.sumOfData(exerciseTimeType, fromDate: yesterday, toDate: today, statisticOptions: .CumulativeSum, unitType: HKUnit.minuteUnit()) { exerciseTimeSum in
+        HealthKitDataStore.sharedInstance.sumOfData(exerciseTimeType, fromDate: beginOfDay, toDate: currentDate, statisticOptions: .CumulativeSum, unitType: HKUnit.minuteUnit()) { exerciseTimeSum in
             completion(exerciseTimeSum.value)
         }
     }
@@ -77,7 +77,7 @@ class HealthKitUserData {
         guard let activeEnergyType = HealthKitDataStoreSampleTypes.activeEnergyBurned else {
             return
         }
-        HealthKitDataStore.sharedInstance.sumOfData(activeEnergyType, fromDate: yesterday, toDate: today, statisticOptions: .CumulativeSum, unitType: HKUnit.calorieUnit()) { activeEnergySum in
+        HealthKitDataStore.sharedInstance.sumOfData(activeEnergyType, fromDate: beginOfDay, toDate: currentDate, statisticOptions: .CumulativeSum, unitType: HKUnit.calorieUnit()) { activeEnergySum in
             completion(activeEnergySum.value)
         }
     }
@@ -86,7 +86,7 @@ class HealthKitUserData {
         guard let waterConsumedType = HealthKitDataStoreSampleTypes.waterConsumption else {
             return
         }
-        HealthKitDataStore.sharedInstance.sumOfData(waterConsumedType, fromDate: yesterday, toDate: today, statisticOptions: .CumulativeSum, unitType: HKUnit.literUnit()) { waterConsumedSum in
+        HealthKitDataStore.sharedInstance.sumOfData(waterConsumedType, fromDate: beginOfDay, toDate: currentDate, statisticOptions: .CumulativeSum, unitType: HKUnit.literUnit()) { waterConsumedSum in
             completion(waterConsumedSum.value)
         }
     }
