@@ -22,6 +22,7 @@ class ATAlertView {
         case Error = 2
         case Success = 3
         case Origin = 4
+        case PointOfInterest = 5
     }
     
     class func alertWithTitle(controller: UIViewController, type: ATAlertViewType, title: String, text: String, callback: () -> Void) {
@@ -33,6 +34,8 @@ class ATAlertView {
             color = ATConstants.Colors.RED
         } else if type == .Success {
             color = ATConstants.Colors.GREEN
+        } else if type == .PointOfInterest {
+            color = ATConstants.Colors.ORANGE
         } else {
             color = ATConstants.Colors.BLUE
         }
@@ -53,7 +56,7 @@ class ATAlertView {
         let color: UIColor
         
         if action == "Add" {
-            color = ATConstants.Colors.GREEN
+            color = ATConstants.Colors.ORANGE
         } else {
             color = ATConstants.Colors.RED
         }

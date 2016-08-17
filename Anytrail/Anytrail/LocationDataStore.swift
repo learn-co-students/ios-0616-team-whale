@@ -14,6 +14,9 @@ class LocationDataStore {
     
     var origin: CLLocationCoordinate2D?
     var destination: CLLocationCoordinate2D?
+    
+    var originString: String?
+    var destinationString: String?
 }
 
 extension LocationDataStore {
