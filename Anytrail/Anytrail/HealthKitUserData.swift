@@ -59,7 +59,7 @@ class HealthKitUserData {
         guard let distanceWalkedType = HealthKitDataStoreSampleTypes.walkingRunningDistance else {
             return
         }
-        HealthKitDataStore.sharedInstance.sumOfData(distanceWalkedType, fromDate: yesterday, toDate: today, statisticOptions: .CumulativeSum, unitType: HKUnit.meterUnit()) { distanceWalkedSum in
+        HealthKitDataStore.sharedInstance.sumOfData(distanceWalkedType, fromDate: yesterday, toDate: today, statisticOptions: .CumulativeSum, unitType: HKUnit.mileUnit()) { distanceWalkedSum in
             completion(distanceWalkedSum.value)
         }
     }
