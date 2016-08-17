@@ -26,7 +26,6 @@
 		8A3949091D62549E004A4B94 /* ATPathDetailedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3949081D62549E004A4B94 /* ATPathDetailedController.swift */; };
 		8A53F2EC1D594A4A00F244BE /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A53F2EB1D594A4A00F244BE /* Keys.swift */; };
 		8A53F2F11D594E3E00F244BE /* TrailApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A53F2F01D594E3E00F244BE /* TrailApiClient.swift */; };
-		8A6624301D5A8DCB009760DA /* HealthKitConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A66242D1D5A8DCB009760DA /* HealthKitConstants.swift */; };
 		8A6624311D5A8DCB009760DA /* HealthKitDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A66242E1D5A8DCB009760DA /* HealthKitDataStore.swift */; };
 		9424A7701D53D5DA00CE8D42 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9424A76F1D53D5DA00CE8D42 /* AppDelegate.swift */; };
 		9424A7771D53D5DA00CE8D42 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9424A7751D53D5DA00CE8D42 /* Main.storyboard */; };
@@ -81,7 +80,6 @@
 		8A3949081D62549E004A4B94 /* ATPathDetailedController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ATPathDetailedController.swift; sourceTree = "<group>"; };
 		8A53F2EB1D594A4A00F244BE /* Keys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		8A53F2F01D594E3E00F244BE /* TrailApiClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TrailApiClient.swift; path = ../TrailData/TrailApiClient.swift; sourceTree = "<group>"; };
-		8A66242D1D5A8DCB009760DA /* HealthKitConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthKitConstants.swift; sourceTree = "<group>"; };
 		8A66242E1D5A8DCB009760DA /* HealthKitDataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthKitDataStore.swift; sourceTree = "<group>"; };
 		9424A76C1D53D5DA00CE8D42 /* Anytrail.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Anytrail.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9424A76F1D53D5DA00CE8D42 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -156,7 +154,6 @@
 				2E1C75781D638A9800D412FB /* Anytrail.entitlements */,
 				8A53F2EB1D594A4A00F244BE /* Keys.swift */,
 				9424A76F1D53D5DA00CE8D42 /* AppDelegate.swift */,
-				8A66242D1D5A8DCB009760DA /* HealthKitConstants.swift */,
 				8A66242E1D5A8DCB009760DA /* HealthKitDataStore.swift */,
 				2E1C75741D6362DF00D412FB /* HealthKitUserData.swift */,
 				4D225C1A1D5A0FF600360AB8 /* MashapeAPIClient.swift */,
@@ -483,7 +480,6 @@
 				945F35E21D58F390002F9C1E /* ATLoginViewController.swift in Sources */,
 				8A53F2F11D594E3E00F244BE /* TrailApiClient.swift in Sources */,
 				949370351D62515900C696AE /* ATConstants.swift in Sources */,
-				8A6624301D5A8DCB009760DA /* HealthKitConstants.swift in Sources */,
 				4D225C1B1D5A0FF600360AB8 /* MashapeAPIClient.swift in Sources */,
 				8A3948F91D621C23004A4B94 /* ATPathViewController.swift in Sources */,
 				2E1DA87D1D5E057500F83DFD /* WalkTracker.swift in Sources */,
