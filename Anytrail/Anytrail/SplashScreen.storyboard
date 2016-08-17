@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="47f-XU-KiF">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <scenes>
+        <!--Splash Screen Controller-->
+        <scene sceneID="zk9-rK-DG6">
+            <objects>
+                <viewController id="47f-XU-KiF" customClass="ATSplashScreenController" customModule="Anytrail" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="qgK-1P-urg"/>
+                        <viewControllerLayoutGuide type="bottom" id="z2a-p0-537"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Cvu-6K-8PR">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mapScreen" translatesAutoresizingMaskIntoConstraints="NO" id="3Bf-gZ-UXM">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="3Bf-gZ-UXM" firstAttribute="centerX" secondItem="Cvu-6K-8PR" secondAttribute="centerX" id="9Wn-a5-uUz"/>
+                            <constraint firstItem="3Bf-gZ-UXM" firstAttribute="height" secondItem="Cvu-6K-8PR" secondAttribute="height" id="Fe0-Jy-mtw"/>
+                            <constraint firstItem="3Bf-gZ-UXM" firstAttribute="width" secondItem="Cvu-6K-8PR" secondAttribute="width" id="eKi-y7-9Tg"/>
+                            <constraint firstItem="3Bf-gZ-UXM" firstAttribute="centerY" secondItem="Cvu-6K-8PR" secondAttribute="centerY" id="egq-sX-JT9"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="whaleImageView" destination="3Bf-gZ-UXM" id="Phn-uY-Sq4"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dEG-vb-oJX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="604.5" y="294.5"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="mapScreen" width="622" height="1104"/>
+    </resources>
+</document>

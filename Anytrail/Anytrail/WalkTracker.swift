@@ -43,17 +43,16 @@ class WalkTracker: NSObject {
     }
     
     func getWalkDistance(startDate: NSDate, endDate: NSDate) {
-        guard let distanceType = HealthKitDataTypes.walkingRunningDistance where HealthKitDataTypes.walkingRunningDistance != nil else {
+        guard let distanceType = HealthKitDataStoreSampleTypes.walkingRunningDistance where HealthKitDataStoreSampleTypes.walkingRunningDistance != nil else {
             print("There is an issue with access healthkit walkingRunning type")
             return
         }
-        HealthKitDataStore.sharedInstance.getSampleDataWithInDates(distanceType, startDate: startDate, endDate: endDate, limit: 0, ascendingValue: true) { distanceData in
-            let distanceSamples = distanceData.dataSamples
-            dispatch_async(dispatch_get_main_queue(),{
+        HealthKitDataStore.sharedInstance.getSamplesData(distanceType, fromDate: startDate, toDate: endDate, limit: 0, ascendingValue: true) { distanceData in
+            if let distanceSamples = distanceData.value {
                 self.walkDistance = distanceSamples.reduce(0.0) {
                     $0 + $1.quantity.doubleValueForUnit(HKUnit.meterUnit())
                 }
-            })
+            }
         }
     }
     
@@ -90,6 +89,8 @@ class WalkTracker: NSObject {
         pedometer.stopPedometerUpdates()
         AppDelegate.activeWorkout = false
         walkTimer.invalidate()
-        HealthKitDataStore.sharedInstance.saveWalk(walkDistance, timeRecorded: currentWalkTime, startDate: walkStartDate, endDate: walkEndDate)
+        HealthKitDataStore.sharedInstance.saveWalk(walkDistance, timeRecorded: currentWalkTime, startDate: walkStartDate, endDate: walkEndDate) { saveResult, error in
+            print(saveResult)
+        }
     }
 }

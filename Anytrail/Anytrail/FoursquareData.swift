@@ -11,7 +11,7 @@ import SwiftyJSON
 import UIKit
 
 class FoursquareData {
-    
+
     var placeIdentifier: String
     var placeVenue: [String : JSON]
     var placeLongitude: Double
@@ -19,8 +19,7 @@ class FoursquareData {
     var placeName: String
     var placeAddress: String
     var placePhotoURL: String
-    
-    
+
     init(json: JSON) {
         guard let
             venue = json["venue"].dictionary,
@@ -29,17 +28,17 @@ class FoursquareData {
             latitude = venue["location"]!["lat"].double,
             address = venue["location"]!["formattedAddress"].array,
             name = venue["name"]!.string
-            
+
             else {
                 fatalError("There was an error retrieving the information from FourSquare")
         }
-        
+
         var addressStringConverter = ""
-        
+
         for i in 0..<address.count {
             addressStringConverter.appendContentsOf(address[i].stringValue)
         }
-        
+
         placeVenue = venue
         placeLatitude = (latitude)
         placeLongitude = (longitude)
