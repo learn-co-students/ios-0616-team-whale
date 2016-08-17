@@ -73,6 +73,7 @@ class ProfileTableViewController: UIViewController, UITableViewDelegate, UITable
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell: UserProfileCell = self.tableView.dequeueReusableCellWithIdentifier("userProfileCellData", forIndexPath: indexPath) as! UserProfileCell
+        cell.userInteractionEnabled = false
         switch indexPath.section {
         case 0:
             return cell

@@ -24,12 +24,36 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="V3e-a8-G7N"/>
+                    <navigationItem key="navigationItem" id="V3e-a8-G7N">
+                        <barButtonItem key="rightBarButtonItem" title="Item" id="CZk-4B-L7J">
+                            <connections>
+                                <segue destination="DUR-Y1-85b" kind="show" id="R5m-y5-Iwh"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Hr-nl-1EQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4374" y="455"/>
+        </scene>
+        <!--Tips and Tricks!-->
+        <scene sceneID="XhW-5a-bk7">
+            <objects>
+                <viewController title="Tips and Tricks!" id="DUR-Y1-85b" customClass="SurgeonGeneralTableViewController" customModule="Anytrail" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="oGT-vg-CWO"/>
+                        <viewControllerLayoutGuide type="bottom" id="UKk-QC-zgp"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Jp2-LW-48U">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mNp-Eh-EMg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5095" y="443"/>
         </scene>
         <!--Profile-->
         <scene sceneID="wOp-jp-qgQ">

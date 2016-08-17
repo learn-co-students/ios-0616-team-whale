@@ -20,8 +20,6 @@ class UserProfileCell: UITableViewCell {
         dataLabel.text = "DATA"
         print("awake from nib")
         self.configureCell()
-        dataLabel.textColor = UIColor.blackColor()
-        self.backgroundColor = UIColor.whiteColor()
     }
     
     override func setSelected(selected: Bool, animated: Bool) {
@@ -31,7 +29,6 @@ class UserProfileCell: UITableViewCell {
     }
     func configureCell(){
         self.userCellBackgroundView?.layer.cornerRadius = 8.0
-        self.userCellBackgroundView.backgroundColor = UIColor.lightGrayColor()
     }
     
     func giveCellData(dataIconStringName: UIImage, dataLabel: String) {
