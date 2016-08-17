@@ -102,7 +102,8 @@ class HealthKitDataStore {
         
         user.getDistanceForToday { distanceSum in
             if let distanceSum = distanceSum {
-                self.healthKitUserData.append((distanceSum.description, "distance"))
+                let distance = round(distanceSum * 100) / 100
+                self.healthKitUserData.append((distance.description, "distance"))
             }
             completion()
         }
