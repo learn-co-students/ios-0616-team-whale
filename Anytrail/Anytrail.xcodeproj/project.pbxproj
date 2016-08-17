@@ -23,6 +23,7 @@
 		4DF1FD191D64E3F800692309 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DF1FD181D64E3F800692309 /* HealthKit.framework */; };
 		4DF1FD1D1D64FC4900692309 /* SurgeonGeneralTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF1FD1C1D64FC4900692309 /* SurgeonGeneralTableViewController.swift */; };
 		4DF1FD1F1D6508C500692309 /* TipsAndTricksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF1FD1E1D6508C500692309 /* TipsAndTricksViewController.swift */; };
+		4DF1FD221D65106100692309 /* FactsForTipsAndTricks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF1FD211D65106100692309 /* FactsForTipsAndTricks.swift */; };
 		4DFDBC111D6262E2006616D0 /* UserProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFDBC0F1D6262E2006616D0 /* UserProfileCell.swift */; };
 		4DFDBC121D6262E2006616D0 /* UserProfileCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4DFDBC101D6262E2006616D0 /* UserProfileCell.xib */; };
 		4DFDBC151D634806006616D0 /* ProfileMapHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFDBC131D634806006616D0 /* ProfileMapHeader.swift */; };
@@ -88,6 +89,7 @@
 		4DF1FD181D64E3F800692309 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		4DF1FD1C1D64FC4900692309 /* SurgeonGeneralTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurgeonGeneralTableViewController.swift; sourceTree = "<group>"; };
 		4DF1FD1E1D6508C500692309 /* TipsAndTricksViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TipsAndTricksViewController.swift; sourceTree = "<group>"; };
+		4DF1FD211D65106100692309 /* FactsForTipsAndTricks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FactsForTipsAndTricks.swift; sourceTree = "<group>"; };
 		4DFDBC0F1D6262E2006616D0 /* UserProfileCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileCell.swift; sourceTree = "<group>"; };
 		4DFDBC101D6262E2006616D0 /* UserProfileCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserProfileCell.xib; sourceTree = "<group>"; };
 		4DFDBC131D634806006616D0 /* ProfileMapHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileMapHeader.swift; sourceTree = "<group>"; };
@@ -152,6 +154,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4DF1FD201D65104400692309 /* FactsFromGovernment */ = {
+			isa = PBXGroup;
+			children = (
+				4DF1FD211D65106100692309 /* FactsForTipsAndTricks.swift */,
+			);
+			name = FactsFromGovernment;
+			sourceTree = "<group>";
+		};
 		9424A7631D53D5DA00CE8D42 = {
 			isa = PBXGroup;
 			children = (
@@ -204,6 +214,7 @@
 				8A39490E1D637CF7004A4B94 /* SplashScreen.xcassets */,
 				2EDDFE291D5A868900B36853 /* Info.plist */,
 				945F35E61D592179002F9C1E /* GoogleService-Info.plist */,
+				4DF1FD201D65104400692309 /* FactsFromGovernment */,
 			);
 			path = Anytrail;
 			sourceTree = "<group>";
@@ -530,6 +541,7 @@
 				4DFDBC151D634806006616D0 /* ProfileMapHeader.swift in Sources */,
 				2E1DA87D1D5E057500F83DFD /* WalkTracker.swift in Sources */,
 				9424A7701D53D5DA00CE8D42 /* AppDelegate.swift in Sources */,
+				4DF1FD221D65106100692309 /* FactsForTipsAndTricks.swift in Sources */,
 				4D225C1F1D5A100800360AB8 /* MashapeData.swift in Sources */,
 				4DB2D9651D58DF18007BD4A5 /* FoursquareData.swift in Sources */,
 				8A6624311D5A8DCB009760DA /* HealthKitDataStore.swift in Sources */,

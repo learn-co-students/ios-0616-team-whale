@@ -8,9 +8,7 @@
 
 import UIKit
 
-class SurgeonGeneralTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-    
-    var tableView: UITableView = UITableView()
+class SurgeonGeneralTableViewController: UITableViewController {
     
     let tobaccoFreeIcon : UIImage = UIImage(named: "tobacco-free")!
     let activityIcon : UIImage = UIImage(named: "activity")!
@@ -20,11 +18,7 @@ class SurgeonGeneralTableViewController: UIViewController, UITableViewDataSource
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.tableView = UITableView(frame: UIScreen.mainScreen().bounds, style: UITableViewStyle.Grouped)
-        tableView.delegate = self
-        tableView.dataSource = self
         tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
-        self.view.addSubview(self.tableView)
         
         tableView.registerNib(UINib(nibName: "UserProfileCell", bundle: nil), forCellReuseIdentifier: "userProfileCellData")
         
@@ -34,19 +28,19 @@ class SurgeonGeneralTableViewController: UIViewController, UITableViewDataSource
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 120.0
     }
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int{
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int{
         return 1
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 4
         
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell: UserProfileCell = self.tableView.dequeueReusableCellWithIdentifier("userProfileCellData", forIndexPath: indexPath) as! UserProfileCell
         cell.userInteractionEnabled = true
@@ -77,15 +71,18 @@ class SurgeonGeneralTableViewController: UIViewController, UITableViewDataSource
             return cell
         }
     }
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        print("selected")
+        print(indexPath)
+        print(indexPath.row)
+    }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         if segue.identifier == "TipsVC" {
             if let destinationVC = segue.destinationViewController as? TipsAndTricksViewController {
                 
-                let path = tableView.indexPathForSelectedRow
-                guard let cell = tableView.cellForRowAtIndexPath(path!) as? UserProfileCell! else { return }
-                
+                let path = tableView.indexPathForSelectedRow                
                 destinationVC.categoryNumber = (path?.row)!
                 
             }

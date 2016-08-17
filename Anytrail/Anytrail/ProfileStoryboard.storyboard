@@ -27,7 +27,7 @@
                     <navigationItem key="navigationItem" id="V3e-a8-G7N">
                         <barButtonItem key="rightBarButtonItem" title="Item" id="CZk-4B-L7J">
                             <connections>
-                                <segue destination="DUR-Y1-85b" kind="show" id="R5m-y5-Iwh"/>
+                                <segue destination="rc4-CE-W5e" kind="show" id="YT3-he-QtF"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -37,23 +37,54 @@
             </objects>
             <point key="canvasLocation" x="4374" y="455"/>
         </scene>
-        <!--Tips and Tricks!-->
-        <scene sceneID="XhW-5a-bk7">
+        <!--Surgeon General Table View Controller-->
+        <scene sceneID="dV9-iw-Fjw">
             <objects>
-                <viewController title="Tips and Tricks!" id="DUR-Y1-85b" customClass="SurgeonGeneralTableViewController" customModule="Anytrail" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="rc4-CE-W5e" customClass="SurgeonGeneralTableViewController" customModule="Anytrail" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="USE-nn-x7y">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="8uK-Zk-uBN">
+                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8uK-Zk-uBN" id="Ho8-Ih-cJR">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="vnc-k7-XO3" kind="show" identifier="TipsVC" id="MDX-eH-ADy"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="rc4-CE-W5e" id="dF8-4k-PSE"/>
+                            <outlet property="delegate" destination="rc4-CE-W5e" id="kBA-yY-ypk"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Duy-gI-AvI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5169" y="465"/>
+        </scene>
+        <!--Tips And Tricks View Controller-->
+        <scene sceneID="k2k-oo-0HN">
+            <objects>
+                <viewController id="vnc-k7-XO3" customClass="TipsAndTricksViewController" customModule="Anytrail" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="oGT-vg-CWO"/>
-                        <viewControllerLayoutGuide type="bottom" id="UKk-QC-zgp"/>
+                        <viewControllerLayoutGuide type="top" id="zJ9-mR-th8"/>
+                        <viewControllerLayoutGuide type="bottom" id="8UI-KD-DgJ"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Jp2-LW-48U">
+                    <view key="view" contentMode="scaleToFill" id="41n-Z5-gcP">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="mNp-Eh-EMg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="toO-Yd-gQz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5095" y="443"/>
+            <point key="canvasLocation" x="5829" y="449"/>
         </scene>
         <!--Profile-->
         <scene sceneID="wOp-jp-qgQ">

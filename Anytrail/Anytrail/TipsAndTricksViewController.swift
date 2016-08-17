@@ -14,17 +14,13 @@ class TipsAndTricksViewController: UIViewController, UITableViewDataSource, UITa
     var tableView: UITableView = UITableView()
     
     var categoryNumber : Int?
-    let activeLiving: [String] = ["active living"]
-    let wellbeing : [String] = ["Emotional and Mental Well-Being"]
-    let tobaccoFreeLiving : [String] = ["tobacco free living"]
-    let healthyEating : [String] = ["Healthy Eating"]
     var arraySentFromSegue: [String]?
     
     let leafIcon : UIImage = UIImage(named: "leaf")!
     var informationData: [[String]] = []
     override func viewDidLoad() {
         super.viewDidLoad()
-        informationData = [activeLiving, wellbeing, tobaccoFreeLiving, healthyEating]
+        informationData = [FactsForTipsAndTricks.activityTips, FactsForTipsAndTricks.wellBeingTips, FactsForTipsAndTricks.tobaccoTips, FactsForTipsAndTricks.healthyEatingTips]
         arraySentFromSegue = informationData[categoryNumber!]
         
         self.tableView = UITableView(frame: UIScreen.mainScreen().bounds, style: UITableViewStyle.Grouped)
@@ -51,7 +47,9 @@ class TipsAndTricksViewController: UIViewController, UITableViewDataSource, UITa
         let cell: UserProfileCell = self.tableView.dequeueReusableCellWithIdentifier("userProfileCellData", forIndexPath: indexPath) as! UserProfileCell
         cell.userInteractionEnabled = true
         cell.intrinsicContentSize()
-        cell.dataIconView = leafIcon
+        cell.dataIconView.image = leafIcon
         cell.dataLabel.text = arraySentFromSegue![indexPath.row]
+        
+        return cell
     }
 }

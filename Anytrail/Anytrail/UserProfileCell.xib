@@ -20,7 +20,7 @@
                         <rect key="frame" x="19" y="7" width="338" height="130"/>
                         <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uLI-sE-Xv3">
+                    <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uLI-sE-Xv3">
                         <rect key="frame" x="48" y="27" width="90" height="90"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="uLI-sE-Xv3" secondAttribute="height" multiplier="1:1" id="4R4-Uh-wSD"/>
