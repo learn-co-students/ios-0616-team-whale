@@ -28,45 +28,47 @@ class HealthKitUserData {
         self.userHealthData = []
     }
     
-    func getStepCountForToday() {
-        HealthKitDataStore.sharedInstance.healthKitStatisticQueryWithCompletionHandler(HealthKitDataTypes.stepCount!, startDate: yesterday!, endDate: today, statisticResultType: "sum", HKUnitType: HKUnit.countUnit()) { healthKitStatisticData in
-            self.todayStepCount = healthKitStatisticData.statisticValue
+    func getStepCountForToday(completion: (Double?) -> Void) {
+        
+        
+        HealthKitDataStore.sharedInstance.sumOfData(HealthKitDataStoreSampleTypes.stepCount!, fromDate: yesterday!, toDate: today, statisticOptions: .CumulativeSum, unitType: HKUnit.countUnit()) { sumData in
+            completion(sumData.value)
         }
     }
     
-    func getBasalEnergyForToday() {
-        HealthKitDataStore.sharedInstance.healthKitStatisticQueryWithCompletionHandler(HealthKitDataTypes.basalEnergyBurned!, startDate: yesterday!, endDate: today, statisticResultType: "sum", HKUnitType: HKUnit.calorieUnit()) { healthKitStatisticData in
-            self.todayBasalEnergy = healthKitStatisticData.statisticValue
-        }
-    }
-    
-    func getFlightCountForToday() {
-        HealthKitDataStore.sharedInstance.healthKitStatisticQueryWithCompletionHandler(HealthKitDataTypes.flightsClimbed!, startDate: yesterday!, endDate: today, statisticResultType: "sum", HKUnitType: HKUnit.countUnit()) { healthKitStatisticData in
-            self.todayFlightClimbed = healthKitStatisticData.statisticValue
-        }
-    }
-    
-    func getDistanceForToday() {
-        HealthKitDataStore.sharedInstance.healthKitStatisticQueryWithCompletionHandler(HealthKitDataTypes.walkingRunningDistance!, startDate: yesterday!, endDate: today, statisticResultType: "sum", HKUnitType: HKUnit.meterUnit()) { healthKitStatisticData in
-            self.todayDistance = healthKitStatisticData.statisticValue
-        }
-    }
-    
-    func getExerciseForToday() {
-        HealthKitDataStore.sharedInstance.healthKitStatisticQueryWithCompletionHandler(HealthKitDataTypes.exerciseTime!, startDate: yesterday!, endDate: today, statisticResultType: "sum", HKUnitType: HKUnit.minuteUnit()) { healthKitStatisticData in
-            self.todayExercise = healthKitStatisticData.statisticValue
-        }
-    }
-    
-    func getActiveEnergyForToday() {
-        HealthKitDataStore.sharedInstance.healthKitStatisticQueryWithCompletionHandler(HealthKitDataTypes.activeEnergyBurned!, startDate: yesterday!, endDate: today, statisticResultType: "sum", HKUnitType: HKUnit.calorieUnit()) { healthKitStatisticData in
-            self.todayActiveEnergy = healthKitStatisticData.statisticValue
-        }
-    }
-    
-    func getWaterConsumptionToday() {
-        HealthKitDataStore.sharedInstance.healthKitStatisticQueryWithCompletionHandler(HealthKitDataTypes.waterConsumption!, startDate: yesterday!, endDate: today, statisticResultType: "sum", HKUnitType: HKUnit.literUnit()) { healthKitStatisticData in
-            self.todayWaterCosumed = healthKitStatisticData.statisticValue
-        }
-    }
+    //    func getBasalEnergyForToday() {
+    //        HealthKitDataStore.sharedInstance.healthKitStatisticQueryWithCompletionHandler(HealthKitDataTypes.basalEnergyBurned!, startDate: yesterday!, endDate: today, statisticResultType: "sum", HKUnitType: HKUnit.calorieUnit()) { healthKitStatisticData in
+    //            self.todayBasalEnergy = healthKitStatisticData.statisticValue
+    //        }
+    //    }
+    //
+    //    func getFlightCountForToday() {
+    //        HealthKitDataStore.sharedInstance.healthKitStatisticQueryWithCompletionHandler(HealthKitDataTypes.flightsClimbed!, startDate: yesterday!, endDate: today, statisticResultType: "sum", HKUnitType: HKUnit.countUnit()) { healthKitStatisticData in
+    //            self.todayFlightClimbed = healthKitStatisticData.statisticValue
+    //        }
+    //    }
+    //
+    //    func getDistanceForToday() {
+    //        HealthKitDataStore.sharedInstance.healthKitStatisticQueryWithCompletionHandler(HealthKitDataTypes.walkingRunningDistance!, startDate: yesterday!, endDate: today, statisticResultType: "sum", HKUnitType: HKUnit.meterUnit()) { healthKitStatisticData in
+    //            self.todayDistance = healthKitStatisticData.statisticValue
+    //        }
+    //    }
+    //
+    //    func getExerciseForToday() {
+    //        HealthKitDataStore.sharedInstance.healthKitStatisticQueryWithCompletionHandler(HealthKitDataTypes.exerciseTime!, startDate: yesterday!, endDate: today, statisticResultType: "sum", HKUnitType: HKUnit.minuteUnit()) { healthKitStatisticData in
+    //            self.todayExercise = healthKitStatisticData.statisticValue
+    //        }
+    //    }
+    //
+    //    func getActiveEnergyForToday() {
+    //        HealthKitDataStore.sharedInstance.healthKitStatisticQueryWithCompletionHandler(HealthKitDataTypes.activeEnergyBurned!, startDate: yesterday!, endDate: today, statisticResultType: "sum", HKUnitType: HKUnit.calorieUnit()) { healthKitStatisticData in
+    //            self.todayActiveEnergy = healthKitStatisticData.statisticValue
+    //        }
+    //    }
+    //
+    //    func getWaterConsumptionToday() {
+    //        HealthKitDataStore.sharedInstance.healthKitStatisticQueryWithCompletionHandler(HealthKitDataTypes.waterConsumption!, startDate: yesterday!, endDate: today, statisticResultType: "sum", HKUnitType: HKUnit.literUnit()) { healthKitStatisticData in
+    //            self.todayWaterCosumed = healthKitStatisticData.statisticValue
+    //        }
+    //    }
 }
