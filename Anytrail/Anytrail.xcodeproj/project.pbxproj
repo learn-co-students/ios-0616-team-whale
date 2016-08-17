@@ -20,6 +20,7 @@
 		4DB2D9651D58DF18007BD4A5 /* FoursquareData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB2D9641D58DF18007BD4A5 /* FoursquareData.swift */; };
 		4DE1D0A91D60D5F500911AA8 /* ProfileStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4DE1D0A81D60D5F500911AA8 /* ProfileStoryboard.storyboard */; };
 		4DE1D0AB1D60D61F00911AA8 /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE1D0AA1D60D61F00911AA8 /* ProfileTableViewController.swift */; };
+		4DEE998E1D64A1BC004BC91C /* LocationDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEE998D1D64A1BC004BC91C /* LocationDataStore.swift */; };
 		4DFDBC111D6262E2006616D0 /* UserProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFDBC0F1D6262E2006616D0 /* UserProfileCell.swift */; };
 		4DFDBC121D6262E2006616D0 /* UserProfileCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4DFDBC101D6262E2006616D0 /* UserProfileCell.xib */; };
 		4DFDBC151D634806006616D0 /* ProfileMapHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFDBC131D634806006616D0 /* ProfileMapHeader.swift */; };
@@ -79,6 +80,7 @@
 		4DB2D9641D58DF18007BD4A5 /* FoursquareData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoursquareData.swift; sourceTree = "<group>"; };
 		4DE1D0A81D60D5F500911AA8 /* ProfileStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ProfileStoryboard.storyboard; sourceTree = "<group>"; };
 		4DE1D0AA1D60D61F00911AA8 /* ProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
+		4DEE998D1D64A1BC004BC91C /* LocationDataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationDataStore.swift; sourceTree = "<group>"; };
 		4DFDBC0F1D6262E2006616D0 /* UserProfileCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileCell.swift; sourceTree = "<group>"; };
 		4DFDBC101D6262E2006616D0 /* UserProfileCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserProfileCell.xib; sourceTree = "<group>"; };
 		4DFDBC131D634806006616D0 /* ProfileMapHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileMapHeader.swift; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 				8A53F2F01D594E3E00F244BE /* TrailApiClient.swift */,
 				4DB2D9621D58DF04007BD4A5 /* ApisDataStore.swift */,
 				4DB2D9641D58DF18007BD4A5 /* FoursquareData.swift */,
+				4DEE998D1D64A1BC004BC91C /* LocationDataStore.swift */,
 				949370341D62515900C696AE /* ATConstants.swift */,
 				945F35EE1D5A306A002F9C1E /* UI */,
 				945F35EB1D593648002F9C1E /* Utility */,
@@ -492,6 +495,7 @@
 				945F35F21D5A45B0002F9C1E /* UIViewController+Keyboard.swift in Sources */,
 				94B1ABEB1D5E4AD800D3DA8E /* ATAnnotationView.swift in Sources */,
 				949370331D62412200C696AE /* ATAnnotation.swift in Sources */,
+				4DEE998E1D64A1BC004BC91C /* LocationDataStore.swift in Sources */,
 				945F35DC1D58F30B002F9C1E /* ATSplashViewController.swift in Sources */,
 				2E1C75751D6362DF00D412FB /* HealthKitUserData.swift in Sources */,
 				945F35ED1D5A3066002F9C1E /* ATAlertView.swift in Sources */,

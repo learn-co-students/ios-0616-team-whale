@@ -12,6 +12,11 @@ import SwiftyJSON
 
 class FoursquareAPIClient {
     class func getQueryForSearchLandmarks(completion: (JSON?) -> ()){
+        let store = LocationDataStore.sharedInstance
+        
+        let coordinatesNESW:[Double] = store.settingRectangleForFoursquare()
+        let sw = "\(coordinatesNESW[2]),\(coordinatesNESW[3])"
+        let ne = "\(coordinatesNESW[0]),\(coordinatesNESW[1])"
         let clientID = Keys.fourSquareClientID
         let clientSecret = Keys.fourSquareClientSecret
         let v = "20160808"
@@ -21,7 +26,9 @@ class FoursquareAPIClient {
                          "client_secret":clientSecret,
                          "v":v,
                          "ll": ll,
-                         "query" : query]
+                         "query" : query,
+                         "ne" : ne,
+                         "sw": sw]
         
         
         Alamofire.request(.GET, "https://api.foursquare.com/v2/venues/explore", parameters: parameter, headers: nil).responseJSON { (response) in
