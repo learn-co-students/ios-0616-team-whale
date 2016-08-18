@@ -10,17 +10,17 @@ import Foundation
 import HealthKit
 
 struct HealthKitDataStoreSampleTypes {
-    static let workouts = HKSampleType.workoutType()
-    static let stepCount = HKSampleType.quantityTypeForIdentifier(HKQuantityTypeIdentifierStepCount)
-    static let basalEnergyBurned = HKSampleType.quantityTypeForIdentifier(HKQuantityTypeIdentifierBasalEnergyBurned)
-    static let flightsClimbed = HKSampleType.quantityTypeForIdentifier(HKQuantityTypeIdentifierFlightsClimbed)
-    static let walkingRunningDistance = HKSampleType.quantityTypeForIdentifier(HKQuantityTypeIdentifierDistanceWalkingRunning)
-    static let exerciseTime = HKSampleType.quantityTypeForIdentifier(HKQuantityTypeIdentifierAppleExerciseTime)
-    static let activeEnergyBurned = HKSampleType.quantityTypeForIdentifier(HKQuantityTypeIdentifierActiveEnergyBurned)
-    static let heartRate = HKSampleType.quantityTypeForIdentifier(HKQuantityTypeIdentifierHeartRate)
-    static let userHeight = HKSampleType.quantityTypeForIdentifier(HKQuantityTypeIdentifierHeight)
-    static let userWeight = HKSampleType.quantityTypeForIdentifier(HKQuantityTypeIdentifierBodyMass)
-    static let waterConsumption = HKSampleType.quantityTypeForIdentifier(HKQuantityTypeIdentifierDietaryWater)
+    static let workouts = HKWorkoutType.workoutType()
+    static let stepCount = HKQuantityType.quantityTypeForIdentifier(HKQuantityTypeIdentifierStepCount)
+    static let basalEnergyBurned = HKQuantityType.quantityTypeForIdentifier(HKQuantityTypeIdentifierBasalEnergyBurned)
+    static let flightsClimbed = HKQuantityType.quantityTypeForIdentifier(HKQuantityTypeIdentifierFlightsClimbed)
+    static let walkingRunningDistance = HKQuantityType.quantityTypeForIdentifier(HKQuantityTypeIdentifierDistanceWalkingRunning)
+    static let exerciseTime = HKQuantityType.quantityTypeForIdentifier(HKQuantityTypeIdentifierAppleExerciseTime)
+    static let activeEnergyBurned = HKQuantityType.quantityTypeForIdentifier(HKQuantityTypeIdentifierActiveEnergyBurned)
+    static let heartRate = HKQuantityType.quantityTypeForIdentifier(HKQuantityTypeIdentifierHeartRate)
+    static let userHeight = HKQuantityType.quantityTypeForIdentifier(HKQuantityTypeIdentifierHeight)
+    static let userWeight = HKQuantityType.quantityTypeForIdentifier(HKQuantityTypeIdentifierBodyMass)
+    static let waterConsumption = HKQuantityType.quantityTypeForIdentifier(HKQuantityTypeIdentifierDietaryWater)
 }
 
 struct StatisticData {
