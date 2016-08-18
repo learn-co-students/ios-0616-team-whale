@@ -42,6 +42,9 @@ class ProfileTableViewController: UIViewController, UITableViewDelegate, UITable
         header.stepsWalkedLabel?.text = "10,000 steps"
         header.userNameLabel?.text = "Elli Scharlin"
         
+        self.edgesForExtendedLayout = UIRectEdge.All
+        self.tableView.contentInset = UIEdgeInsetsMake(0.0, 0.0, CGRectGetHeight((self.tabBarController?.tabBar.frame)!), 0.0)
+        
         self.tableView.backgroundColor = UIColor.whiteColor()
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
         
