@@ -14,7 +14,7 @@ struct FactsForTipsAndTricks {
     static let activityTips:[String] = ["Engage in at least 150 minutes of moderateintensity physical activity each week (adults) or at least one hour of activity per day (children).","Supplement aerobic activities with muscle-strengthening activities that involve all muscle groups on 2 or more days a week.","Consider following the American Academy of Pediatrics recommendations for limiting TV time among children.","Click here to learn more!"]
     static let wellBeingTips:[String] = ["Build strong, positive relationships with family and friends.","Become more involved in the community (e.g., mentor or tutor youth, join a faith or spiritual community).","Encourage children and adolescents to participate in extracurricular and out-ofschool activities.","Work to make sure children feel comfortable talking about problems, such as bullying, and seek appropriate assistance as needed.","Click here to learn more!"]
     
-    static let titleArray:[String] = ["Healthy Eating Tips", "Info on Smoking", "Tips for an Active Life", "Mental Well-Being Tips"]
+    static let titleArray:[String] = ["Tips for an Active Life", "Mental Well-Being Tips", "Info on Smoking","Healthy Eating Tips"]
 
 
 }

@@ -23,6 +23,13 @@ class SurgeonGeneralTableViewController: UITableViewController {
         tableView.registerNib(UINib(nibName: "UserProfileCell", bundle: nil), forCellReuseIdentifier: "userProfileCellData")
         
         
+        tableView.registerNib(UINib(nibName: "TipsCell", bundle: nil), forCellReuseIdentifier: "TipsCell")
+        
+        let header:TipsAndTricksHeader = UINib(nibName: "TipsAndTricksHeader", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! TipsAndTricksHeader
+       header.headerPhoto.image = UIImage(named: "surgeon-general")
+        
+        self.tableView.tableHeaderView = header
+
         
         self.tableView.backgroundColor = UIColor.whiteColor()
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
@@ -47,28 +54,28 @@ class SurgeonGeneralTableViewController: UITableViewController {
         
         let cell: UserProfileCell = self.tableView.dequeueReusableCellWithIdentifier("userProfileCellData", forIndexPath: indexPath) as! UserProfileCell
         cell.userInteractionEnabled = true
-        cell.userCellBackgroundView?.layer.cornerRadius = 10.0
+//        cell.userCellBackgroundView?.layer.cornerRadius = 10.0
 
         switch indexPath.row {
         case 0:
             cell.giveCellData(activityIcon, dataLabel: "Active Living")
             cell.dataLabel.textColor = UIColor.whiteColor()
-            cell.userCellBackgroundView.backgroundColor = UIColor.redColor()
+//            cell.userCellBackgroundView.backgroundColor = UIColor.redColor()
             return cell
         case 1:
             cell.giveCellData(mentalHealthIcon, dataLabel: "Emotional and Mental Well-Being")
             cell.dataLabel.textColor = UIColor.whiteColor()
-            cell.userCellBackgroundView.backgroundColor = UIColor.blueColor()
+//            cell.userCellBackgroundView.backgroundColor = UIColor.blueColor()
             return cell
         case 2:
             cell.giveCellData(tobaccoFreeIcon, dataLabel: "Tobacco Free Living")
             cell.dataLabel.textColor = UIColor.whiteColor()
-            cell.userCellBackgroundView.backgroundColor = UIColor.brownColor()
+//            cell.userCellBackgroundView.backgroundColor = UIColor.brownColor()
             return cell
         case 3:
             cell.giveCellData(nutritionIcon, dataLabel: "Healthy Eating")
             cell.dataLabel.textColor = UIColor.whiteColor()
-            cell.userCellBackgroundView.backgroundColor = UIColor.greenColor()
+//            cell.userCellBackgroundView.backgroundColor = UIColor.greenColor()
             return cell
         default:
             cell.dataLabel?.text = "default cell returning"
