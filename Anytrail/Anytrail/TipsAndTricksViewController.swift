@@ -35,15 +35,16 @@ class TipsAndTricksViewController: UIViewController, UITableViewDataSource, UITa
         self.title = FactsForTipsAndTricks.titleArray[categoryNumber!]
         
         self.tableView.backgroundColor = UIColor.whiteColor()
-        self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
-        
         let header:TipsAndTricksHeader = UINib(nibName: "TipsAndTricksHeader", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! TipsAndTricksHeader
         header.headerPhoto.image = headerArray[categoryNumber!]!
         self.tableView.tableHeaderView = header
-        
+        self.tableView.separatorStyle = .None
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 120.0
-                
+        
+        self.edgesForExtendedLayout = UIRectEdge.All
+        self.tableView.contentInset = UIEdgeInsetsMake(0.0, 0.0, CGRectGetHeight((self.tabBarController?.tabBar.frame)!), 0.0)
+        
     }
  
     
