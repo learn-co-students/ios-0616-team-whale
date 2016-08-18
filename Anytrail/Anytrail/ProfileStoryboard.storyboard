@@ -53,9 +53,6 @@
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="vnc-k7-XO3" kind="show" identifier="TipsVC" id="MDX-eH-ADy"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -63,15 +60,18 @@
                             <outlet property="delegate" destination="rc4-CE-W5e" id="kBA-yY-ypk"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <segue destination="vnc-k7-XO3" kind="show" identifier="TipsVC" id="Lmo-iz-st6"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Duy-gI-AvI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5169" y="465"/>
         </scene>
-        <!--Tips And Tricks View Controller-->
+        <!--Health Information and Tips-->
         <scene sceneID="k2k-oo-0HN">
             <objects>
-                <viewController id="vnc-k7-XO3" customClass="TipsAndTricksViewController" customModule="Anytrail" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Health Information and Tips" id="vnc-k7-XO3" customClass="TipsAndTricksViewController" customModule="Anytrail" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="zJ9-mR-th8"/>
                         <viewControllerLayoutGuide type="bottom" id="8UI-KD-DgJ"/>

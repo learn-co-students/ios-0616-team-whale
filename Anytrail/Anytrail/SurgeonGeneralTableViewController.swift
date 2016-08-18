@@ -44,6 +44,8 @@ class SurgeonGeneralTableViewController: UITableViewController {
         
         let cell: UserProfileCell = self.tableView.dequeueReusableCellWithIdentifier("userProfileCellData", forIndexPath: indexPath) as! UserProfileCell
         cell.userInteractionEnabled = true
+        cell.userCellBackgroundView?.layer.cornerRadius = 10.0
+
         switch indexPath.row {
         case 0:
             cell.giveCellData(activityIcon, dataLabel: "Active Living")
@@ -72,16 +74,15 @@ class SurgeonGeneralTableViewController: UITableViewController {
         }
     }
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        print("selected")
-        print(indexPath)
-        print(indexPath.row)
+       performSegueWithIdentifier("TipsVC", sender: self)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
+        print("line 81")
         if segue.identifier == "TipsVC" {
+            print("if segue id")
             if let destinationVC = segue.destinationViewController as? TipsAndTricksViewController {
-                
+                print("after declaring destination")
                 let path = tableView.indexPathForSelectedRow                
                 destinationVC.categoryNumber = (path?.row)!
                 

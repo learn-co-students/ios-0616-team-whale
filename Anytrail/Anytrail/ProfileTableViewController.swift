@@ -59,6 +59,7 @@ class ProfileTableViewController: UIViewController, UITableViewDelegate, UITable
         return 2
     }
     
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //Mark: TODO take out the switch here after testing.
         switch section {
@@ -74,6 +75,8 @@ class ProfileTableViewController: UIViewController, UITableViewDelegate, UITable
         
         let cell: UserProfileCell = self.tableView.dequeueReusableCellWithIdentifier("userProfileCellData", forIndexPath: indexPath) as! UserProfileCell
         cell.userInteractionEnabled = false
+        cell.userCellBackgroundView?.layer.cornerRadius = 8.0
+
         switch indexPath.section {
         case 0:
             return cell

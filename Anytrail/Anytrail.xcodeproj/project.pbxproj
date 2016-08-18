@@ -14,6 +14,10 @@
 		2E7B02845A404C04E0D92E5E /* Pods_Anytrail.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 599CF5E42324548824DD0368 /* Pods_Anytrail.framework */; };
 		4D225C1B1D5A0FF600360AB8 /* MashapeAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D225C1A1D5A0FF600360AB8 /* MashapeAPIClient.swift */; };
 		4D225C1F1D5A100800360AB8 /* MashapeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D225C1E1D5A100800360AB8 /* MashapeData.swift */; };
+		4D5244721D66084F0066C01B /* TipsAndTricksTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5244711D66084F0066C01B /* TipsAndTricksTableViewCell.swift */; };
+		4D5244741D660AE60066C01B /* TipsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D5244731D660AE60066C01B /* TipsCell.xib */; };
+		4D5244761D6615000066C01B /* TipsAndTricksHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D5244751D6615000066C01B /* TipsAndTricksHeader.xib */; };
+		4D5244781D6615280066C01B /* TipsAndTricksHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5244771D6615280066C01B /* TipsAndTricksHeader.swift */; };
 		4DB2D9611D58DEBA007BD4A5 /* FoursquareAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB2D9601D58DEBA007BD4A5 /* FoursquareAPIClient.swift */; };
 		4DB2D9631D58DF04007BD4A5 /* ApisDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB2D9621D58DF04007BD4A5 /* ApisDataStore.swift */; };
 		4DB2D9651D58DF18007BD4A5 /* FoursquareData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB2D9641D58DF18007BD4A5 /* FoursquareData.swift */; };
@@ -79,6 +83,10 @@
 		3417C12B1559CD326FE9F852 /* Pods-Anytrail.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Anytrail.release.xcconfig"; path = "Pods/Target Support Files/Pods-Anytrail/Pods-Anytrail.release.xcconfig"; sourceTree = "<group>"; };
 		4D225C1A1D5A0FF600360AB8 /* MashapeAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MashapeAPIClient.swift; sourceTree = "<group>"; };
 		4D225C1E1D5A100800360AB8 /* MashapeData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MashapeData.swift; sourceTree = "<group>"; };
+		4D5244711D66084F0066C01B /* TipsAndTricksTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TipsAndTricksTableViewCell.swift; sourceTree = "<group>"; };
+		4D5244731D660AE60066C01B /* TipsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TipsCell.xib; sourceTree = "<group>"; };
+		4D5244751D6615000066C01B /* TipsAndTricksHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TipsAndTricksHeader.xib; sourceTree = "<group>"; };
+		4D5244771D6615280066C01B /* TipsAndTricksHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TipsAndTricksHeader.swift; sourceTree = "<group>"; };
 		4DB2D9601D58DEBA007BD4A5 /* FoursquareAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoursquareAPIClient.swift; sourceTree = "<group>"; };
 		4DB2D9621D58DF04007BD4A5 /* ApisDataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApisDataStore.swift; sourceTree = "<group>"; };
 		4DB2D9641D58DF18007BD4A5 /* FoursquareData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoursquareData.swift; sourceTree = "<group>"; };
@@ -253,8 +261,12 @@
 				8A3948FA1D623743004A4B94 /* ATPathCell.swift */,
 				4DFDBC131D634806006616D0 /* ProfileMapHeader.swift */,
 				4DFDBC141D634806006616D0 /* ProfileMapHeader.xib */,
+				4D5244751D6615000066C01B /* TipsAndTricksHeader.xib */,
+				4D5244771D6615280066C01B /* TipsAndTricksHeader.swift */,
 				4DFDBC0F1D6262E2006616D0 /* UserProfileCell.swift */,
 				4DFDBC101D6262E2006616D0 /* UserProfileCell.xib */,
+				4D5244731D660AE60066C01B /* TipsCell.xib */,
+				4D5244711D66084F0066C01B /* TipsAndTricksTableViewCell.swift */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -403,8 +415,10 @@
 				945F35E71D592179002F9C1E /* GoogleService-Info.plist in Resources */,
 				9424A7791D53D5DA00CE8D42 /* Assets.xcassets in Resources */,
 				8A39490F1D637CF7004A4B94 /* SplashScreen.xcassets in Resources */,
+				4D5244761D6615000066C01B /* TipsAndTricksHeader.xib in Resources */,
 				8A3948FD1D623972004A4B94 /* Paths.xcassets in Resources */,
 				9424A7771D53D5DA00CE8D42 /* Main.storyboard in Resources */,
+				4D5244741D660AE60066C01B /* TipsCell.xib in Resources */,
 				8A3948F71D620BC1004A4B94 /* Path.storyboard in Resources */,
 				4DE1D0A91D60D5F500911AA8 /* ProfileStoryboard.storyboard in Resources */,
 			);
@@ -527,6 +541,7 @@
 				2E1C75751D6362DF00D412FB /* HealthKitUserData.swift in Sources */,
 				8A39490D1D637CC6004A4B94 /* ATSplashScreenController.swift in Sources */,
 				945F35ED1D5A3066002F9C1E /* ATAlertView.swift in Sources */,
+				4D5244721D66084F0066C01B /* TipsAndTricksTableViewCell.swift in Sources */,
 				945F35E01D58F381002F9C1E /* ATMapViewController.swift in Sources */,
 				945F35E41D590DBE002F9C1E /* ATInputCell.swift in Sources */,
 				945F35DE1D58F377002F9C1E /* ATSignupViewController.swift in Sources */,
@@ -551,6 +566,7 @@
 				8A3948FB1D623743004A4B94 /* ATPathCell.swift in Sources */,
 				4DF1FD1D1D64FC4900692309 /* SurgeonGeneralTableViewController.swift in Sources */,
 				4DB2D9631D58DF04007BD4A5 /* ApisDataStore.swift in Sources */,
+				4D5244781D6615280066C01B /* TipsAndTricksHeader.swift in Sources */,
 				8A3949091D62549E004A4B94 /* ATPathDetailedController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
