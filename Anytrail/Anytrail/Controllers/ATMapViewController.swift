@@ -454,8 +454,9 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
         // Directions
 
         let directions = Directions(accessToken: Keys.mapBoxToken)
-        let options = RouteOptionsV4(waypoints: waypoints, profileIdentifier: MBDirectionsProfileIdentifierWalking)
+        let options = RouteOptions(waypoints: waypoints, profileIdentifier: MBDirectionsProfileIdentifierWalking)
         options.includesSteps = true
+        options.routeShapeResolution = .Full
 
         directions.calculateDirections(options: options) { (waypoints, routes, error) in
             guard error == nil else {
