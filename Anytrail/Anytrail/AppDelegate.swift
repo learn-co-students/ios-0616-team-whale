@@ -16,9 +16,7 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
-    //Setup userDefaults
     static let userDefaultWalkData = NSUserDefaults.standardUserDefaults()
-    static var activeWorkout = false
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         UINavigationBar.appearance().setBackgroundImage(UIImage(), forBarMetrics: .Default)
@@ -33,18 +31,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Setup Firebase
         FIRApp.configure()
         
-        //Setup work if was active when app was terminated
-        AppDelegate.activeWorkout = AppDelegate.userDefaultWalkData.valueForKey("workoutActive") as? Bool ?? false
-        
-        if AppDelegate.activeWorkout {
+        if WalkTracker.sharedInstance.activeWalk == true {
             let startDate = AppDelegate.userDefaultWalkData.valueForKey("walkStartDate") as? NSDate
             let continueDate = NSDate()
             
             if let startDate = startDate {
-                WalkTrackerViewController.walkTrackerSession = WalkTracker.init(startDate: startDate, continueDate: continueDate)
+                WalkTracker.sharedInstance.continueSession(startDate, continueDate: continueDate)
             }
         }
-        
+
         return true
     }
     
@@ -60,8 +55,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func applicationDidEnterBackground(application: UIApplication) {
-        AppDelegate.userDefaultWalkData.setValue(WalkTrackerViewController.walkTrackerSession.walkStartDate, forKey: "walkStartDate")
-        AppDelegate.userDefaultWalkData.setValue(AppDelegate.activeWorkout, forKey: "workoutActive")
+        AppDelegate.userDefaultWalkData.setValue(WalkTracker.sharedInstance.walkStartDate, forKey: "walkStartDate")
+        AppDelegate.userDefaultWalkData.setValue(WalkTracker.sharedInstance.activeWalk, forKey: "workoutActive")
     }
     
     func applicationWillEnterForeground(application: UIApplication) {
@@ -69,20 +64,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func applicationDidBecomeActive(application: UIApplication) {
-        if AppDelegate.activeWorkout {
+        if WalkTracker.sharedInstance.activeWalk == true {
             let startDate = AppDelegate.userDefaultWalkData.valueForKey("walkStartDate") as? NSDate
             let continueDate = NSDate()
             
             if let startDate = startDate {
-                WalkTrackerViewController.walkTrackerSession = WalkTracker.init(startDate: startDate, continueDate: continueDate)
-                WalkTrackerViewController.walkTrackerSession.startWalk()
+                WalkTracker.sharedInstance.continueSession(startDate, continueDate: continueDate)
             }
         }
     }
     
     func applicationWillTerminate(application: UIApplication) {
-        AppDelegate.userDefaultWalkData.setValue(WalkTrackerViewController.walkTrackerSession.walkStartDate, forKey: "walkStartDate")
-        AppDelegate.userDefaultWalkData.setValue(AppDelegate.activeWorkout, forKey: "workoutActive")
-        WalkTrackerViewController.walkTrackerSession.walkTimer.invalidate()
+        AppDelegate.userDefaultWalkData.setValue(WalkTracker.sharedInstance.walkStartDate, forKey: "walkStartDate")
+        AppDelegate.userDefaultWalkData.setValue(WalkTracker.sharedInstance.activeWalk, forKey: "workoutActive")
+//        WalkTracker.sharedInstance.walkTimer.invalidate()
     }
 }

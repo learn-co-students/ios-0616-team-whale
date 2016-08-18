@@ -12,15 +12,14 @@ import Mapbox
 class WalkTrackerViewController: UIViewController {
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var distanceLabel: UILabel!
+    @IBOutlet weak var paceLabel: UILabel!
     @IBOutlet weak var startButton: UIButton!
     @IBOutlet weak var stopButton: UIButton!
-    
-    static var walkTrackerSession = WalkTracker()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if AppDelegate.activeWorkout {
+        if WalkTracker.sharedInstance.activeWalk == true {
             startButton.enabled = false
         }
         
@@ -38,20 +37,19 @@ class WalkTrackerViewController: UIViewController {
     }
     
     func updateLabels(timer: NSTimer) {
-        timeLabel.text = "\(WalkTrackerViewController.walkTrackerSession.currentWalkTime)"
-        distanceLabel.text = "\(WalkTrackerViewController.walkTrackerSession.walkDistance)"
+        timeLabel.text = "\(WalkTracker.sharedInstance.currentWalkTime)"
+        distanceLabel.text = "\(WalkTracker.sharedInstance.walkDistance)"
+        paceLabel.text = "\(WalkTracker.sharedInstance.pace)"
     }
     
     @IBAction func startTapped(sender: AnyObject) {
-        WalkTrackerViewController.walkTrackerSession.startWalk()
-        WalkTrackerViewController.walkTrackerSession.walkStartDate = NSDate()
+        WalkTracker.sharedInstance.startWalk()
         startButton.enabled = false
         stopButton.enabled = true
     }
     
     @IBAction func stopTapped(sender: AnyObject) {
-        WalkTrackerViewController.walkTrackerSession.stopWalk()
-        WalkTrackerViewController.walkTrackerSession = WalkTracker()
+        WalkTracker.sharedInstance.stopWalk()
         startButton.enabled = true
         stopButton.enabled = false
     }
