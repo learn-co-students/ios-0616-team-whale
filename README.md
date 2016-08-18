@@ -2,7 +2,6 @@
 Brought to you by team 🐋
 
 ## Details
-A project by Michael Amundsen, Ryan Cohen, Sergey Nevzorov, and Elli Scharlin
 
 Health tips and information found in the user profile was taken from [The Office of the Surgeon General](http://www.surgeongeneral.gov/).
 
@@ -18,3 +17,15 @@ This project uses the following libraries:
 * [HealthKit](https://developer.apple.com/healthkit/) for workouts and activity information
 * [Foursquare](https://developer.foursquare.com/) for providing data about landmarks and other POIs
 (And more resources to come!)
+
+
+
+
+
+## A Project By
+
+* Michael Amundsen
+* Ryan Cohen 
+* Sergey Nevzorov
+* Elli Scharlin
+* 🐋
