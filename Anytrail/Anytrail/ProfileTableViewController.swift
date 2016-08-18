@@ -12,11 +12,7 @@ import Mapbox
 class ProfileTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var tableView: UITableView = UITableView()
-    
     var healthDummy: [(String, String)] = []
-    
-    var userInfoCell: ProfileMapHeader = ProfileMapHeader()
-    
     let stepsIcon : UIImage = UIImage(named: "steps-taken")!
     let flightsIcon : UIImage = UIImage(named: "flights-climbed")!
     let distanceIcon : UIImage = UIImage(named: "distance-travelled-map")!
@@ -27,10 +23,11 @@ class ProfileTableViewController: UIViewController, UITableViewDelegate, UITable
     let energyIcon  : UIImage = UIImage(named: "energy-burn")!
     
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.tableView = UITableView(frame: UIScreen.mainScreen().bounds, style: UITableViewStyle.Plain)
+        self.tableView = UITableView(frame: UIScreen.mainScreen().bounds, style: UITableViewStyle.Grouped)
         tableView.delegate = self
         tableView.dataSource = self
         tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
@@ -40,11 +37,16 @@ class ProfileTableViewController: UIViewController, UITableViewDelegate, UITable
         
         let header:ProfileMapHeader = UINib(nibName: "ProfileMapHeader", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! ProfileMapHeader
         self.tableView.tableHeaderView = header
+        
         header.pathsTakenLabel?.text = "12 paths"
         header.stepsWalkedLabel?.text = "10,000 steps"
         header.userNameLabel?.text = "Elli Scharlin"
         
+        self.edgesForExtendedLayout = UIRectEdge.All
+        self.tableView.contentInset = UIEdgeInsetsMake(0.0, 0.0, CGRectGetHeight((self.tabBarController?.tabBar.frame)!), 0.0)
+        
         self.tableView.backgroundColor = UIColor.whiteColor()
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
         
         HealthKitDataStore.sharedInstance.getUserTodayHealthKitData {
             self.healthDummy = HealthKitDataStore.sharedInstance.healthKitUserData
@@ -53,21 +55,38 @@ class ProfileTableViewController: UIViewController, UITableViewDelegate, UITable
             }
         }
     }
-    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 80.0
+    }
     func numberOfSectionsInTableView(tableView: UITableView) -> Int{
-        return 1
+        return 2
     }
     
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return healthDummy.count
+        //Mark: TODO take out the switch here after testing.
+        switch section {
+        case 0:
+            return 4
+        default:
+            return healthDummy.count
+        }
+//        return healthDummy.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell: UserProfileCell = self.tableView.dequeueReusableCellWithIdentifier("userProfileCellData", forIndexPath: indexPath) as! UserProfileCell
-        
+        cell.userInteractionEnabled = false
+        cell.userCellBackgroundView?.layer.cornerRadius = 8.0
+
+        switch indexPath.section {
+        case 0:
+            return cell
+        default:
+            
         let singleHealth = healthDummy[indexPath.row]
-        
+       
         switch(singleHealth.1) {
         case "steps":
             cell.giveCellData(stepsIcon, dataLabel: singleHealth.0)
@@ -98,15 +117,21 @@ class ProfileTableViewController: UIViewController, UITableViewDelegate, UITable
             cell.dataLabel?.text = "default cell returning"
             print("default case")
             return cell
-            
+            }
         }
         
         
     }
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        
-        return "Today"
+        switch section {
+        case 0:
+            return "Test"
+        default:
+            return "Today"
+            
+            
+        }
         
     }
 }

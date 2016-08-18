@@ -14,12 +14,20 @@
 		2E7B02845A404C04E0D92E5E /* Pods_Anytrail.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 599CF5E42324548824DD0368 /* Pods_Anytrail.framework */; };
 		4D225C1B1D5A0FF600360AB8 /* MashapeAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D225C1A1D5A0FF600360AB8 /* MashapeAPIClient.swift */; };
 		4D225C1F1D5A100800360AB8 /* MashapeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D225C1E1D5A100800360AB8 /* MashapeData.swift */; };
+		4D5244721D66084F0066C01B /* TipsAndTricksTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5244711D66084F0066C01B /* TipsAndTricksTableViewCell.swift */; };
+		4D5244741D660AE60066C01B /* TipsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D5244731D660AE60066C01B /* TipsCell.xib */; };
+		4D5244761D6615000066C01B /* TipsAndTricksHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D5244751D6615000066C01B /* TipsAndTricksHeader.xib */; };
+		4D5244781D6615280066C01B /* TipsAndTricksHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5244771D6615280066C01B /* TipsAndTricksHeader.swift */; };
 		4DB2D9611D58DEBA007BD4A5 /* FoursquareAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB2D9601D58DEBA007BD4A5 /* FoursquareAPIClient.swift */; };
 		4DB2D9631D58DF04007BD4A5 /* ApisDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB2D9621D58DF04007BD4A5 /* ApisDataStore.swift */; };
 		4DB2D9651D58DF18007BD4A5 /* FoursquareData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB2D9641D58DF18007BD4A5 /* FoursquareData.swift */; };
 		4DE1D0A91D60D5F500911AA8 /* ProfileStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4DE1D0A81D60D5F500911AA8 /* ProfileStoryboard.storyboard */; };
 		4DE1D0AB1D60D61F00911AA8 /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE1D0AA1D60D61F00911AA8 /* ProfileTableViewController.swift */; };
 		4DEE998E1D64A1BC004BC91C /* LocationDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEE998D1D64A1BC004BC91C /* LocationDataStore.swift */; };
+		4DF1FD191D64E3F800692309 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DF1FD181D64E3F800692309 /* HealthKit.framework */; };
+		4DF1FD1D1D64FC4900692309 /* SurgeonGeneralTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF1FD1C1D64FC4900692309 /* SurgeonGeneralTableViewController.swift */; };
+		4DF1FD1F1D6508C500692309 /* TipsAndTricksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF1FD1E1D6508C500692309 /* TipsAndTricksViewController.swift */; };
+		4DF1FD221D65106100692309 /* FactsForTipsAndTricks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF1FD211D65106100692309 /* FactsForTipsAndTricks.swift */; };
 		4DFDBC111D6262E2006616D0 /* UserProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFDBC0F1D6262E2006616D0 /* UserProfileCell.swift */; };
 		4DFDBC121D6262E2006616D0 /* UserProfileCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4DFDBC101D6262E2006616D0 /* UserProfileCell.xib */; };
 		4DFDBC151D634806006616D0 /* ProfileMapHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFDBC131D634806006616D0 /* ProfileMapHeader.swift */; };
@@ -68,7 +76,6 @@
 
 /* Begin PBXFileReference section */
 		2E1C75741D6362DF00D412FB /* HealthKitUserData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthKitUserData.swift; sourceTree = "<group>"; };
-		2E1C75781D638A9800D412FB /* Anytrail.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Anytrail.entitlements; sourceTree = "<group>"; };
 		2E1DA87B1D5E057500F83DFD /* WalkTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalkTracker.swift; sourceTree = "<group>"; };
 		2E1DA87E1D5E0DEB00F83DFD /* ActivityTracker.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ActivityTracker.storyboard; sourceTree = "<group>"; };
 		2E1DA8821D5E3B5B00F83DFD /* WalkTrackerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WalkTrackerViewController.swift; path = Controllers/WalkTrackerViewController.swift; sourceTree = "<group>"; };
@@ -76,12 +83,21 @@
 		3417C12B1559CD326FE9F852 /* Pods-Anytrail.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Anytrail.release.xcconfig"; path = "Pods/Target Support Files/Pods-Anytrail/Pods-Anytrail.release.xcconfig"; sourceTree = "<group>"; };
 		4D225C1A1D5A0FF600360AB8 /* MashapeAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MashapeAPIClient.swift; sourceTree = "<group>"; };
 		4D225C1E1D5A100800360AB8 /* MashapeData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MashapeData.swift; sourceTree = "<group>"; };
+		4D5244711D66084F0066C01B /* TipsAndTricksTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TipsAndTricksTableViewCell.swift; sourceTree = "<group>"; };
+		4D5244731D660AE60066C01B /* TipsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TipsCell.xib; sourceTree = "<group>"; };
+		4D5244751D6615000066C01B /* TipsAndTricksHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TipsAndTricksHeader.xib; sourceTree = "<group>"; };
+		4D5244771D6615280066C01B /* TipsAndTricksHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TipsAndTricksHeader.swift; sourceTree = "<group>"; };
 		4DB2D9601D58DEBA007BD4A5 /* FoursquareAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoursquareAPIClient.swift; sourceTree = "<group>"; };
 		4DB2D9621D58DF04007BD4A5 /* ApisDataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApisDataStore.swift; sourceTree = "<group>"; };
 		4DB2D9641D58DF18007BD4A5 /* FoursquareData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoursquareData.swift; sourceTree = "<group>"; };
 		4DE1D0A81D60D5F500911AA8 /* ProfileStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ProfileStoryboard.storyboard; sourceTree = "<group>"; };
 		4DE1D0AA1D60D61F00911AA8 /* ProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
 		4DEE998D1D64A1BC004BC91C /* LocationDataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationDataStore.swift; sourceTree = "<group>"; };
+		4DF1FD171D64E3F800692309 /* Anytrail.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Anytrail.entitlements; sourceTree = "<group>"; };
+		4DF1FD181D64E3F800692309 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
+		4DF1FD1C1D64FC4900692309 /* SurgeonGeneralTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurgeonGeneralTableViewController.swift; sourceTree = "<group>"; };
+		4DF1FD1E1D6508C500692309 /* TipsAndTricksViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TipsAndTricksViewController.swift; sourceTree = "<group>"; };
+		4DF1FD211D65106100692309 /* FactsForTipsAndTricks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FactsForTipsAndTricks.swift; sourceTree = "<group>"; };
 		4DFDBC0F1D6262E2006616D0 /* UserProfileCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileCell.swift; sourceTree = "<group>"; };
 		4DFDBC101D6262E2006616D0 /* UserProfileCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserProfileCell.xib; sourceTree = "<group>"; };
 		4DFDBC131D634806006616D0 /* ProfileMapHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileMapHeader.swift; sourceTree = "<group>"; };
@@ -131,6 +147,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2E7B02845A404C04E0D92E5E /* Pods_Anytrail.framework in Frameworks */,
+
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -145,6 +162,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4DF1FD201D65104400692309 /* FactsFromGovernment */ = {
+			isa = PBXGroup;
+			children = (
+				4DF1FD211D65106100692309 /* FactsForTipsAndTricks.swift */,
+			);
+			name = FactsFromGovernment;
+			sourceTree = "<group>";
+		};
 		9424A7631D53D5DA00CE8D42 = {
 			isa = PBXGroup;
 			children = (
@@ -168,7 +193,7 @@
 		9424A76E1D53D5DA00CE8D42 /* Anytrail */ = {
 			isa = PBXGroup;
 			children = (
-				2E1C75781D638A9800D412FB /* Anytrail.entitlements */,
+				4DF1FD171D64E3F800692309 /* Anytrail.entitlements */,
 				8A53F2EB1D594A4A00F244BE /* Keys.swift */,
 				9424A76F1D53D5DA00CE8D42 /* AppDelegate.swift */,
 				8A66242E1D5A8DCB009760DA /* HealthKitDataStore.swift */,
@@ -197,6 +222,7 @@
 				8A39490E1D637CF7004A4B94 /* SplashScreen.xcassets */,
 				2EDDFE291D5A868900B36853 /* Info.plist */,
 				945F35E61D592179002F9C1E /* GoogleService-Info.plist */,
+				4DF1FD201D65104400692309 /* FactsFromGovernment */,
 			);
 			path = Anytrail;
 			sourceTree = "<group>";
@@ -213,6 +239,8 @@
 		9424A7911D53D6B500CE8D42 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				4DF1FD1C1D64FC4900692309 /* SurgeonGeneralTableViewController.swift */,
+				4DF1FD1E1D6508C500692309 /* TipsAndTricksViewController.swift */,
 				8A39490C1D637CC6004A4B94 /* ATSplashScreenController.swift */,
 				8A3948F81D621C23004A4B94 /* ATPathViewController.swift */,
 				8A3949081D62549E004A4B94 /* ATPathDetailedController.swift */,
@@ -233,8 +261,12 @@
 				8A3948FA1D623743004A4B94 /* ATPathCell.swift */,
 				4DFDBC131D634806006616D0 /* ProfileMapHeader.swift */,
 				4DFDBC141D634806006616D0 /* ProfileMapHeader.xib */,
+				4D5244751D6615000066C01B /* TipsAndTricksHeader.xib */,
+				4D5244771D6615280066C01B /* TipsAndTricksHeader.swift */,
 				4DFDBC0F1D6262E2006616D0 /* UserProfileCell.swift */,
 				4DFDBC101D6262E2006616D0 /* UserProfileCell.xib */,
+				4D5244731D660AE60066C01B /* TipsCell.xib */,
+				4D5244711D66084F0066C01B /* TipsAndTricksTableViewCell.swift */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -262,6 +294,7 @@
 		987972257156501B9FC0529B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+
 				599CF5E42324548824DD0368 /* Pods_Anytrail.framework */,
 				DB2E3A25BA33F309140861F9 /* Pods_AnytrailTests.framework */,
 			);
@@ -385,8 +418,10 @@
 				945F35E71D592179002F9C1E /* GoogleService-Info.plist in Resources */,
 				9424A7791D53D5DA00CE8D42 /* Assets.xcassets in Resources */,
 				8A39490F1D637CF7004A4B94 /* SplashScreen.xcassets in Resources */,
+				4D5244761D6615000066C01B /* TipsAndTricksHeader.xib in Resources */,
 				8A3948FD1D623972004A4B94 /* Paths.xcassets in Resources */,
 				9424A7771D53D5DA00CE8D42 /* Main.storyboard in Resources */,
+				4D5244741D660AE60066C01B /* TipsCell.xib in Resources */,
 				8A3948F71D620BC1004A4B94 /* Path.storyboard in Resources */,
 				4DE1D0A91D60D5F500911AA8 /* ProfileStoryboard.storyboard in Resources */,
 			);
@@ -509,6 +544,7 @@
 				2E1C75751D6362DF00D412FB /* HealthKitUserData.swift in Sources */,
 				8A39490D1D637CC6004A4B94 /* ATSplashScreenController.swift in Sources */,
 				945F35ED1D5A3066002F9C1E /* ATAlertView.swift in Sources */,
+				4D5244721D66084F0066C01B /* TipsAndTricksTableViewCell.swift in Sources */,
 				945F35E01D58F381002F9C1E /* ATMapViewController.swift in Sources */,
 				945F35E41D590DBE002F9C1E /* ATInputCell.swift in Sources */,
 				945F35DE1D58F377002F9C1E /* ATSignupViewController.swift in Sources */,
@@ -519,9 +555,11 @@
 				949370351D62515900C696AE /* ATConstants.swift in Sources */,
 				4D225C1B1D5A0FF600360AB8 /* MashapeAPIClient.swift in Sources */,
 				8A3948F91D621C23004A4B94 /* ATPathViewController.swift in Sources */,
+				4DF1FD1F1D6508C500692309 /* TipsAndTricksViewController.swift in Sources */,
 				4DFDBC151D634806006616D0 /* ProfileMapHeader.swift in Sources */,
 				2E1DA87D1D5E057500F83DFD /* WalkTracker.swift in Sources */,
 				9424A7701D53D5DA00CE8D42 /* AppDelegate.swift in Sources */,
+				4DF1FD221D65106100692309 /* FactsForTipsAndTricks.swift in Sources */,
 				4D225C1F1D5A100800360AB8 /* MashapeData.swift in Sources */,
 				4DB2D9651D58DF18007BD4A5 /* FoursquareData.swift in Sources */,
 				8A6624311D5A8DCB009760DA /* HealthKitDataStore.swift in Sources */,
@@ -529,7 +567,9 @@
 				4DB2D9611D58DEBA007BD4A5 /* FoursquareAPIClient.swift in Sources */,
 				8A53F2EC1D594A4A00F244BE /* Keys.swift in Sources */,
 				8A3948FB1D623743004A4B94 /* ATPathCell.swift in Sources */,
+				4DF1FD1D1D64FC4900692309 /* SurgeonGeneralTableViewController.swift in Sources */,
 				4DB2D9631D58DF04007BD4A5 /* ApisDataStore.swift in Sources */,
+				4D5244781D6615280066C01B /* TipsAndTricksHeader.swift in Sources */,
 				8A3949091D62549E004A4B94 /* ATPathDetailedController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
