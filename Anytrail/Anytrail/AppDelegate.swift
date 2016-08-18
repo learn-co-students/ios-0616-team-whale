@@ -9,18 +9,21 @@
 import FBSDKLoginKit
 import Firebase
 import Mapbox
-
 import UIKit
+import ReachabilitySwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
+    var reachability: Reachability?
     var window: UIWindow?
     //Setup userDefaults
     static let userDefaultWalkData = NSUserDefaults.standardUserDefaults()
     static var activeWorkout = false
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        reachabilitySetup()
+        
         UINavigationBar.appearance().setBackgroundImage(UIImage(), forBarMetrics: .Default)
         UINavigationBar.appearance().backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.0)
         UINavigationBar.appearance().translucent = false
@@ -35,7 +38,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //Setup work if was active when app was terminated
         AppDelegate.activeWorkout = AppDelegate.userDefaultWalkData.valueForKey("workoutActive") as? Bool ?? false
-        
         if AppDelegate.activeWorkout {
             let startDate = AppDelegate.userDefaultWalkData.valueForKey("walkStartDate") as? NSDate
             let continueDate = NSDate()
@@ -44,8 +46,36 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 WalkTrackerViewController.walkTrackerSession = WalkTracker.init(startDate: startDate, continueDate: continueDate)
             }
         }
-        
         return true
+    }
+    
+    func reachabilitySetup() {
+        do {
+            self.reachability = try Reachability.reachabilityForInternetConnection()
+            
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(reachabilityChanged(_:)), name: ReachabilityChangedNotification, object: self.reachability)
+            do{
+                try self.reachability?.startNotifier()
+            }catch{
+                print("couldn't start notifier")
+            }
+        } catch {
+            print("Unable to create Reachability")
+            return
+        }
+    }
+    
+    func reachabilityChanged(note: NSNotification) {
+        let reachability = note.object as! Reachability
+        if reachability.isReachable() {
+            if reachability.isReachableViaWiFi() {
+                print("Reachable via WiFi")
+            } else {
+                print("Reachable via Cellular")
+            }
+        } else {
+            print("Network not reachable")
+        }
     }
     
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
@@ -62,6 +92,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidEnterBackground(application: UIApplication) {
         AppDelegate.userDefaultWalkData.setValue(WalkTrackerViewController.walkTrackerSession.walkStartDate, forKey: "walkStartDate")
         AppDelegate.userDefaultWalkData.setValue(AppDelegate.activeWorkout, forKey: "workoutActive")
+        self.reachability!.stopNotifier()
+        NSNotificationCenter.defaultCenter().removeObserver(self,
+                                                            name: ReachabilityChangedNotification,
+                                                            object: reachability)
+
     }
     
     func applicationWillEnterForeground(application: UIApplication) {
