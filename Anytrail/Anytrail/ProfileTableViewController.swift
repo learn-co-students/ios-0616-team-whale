@@ -81,7 +81,7 @@ class ProfileTableViewController: UIViewController, UITableViewDelegate, UITable
         case "workout":
             cell.giveCellData(workoutIcon, dataLabel: singleHealth.0)
             return cell
-        case "energy-burn":
+        case "energy-burn", "resting-burn":
             cell.giveCellData(energyIcon, dataLabel: singleHealth.0)
             return cell
         case "water":
@@ -93,7 +93,7 @@ class ProfileTableViewController: UIViewController, UITableViewDelegate, UITable
         case "heartrate":
             cell.giveCellData(heartrateIcon, dataLabel: singleHealth.0)
             return cell
-            
+
         default:
             cell.dataLabel?.text = "default cell returning"
             print("default case")

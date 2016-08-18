@@ -102,7 +102,8 @@ class HealthKitDataStore {
         
         user.getDistanceForToday { distanceSum in
             if let distanceSum = distanceSum {
-                self.healthKitUserData.append((distanceSum.description, "distance"))
+                let distance = round(distanceSum * 100) / 100
+                self.healthKitUserData.append((distance.description, "distance"))
             }
             completion()
         }
@@ -124,6 +125,27 @@ class HealthKitDataStore {
         user.getStepCountForToday { stepCountSum in
             if let stepCountSum = stepCountSum {
                 self.healthKitUserData.append((stepCountSum.description, "steps"))
+            }
+            completion()
+        }
+        
+        user.getActiveEnergyForToday { activeEnergySum in
+            if let activeEnergySum = activeEnergySum {
+                self.healthKitUserData.append((activeEnergySum.description, "energy-burn"))
+            }
+            completion()
+        }
+        user.getBasalEnergyForToday { basalEnergySum in
+            if let basalEnergySum = basalEnergySum {
+                self.healthKitUserData.append((basalEnergySum.description, "resting-burn"))
+            }
+            completion()
+        }
+        
+        user.getWaterConsumptionToday { waterConsumptionSum in
+            if let waterConsumptionSum = waterConsumptionSum {
+                let waterConsumed = round(waterConsumptionSum * 10) / 10
+                self.healthKitUserData.append((waterConsumed.description, "water"))
             }
             completion()
         }
