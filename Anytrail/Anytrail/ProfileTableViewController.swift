@@ -48,6 +48,19 @@ class ProfileTableViewController: UIViewController, UITableViewDelegate, UITable
         self.tableView.backgroundColor = UIColor.whiteColor()
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
         
+        HealthKitDataStore.sharedInstance.authorizeHealthKit { error in
+            print(error)
+        }
+        
+        HealthKitDataStore.sharedInstance.getUserTodayHealthKitData {
+            self.healthDummy = HealthKitDataStore.sharedInstance.healthKitUserData
+            dispatch_async(dispatch_get_main_queue()) {
+                self.tableView.reloadData()
+            }
+        }
+    }
+    
+    override func viewDidAppear(animated: Bool) {
         HealthKitDataStore.sharedInstance.getUserTodayHealthKitData {
             self.healthDummy = HealthKitDataStore.sharedInstance.healthKitUserData
             dispatch_async(dispatch_get_main_queue()) {

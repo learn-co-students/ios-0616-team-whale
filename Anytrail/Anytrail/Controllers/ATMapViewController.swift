@@ -167,6 +167,21 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
     }
     
     @IBAction func navigateTapped(sender: AnyObject) {
+        var waypointString = ""
+        
+        for pin in pins {
+            waypointString = waypointString + "\(pin.coordinate.latitude)," + "\(pin.coordinate.longitude)&"
+        }
+        
+        print(waypointString)
+        
+//        if (UIApplication.sharedApplication().canOpenURL(NSURL(string:"comgooglemaps://")!)) {
+//            UIApplication.sharedApplication().openURL(NSURL(string:
+//                "comgooglemaps://?saddr=&daddr=\(place.latitude),\(place.longitude)&directionsmode=driving")!)
+//            
+//        } else {
+//            NSLog("Can't use comgooglemaps://");
+//        }
         
     }
     
