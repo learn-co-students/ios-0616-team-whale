@@ -17,6 +17,10 @@ class FoursquareAPIClient {
     class func getQueryForSearchLandmarks(completion: (JSON?) -> ()){
         let store = LocationDataStore.sharedInstance
 
+        
+        if let longLatArray = store.longLatArray {
+            for ll in longLatArray {
+        
         let coordinatesNESW:[Double] = store.settingRectangleForFoursquare()
         let sw = "\(coordinatesNESW[2]),\(coordinatesNESW[3])"
         let ne = "\(coordinatesNESW[0]),\(coordinatesNESW[1])"
@@ -25,15 +29,16 @@ class FoursquareAPIClient {
         let clientSecret = Keys.fourSquareClientSecret
 
         let v = "20160808"
-        let ll = "40.7, -74"
+        let ll = ""
         let query = "monuments/landmarks"
         let parameter = ["client_id": clientID,
                          "client_secret":clientSecret,
                          "v":v,
                          "ll": ll,
                          "query" : query,
-                         "ne" : ne,
-                         "sw": sw]
+                         "radius" : 200]
+//                         "ne" : ne,
+//                         "sw": sw]
 
         Alamofire.request(.GET, ATConstants.Endpoints.FOURSQUARE_GET_VENUES, parameters: parameter, headers: nil).responseJSON { (response) in
             if let data = response.data {
@@ -47,5 +52,5 @@ class FoursquareAPIClient {
                 completion(jsonData)
             }
         }
-    }
+            }}}
 }
