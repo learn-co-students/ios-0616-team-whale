@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell userInteractionEnabled="NO" contentMode="scaleToFill" restorationIdentifier="TipsCell" selectionStyle="default" indentationWidth="10" rowHeight="179" id="Ev0-BO-mat" userLabel="Tips Cell" customClass="TipsAndTricksTableViewCell" customModule="Anytrail" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="385" height="179"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" tableViewCell="Ev0-BO-mat" id="Ehk-C3-O2p">
+                <rect key="frame" x="0.0" y="0.0" width="385" height="178"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E24-Jf-Ge3" userLabel="userCellBackgroundView">
+                        <rect key="frame" x="18" y="18" width="349" height="142"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="kRJ-k2-qOH">
+                                <rect key="frame" x="5" y="5" width="339" height="132"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="GeezaPro-Bold" family="Geeza Pro" pointSize="15"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="kRJ-k2-qOH" firstAttribute="centerY" secondItem="E24-Jf-Ge3" secondAttribute="centerY" id="3fY-Le-7mw"/>
+                            <constraint firstItem="kRJ-k2-qOH" firstAttribute="height" secondItem="E24-Jf-Ge3" secondAttribute="height" multiplier="0.8" id="GVS-7q-lSP"/>
+                            <constraint firstItem="kRJ-k2-qOH" firstAttribute="leading" secondItem="E24-Jf-Ge3" secondAttribute="leading" constant="5" id="IqP-Sw-l7y"/>
+                            <constraint firstItem="kRJ-k2-qOH" firstAttribute="top" secondItem="E24-Jf-Ge3" secondAttribute="top" constant="5" id="P6Q-Wf-aMY"/>
+                            <constraint firstAttribute="bottom" secondItem="kRJ-k2-qOH" secondAttribute="bottom" constant="5" id="PFw-Ci-uNS"/>
+                            <constraint firstItem="kRJ-k2-qOH" firstAttribute="width" secondItem="E24-Jf-Ge3" secondAttribute="width" id="S7e-D1-wE4"/>
+                            <constraint firstItem="kRJ-k2-qOH" firstAttribute="width" secondItem="E24-Jf-Ge3" secondAttribute="width" multiplier="0.8" id="gnV-2c-kDn"/>
+                            <constraint firstItem="kRJ-k2-qOH" firstAttribute="height" secondItem="E24-Jf-Ge3" secondAttribute="height" id="jvi-Ns-aGn"/>
+                            <constraint firstItem="kRJ-k2-qOH" firstAttribute="centerX" secondItem="E24-Jf-Ge3" secondAttribute="centerX" id="jwT-h2-yiE"/>
+                            <constraint firstAttribute="trailing" secondItem="kRJ-k2-qOH" secondAttribute="trailing" constant="5" id="sQH-Ny-6RX"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="GVS-7q-lSP"/>
+                                <exclude reference="S7e-D1-wE4"/>
+                                <exclude reference="gnV-2c-kDn"/>
+                                <exclude reference="jvi-Ns-aGn"/>
+                            </mask>
+                        </variation>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailingMargin" secondItem="E24-Jf-Ge3" secondAttribute="trailing" constant="10" id="6rr-BG-zq8"/>
+                    <constraint firstItem="E24-Jf-Ge3" firstAttribute="centerY" secondItem="Ehk-C3-O2p" secondAttribute="centerY" id="BXS-VD-n6X"/>
+                    <constraint firstItem="E24-Jf-Ge3" firstAttribute="centerX" secondItem="Ehk-C3-O2p" secondAttribute="centerX" id="IS4-EP-zy4"/>
+                    <constraint firstItem="E24-Jf-Ge3" firstAttribute="leading" secondItem="Ehk-C3-O2p" secondAttribute="leadingMargin" constant="10" id="OGe-JR-paT"/>
+                    <constraint firstItem="E24-Jf-Ge3" firstAttribute="height" secondItem="Ehk-C3-O2p" secondAttribute="height" multiplier="0.92" id="jtx-dV-esX"/>
+                    <constraint firstItem="E24-Jf-Ge3" firstAttribute="top" secondItem="Ehk-C3-O2p" secondAttribute="topMargin" constant="10" id="k7s-FT-APH"/>
+                    <constraint firstItem="E24-Jf-Ge3" firstAttribute="width" secondItem="Ehk-C3-O2p" secondAttribute="width" multiplier="0.92" id="o97-6J-fgV"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="E24-Jf-Ge3" secondAttribute="bottom" constant="10" id="pda-X8-bie"/>
+                </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="jtx-dV-esX"/>
+                        <exclude reference="o97-6J-fgV"/>
+                    </mask>
+                </variation>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="dataLabel" destination="kRJ-k2-qOH" id="33b-hH-pIH"/>
+                <outlet property="userCellBackgroundView" destination="E24-Jf-Ge3" id="Xd5-eh-fcf"/>
+            </connections>
+            <point key="canvasLocation" x="705.5" y="394.5"/>
+        </tableViewCell>
+    </objects>
+</document>

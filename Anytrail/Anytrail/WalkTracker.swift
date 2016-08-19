@@ -12,28 +12,28 @@ import HealthKit
 
 class WalkTracker: NSObject {
     
-    var pedometer: CMPedometer
-    var walkTimer: NSTimer
-    var walkStartDate: NSDate
-    var walkEndDate: NSDate
-    var currentWalkTime: Double
-    var walkDistance: Double
+    static let sharedInstance = WalkTracker()
     
-    override init() {
-        self.pedometer = CMPedometer()
-        self.walkTimer = NSTimer()
-        self.walkStartDate = NSDate()
-        self.walkEndDate = NSDate()
-        currentWalkTime = 0.0
-        walkDistance = 0.0
+    let pedometer = CMPedometer()
+    lazy var walkTimer = NSTimer()
+    var walkStartDate = NSDate()
+    var walkEndDate: NSDate?
+    var currentWalkTime = 0.0
+    var walkDistance = 0.0
+    var pace = 0.0
+    var activeWalk: Bool?
+    
+    func continueSession(startDate: NSDate, continueDate: NSDate) {
+        walkStartDate = startDate
+        currentWalkTime = secondsBetweenDates(startDate, endDate: continueDate)
+        getWalkDistance(startDate, endDate: continueDate)
+        walkTimer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: #selector(updateWalkDistanceAndTime(_:)), userInfo: nil, repeats: true)
     }
     
-    convenience init(startDate: NSDate, continueDate: NSDate) {
-        self.init()
-        self.walkStartDate = startDate
-        self.walkEndDate = continueDate
-        self.currentWalkTime = secondsBetweenDates(startDate, endDate: continueDate)
-        getWalkDistance(startDate, endDate: continueDate)
+    func resetWalk() {
+        currentWalkTime = 0.0
+        walkDistance = 0.0
+        pace = 0.0
     }
     
     func secondsBetweenDates(startDate: NSDate, endDate: NSDate) -> Double {
@@ -57,12 +57,9 @@ class WalkTracker: NSObject {
     }
     
     func startWalk() {
-        walkTimer = NSTimer.scheduledTimerWithTimeInterval(0.1,
-                                                           target: self,
-                                                           selector: #selector(updateWalkDistanceAndTime(_:)),
-                                                           userInfo: nil,
-                                                           repeats: true)
-        AppDelegate.activeWorkout = true
+        walkTimer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: #selector(updateWalkDistanceAndTime(_:)), userInfo: nil, repeats: true)
+        walkStartDate = NSDate()
+        activeWalk = true
     }
     
     func updateWalkDistance() {
@@ -73,6 +70,11 @@ class WalkTracker: NSObject {
                 return
             }
             let distanceWalked = pedometerData.distance
+            let currentPace = pedometerData.currentPace
+            if let currentPace = currentPace {
+                self.pace = currentPace.doubleValue
+            }
+            
             if let distanceWalked = distanceWalked {
                 self.walkDistance = Double(distanceWalked)
             }
@@ -84,13 +86,17 @@ class WalkTracker: NSObject {
         updateWalkDistance()
     }
     
-    func stopWalk() {
+    func stopWalk(completion: Bool -> Void) {
         walkEndDate = NSDate()
         pedometer.stopPedometerUpdates()
-        AppDelegate.activeWorkout = false
+        activeWalk = false
         walkTimer.invalidate()
-        HealthKitDataStore.sharedInstance.saveWalk(walkDistance, timeRecorded: currentWalkTime, startDate: walkStartDate, endDate: walkEndDate) { saveResult, error in
-            print(saveResult)
+        
+        if let walkEndDate = walkEndDate {
+            HealthKitDataStore.sharedInstance.saveWalk(walkDistance, timeRecorded: currentWalkTime, startDate: walkStartDate, endDate: walkEndDate) { saveResult, error in
+                completion(saveResult)
+            }
         }
+        resetWalk()
     }
 }

@@ -17,10 +17,10 @@ class UserProfileCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        dataLabel.text = "DATA"
+        //dataLabel.text = "DATA"
         print("awake from nib")
         self.configureCell()
-        dataLabel.textColor = UIColor.blackColor()
+        dataLabel.textColor = UIColor(red: 80/225, green: 80/225, blue: 80/255, alpha: 1)
         self.backgroundColor = UIColor.whiteColor()
     }
     
@@ -31,7 +31,7 @@ class UserProfileCell: UITableViewCell {
     }
     func configureCell(){
         self.userCellBackgroundView?.layer.cornerRadius = 8.0
-        self.userCellBackgroundView.backgroundColor = UIColor.lightGrayColor()
+        self.userCellBackgroundView.backgroundColor = UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1)
     }
     
     func giveCellData(dataIconStringName: UIImage, dataLabel: String) {
