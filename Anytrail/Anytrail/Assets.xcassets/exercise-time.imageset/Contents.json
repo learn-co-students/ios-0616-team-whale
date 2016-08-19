@@ -2,15 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "exerciseTime.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "exerciseTime@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "exerciseTime.png",
+      "filename" : "exerciseTime@3x.png",
       "scale" : "3x"
     }
   ],

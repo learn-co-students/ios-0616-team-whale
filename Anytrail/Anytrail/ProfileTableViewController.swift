@@ -59,34 +59,21 @@ class ProfileTableViewController: UIViewController, UITableViewDelegate, UITable
         return 80.0
     }
     func numberOfSectionsInTableView(tableView: UITableView) -> Int{
-        return 2
+        return 1
     }
     
-    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //Mark: TODO take out the switch here after testing.
-        switch section {
-        case 0:
-            return 4
-        default:
-            return healthDummy.count
-        }
-//        return healthDummy.count
+        return healthDummy.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell: UserProfileCell = self.tableView.dequeueReusableCellWithIdentifier("userProfileCellData", forIndexPath: indexPath) as! UserProfileCell
         cell.userInteractionEnabled = false
-//        cell.userCellBackgroundView?.layer.cornerRadius = 8.0
-
-        switch indexPath.section {
-        case 0:
-            return cell
-        default:
-            
+        //        cell.userCellBackgroundView?.layer.cornerRadius = 8.0
+        
         let singleHealth = healthDummy[indexPath.row]
-       
+        
         switch(singleHealth.1) {
         case "steps":
             cell.giveCellData(stepsIcon, dataLabel: singleHealth.0)
@@ -112,26 +99,18 @@ class ProfileTableViewController: UIViewController, UITableViewDelegate, UITable
         case "heartrate":
             cell.giveCellData(heartrateIcon, dataLabel: singleHealth.0)
             return cell
-
+            
         default:
             cell.dataLabel?.text = "default cell returning"
             print("default case")
             return cell
-            }
         }
+        
         
         
     }
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        switch section {
-        case 0:
-            return "Test"
-        default:
-            return "Today"
-            
-            
-        }
-        
+        return "Today"
     }
 }
