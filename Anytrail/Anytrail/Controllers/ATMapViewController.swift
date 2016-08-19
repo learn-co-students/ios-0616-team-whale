@@ -9,6 +9,7 @@
 import Mapbox
 import MapboxDirections
 import MapboxGeocoder
+import ReachabilitySwift
 
 import UIKit
 
@@ -486,6 +487,10 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
+//        print("\n\n\n\n\n\n\nSUPER DID LOAD \n\n\n\n\n\n\n\n\n")
+//        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(reachabilityChanged), name: ReachabilityChangedNotification , object: nil)
+//        
+//        reachability?.notificationCenter
         
         geocoder = Geocoder(accessToken: Keys.mapBoxToken)
         
@@ -557,6 +562,37 @@ extension ATMapViewController {
         let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay * Double(NSEC_PER_SEC)))
         dispatch_after(time, dispatch_get_main_queue(), block)
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(true)
+        print("\n\n\n\n\n\n\n\n\nInside view will appear method in ATMapViewController")
+        print(reachability)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(reachabilityChanged), name: ReachabilityChangedNotification, object: nil)
+        print("\n\n\nAFTER NOTIFICARTION!\n\n\n\n\n\n\n\n\n\n")
+//                ATAlertView.alertWithTitle(self, type: ATAlertView.ATAlertViewType.Error, title: "Oops!", text: "Something went wrong, check the Internet connection") {}
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        print("Inside viewDidAppear")
+        print(reachability)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: ReachabilityChangedNotification, object: nil)
+        
+    }
+    func reachabilityChanged() {
+        print("REACH: \(reachability)")
+        print("\n\n\n\n\n\nInside reachability method\n\n\n\n\n\n\n\n")
+        guard let reachability = reachability else { print("\n\n\n\n\n\nAbout to return\n\n\n\n\n\n"); return}
+        if reachability.isReachable() {
+            if reachability.isReachableViaWiFi() {
+                //print(reachability)
+                print("Reachable via WiFi@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+            } else {
+                print("Reachable via Cellular")
+            }
+        } else {
+            print("Network not reachable")
+            ATAlertView.alertWithTitle(self, type: ATAlertView.ATAlertViewType.Error, title: "Oops!", text: "Something went wrong, check the Internet connection") {}
+
+        }
+    }
 }
-
-
