@@ -18,6 +18,9 @@ class ApisDataStore {
     }
     
     var foursquareData: [FoursquareData] = []
+    var mashapeData: [MashapeData] = []
+    var foursquareIDs: [String] = []
+
     
     func getDataWithCompletion(completion: () -> ()) {
         FoursquareAPIClient.getQueryForSearchLandmarks { (json) in
@@ -36,7 +39,10 @@ class ApisDataStore {
         }
     }
     
-    var mashapeData: [MashapeData] = []
+    func getPhotoIDDataWithCompletion(completion: () -> ()) {
+        FoursquareAPIClient.getPhotoForVenue(<#T##venueIdentifier: String##String#>, completion: <#T##(UIImage?) -> ()#>)
+    }
+    
     
     func getTrailsWithCompletion(completion: () -> ()) {
         MashapeAPIClient.getTrails { (json) in

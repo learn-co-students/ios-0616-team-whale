@@ -141,7 +141,7 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
             })
             
             addFoursquareAnnotations({ (count) in
-                self.reshowDropdown(withView: .Label, hintText: "Awesome! We found \(count) places to pass on your way.\nStart by selecting some!")
+                self.reshowDropdown(withView: .Label, hintText: "Awesome! We found \(count) places to visit on your way.\nStart by selecting some!")
                 self.dropdownBarButton.enabled = true
                 self.drawRouteButton.enabled = true
             })
@@ -345,13 +345,13 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
     // MARK: - Foursquare API
 
     func addFoursquareAnnotations(completion: (count: Int) -> ()) {
+        
         pointsOfInterest.removeAll()
         locationStore.origin = origin.coordinate
         locationStore.destination = destination.coordinate
-
         locationStore.settingRectangleForFoursquare()
 
-        store.getDataWithCompletion {
+        self.store.getDataWithCompletion {
             for location in self.store.foursquareData {
                 let pin = ATAnnotation()
 
@@ -361,10 +361,13 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
                 pin.type = .PointOfInterest
 
                 self.pointsOfInterest.append(pin)
+                NSOperationQueue.mainQueue().addOperationWithBlock {
+                
                 self.mapView.addAnnotation(pin)
-            }
+                }
 
             completion(count: self.pointsOfInterest.count)
+            }
         }
     }
 
