@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10174" systemVersion="15G31" minimumToolsVersion="Xcode 7.0">
+    <entity name="Coordinate" representedClassName=".Coordinate" syncable="YES">
+        <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+    </entity>
+    <entity name="Path" representedClassName=".Path" syncable="YES">
+        <relationship name="waypoints" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Coordinate" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Coordinate" positionX="-63" positionY="-18" width="128" height="73"/>
+        <element name="Path" positionX="214" positionY="-9" width="128" height="58"/>
+    </elements>
+</model>

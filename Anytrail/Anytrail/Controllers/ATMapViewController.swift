@@ -32,7 +32,7 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
     var routeLine: MGLPolyline!
 
     var createMode: Bool = false
-    var pins: [MGLAnnotation] = []
+    var waypoints: [ATAnnotation] = []
     var pointsOfInterest: [ATAnnotation] = []
 
     var dropdownView: ATDropdownView! = nil
@@ -42,7 +42,7 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
     // 1 => Default, setting origin and destination
     // 2 => Waypoints, selecting waypoints
     // 3 => Route, creating final route
-
+    
     enum ATCurrentStage: Int {
         case Default = 1
         case Waypoints = 2
@@ -79,6 +79,7 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
             dropdownView.updateDestinationTextField(locationStore.destinationString!)
             
             dropdownView.show()
+            dropdownDisplayed = true
 
         } else {
             dropdownView.hide()
@@ -92,7 +93,9 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
 
                 self.dropdownView.updateOriginTextField(self.locationStore.originString!)
                 self.dropdownView.updateDestinationTextField(self.locationStore.destinationString!)
+                
                 self.dropdownView.show()
+                self.dropdownDisplayed = true
             })
         }
     }
@@ -112,7 +115,6 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
                 dropdownView.show()
                 dropdownDisplayed = true
             }
-
         } else {
             currentStage = .Default
             reshowDropdown(withView: .Default, hintText: "")
@@ -120,6 +122,8 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
             UIView.animateWithDuration(0.3, animations: {
                 self.dropdownBarButton.image = UIImage(named: "dropdown")
             })
+            
+            self.tabBarController?.setTabBarVisible(true, animated: true)
 
             // This will empty all arrays pertaining to data on the map
             // and ultimately wipe it clean. Retains origin/destination
@@ -130,7 +134,6 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
     @IBAction func create() {
         if currentStage == .Default {
             createMode = true
-
             currentStage = .Waypoints
 
             UIView.animateWithDuration(0.3, animations: {
@@ -142,18 +145,25 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
             
             addFoursquareAnnotations({ (count) in
                 self.reshowDropdown(withView: .Label, hintText: "Awesome! We found \(count) places to pass on your way.\nStart by selecting some!")
+                
                 self.dropdownBarButton.enabled = true
                 self.drawRouteButton.enabled = true
             })
 
         } else if currentStage == .Waypoints {
-            // Waypoints selected, sort and generate route
-            // Change icon to GO
-            
-            if pins.count > 0 {
+            if (waypoints.count > 25) {
+                let waypointPlural = abs(25 - waypoints.count) == 1 ? "waypoint" : "waypoints"
+                ATAlertView.alertWithTitle(self, type: .Error, title: "Whoops", text: "Too many points selected. Remove \(abs(25 - waypoints.count)) \(waypointPlural)", callback: {
+                    return
+                })
+                
+            } else if waypoints.count > 0 {
                 currentStage = .Route
                 createPath({ (time) in
-                    self.reshowDropdown(withView: .Label, hintText: "Your walk will last about \(time).\nEnjoy your walk to \(self.destination.title!)!")
+                    self.reshowDropdown(withView: .Label, hintText: "Your walk will take about \(time).\nEnjoy your walk to \(self.destination.title!)!")
+                    
+                    // self.tabBarController?.setTabBarVisible(false, animated: true)
+                    // slide up start/stop
                 })
                 
             } else {
@@ -200,15 +210,15 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
                 })
             }
 
-            let pin = annotation as! ATAnnotation
-            pin.type = .Waypoint
+            let waypoint = annotation as! ATAnnotation
+            waypoint.type = .Waypoint
 
-            if self.containsPin(pin) {
-                ATAlertView.alertWithConfirmationForVenue(self, image: UIImage(named: "venue")!, title: annotation.title!!, text: "You are about to remove this place as a waypoint.", action: "Remove", callback: {
-                    self.pointsOfInterest.append(pin)
-
-                    if let index = self.pins.indexOf({ $0.title! == pin.title! }) {
-                        self.pins.removeAtIndex(index)
+            if self.containsWaypoint(waypoint) {
+                ATAlertView.alertWithConfirmationForVenue(self, image: UIImage(named: "bloody-angle")!, title: annotation.title!!, text: "You are about to remove this place as a waypoint.", action: "Remove", callback: {
+                    
+                    if let index = self.waypoints.indexOf({ $0.title! == waypoint.title! }) {
+                        self.waypoints.removeAtIndex(index)
+                        self.pointsOfInterest.append(waypoint)
                     }
 
                     let pin = annotation as! ATAnnotation
@@ -230,11 +240,11 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
                 })
             }
 
-            ATAlertView.alertWithConfirmationForVenue(self, image: UIImage(named: "venue")!, title: annotation.title!!, text: "You are about to add this place as a waypoint.", action: "Add", callback: {
-                self.pins.append(annotation)
-
+            ATAlertView.alertWithConfirmationForVenue(self, image: UIImage(named: "bloody-angle")!, title: annotation.title!!, text: "You are about to add this place as a waypoint.", action: "Add", callback: {
                 let pin = annotation as! ATAnnotation
                 pin.type = .Waypoint
+                
+                self.waypoints.append(pin)
 
                 let annotationView = mapView.viewForAnnotation(annotation)
                 annotationView?.backgroundColor = pin.backgroundColor
@@ -301,21 +311,22 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
 
                         if type == .Origin {
                             self.assignOrigin(pin)
+                            self.mapView.setCenterCoordinate(pin.coordinate, animated: true)
                             return
 
                         } else if type == .Destination {
-                            print("THIS PIN THINKS IT'S DESTINATION: \(pin)")
                             self.assignDestination(pin)
                             return
                         }
 
-                        if !self.pinIsDuplicate(pin) {
-                            self.pins.append(pin)
-                            self.mapView.addAnnotation(pin)
-
-                        } else {
-                            // Pin already exists (gesture recognizer spam issue)
-                        }
+//                        if !self.pinIsDuplicate(pin) {
+//                            self.waypoints.append(pin)
+//                            self.mapView.addAnnotation(pin)
+//                            print("Added pin: \(pin)")
+//
+//                        } else {
+//                            // Pin already exists (gesture recognizer spam issue)
+//                        }
                     }
 
                 } else {
@@ -327,20 +338,20 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
         }
     }
 
-    func reverseGeocode(location: CLLocation, completion: (address: String?) -> ()) {
-        let options = ReverseGeocodeOptions(location: location)
-
-        geocoder.geocode(options: options) { (placemarks, attribution, error) in
-            if error == nil {
-                if let placemarks = placemarks {
-                    completion(address: placemarks[0].name)
-                }
-            } else {
-                print("Error reverse-geocoding: \(error)")
-                completion(address: nil)
-            }
-        }
-    }
+//    func reverseGeocode(location: CLLocation, completion: (address: String?) -> ()) {
+//        let options = ReverseGeocodeOptions(location: location)
+//
+//        geocoder.geocode(options: options) { (placemarks, attribution, error) in
+//            if error == nil {
+//                if let placemarks = placemarks {
+//                    completion(address: placemarks[0].name)
+//                }
+//            } else {
+//                print("Error reverse-geocoding: \(error)")
+//                completion(address: nil)
+//            }
+//        }
+//    }
 
     // MARK: - Foursquare API
 
@@ -428,17 +439,10 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
 
         var waypoints: [Waypoint] = []
 
-        for pin in pins {
-            let waypoint = Waypoint(coordinate: pin.coordinate)
+        for waypoint in self.waypoints {
+            let waypoint = Waypoint(coordinate: waypoint.coordinate)
             waypoints.append(waypoint)
         }
-        
-        print("Waypoints (unsorted)")
-        for point in waypoints {
-            print(point.coordinate)
-        }
-
-        sortWaypoints(waypoints)
 
         let originWaypoint = Waypoint(coordinate: origin.coordinate)
         let destinationWaypoint = Waypoint(coordinate: destination.coordinate)
@@ -446,16 +450,12 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
         waypoints.insert(originWaypoint, atIndex: 0)
         waypoints.append(destinationWaypoint)
         
-        print("Waypoints (sorted)")
-        for point in waypoints {
-            print(point.coordinate)
-        }
-
         // Directions
 
         let directions = Directions(accessToken: Keys.mapBoxToken)
         let options = RouteOptions(waypoints: waypoints, profileIdentifier: MBDirectionsProfileIdentifierWalking)
         options.includesSteps = true
+        options.routeShapeResolution = .Full
 
         directions.calculateDirections(options: options) { (waypoints, routes, error) in
             guard error == nil else {
@@ -477,11 +477,12 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
                 
                 completion(time: formattedTravelTime!)
 
-                for step in leg.steps {
-                    // print("\(step.instructions)")
-                    let formattedDistance = distanceFormatter.stringFromMeters(step.distance)
-                    print("— \(formattedDistance) —")
-                }
+//                for step in leg.steps {
+//                    // print("\(step.instructions)")
+//                    
+//                    // let formattedDistance = distanceFormatter.stringFromMeters(step.distance)
+//                    // print("— \(formattedDistance) —")
+//                }
 
                 if route.coordinateCount > 0 {
                     var routeCoordinates = route.coordinates!
@@ -494,37 +495,6 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
         }
     }
 
-    //    func dropPin(tap: UIGestureRecognizer) {
-    //        let location: CLLocationCoordinate2D = mapView.convertPoint(tap.locationInView(mapView), toCoordinateFromView: mapView)
-    //        let coordinate = CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
-    //
-    //        let pin = MGLPointAnnotation()
-    //        pin.coordinate = coordinate
-    //        pin.title = "Hello!"
-    //        pin.subtitle = "You placed me at (\(coordinate.latitude), \(coordinate.longitude))"
-    //
-    //        if !pinIsDuplicate(pin) {
-    //            pins.append(pin)
-    //            mapView.addAnnotation(pin)
-    //
-    //        } else {
-    //            ATAlertView.alertWithTitle(self, type: ATAlertView.ATAlertViewType.Normal, title: "Whoops", text: "You've already added this pin", callback: {
-    //                return
-    //            })
-    //
-    //            // May just return instead of alert
-    //        }
-    //
-    //        //        if let annotations = mapView.annotations {
-    //        //            for pin in annotations {
-    //        //                print("Pin: \(pin.coordinate)")
-    //        //            }
-    //        //        }
-    //
-    //        // let polyline = MGLPolyline(coordinates: &coordinates, count: UInt(coordinates.count))
-    //        // mapView.addAnnotation(polyline)
-    //    }
-
     // MARK: - View
 
     override func viewDidLoad() {
@@ -534,16 +504,17 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
 
         dropdownView = ATDropdownView(view: self.view)
         dropdownView.delegate = self
+        
+        delay(0.3, block: {
+            self.dropdownView.show()
+            self.dropdownDisplayed = true
+        })
+        
+        currentStage = .Default
 
         // TODO: Remove. Only for fast debugging and testing
         // dropdownDidUpdateOrigin("11 Broadway New York, NY")
         // dropdownDidUpdateDestination("Alphabet City")
-
-        currentStage = .Default
-
-        // TODO: Implement for dropping origin/destination with alert prompt for each
-        // gestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(dropPin))
-        // mapView.addGestureRecognizer(gestureRecognizer)
 
         // TODO: Implement these APIs
         //
@@ -585,8 +556,8 @@ extension ATMapViewController {
     func pinIsDuplicate(pin: MGLAnnotation) -> Bool {
         let coordinate = pin.coordinate
 
-        for pin in pins {
-            if coordinatesEqual(pin.coordinate, other: coordinate) {
+        for waypoint in self.waypoints {
+            if coordinatesEqual(waypoint.coordinate, other: coordinate) {
                 return true
             }
         }
@@ -594,8 +565,8 @@ extension ATMapViewController {
         return false
     }
 
-    func containsPin(pin: ATAnnotation) -> Bool {
-        if pins.contains({ $0.title!! == pin.title! }) {
+    func containsWaypoint(waypoint: ATAnnotation) -> Bool {
+        if waypoints.contains({ $0.title! == waypoint.title! }) {
             return true
         }
 
@@ -609,9 +580,9 @@ extension ATMapViewController {
     }
     
     func clearMapView() {
-        removeWaypoints()
-        removeUnusedWaypoints()
         removePath()
+        removeUnusedWaypoints()
+        removeWaypoints()
     }
     
     func removePath() {
@@ -622,17 +593,43 @@ extension ATMapViewController {
     }
 
     func removeWaypoints() {
-        mapView.removeAnnotations(pins)
-        pins.removeAll()
+        mapView.removeAnnotations(waypoints)
+        waypoints.removeAll()
     }
 
     func removeUnusedWaypoints() {
         mapView.removeAnnotations(pointsOfInterest)
         pointsOfInterest.removeAll()
     }
+    
+    // MARK: - Helpers
 
     func delay(delay: NSTimeInterval, block: dispatch_block_t) {
         let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay * Double(NSEC_PER_SEC)))
         dispatch_after(time, dispatch_get_main_queue(), block)
+    }
+}
+
+extension UITabBarController {
+    
+    func setTabBarVisible(visible: Bool, animated: Bool) {
+        if (tabBarIsVisible() == visible) {
+            return
+        }
+        
+        let frame = self.tabBar.frame
+        let height = frame.size.height
+        let offsetY = (visible ? -height : height)
+        
+        UIView.animateWithDuration(animated ? 0.3 : 0.0) {
+            self.tabBar.frame = CGRectOffset(frame, 0, offsetY)
+            self.view.frame = CGRectMake(0, 0, self.view.frame.width, self.view.frame.height + offsetY)
+            self.view.setNeedsDisplay()
+            self.view.layoutIfNeeded()
+        }
+    }
+    
+    func tabBarIsVisible() -> Bool {
+        return self.tabBar.frame.origin.y < CGRectGetMaxY(self.view.frame)
     }
 }

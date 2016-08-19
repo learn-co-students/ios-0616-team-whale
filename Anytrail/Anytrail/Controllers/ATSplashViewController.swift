@@ -9,7 +9,6 @@
 import UIKit
 import Firebase
 import FBSDKLoginKit
-import JSSAlertView
 
 class ATSplashViewController: UIViewController {
     

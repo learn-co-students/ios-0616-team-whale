@@ -45,6 +45,8 @@ class FoursquareAPIClient {
 //                    }
 //                }
                 completion(jsonData)
+            } else {
+                print("network connection")
             }
         }
     }

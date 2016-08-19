@@ -29,7 +29,7 @@ class ATDropdownView: UIView, UITextFieldDelegate {
     
     private var hintLabel: UILabel!
     
-    internal enum ATDropownViewType: Int {
+    enum ATDropownViewType: Int {
         case Default
         case Label
     }

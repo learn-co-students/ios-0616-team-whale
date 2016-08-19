@@ -42,6 +42,14 @@
 		9424A7791D53D5DA00CE8D42 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9424A7781D53D5DA00CE8D42 /* Assets.xcassets */; };
 		9424A77C1D53D5DA00CE8D42 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9424A77A1D53D5DA00CE8D42 /* LaunchScreen.storyboard */; };
 		9424A7871D53D5DA00CE8D42 /* AnytrailTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9424A7861D53D5DA00CE8D42 /* AnytrailTests.swift */; };
+		9437CADF1D663C660060E9CF /* AnytrailKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9437CADE1D663C660060E9CF /* AnytrailKit.swift */; };
+		9437CAE21D6645B20060E9CF /* Paths.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9437CAE01D6645B20060E9CF /* Paths.xcdatamodeld */; };
+		9437CAE41D664B8A0060E9CF /* ATPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9437CAE31D664B8A0060E9CF /* ATPath.swift */; };
+		9437CAE71D6755130060E9CF /* JSSAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9437CAE61D6755130060E9CF /* JSSAlertView.swift */; };
+		9437CAEC1D678AFE0060E9CF /* Coordinate+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9437CAE81D678AFE0060E9CF /* Coordinate+CoreDataProperties.swift */; };
+		9437CAED1D678AFE0060E9CF /* Coordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9437CAE91D678AFE0060E9CF /* Coordinate.swift */; };
+		9437CAEE1D678AFE0060E9CF /* Path+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9437CAEA1D678AFE0060E9CF /* Path+CoreDataProperties.swift */; };
+		9437CAEF1D678AFE0060E9CF /* Path.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9437CAEB1D678AFE0060E9CF /* Path.swift */; };
 		9458E8D91D5CF44B007CDD47 /* ATDropdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9458E8D81D5CF44B007CDD47 /* ATDropdownView.swift */; };
 		945F35DC1D58F30B002F9C1E /* ATSplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945F35DB1D58F30B002F9C1E /* ATSplashViewController.swift */; };
 		945F35DE1D58F377002F9C1E /* ATSignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945F35DD1D58F377002F9C1E /* ATSignupViewController.swift */; };
@@ -109,6 +117,14 @@
 		9424A7821D53D5DA00CE8D42 /* AnytrailTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AnytrailTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9424A7861D53D5DA00CE8D42 /* AnytrailTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnytrailTests.swift; sourceTree = "<group>"; };
 		9424A7881D53D5DA00CE8D42 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9437CADE1D663C660060E9CF /* AnytrailKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnytrailKit.swift; sourceTree = "<group>"; };
+		9437CAE11D6645B20060E9CF /* Paths.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Paths.xcdatamodel; sourceTree = "<group>"; };
+		9437CAE31D664B8A0060E9CF /* ATPath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ATPath.swift; path = Models/ATPath.swift; sourceTree = "<group>"; };
+		9437CAE61D6755130060E9CF /* JSSAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSSAlertView.swift; sourceTree = "<group>"; };
+		9437CAE81D678AFE0060E9CF /* Coordinate+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Coordinate+CoreDataProperties.swift"; path = "Models/Coordinate+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		9437CAE91D678AFE0060E9CF /* Coordinate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Coordinate.swift; path = Models/Coordinate.swift; sourceTree = "<group>"; };
+		9437CAEA1D678AFE0060E9CF /* Path+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Path+CoreDataProperties.swift"; path = "Models/Path+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		9437CAEB1D678AFE0060E9CF /* Path.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Path.swift; path = Models/Path.swift; sourceTree = "<group>"; };
 		9458E8D81D5CF44B007CDD47 /* ATDropdownView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ATDropdownView.swift; path = UI/ATDropdownView.swift; sourceTree = "<group>"; };
 		945F35DB1D58F30B002F9C1E /* ATSplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ATSplashViewController.swift; path = Controllers/ATSplashViewController.swift; sourceTree = "<group>"; };
 		945F35DD1D58F377002F9C1E /* ATSignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ATSignupViewController.swift; path = Controllers/ATSignupViewController.swift; sourceTree = "<group>"; };
@@ -172,20 +188,13 @@
 			isa = PBXGroup;
 			children = (
 				2E1C75781D638A9800D412FB /* Anytrail.entitlements */,
-				8A53F2EB1D594A4A00F244BE /* Keys.swift */,
+				9437CAE01D6645B20060E9CF /* Paths.xcdatamodeld */,
 				9424A76F1D53D5DA00CE8D42 /* AppDelegate.swift */,
-				8A66242E1D5A8DCB009760DA /* HealthKitDataStore.swift */,
-				2E1C75741D6362DF00D412FB /* HealthKitUserData.swift */,
-				4D225C1A1D5A0FF600360AB8 /* MashapeAPIClient.swift */,
-				4D225C1E1D5A100800360AB8 /* MashapeData.swift */,
-				4DB2D9601D58DEBA007BD4A5 /* FoursquareAPIClient.swift */,
-				4DB2D9641D58DF18007BD4A5 /* FoursquareData.swift */,
-				2E1DA87B1D5E057500F83DFD /* WalkTracker.swift */,
-				8A53F2F01D594E3E00F244BE /* TrailApiClient.swift */,
-				4DB2D9621D58DF04007BD4A5 /* ApisDataStore.swift */,
-				4DB2D9641D58DF18007BD4A5 /* FoursquareData.swift */,
-				4DEE998D1D64A1BC004BC91C /* LocationDataStore.swift */,
+				8A53F2EB1D594A4A00F244BE /* Keys.swift */,
 				949370341D62515900C696AE /* ATConstants.swift */,
+				9437CADE1D663C660060E9CF /* AnytrailKit.swift */,
+				9437CAE51D664B8D0060E9CF /* Model */,
+				9437CADD1D66063F0060E9CF /* API */,
 				945F35EE1D5A306A002F9C1E /* UI */,
 				945F35EB1D593648002F9C1E /* Utility */,
 				945F35E51D5911A1002F9C1E /* Cell */,
@@ -230,6 +239,35 @@
 			name = Controller;
 			sourceTree = "<group>";
 		};
+		9437CADD1D66063F0060E9CF /* API */ = {
+			isa = PBXGroup;
+			children = (
+				2E1DA87B1D5E057500F83DFD /* WalkTracker.swift */,
+				8A66242E1D5A8DCB009760DA /* HealthKitDataStore.swift */,
+				2E1C75741D6362DF00D412FB /* HealthKitUserData.swift */,
+				4D225C1A1D5A0FF600360AB8 /* MashapeAPIClient.swift */,
+				4D225C1E1D5A100800360AB8 /* MashapeData.swift */,
+				4DB2D9601D58DEBA007BD4A5 /* FoursquareAPIClient.swift */,
+				8A53F2F01D594E3E00F244BE /* TrailApiClient.swift */,
+				4DB2D9621D58DF04007BD4A5 /* ApisDataStore.swift */,
+				4DB2D9641D58DF18007BD4A5 /* FoursquareData.swift */,
+				4DEE998D1D64A1BC004BC91C /* LocationDataStore.swift */,
+			);
+			name = API;
+			sourceTree = "<group>";
+		};
+		9437CAE51D664B8D0060E9CF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9437CAE31D664B8A0060E9CF /* ATPath.swift */,
+				9437CAEB1D678AFE0060E9CF /* Path.swift */,
+				9437CAE91D678AFE0060E9CF /* Coordinate.swift */,
+				9437CAE81D678AFE0060E9CF /* Coordinate+CoreDataProperties.swift */,
+				9437CAEA1D678AFE0060E9CF /* Path+CoreDataProperties.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		945F35E51D5911A1002F9C1E /* Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -246,6 +284,7 @@
 		945F35EB1D593648002F9C1E /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				9437CAE61D6755130060E9CF /* JSSAlertView.swift */,
 				945F35F11D5A45B0002F9C1E /* UIViewController+Keyboard.swift */,
 				945F35EF1D5A45A6002F9C1E /* ATErrorTranslator.swift */,
 			);
@@ -505,24 +544,32 @@
 				945F35F01D5A45A6002F9C1E /* ATErrorTranslator.swift in Sources */,
 				4DFDBC111D6262E2006616D0 /* UserProfileCell.swift in Sources */,
 				945F35F21D5A45B0002F9C1E /* UIViewController+Keyboard.swift in Sources */,
+				9437CAEC1D678AFE0060E9CF /* Coordinate+CoreDataProperties.swift in Sources */,
 				94B1ABEB1D5E4AD800D3DA8E /* ATAnnotationView.swift in Sources */,
 				949370331D62412200C696AE /* ATAnnotation.swift in Sources */,
 				4DEE998E1D64A1BC004BC91C /* LocationDataStore.swift in Sources */,
+				9437CADF1D663C660060E9CF /* AnytrailKit.swift in Sources */,
 				945F35DC1D58F30B002F9C1E /* ATSplashViewController.swift in Sources */,
+				9437CAED1D678AFE0060E9CF /* Coordinate.swift in Sources */,
 				2E1C75751D6362DF00D412FB /* HealthKitUserData.swift in Sources */,
 				8A39490D1D637CC6004A4B94 /* ATSplashScreenController.swift in Sources */,
 				945F35ED1D5A3066002F9C1E /* ATAlertView.swift in Sources */,
 				945F35E01D58F381002F9C1E /* ATMapViewController.swift in Sources */,
+				9437CAE21D6645B20060E9CF /* Paths.xcdatamodeld in Sources */,
 				945F35E41D590DBE002F9C1E /* ATInputCell.swift in Sources */,
 				945F35DE1D58F377002F9C1E /* ATSignupViewController.swift in Sources */,
 				4DE1D0AB1D60D61F00911AA8 /* ProfileTableViewController.swift in Sources */,
+				9437CAEF1D678AFE0060E9CF /* Path.swift in Sources */,
 				9458E8D91D5CF44B007CDD47 /* ATDropdownView.swift in Sources */,
+				9437CAE41D664B8A0060E9CF /* ATPath.swift in Sources */,
 				945F35E21D58F390002F9C1E /* ATLoginViewController.swift in Sources */,
 				8A53F2F11D594E3E00F244BE /* TrailApiClient.swift in Sources */,
+				9437CAEE1D678AFE0060E9CF /* Path+CoreDataProperties.swift in Sources */,
 				949370351D62515900C696AE /* ATConstants.swift in Sources */,
 				4D225C1B1D5A0FF600360AB8 /* MashapeAPIClient.swift in Sources */,
 				8A3948F91D621C23004A4B94 /* ATPathViewController.swift in Sources */,
 				4DFDBC151D634806006616D0 /* ProfileMapHeader.swift in Sources */,
+				9437CAE71D6755130060E9CF /* JSSAlertView.swift in Sources */,
 				2E1DA87D1D5E057500F83DFD /* WalkTracker.swift in Sources */,
 				9424A7701D53D5DA00CE8D42 /* AppDelegate.swift in Sources */,
 				4D225C1F1D5A100800360AB8 /* MashapeData.swift in Sources */,
@@ -747,6 +794,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		9437CAE01D6645B20060E9CF /* Paths.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				9437CAE11D6645B20060E9CF /* Paths.xcdatamodel */,
+			);
+			currentVersion = 9437CAE11D6645B20060E9CF /* Paths.xcdatamodel */;
+			path = Paths.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 9424A7641D53D5DA00CE8D42 /* Project object */;
 }

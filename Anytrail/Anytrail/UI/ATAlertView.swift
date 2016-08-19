@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import JSSAlertView
 
 class ATAlertView {
     
@@ -17,7 +16,7 @@ class ATAlertView {
 //        static let GREEN = UIColorFromHex(0x27AE60, alpha: 0.9)
 //    }
     
-    internal enum ATAlertViewType: Int {
+    enum ATAlertViewType: Int {
         case Normal = 1
         case Error = 2
         case Success = 3
@@ -105,6 +104,20 @@ class ATAlertView {
         
         alert.addAction(callback)
         alert.addCancelAction(cancelCallback)
+        alert.setTextTheme(.Light)
+    }
+    
+    class func alertNetworkLoss(controller: UIViewController, callback: () -> Void) {
+        let alert = JSSAlertView().show(
+            controller,
+            title: "Oh no!",
+            iconImage: UIImage(named: "connection"),
+            text: "Looks like you've lost connection to the internet.",
+            buttonText: "Dismiss",
+            color: ATConstants.Colors.RED
+        )
+        
+        alert.addAction(callback)
         alert.setTextTheme(.Light)
     }
 }
