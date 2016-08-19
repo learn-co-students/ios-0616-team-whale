@@ -22,24 +22,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     static var activeWorkout = false
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        self.reachabilitySetup()
         
-        //        do {
-        //            print("BEGIN inside appdelegate")
-        //            reachability = try Reachability.reachabilityForInternetConnection()
-        //            print("AFTER inside appdelegate")
-        //            //try reachability?.startNotifier()
-        //        } catch let error as NSError {
-        //            print("Unable to start reachability \(error.localizedDescription)")
-        //            return false
-        //        }
-        //        do {
-        //            try reachability?.startNotifier()
-        //        } catch let error as NSError {
-        //            print("couldn't start notifier \(error.localizedDescription)")
-        //        }
-        
-        
+        reachabilitySetup()
+
         UINavigationBar.appearance().setBackgroundImage(UIImage(), forBarMetrics: .Default)
         UINavigationBar.appearance().backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.0)
         UINavigationBar.appearance().translucent = false
@@ -66,38 +51,46 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func reachabilitySetup() {
-        print("\n\n\n\n\n\n\n\nInside reachability method APPDELEGATE\n\n\n\n\n")
+        
+        // Set up reachability class
         do {
-            print("BEFORE")
             reachability = try Reachability.reachabilityForInternetConnection()
-            print("AFTER")
-            //try reachability?.startNotifier()
         } catch let error as NSError {
-            print("Unable to start reachability \(error.localizedDescription)")
+            print("ERROR: Unable to start reachability \(error.localizedDescription)")
         }
+        
+        // Add observer to app delegate
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(reachabilityChanged)
             ,name: ReachabilityChangedNotification,object: reachability)
         
+        // Tell reachability class to start notifications
         do {
             try reachability?.startNotifier()
         } catch let error as NSError {
-            print("couldn't start notifier \(error.localizedDescription)")
+            print("ERROR: couldn't start notifier \(error.localizedDescription)")
         }
+        
     }
     
     func reachabilityChanged() {
-        print("REACH: \(reachability)")
-        print("\n\n\n\n\n\nInside reachability method\n\n\n\n\n\n\n\n")
+        
         guard let reachability = reachability else { return }
+        
+        let status = InternetStatus.shared
+        
         if reachability.isReachable() {
             if reachability.isReachableViaWiFi() {
-                //print(reachability)
-                print("Reachable via WiFi@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+                status.hasInternet = true
+                print("Reachable via WiFi")
             } else {
+                status.hasInternet = true
                 print("Reachable via Cellular")
             }
         } else {
+            status.hasInternet = false
             print("Network not reachable")
+            
+            
         }
     }
     
@@ -120,6 +113,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func applicationWillEnterForeground(application: UIApplication) {
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+        
+        print("\n\nApplication WILL ENTER FOREGROUND\n\n")
+        
     }
     
     func applicationDidBecomeActive(application: UIApplication) {
@@ -132,6 +128,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 WalkTrackerViewController.walkTrackerSession.startWalk()
             }
         }
+        
+        
+        print("\n\nApplication DID BECOME ACTIVE\n\n")
+        
     }
     
     func applicationWillTerminate(application: UIApplication) {

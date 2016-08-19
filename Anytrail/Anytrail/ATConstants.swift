@@ -25,6 +25,3 @@ class ATConstants {
 
 }
 
-struct Notification {
-    static let NO_INTERNET = "Network is unreachable"
-}

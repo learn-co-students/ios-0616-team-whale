@@ -487,10 +487,13 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        print("\n\n\n\n\n\n\nSUPER DID LOAD \n\n\n\n\n\n\n\n\n")
-//        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(reachabilityChanged), name: ReachabilityChangedNotification , object: nil)
-//        
-//        reachability?.notificationCenter
+        
+        if !InternetStatus.shared.hasInternet {
+            print("\n\nthere is no internet connection\n\n")
+            ATAlertView.alertWithTitle(self, type: ATAlertView.ATAlertViewType.Error, title: "Whoops!", text: "No Internet", callback: {})
+        }
+        
+        
         
         geocoder = Geocoder(accessToken: Keys.mapBoxToken)
         
@@ -514,10 +517,36 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
         // }
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(true)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ATMapViewController.reachabilityChanged(_:)), name: ReachabilityChangedNotification, object: nil)
+        
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(true)
+        
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: ReachabilityChangedNotification, object: nil)
+        
+        
+    }
+    
+    func reachabilityChanged(notification: NSNotification) {
+        
+        guard let reachability = notification.object as? Reachability else {return}
+        if !reachability.isReachable() {
+            ATAlertView.alertWithTitle(self, type: ATAlertView.ATAlertViewType.Error, title: "Whoops!", text: "No Internet", callback: {})
+        }
+
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
 }
 
 extension ATMapViewController {
@@ -563,36 +592,4 @@ extension ATMapViewController {
         dispatch_after(time, dispatch_get_main_queue(), block)
     }
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(true)
-        print("\n\n\n\n\n\n\n\n\nInside view will appear method in ATMapViewController")
-        print(reachability)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(reachabilityChanged), name: ReachabilityChangedNotification, object: nil)
-        print("\n\n\nAFTER NOTIFICARTION!\n\n\n\n\n\n\n\n\n\n")
-//                ATAlertView.alertWithTitle(self, type: ATAlertView.ATAlertViewType.Error, title: "Oops!", text: "Something went wrong, check the Internet connection") {}
-    }
-    
-    override func viewWillDisappear(animated: Bool) {
-        print("Inside viewDidAppear")
-        print(reachability)
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: ReachabilityChangedNotification, object: nil)
-        
-    }
-    func reachabilityChanged() {
-        print("REACH: \(reachability)")
-        print("\n\n\n\n\n\nInside reachability method\n\n\n\n\n\n\n\n")
-        guard let reachability = reachability else { print("\n\n\n\n\n\nAbout to return\n\n\n\n\n\n"); return}
-        if reachability.isReachable() {
-            if reachability.isReachableViaWiFi() {
-                //print(reachability)
-                print("Reachable via WiFi@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
-            } else {
-                print("Reachable via Cellular")
-            }
-        } else {
-            print("Network not reachable")
-            ATAlertView.alertWithTitle(self, type: ATAlertView.ATAlertViewType.Error, title: "Oops!", text: "Something went wrong, check the Internet connection") {}
-
-        }
-    }
 }
