@@ -12,6 +12,8 @@
 		2E1DA87F1D5E0DEB00F83DFD /* ActivityTracker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E1DA87E1D5E0DEB00F83DFD /* ActivityTracker.storyboard */; };
 		2E1DA8831D5E3B5B00F83DFD /* WalkTrackerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E1DA8821D5E3B5B00F83DFD /* WalkTrackerViewController.swift */; };
 		2E7B02845A404C04E0D92E5E /* Pods_Anytrail.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 599CF5E42324548824DD0368 /* Pods_Anytrail.framework */; };
+		2EAC23641D677B3900572541 /* NavigationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EAC23631D677B3900572541 /* NavigationTableViewController.swift */; };
+		2EAC23661D67829600572541 /* DetailNavigationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EAC23651D67829600572541 /* DetailNavigationTableViewController.swift */; };
 		4D225C1B1D5A0FF600360AB8 /* MashapeAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D225C1A1D5A0FF600360AB8 /* MashapeAPIClient.swift */; };
 		4D225C1F1D5A100800360AB8 /* MashapeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D225C1E1D5A100800360AB8 /* MashapeData.swift */; };
 		4D5244721D66084F0066C01B /* TipsAndTricksTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5244711D66084F0066C01B /* TipsAndTricksTableViewCell.swift */; };
@@ -78,6 +80,8 @@
 		2E1DA87B1D5E057500F83DFD /* WalkTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalkTracker.swift; sourceTree = "<group>"; };
 		2E1DA87E1D5E0DEB00F83DFD /* ActivityTracker.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ActivityTracker.storyboard; sourceTree = "<group>"; };
 		2E1DA8821D5E3B5B00F83DFD /* WalkTrackerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WalkTrackerViewController.swift; path = Controllers/WalkTrackerViewController.swift; sourceTree = "<group>"; };
+		2EAC23631D677B3900572541 /* NavigationTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NavigationTableViewController.swift; path = Controllers/NavigationTableViewController.swift; sourceTree = "<group>"; };
+		2EAC23651D67829600572541 /* DetailNavigationTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DetailNavigationTableViewController.swift; path = Controllers/DetailNavigationTableViewController.swift; sourceTree = "<group>"; };
 		2EDDFE291D5A868900B36853 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3417C12B1559CD326FE9F852 /* Pods-Anytrail.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Anytrail.release.xcconfig"; path = "Pods/Target Support Files/Pods-Anytrail/Pods-Anytrail.release.xcconfig"; sourceTree = "<group>"; };
 		4D225C1A1D5A0FF600360AB8 /* MashapeAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MashapeAPIClient.swift; sourceTree = "<group>"; };
@@ -247,6 +251,8 @@
 				945F35DF1D58F381002F9C1E /* ATMapViewController.swift */,
 				2E1DA8821D5E3B5B00F83DFD /* WalkTrackerViewController.swift */,
 				4DE1D0AA1D60D61F00911AA8 /* ProfileTableViewController.swift */,
+				2EAC23631D677B3900572541 /* NavigationTableViewController.swift */,
+				2EAC23651D67829600572541 /* DetailNavigationTableViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -548,6 +554,7 @@
 				9458E8D91D5CF44B007CDD47 /* ATDropdownView.swift in Sources */,
 				945F35E21D58F390002F9C1E /* ATLoginViewController.swift in Sources */,
 				8A53F2F11D594E3E00F244BE /* TrailApiClient.swift in Sources */,
+				2EAC23661D67829600572541 /* DetailNavigationTableViewController.swift in Sources */,
 				949370351D62515900C696AE /* ATConstants.swift in Sources */,
 				4D225C1B1D5A0FF600360AB8 /* MashapeAPIClient.swift in Sources */,
 				8A3948F91D621C23004A4B94 /* ATPathViewController.swift in Sources */,
@@ -565,6 +572,7 @@
 				8A3948FB1D623743004A4B94 /* ATPathCell.swift in Sources */,
 				4DF1FD1D1D64FC4900692309 /* SurgeonGeneralTableViewController.swift in Sources */,
 				4DB2D9631D58DF04007BD4A5 /* ApisDataStore.swift in Sources */,
+				2EAC23641D677B3900572541 /* NavigationTableViewController.swift in Sources */,
 				4D5244781D6615280066C01B /* TipsAndTricksHeader.swift in Sources */,
 				8A3949091D62549E004A4B94 /* ATPathDetailedController.swift in Sources */,
 			);
