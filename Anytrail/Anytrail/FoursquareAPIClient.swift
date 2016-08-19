@@ -29,7 +29,7 @@ class FoursquareAPIClient {
             let origin = "\(Double(latLong.latitude)), \(Double(latLong.longitude))"
             
             let v = "20160808"
-            let query = "HISTORIC/MONUMENTS/LANDMARKS/STATUES/MUSEUM"
+            let query = "HISTORIC/MONUMENTS/LANDMARKS/STATUES/MUSEUM/POI/Hiking trails"
             let parameter = ["client_id": clientID,
                              "client_secret":clientSecret,
                              "v":v,
@@ -54,35 +54,35 @@ class FoursquareAPIClient {
             }
         }
     }
-    
-
-    
-        class func getPhotoForVenue(completion: (String?) -> ()) {
-            let clientID = Keys.fourSquareClientID
-            let clientSecret = Keys.fourSquareClientSecret
-            
-            let v = "20160808"
-            let parameter = ["client_id"     : clientID,
-                             "client_secret" :clientSecret,
-                             "v"             : v,
-                             "VENUE_ID"      : id]
-            
-            
-
-            
-            Alamofire.request(.GET, ATConstants.Endpoints.FOURSQUARE_GET_PHOTO, parameters: parameter, headers: nil).responseJSON { (response) in
-                if let data = response.data {
-                    let jsonData = JSON(data: data)
-                    //                for venue in jsonData["response"]["groups"].array! {
-                    //                    for item in venue["items"] {
-                    //                        print(item.1.dictionary!["venue"]!["id"])
-                    //                        print(item.1.dictionary!["venue"]!["name"])
-                    //                    }
-                    //                }
-                    
-                    //                completion(jsonData)
-                }
-            }
-        }
-    }
 }
+
+//
+//        class func getPhotoForVenue(completion: (String?) -> ()) {
+//            let clientID = Keys.fourSquareClientID
+//            let clientSecret = Keys.fourSquareClientSecret
+//            
+//            let v = "20160808"
+//            let parameter = ["client_id"     : clientID,
+//                             "client_secret" :clientSecret,
+//                             "v"             : v,
+//                             "VENUE_ID"      : id]
+//            
+//            
+//
+//            
+//            Alamofire.request(.GET, ATConstants.Endpoints.FOURSQUARE_GET_PHOTO, parameters: parameter, headers: nil).responseJSON { (response) in
+//                if let data = response.data {
+//                    let jsonData = JSON(data: data)
+//                    //                for venue in jsonData["response"]["groups"].array! {
+//                    //                    for item in venue["items"] {
+//                    //                        print(item.1.dictionary!["venue"]!["id"])
+//                    //                        print(item.1.dictionary!["venue"]!["name"])
+//                    //                    }
+//                    //                }
+//                    
+//                    //                completion(jsonData)
+//                }
+//            }
+//        }
+//    }
+//}

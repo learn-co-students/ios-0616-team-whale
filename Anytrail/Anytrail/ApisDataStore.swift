@@ -39,9 +39,9 @@ class ApisDataStore {
         }
     }
     
-    func getPhotoIDDataWithCompletion(completion: () -> ()) {
-        FoursquareAPIClient.getPhotoForVenue(<#T##venueIdentifier: String##String#>, completion: <#T##(UIImage?) -> ()#>)
-    }
+//    func getPhotoIDDataWithCompletion(completion: () -> ()) {
+//        FoursquareAPIClient.getPhotoForVenue(<#T##venueIdentifier: String##String#>, completion: <#T##(UIImage?) -> ()#>)
+//    }
     
     
     func getTrailsWithCompletion(completion: () -> ()) {
