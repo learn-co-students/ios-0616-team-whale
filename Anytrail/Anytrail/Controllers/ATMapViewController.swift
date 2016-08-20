@@ -27,8 +27,8 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
     
     var gestureRecognizer: UILongPressGestureRecognizer! = nil
     
-    var origin: ATAnnotation! = nil
-    var destination: ATAnnotation! = nil
+    var origin: ATAnnotation?
+    var destination: ATAnnotation?
     var routeLine: MGLPolyline!
     
     var createMode: Bool = false
@@ -59,14 +59,26 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
     func dropdownDidUpdateOrigin(location: String) {
         if location.characters.count > 3 {
             locationStore.originString = location
-            geocodeWithQuery(location, type: .Origin)
+            origin = getGeocodedAddress(location, type: .Origin)
+            if let origin = origin {
+                assignOrigin(origin)
+            }
+            //mapView.setCenterCoordinate(origin.coordinate, animated: true)
         }
+    }
+    
+    func getGeocodedAddress(location: String, type: ATAnnotation.ATAnnotationType) -> ATAnnotation? {
+        geocodeWithQuery(location, type: type) { pin in
+            return pin
+        }
+        return nil
     }
     
     func dropdownDidUpdateDestination(location: String) {
         if location.characters.count > 3 {
             locationStore.destinationString = location
-            geocodeWithQuery(location, type: .Destination)
+            destination = getGeocodedAddress(location, type: .Destination)
+            //mapView.setCenterCoordinate(destination.coordinate, animated: true)
         }
     }
     
@@ -165,7 +177,7 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
             } else if waypoints.count > 0 {
                 currentStage = .Route
                 createPath({ (time) in
-                    self.reshowDropdown(withView: .Label, hintText: "Your walk will take about \(time).\nEnjoy your walk to \(self.destination.title!)!")
+                    self.reshowDropdown(withView: .Label, hintText: "Your walk will take about \(time).\nEnjoy your walk to \(self.destination?.title!)!")
                     
                     // self.tabBarController?.setTabBarVisible(false, animated: true)
                     // slide up start/stop
@@ -228,13 +240,13 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
         }
         
         if createMode && currentStage == .Waypoints {
-            if coordinatesEqual(annotation.coordinate, other: origin.coordinate) {
-                ATAlertView.alertWithTitle(self, type: .Origin, title: origin.title!, text: "This is your origin.", callback: {
+            if coordinatesEqual(annotation.coordinate, other: (origin?.coordinate)!) {
+                ATAlertView.alertWithTitle(self, type: .Origin, title: (origin?.title!)!, text: "This is your origin.", callback: {
                     mapView.deselectAnnotation(annotation, animated: true)
                     return
                 })
-            } else if coordinatesEqual(annotation.coordinate, other: destination.coordinate) {
-                ATAlertView.alertWithTitle(self, type: .Error, title: destination.title!, text: "This is your destination.", callback: {
+            } else if coordinatesEqual(annotation.coordinate, other: (destination?.coordinate)!) {
+                ATAlertView.alertWithTitle(self, type: .Error, title: (destination?.title!)!, text: "This is your destination.", callback: {
                     mapView.deselectAnnotation(annotation, animated: true)
                     return
                 })
@@ -317,7 +329,7 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
         mapView.deselectAnnotation(annotation, animated: true)
     }
     
-    func geocodeWithQuery(query: String, type: ATAnnotation.ATAnnotationType) {
+    func geocodeWithQuery(query: String, type: ATAnnotation.ATAnnotationType, completion: ATAnnotation -> ()) {
         let options = ForwardGeocodeOptions(query: query)
         options.focalLocation = mapView.userLocation?.location
         options.autocompletesQuery = false
@@ -326,42 +338,18 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
             if error == nil {
                 if let placemarks = placemarks {
                     if placemarks.isEmpty {
-                        ATAlertView.alertWithTitle(self, type: ATAlertView.ATAlertViewType.Error, title: "Whoops", text: "We couldn't find an address matching your query", callback: {
-                            return
-                        })
-                        
-                    } else {
-                        let placemark = placemarks[0]
-                        let pin = ATAnnotation(typeSelected: .Destination)
-                        
-                        pin.coordinate = placemark.location.coordinate
-                        pin.title = placemark.name
-                        pin.subtitle = placemark.qualifiedName
-                        pin.type = type
-                        
-                        if type == .Origin {
-                            self.assignOrigin(pin)
-                            self.mapView.setCenterCoordinate(pin.coordinate, animated: true)
-                            //return
-                            
-                        } else if type == .Destination {
-                            self.assignDestination(pin)
-                            //return
-                        }
-                        //                        if !self.pinIsDuplicate(pin) {
-                        //                            self.waypoints.append(pin)
-                        //                            self.mapView.addAnnotation(pin)
-                        //                            print("Added pin: \(pin)")
-                        //
-                        //                        } else {
-                        //                            // Pin already exists (gesture recognizer spam issue)
-                        //                        }
+                        ATAlertView.alertWithTitle(self, type: ATAlertView.ATAlertViewType.Error, title: "Whoops", text: "We couldn't find an address matching your query") { return }
                     }
                     
-                } else {
-                    ATAlertView.alertWithTitle(self, type: ATAlertView.ATAlertViewType.Error, title: "Whoops", text: "We couldn't find an address matching your query", callback: {
+                    guard let placemarkAddress = placemarks.first where placemarks.first != nil else {
                         return
-                    })
+                    }
+                    
+                    let pin = ATAnnotation(typeSelected: type)
+                    pin.coordinate = placemarkAddress.location.coordinate
+                    pin.title = placemarkAddress.name
+                    pin.subtitle = placemarkAddress.qualifiedName
+                    completion(pin)
                 }
             }
         }
@@ -389,8 +377,8 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
         
         pointsOfInterest.removeAll()
         waypoints.removeAll()
-        locationStore.origin = origin.coordinate
-        locationStore.destination = destination.coordinate
+        locationStore.origin = origin?.coordinate
+        locationStore.destination = destination?.coordinate
         
         self.store.getDataWithCompletion {
             
@@ -429,18 +417,18 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
     // MARK: - Paths
     
     func assignOrigin(origin: ATAnnotation) {
-        if self.origin != nil {
-            self.mapView.removeAnnotation(self.origin)
-        }
+        //        if self.origin != nil {
+        //            self.mapView.removeAnnotation(self.origin)
+        //        }
         
         self.origin = origin
         self.mapView.addAnnotation(origin)
         
-        if origin == "" {
-            if let _ = mapView.userLocation {
-                // Assume current location
-            }
-        }
+        //        if origin == "" {
+        //            if let _ = mapView.userLocation {
+        //                // Assume current location
+        //            }
+        //        }
         
         if canCreatePath() {
             drawRouteButton.enabled = true
@@ -450,12 +438,14 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
     }
     
     func assignDestination(destinationPoint: ATAnnotation) {
-        if self.destination != nil {
-            self.mapView.removeAnnotation(self.destination)
-        }
+//        if self.destination != nil {
+//            self.mapView.removeAnnotation(self.destination?)
+//        }
         
-        self.destination = destinationPoint
-        self.mapView.addAnnotation(destination)
+        if let destination = destination {
+            self.destination = destinationPoint
+            self.mapView.addAnnotation(destination)
+        }
         
         if canCreatePath() {
             drawRouteButton.enabled = true
@@ -473,8 +463,8 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
             let waypoint = Waypoint(coordinate: waypoint.coordinate)
             waypoints.append(waypoint)
         }
-        let originWaypoint = Waypoint(coordinate: origin.coordinate)
-        let destinationWaypoint = Waypoint(coordinate: destination.coordinate)
+        let originWaypoint = Waypoint(coordinate: (origin?.coordinate)!)
+        let destinationWaypoint = Waypoint(coordinate: (destination?.coordinate)!)
         
         waypoints.insert(originWaypoint, atIndex: 0)
         waypoints.append(destinationWaypoint)
@@ -578,7 +568,7 @@ extension ATMapViewController {
     
     func sortWaypoints(waypoints: [Waypoint]) {
         var waypoints = waypoints
-        let current = CLLocation(latitude: origin.coordinate.latitude, longitude: origin.coordinate.longitude)
+        let current = CLLocation(latitude: origin!.coordinate.latitude, longitude: origin!.coordinate.longitude)
         
         waypoints.sortInPlace { (loc1, loc2) -> Bool in
             let loc1 = CLLocation(latitude: loc1.coordinate.latitude, longitude: loc1.coordinate.longitude)
