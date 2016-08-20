@@ -296,7 +296,7 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
     
     func mapView(mapView: MGLMapView, viewForAnnotation annotation: MGLAnnotation) -> MGLAnnotationView? {
         guard annotation is MGLPointAnnotation else {
-            return
+            return nil
         }
         
         let reuseIdentifier = "AnnotationId"
