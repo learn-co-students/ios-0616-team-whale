@@ -388,6 +388,7 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
     func addFoursquareAnnotations(completion: (count: Int) -> ()) {
         
         pointsOfInterest.removeAll()
+        waypoints.removeAll()
         locationStore.origin = origin.coordinate
         locationStore.destination = destination.coordinate
         
