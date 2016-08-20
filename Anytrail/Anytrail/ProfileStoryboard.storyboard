@@ -5,10 +5,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
-        <!--Profile Table View Controller-->
+        <!--About Me-->
         <scene sceneID="wXg-YR-Xwt">
             <objects>
-                <viewController id="fwV-at-Xh2" customClass="ProfileTableViewController" customModule="Anytrail" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="About Me" id="fwV-at-Xh2" customClass="ProfileTableViewController" customModule="Anytrail" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Z8Z-hr-Wto"/>
                         <viewControllerLayoutGuide type="bottom" id="ud8-P1-E0A"/>
@@ -38,10 +38,10 @@
             </objects>
             <point key="canvasLocation" x="4374" y="455"/>
         </scene>
-        <!--Surgeon General Table View Controller-->
+        <!--Surgeon General's Advice-->
         <scene sceneID="dV9-iw-Fjw">
             <objects>
-                <tableViewController id="rc4-CE-W5e" customClass="SurgeonGeneralTableViewController" customModule="Anytrail" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Surgeon General's Advice" id="rc4-CE-W5e" customClass="SurgeonGeneralTableViewController" customModule="Anytrail" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="USE-nn-x7y">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
