@@ -15,15 +15,11 @@ class LocationDataStore {
     
     var origin: CLLocationCoordinate2D?
     var destination: CLLocationCoordinate2D?
-    
-    //    var midpoint: CLLocationCoordinate2D?
-//    var originClLocation : CLLocation?
-//    var destinationClLocation: CLLocation?
     var originString: String?
     var destinationString: String?
-    
     var longLatArray: [Double]?
-    }
+    
+}
 
 extension LocationDataStore {
     
@@ -33,7 +29,7 @@ extension LocationDataStore {
         
         
         let origin: CLLocation =  CLLocation(latitude: getLat, longitude: getLon)
-
+        
         getLat = destination.latitude
         getLon = destination.longitude
         
@@ -41,7 +37,7 @@ extension LocationDataStore {
         return origin.distanceFromLocation(destination) //distance in meters
     }
     
-    func determineRadius()->(Double){
+    func determineRadius() -> Double {
         var distance: Double!
         
         if let destinationLoc = self.origin {
@@ -49,29 +45,7 @@ extension LocationDataStore {
                 distance = self.findDistance(originLoc, destination: destinationLoc)
             }
         }
-//    
-//        if distance <= 5000{
-//            return 125.0
-//        }
-//        else {
-//            return 250.0
-//        }
-//        switch distance {
-//        case let x where x <= 100.0:
-//            return 25.0
-//        case let x where x > 100 && x <= 500:
-//            return 50.0
-//        case let x where x > 500 && x <= 1000:
-//            return 100.0
-//        case let x where x > 1000 && x <= 5000:
-//            return 500.0
-//        case let x where x > 5000 && x <= 10000:
-//            return 2500.0
-//        default:
-//            return 5000.0
-//        }
         return distance/5
-        
     }
     
     func midpointFormula(pointOne: CLLocationCoordinate2D, pointTwo: CLLocationCoordinate2D) -> (CLLocationCoordinate2D){
@@ -93,13 +67,13 @@ extension LocationDataStore {
         }
         
     }
-    func returningLongLatArray() -> ([CLLocationCoordinate2D]){
+    func returningLongLatArray() -> [CLLocationCoordinate2D] {
         var counter = 0.0
         var earlierDestinations : [CLLocationCoordinate2D] = []
         var laterDestinations : [CLLocationCoordinate2D] = []
         var distance: Double!
         let radius = self.determineRadius()
-
+        
         if let destinationLoc = self.origin {
             if let originLoc = self.destination {
                 distance = self.findDistance(originLoc, destination: destinationLoc)
@@ -111,7 +85,7 @@ extension LocationDataStore {
                 let currentMidpoint = self.midpointFormula(originalOrigin, pointTwo: originalDestination)
                 var currentEndMid : CLLocationCoordinate2D = currentMidpoint
                 var currentStartMid : CLLocationCoordinate2D! = currentMidpoint
-                while counter < distance/(radius*2) {
+                while counter < distance / (radius*2) {
                     let endMidpoints = self.midpointFormula(currentEndMid, pointTwo: originalDestination)
                     laterDestinations.append(endMidpoints)
                     let startMidpoints = self.midpointFormula(originalOrigin, pointTwo: currentStartMid)
@@ -127,39 +101,5 @@ extension LocationDataStore {
         earlierDestinations.appendContentsOf(laterDestinations)
         print("!@#%^$%&%^$*^*(&*)&*%^&#$%^@#$%!$!!!!!!!!!!!!!!\(earlierDestinations.count)")
         return earlierDestinations
-    }
-    
-    func settingRectangleForFoursquare() -> ([Double]) {
-        let north: Double
-        let south: Double
-        let east: Double
-        let west: Double
-        if let origin = origin{
-            if let destination = destination {
-                let originLatitude = origin.latitude
-                let originLongitude = origin.longitude
-                let endLatitude = destination.latitude
-                let endLongitude = destination.longitude
-                
-                if originLatitude >= endLatitude {
-                    north = originLatitude
-                    south = endLatitude
-                } else {
-                    north = endLatitude
-                    south = originLatitude
-                }
-                
-                if originLongitude >= endLongitude {
-                    east = originLongitude
-                    west = endLongitude
-                } else {
-                    east = endLongitude
-                    west = originLongitude
-                }
-                
-                return [north, east, south, west]
-            }
-        }
-        return[]
     }
 }
