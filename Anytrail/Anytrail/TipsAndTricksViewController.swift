@@ -57,9 +57,6 @@ class TipsAndTricksViewController: UIViewController, UITableViewDataSource, UITa
         let cell: TipsAndTricksTableViewCell = self.tableView.dequeueReusableCellWithIdentifier("TipsCell", forIndexPath: indexPath) as! TipsAndTricksTableViewCell
         cell.userInteractionEnabled = false
         cell.dataLabel.layer.cornerRadius = 8.0
-        cell.dataLabel.backgroundColor = UIColor.blackColor()
-        cell.dataLabel.textColor = UIColor .whiteColor()
-        cell.userCellBackgroundView.backgroundColor = UIColor.blackColor()
         cell.dataLabel.text = arraySentFromSegue![indexPath.row]
         
         return cell
