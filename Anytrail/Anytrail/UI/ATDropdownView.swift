@@ -83,12 +83,15 @@ class ATDropdownView: UIView, UITextFieldDelegate {
         destinationTextField.text = location
     }
     
-    func textFieldDidEndEditing(textField: UITextField) {
-        if textField == originTextField {
+    
+    func textFieldShouldEndEditing(textField: UITextField) -> Bool {
+        if textField == originTextField && !(originTextField.text?.isEmpty ?? true) {
             delegate?.dropdownDidUpdateOrigin(originTextField.text!)
-        } else {
+        } else if textField == destinationTextField && !(destinationTextField.text?.isEmpty ?? true){
             delegate?.dropdownDidUpdateDestination(destinationTextField.text!)
         }
+        
+        return true
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
