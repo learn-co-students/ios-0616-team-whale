@@ -34,6 +34,7 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
     var createMode: Bool = false
     var waypoints: [ATAnnotation] = []
     var pointsOfInterest: [ATAnnotation] = []
+    var foursquareDataResponse: [FoursquareData] = []
     
     var dropdownView: ATDropdownView! = nil
     var dropdownDisplayed = false
@@ -133,7 +134,7 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
     @IBAction func create() {
         if currentStage == .Default {
             createMode = true
-
+            
             currentStage = .Waypoints
             
             UIView.animateWithDuration(0.3, animations: {
@@ -145,6 +146,11 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
             
             addFoursquareAnnotations({ (count) in
                 self.reshowDropdown(withView: .Label, hintText: "Awesome! We found \(count) places to visit on your way.\nStart by selecting some!")
+                dispatch_async(dispatch_get_main_queue()) {
+                    for pin in self.pointsOfInterest {
+                        self.mapView.addAnnotation(pin)
+                    }
+                }
                 self.dropdownBarButton.enabled = true
                 self.drawRouteButton.enabled = true
             })
@@ -173,6 +179,7 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
         }
     }
     
+    
     @IBAction func navigateTapped(sender: AnyObject) {
         var waypointString = ""
         
@@ -182,13 +189,13 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
         
         print(waypointString)
         
-//        if (UIApplication.sharedApplication().canOpenURL(NSURL(string:"comgooglemaps://")!)) {
-//            UIApplication.sharedApplication().openURL(NSURL(string:
-//                "comgooglemaps://?saddr=&daddr=\(place.latitude),\(place.longitude)&directionsmode=driving")!)
-//            
-//        } else {
-//            NSLog("Can't use comgooglemaps://");
-//        }
+        //        if (UIApplication.sharedApplication().canOpenURL(NSURL(string:"comgooglemaps://")!)) {
+        //            UIApplication.sharedApplication().openURL(NSURL(string:
+        //                "comgooglemaps://?saddr=&daddr=\(place.latitude),\(place.longitude)&directionsmode=driving")!)
+        //
+        //        } else {
+        //            NSLog("Can't use comgooglemaps://");
+        //        }
         
     }
     
@@ -265,7 +272,7 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
                 
                 let pin = annotation as! ATAnnotation
                 pin.type = .Waypoint
-            
+                
                 self.waypoints.append(pin)
                 
                 let annotationView = mapView.viewForAnnotation(annotation)
@@ -289,7 +296,7 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
     
     func mapView(mapView: MGLMapView, viewForAnnotation annotation: MGLAnnotation) -> MGLAnnotationView? {
         guard annotation is MGLPointAnnotation else {
-            return nil
+            return
         }
         
         let reuseIdentifier = "AnnotationId"
@@ -313,6 +320,7 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
     func geocodeWithQuery(query: String, type: ATAnnotation.ATAnnotationType) {
         let options = ForwardGeocodeOptions(query: query)
         options.focalLocation = mapView.userLocation?.location
+        options.autocompletesQuery = false
         
         geocoder.geocode(options: options) { (placemarks, attribution, error) in
             if error == nil {
@@ -324,7 +332,7 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
                         
                     } else {
                         let placemark = placemarks[0]
-                        let pin = ATAnnotation()
+                        let pin = ATAnnotation(typeSelected: .Destination)
                         
                         pin.coordinate = placemark.location.coordinate
                         pin.title = placemark.name
@@ -334,20 +342,20 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
                         if type == .Origin {
                             self.assignOrigin(pin)
                             self.mapView.setCenterCoordinate(pin.coordinate, animated: true)
-                            return
+                            //return
                             
                         } else if type == .Destination {
                             self.assignDestination(pin)
-                            return
+                            //return
                         }
-//                        if !self.pinIsDuplicate(pin) {
-//                            self.waypoints.append(pin)
-//                            self.mapView.addAnnotation(pin)
-//                            print("Added pin: \(pin)")
-//
-//                        } else {
-//                            // Pin already exists (gesture recognizer spam issue)
-//                        }
+                        //                        if !self.pinIsDuplicate(pin) {
+                        //                            self.waypoints.append(pin)
+                        //                            self.mapView.addAnnotation(pin)
+                        //                            print("Added pin: \(pin)")
+                        //
+                        //                        } else {
+                        //                            // Pin already exists (gesture recognizer spam issue)
+                        //                        }
                     }
                     
                 } else {
@@ -358,22 +366,23 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
             }
         }
     }
-
-//    func reverseGeocode(location: CLLocation, completion: (address: String?) -> ()) {
-//        let options = ReverseGeocodeOptions(location: location)
-//
-//        geocoder.geocode(options: options) { (placemarks, attribution, error) in
-//            if error == nil {
-//                if let placemarks = placemarks {
-//                    completion(address: placemarks[0].name)
-//                }
-//            } else {
-//                print("Error reverse-geocoding: \(error)")
-//                completion(address: nil)
-//            }
-//        }
-//    }
-
+    
+    
+    //    func reverseGeocode(location: CLLocation, completion: (address: String?) -> ()) {
+    //        let options = ReverseGeocodeOptions(location: location)
+    //
+    //        geocoder.geocode(options: options) { (placemarks, attribution, error) in
+    //            if error == nil {
+    //                if let placemarks = placemarks {
+    //                    completion(address: placemarks[0].name)
+    //                }
+    //            } else {
+    //                print("Error reverse-geocoding: \(error)")
+    //                completion(address: nil)
+    //            }
+    //        }
+    //    }
+    
     // MARK: - Foursquare API
     
     func addFoursquareAnnotations(completion: (count: Int) -> ()) {
@@ -381,46 +390,40 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
         pointsOfInterest.removeAll()
         locationStore.origin = origin.coordinate
         locationStore.destination = destination.coordinate
-        locationStore.settingRectangleForFoursquare()
-
+        
         self.store.getDataWithCompletion {
-
+            
             for location in self.store.foursquareData {
-                let pin = ATAnnotation()
+                let pin = ATAnnotation(typeSelected: .PointOfInterest)
                 
                 pin.coordinate = CLLocationCoordinate2D(latitude: location.placeLatitude, longitude: location.placeLongitude)
                 pin.title = location.placeName
                 pin.subtitle = location.placeAddress
-                pin.type = .PointOfInterest
+                //pin.type = .PointOfInterest
                 
                 self.pointsOfInterest.append(pin)
-                NSOperationQueue.mainQueue().addOperationWithBlock {
-                
-                self.mapView.addAnnotation(pin)
-
             }
             
             completion(count: self.pointsOfInterest.count)
-            }
         }
     }
     
     // MARK: - Trails API
     
-    func addTrailsAnnotations() {
-        for trail in store.mashapeData {
-            if trail.isHiking == true {
-                let pin = ATAnnotation()
-                
-                pin.coordinate = CLLocationCoordinate2D(latitude: trail.placeLatitude, longitude: trail.placeLongitude)
-                pin.title = trail.placeName
-                pin.subtitle = trail.isHiking?.description
-                pin.type = .PointOfInterest
-                
-                mapView.addAnnotation(pin)
-            }
-        }
-    }
+    //    func addTrailsAnnotations() {
+    //        for trail in store.mashapeData {
+    //            if trail.isHiking == true {
+    //                let pin = ATAnnotation()
+    //
+    //                pin.coordinate = CLLocationCoordinate2D(latitude: trail.placeLatitude, longitude: trail.placeLongitude)
+    //                pin.title = trail.placeName
+    //                pin.subtitle = trail.isHiking?.description
+    //                pin.type = .PointOfInterest
+    //
+    //                mapView.addAnnotation(pin)
+    //            }
+    //        }
+    //    }
     
     // MARK: - Paths
     
@@ -445,12 +448,12 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
         }
     }
     
-    func assignDestination(destination: ATAnnotation) {
+    func assignDestination(destinationPoint: ATAnnotation) {
         if self.destination != nil {
             self.mapView.removeAnnotation(self.destination)
         }
         
-        self.destination = destination
+        self.destination = destinationPoint
         self.mapView.addAnnotation(destination)
         
         if canCreatePath() {
@@ -464,7 +467,7 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
         removeUnusedWaypoints()
         
         var waypoints: [Waypoint] = []
-
+        
         for waypoint in self.waypoints {
             let waypoint = Waypoint(coordinate: waypoint.coordinate)
             waypoints.append(waypoint)
@@ -512,14 +515,14 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
                 print("Distance: \(formattedDistance); ETA: \(formattedTravelTime!)")
                 
                 completion(time: formattedTravelTime!)
-
-//                for step in leg.steps {
-//                    // print("\(step.instructions)")
-//                    
-//                    // let formattedDistance = distanceFormatter.stringFromMeters(step.distance)
-//                    // print("— \(formattedDistance) —")
-//                }
-
+                
+                //                for step in leg.steps {
+                //                    // print("\(step.instructions)")
+                //
+                //                    // let formattedDistance = distanceFormatter.stringFromMeters(step.distance)
+                //                    // print("— \(formattedDistance) —")
+                //                }
+                
                 if route.coordinateCount > 0 {
                     var routeCoordinates = route.coordinates!
                     self.routeLine = MGLPolyline(coordinates: &routeCoordinates, count: route.coordinateCount)
@@ -546,11 +549,11 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
         })
         
         currentStage = .Default
-
+        
         // TODO: Remove. Only for fast debugging and testing
         // dropdownDidUpdateOrigin("11 Broadway New York, NY")
         // dropdownDidUpdateDestination("Alphabet City")
-
+        
         // TODO: Implement these APIs
         //
         // MashapeAPIClient.getTrails { (data) in
@@ -590,7 +593,7 @@ extension ATMapViewController {
     
     func pinIsDuplicate(pin: MGLAnnotation) -> Bool {
         let coordinate = pin.coordinate
-
+        
         for waypoint in self.waypoints {
             if coordinatesEqual(waypoint.coordinate, other: coordinate) {
                 return true
@@ -599,7 +602,7 @@ extension ATMapViewController {
         
         return false
     }
-
+    
     func containsWaypoint(waypoint: ATAnnotation) -> Bool {
         if waypoints.contains({ $0.title! == waypoint.title! }) {
             return true
@@ -615,16 +618,13 @@ extension ATMapViewController {
     }
     
     func clearMapView() {
-        removePath()
+        //removePath()
         removeUnusedWaypoints()
         removeWaypoints()
     }
     
     func removePath() {
-        if routeLine != nil {
-            mapView.removeAnnotation(routeLine)
-            routeLine = nil
-        }
+        mapView.removeAnnotation(routeLine)
     }
     
     func removeWaypoints() {
@@ -638,7 +638,7 @@ extension ATMapViewController {
     }
     
     // MARK: - Helpers
-
+    
     func delay(delay: NSTimeInterval, block: dispatch_block_t) {
         let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay * Double(NSEC_PER_SEC)))
         dispatch_after(time, dispatch_get_main_queue(), block)
