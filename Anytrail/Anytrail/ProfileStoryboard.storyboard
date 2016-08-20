@@ -25,7 +25,8 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="V3e-a8-G7N">
-                        <barButtonItem key="rightBarButtonItem" title="Item" id="CZk-4B-L7J">
+                        <barButtonItem key="rightBarButtonItem" systemItem="bookmarks" id="CZk-4B-L7J">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <segue destination="rc4-CE-W5e" kind="show" id="YT3-he-QtF"/>
                             </connections>

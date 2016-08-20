@@ -17,7 +17,7 @@ class SurgeonGeneralTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+                
         tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
         
         tableView.registerNib(UINib(nibName: "UserProfileCell", bundle: nil), forCellReuseIdentifier: "userProfileCellData")
