@@ -18,20 +18,22 @@ class ATAnnotation: MGLPointAnnotation {
         case Destination
     }
     
-    var type: ATAnnotationType?
+    var type: ATAnnotationType
+    
+    init(typeSelected: ATAnnotationType) {
+        self.type = typeSelected
+    }
+    
     
     var backgroundColor: UIColor {
         if type == .Origin {
             return ATConstants.Colors.BLUE
-            
-        } else if type == .PointOfInterest {
-            return ATConstants.Colors.ORANGE
-            
+        } else if type == .Destination {
+            return ATConstants.Colors.RED
         } else if type == .Waypoint {
             return ATConstants.Colors.GREEN
-            
         } else {
-            return ATConstants.Colors.RED
+            return ATConstants.Colors.ORANGE
         }
     }
 }
