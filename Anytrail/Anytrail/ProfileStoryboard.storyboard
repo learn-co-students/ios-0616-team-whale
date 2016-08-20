@@ -5,10 +5,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
-        <!--About Me-->
+        <!--My Stats-->
         <scene sceneID="wXg-YR-Xwt">
             <objects>
-                <viewController title="About Me" id="fwV-at-Xh2" customClass="ProfileTableViewController" customModule="Anytrail" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="My Stats" id="fwV-at-Xh2" customClass="ProfileTableViewController" customModule="Anytrail" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Z8Z-hr-Wto"/>
                         <viewControllerLayoutGuide type="bottom" id="ud8-P1-E0A"/>
@@ -87,10 +87,10 @@
             </objects>
             <point key="canvasLocation" x="5829" y="449"/>
         </scene>
-        <!--Profile-->
+        <!--My Stats-->
         <scene sceneID="wOp-jp-qgQ">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="QKL-im-93S" sceneMemberID="viewController">
+                <navigationController title="My Stats" automaticallyAdjustsScrollViewInsets="NO" id="QKL-im-93S" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Profile" image="first" id="loI-1a-aEg"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="I9x-nZ-bzx">

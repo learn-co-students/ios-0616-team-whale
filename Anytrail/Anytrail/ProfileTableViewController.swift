@@ -80,7 +80,8 @@ class ProfileTableViewController: UIViewController, UITableViewDelegate, UITable
                     self.tableView.reloadData()
                 }
             }
-    
+        
+        self.title = "About Me"
     }
     
     override func viewDidAppear(animated: Bool) {
