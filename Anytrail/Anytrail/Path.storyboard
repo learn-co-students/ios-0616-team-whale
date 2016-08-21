@@ -139,7 +139,7 @@
                             <constraint firstItem="yof-tk-zpx" firstAttribute="bottom" secondItem="yrs-FX-CMe" secondAttribute="top" id="feK-rc-DS5"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Paths" image="first" id="LfI-mZ-cdf"/>
+                    <tabBarItem key="tabBarItem" title="Paths" image="tab-paths" selectedImage="tab-paths" id="LfI-mZ-cdf"/>
                     <navigationItem key="navigationItem" title="My Paths" id="qaj-BR-4Oe">
                         <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="nFy-tt-kEc">
                             <connections>
@@ -209,6 +209,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="first" width="30" height="30"/>
+        <image name="tab-paths" width="30" height="30"/>
     </resources>
 </document>

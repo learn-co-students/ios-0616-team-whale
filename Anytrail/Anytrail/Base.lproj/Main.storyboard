@@ -431,7 +431,7 @@
         <scene sceneID="RZy-ex-URx">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="0BR-xv-hSF" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Map" image="first" id="gHg-op-hAl"/>
+                    <tabBarItem key="tabBarItem" title="Map" image="tab-map" selectedImage="tab-map" id="gHg-op-hAl"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="lJv-jq-ZgL">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -450,7 +450,7 @@
         <scene sceneID="FJJ-wz-ehc">
             <objects>
                 <viewControllerPlaceholder storyboardName="ProfileStoryboard" id="RfK-PL-zJ9" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="ihQ-9P-tfV"/>
+                    <tabBarItem key="tabBarItem" title="Profile" image="tab-profile" selectedImage="tab-profile" id="ihQ-9P-tfV"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="13L-MB-kDe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -460,7 +460,7 @@
         <scene sceneID="taO-lx-HkU">
             <objects>
                 <viewControllerPlaceholder storyboardName="Path" id="SLJ-wA-XTi" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="S6o-22-TVy"/>
+                    <tabBarItem key="tabBarItem" title="Paths" image="tab-paths" selectedImage="tab-paths" id="S6o-22-TVy"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nuo-9I-emT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -470,7 +470,7 @@
         <scene sceneID="Vaw-hO-jQ4">
             <objects>
                 <viewControllerPlaceholder storyboardName="ActivityTracker" id="p0F-yQ-RSu" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="4dN-3x-LCR"/>
+                    <tabBarItem key="tabBarItem" title="Activity" image="tab-activity" selectedImage="tab-activity" id="4dN-3x-LCR"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bOz-CD-yKn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -660,8 +660,11 @@
         <image name="cancel" width="17" height="17"/>
         <image name="dropdown" width="19" height="10"/>
         <image name="email" width="22" height="14"/>
-        <image name="first" width="30" height="30"/>
         <image name="map" width="213" height="378"/>
         <image name="person" width="22" height="18"/>
+        <image name="tab-activity" width="30" height="30"/>
+        <image name="tab-map" width="30" height="30"/>
+        <image name="tab-paths" width="30" height="30"/>
+        <image name="tab-profile" width="30" height="30"/>
     </resources>
 </document>
