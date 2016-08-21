@@ -19,13 +19,8 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
     @IBOutlet weak var dropdownBarButton: UIBarButtonItem!
     @IBOutlet weak var drawRouteButton: UIBarButtonItem!
     
-    //var onceToken: dispatch_once_t = 0
-    
-    let store = ApisDataStore.sharedInstance
-    let locationStore = LocationDataStore.sharedInstance
     var geocoder = Geocoder(accessToken: Keys.mapBoxToken)
     
-    //var gestureRecognizer: UILongPressGestureRecognizer! = nil
     var originString = ""
     var destinationString = ""
     
@@ -54,13 +49,16 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
         case Route
     }
     
-    var currentStage: ATCurrentStage!
+    var currentStage: ATCurrentStage?
     
     // MARK: - ATDropdownView
     
     func dropdownDidUpdateOrigin(location: String) {
-        if originString != location && location.characters.count > 3 {
+        if originString != location {
             originString = location
+            if let origin = origin {
+                mapView.removeAnnotation(origin)
+            }
             geocodeWithQuery(location, type: .Origin) { originAnnotation in
                 self.assignOrigin(originAnnotation)
             }
@@ -68,8 +66,11 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
     }
     
     func dropdownDidUpdateDestination(location: String) {
-        if destinationString != location && location.characters.count > 3 {
+        if destinationString != location {
             destinationString = location
+            if let destination = destination {
+                mapView.removeAnnotation(destination)
+            }
             geocodeWithQuery(location, type: .Destination) { destinationAnnotation in
                 self.assignDestination(destinationAnnotation)
             }
@@ -77,35 +78,29 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
     }
     
     func reshowDropdown(withView view: ATDropdownView.ATDropownViewType, hintText: String) {
-        if !dropdownDisplayed {
-            dropdownView.changeDropdownView(view)
-            
-            if view == .Label {
-                dropdownView.updateHintLabel(hintText)
-            }
-            
-            dropdownView.show()
-            dropdownDisplayed = true
-        } else {
-            dropdownView.hide()
-            
-            delay(0.3, block: {
-                self.dropdownView.changeDropdownView(view)
-                
-                if view == .Label {
-                    self.dropdownView.updateHintLabel(hintText)
-                }
-                
-                self.dropdownView.show()
-                self.dropdownDisplayed = true
-            })
+        dropdownView.hide()
+        dropdownView.changeDropdownView(view)
+        
+        if view == .Label {
+            dropdownView.updateHintLabel(hintText)
+        }
+        
+        delay(1.0) {
+            self.dropdownView.show()
+            self.dropdownDisplayed = true
         }
     }
+    
     
     // MARK: - Actions
     
     @IBAction func dropdown() {
-        if currentStage == .Default {
+        guard let currentStageOfDropdown = currentStage else {
+            return
+        }
+        
+        switch currentStageOfDropdown {
+        case .Default:
             if dropdownDisplayed {
                 dropdownBarButton.image = UIImage(named: "dropdown")
                 
@@ -117,67 +112,71 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
                 dropdownView.show()
                 dropdownDisplayed = true
             }
-        } else {
+        case .Waypoints:
             currentStage = .Default
             reshowDropdown(withView: .Default, hintText: "")
-            
             UIView.animateWithDuration(0.3) {
                 self.dropdownBarButton.image = UIImage(named: "dropdown")
             }
-            self.tabBarController?.setTabBarVisible(true, animated: true)
             clearMapView()
+        default:
+            print("Encountered an unexpected button state")
         }
     }
     
-    func setToDefaultWaypoints() {
-        createMode = true
+    func setToRoutes() {
+        if waypoints.count > 0 {
+            currentStage = .Route
+            createPath() { time in
+                self.reshowDropdown(withView: .Label, hintText: "Your walk will take about \(time).\nEnjoy your walk to \(self.destination?.title)!")
+            }
+            
+        } else {
+            ATAlertView.alertWithTitle(self, type: .Error, title: "Whoops", text: "Select at least one point to pass") { }
+        }
+    }
+    
+    @IBAction func create() {
+        guard let currentStage = currentStage else {
+            return
+        }
         
+        switch currentStage {
+        case .Route:
+            print("Routes")
+        case .Waypoints:
+            setToRoutes()
+        default:
+            setToDefaultToWaypoints()
+        }
+    }
+    
+    func setToDefaultToWaypoints() {
+        getWaypoints()
+        
+        //createMode = true
         currentStage = .Waypoints
-        
         dispatch_async(dispatch_get_main_queue()) {
             UIView.animateWithDuration(0.3) {
                 self.dropdownBarButton.image = UIImage(named: "back-arrow")
             }
         }
-        getWaypoints()
     }
     
     func getWaypoints() {
         addFoursquareAnnotations() { count in
-            self.reshowDropdown(withView: .Label, hintText: "Awesome! We found \(count) places to visit on your way.\nStart by selecting some!")
             dispatch_async(dispatch_get_main_queue()) {
                 for pin in self.pointsOfInterest {
                     self.mapView.addAnnotation(pin)
                 }
             }
+            //            self.reshowDropdown(withView: .Label, hintText: "Awesome! We found \(count) places to visit on your way.\nStart by selecting some!")
         }
     }
     
-    @IBAction func create() {
-        if currentStage == .Default {
-            setToDefaultWaypoints()
-            
-        } else if currentStage == .Waypoints {
-            if (waypoints.count > 25) {
-                let waypointPlural = abs(25 - waypoints.count) == 1 ? "waypoint" : "waypoints"
-                ATAlertView.alertWithTitle(self, type: .Error, title: "Whoops", text: "Too many points selected. Remove \(abs(25 - waypoints.count)) \(waypointPlural)", callback: {
-                    return
-                })
-                
-            } else if waypoints.count > 0 {
-                currentStage = .Route
-                createPath({ (time) in
-                    self.reshowDropdown(withView: .Label, hintText: "Your walk will take about \(time).\nEnjoy your walk to \(self.destination?.title)!")
-                    
-                    // self.tabBarController?.setTabBarVisible(false, animated: true)
-                    // slide up start/stop
-                })
-                
-            } else {
-                ATAlertView.alertWithTitle(self, type: .Error, title: "Whoops", text: "Select at least one point to pass", callback: {
-                    return
-                })
-            }
+    func checkOriginAndDestinationAssigned() {
+        if destination != nil && origin != nil {
+            drawRouteButton.enabled = true
         }
     }
     
@@ -214,113 +213,129 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
         }
     }
     
-    func mapView(mapView: MGLMapView, annotationCanShowCallout annotation: MGLAnnotation) -> Bool {
-        return true
-    }
-    
     func mapView(mapView: MGLMapView, strokeColorForShapeAnnotation annotation: MGLShape) -> UIColor {
         return UIColor.darkGrayColor()
     }
     
     func mapView(mapView: MGLMapView, didSelectAnnotation annotation: MGLAnnotation) {
-        if annotation.isKindOfClass(MGLUserLocation) {
+        guard let selectedAnnotation = annotation as? ATAnnotation else {
             return
         }
         
-        if createMode && currentStage == .Waypoints {
-            
-            guard let origin = origin, let destination = destination else {
-                return
-            }
-            
-            if coordinatesEqual(annotation.coordinate, other: origin.coordinate) {
-                ATAlertView.alertWithTitle(self, type: .Origin, title: origin.title!, text: "This is your origin.", callback: {
-                    mapView.deselectAnnotation(annotation, animated: true)
-                    return
-                })
-            } else if coordinatesEqual(annotation.coordinate, other: destination.coordinate) {
-                ATAlertView.alertWithTitle(self, type: .Error, title: destination.title!, text: "This is your destination.", callback: {
-                    mapView.deselectAnnotation(annotation, animated: true)
-                    return
-                })
-            }
-            let pin = annotation as! ATAnnotation
-            pin.type = .Waypoint
-            
-            if self.containsWaypoint(pin) {
-                ATAlertView.alertWithConfirmationForVenue(self, image: UIImage(named: "venue")!, title: annotation.title!!, text: "You are about to remove this place as a waypoint.", action: "Remove", callback: {
-                    self.pointsOfInterest.append(pin)
-                    
-                    if let index = self.waypoints.indexOf({ $0.title! == pin.title! }) {
-                        self.waypoints.removeAtIndex(index)
-                    }
-                    
-                    let pin = annotation as! ATAnnotation
-                    pin.type = .PointOfInterest
-                    
-                    let annotationView = mapView.viewForAnnotation(annotation)
-                    annotationView?.backgroundColor = pin.backgroundColor
-                    
-                    if let index = self.pointsOfInterest.indexOf(pin) {
-                        self.pointsOfInterest.removeAtIndex(index)
-                    }
-                    
-                    mapView.deselectAnnotation(annotation, animated: true)
-                    return
-                    
-                    }, cancelCallback: {
-                        mapView.deselectAnnotation(annotation, animated: true)
-                        return
-                })
-            }
-            ATAlertView.alertWithConfirmationForVenue(self, image: UIImage(named: "venue")!, title: annotation.title!!, text: "You are about to add this place as a waypoint.", action: "Add", callback: {
-                
-                let pin = annotation as! ATAnnotation
-                pin.type = .Waypoint
-                
-                self.waypoints.append(pin)
-                
-                let annotationView = mapView.viewForAnnotation(annotation)
-                annotationView?.backgroundColor = pin.backgroundColor
-                
-                if let index = self.pointsOfInterest.indexOf(pin) {
-                    self.pointsOfInterest.removeAtIndex(index)
-                }
-                
-                mapView.deselectAnnotation(annotation, animated: true)
-                return
-                
-                }, cancelCallback: {
-                    mapView.deselectAnnotation(annotation, animated: true)
-                    return
-            })
+        guard let origin = origin, let destination = destination else {
+            return
         }
         
-        // Otherwise, display POI info?
+        switch selectedAnnotation.type {
+        case .Origin:
+            ATAlertView.alertWithTitle(self, type: .Origin, title: origin.title!, text: "This is your origin.") {
+                mapView.deselectAnnotation(annotation, animated: true)
+            }
+        case .Destination:
+            ATAlertView.alertWithTitle(self, type: .Error, title: destination.title!, text: "This is your destination.") {
+                mapView.deselectAnnotation(annotation, animated: true)
+            }
+        default:
+            if createMode && currentStage == .Waypoints {
+                
+                let pin = selectedAnnotation
+                pin.type = .Waypoint
+                
+                if self.containsWaypoint(pin) {
+                    ATAlertView.alertWithConfirmationForVenue(self, image: UIImage(named: "venue")!, title: annotation.title!!, text: "You are about to remove this place as a waypoint.", action: "Remove", callback: {
+                        self.pointsOfInterest.append(pin)
+                        
+                        if let index = self.waypoints.indexOf({ $0.title! == pin.title! }) {
+                            self.waypoints.removeAtIndex(index)
+                        }
+                        
+                        let pin = annotation as! ATAnnotation
+                        pin.type = .PointOfInterest
+                        
+                        let annotationView = mapView.viewForAnnotation(annotation)
+                        annotationView?.backgroundColor = pin.backgroundColor
+                        
+                        if let index = self.pointsOfInterest.indexOf(pin) {
+                            self.pointsOfInterest.removeAtIndex(index)
+                        }
+                        
+                        mapView.deselectAnnotation(annotation, animated: true)
+                        return
+                        
+                        }, cancelCallback: {
+                            mapView.deselectAnnotation(annotation, animated: true)
+                            return
+                    })
+                } else {
+                    ATAlertView.alertWithConfirmationForVenue(self, image: UIImage(named: "venue")!, title: annotation.title!!, text: "You are about to add this place as a waypoint.", action: "Add", callback: {
+                        
+                        let pin = annotation as! ATAnnotation
+                        pin.type = .Waypoint
+                        
+                        self.waypoints.append(pin)
+                        
+                        let annotationView = mapView.viewForAnnotation(annotation)
+                        annotationView?.backgroundColor = pin.backgroundColor
+                        
+                        if let index = self.pointsOfInterest.indexOf(pin) {
+                            self.pointsOfInterest.removeAtIndex(index)
+                        }
+                        
+                        mapView.deselectAnnotation(annotation, animated: true)
+                        return
+                        
+                        }, cancelCallback: {
+                            mapView.deselectAnnotation(annotation, animated: true)
+                            return
+                    })
+                }
+            }
+        }
+    }
+    
+    func mapView(mapView: MGLMapView, annotationCanShowCallout annotation: MGLAnnotation) -> Bool {
+        return true
     }
     
     func mapView(mapView: MGLMapView, viewForAnnotation annotation: MGLAnnotation) -> MGLAnnotationView? {
         guard annotation is MGLPointAnnotation else {
             return nil
         }
-        
-        let reuseIdentifier = "AnnotationId"
+        let reuseIdentifier = "\(annotation.coordinate.longitude)"
         var annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseIdentifier)
-        
         if annotationView == nil {
             annotationView = ATAnnotationView(reuseIdentifier: reuseIdentifier)
-            annotationView!.frame = CGRectMake(0, 0, 25, 25)
-            
-            let pin = annotation as! ATAnnotation
-            annotationView?.backgroundColor = pin.backgroundColor
+            annotationView?.frame = CGRectMake(0, 0, 30, 30)
         }
-        
+        annotationView?.backgroundColor = (annotation as? ATAnnotation)?.backgroundColor
         return annotationView
     }
+
+
     
-    func mapView(mapView: MGLMapView, annotation: MGLAnnotation, calloutAccessoryControlTapped control: UIControl) {
-        mapView.deselectAnnotation(annotation, animated: true)
-    }
+    
+//    func mapView(mapView: MGLMapView, viewForAnnotation annotation: MGLAnnotation) -> MGLAnnotationView? {
+//        guard annotation is MGLPointAnnotation else {
+//            return nil
+//        }
+//        
+//        let reuseIdentifier = "AnnotationId"
+//        var annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseIdentifier)
+//        
+//        if annotationView == nil {
+//            
+//            //            let extantPins = mapView.annotations?.filter{ $0.coordinate.latitude == annotation.coordinate.latitude && $0.coordinate.longitude == annotation.coordinate.longitude} ?? []
+//            guard let pin = annotation as? ATAnnotation else {
+//                return nil
+//            }
+//            
+//            annotationView = ATAnnotationView(reuseIdentifier: reuseIdentifier)
+//            annotationView?.frame = CGRectMake(0, 0, 25, 25)
+//            annotationView?.backgroundColor = pin.backgroundColor
+//        }
+//        
+//        return annotationView
+//    }
     
     func geocodeWithQuery(query: String, type: ATAnnotation.ATAnnotationType, completion: ATAnnotation -> ()) {
         let options = ForwardGeocodeOptions(query: query)
@@ -348,22 +363,6 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
         }
     }
     
-    
-    //    func reverseGeocode(location: CLLocation, completion: (address: String?) -> ()) {
-    //        let options = ReverseGeocodeOptions(location: location)
-    //
-    //        geocoder.geocode(options: options) { (placemarks, attribution, error) in
-    //            if error == nil {
-    //                if let placemarks = placemarks {
-    //                    completion(address: placemarks[0].name)
-    //                }
-    //            } else {
-    //                print("Error reverse-geocoding: \(error)")
-    //                completion(address: nil)
-    //            }
-    //        }
-    //    }
-    
     // MARK: - Foursquare API
     
     func addFoursquareAnnotations(completion: (count: Int) -> ()) {
@@ -375,12 +374,12 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
             return
         }
         
-        locationStore.origin = origin.coordinate
-        locationStore.destination = destination.coordinate
+        LocationDataStore.sharedInstance.origin = origin.coordinate
+        LocationDataStore.sharedInstance.destination = destination.coordinate
         
-        self.store.getDataWithCompletion {
+        ApisDataStore.sharedInstance.getDataWithCompletion {
             
-            for location in self.store.foursquareData {
+            for location in ApisDataStore.sharedInstance.foursquareData {
                 let pin = ATAnnotation(typeSelected: .PointOfInterest)
                 
                 pin.coordinate = CLLocationCoordinate2D(latitude: location.placeLatitude, longitude: location.placeLongitude)
@@ -401,28 +400,18 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
         origin = originPoint
         mapView.addAnnotation(originPoint)
         mapView.setCenterCoordinate(originPoint.coordinate, animated: true)
-        
-        if destination != nil && origin != nil {
-            drawRouteButton.enabled = true
-        } else {
-            drawRouteButton.enabled = false
-        }
+        checkOriginAndDestinationAssigned()
     }
     
     func assignDestination(destinationPoint: ATAnnotation) {
         destination = destinationPoint
         mapView.addAnnotation(destinationPoint)
         mapView.setCenterCoordinate(destinationPoint.coordinate, animated: true)
-        
-        if destination != nil && origin != nil {
-            drawRouteButton.enabled = true
-        } else {
-            drawRouteButton.enabled = false
-        }
+        checkOriginAndDestinationAssigned()
     }
     
     func createPath(completion: (time: String) -> ()) {
-        removeUnusedWaypoints()
+        //removeUnusedWaypoints()
         
         var waypoints: [Waypoint] = []
         
@@ -507,6 +496,7 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
         }
         
         currentStage = .Default
+        drawRouteButton.enabled = false
     }
     
     override func didReceiveMemoryWarning() {
@@ -537,17 +527,17 @@ extension ATMapViewController {
         return location.latitude == other.latitude && location.longitude == other.longitude
     }
     
-    //    func pinIsDuplicate(pin: MGLAnnotation) -> Bool {
-    //        let coordinate = pin.coordinate
-    //
-    //        for waypoint in self.waypoints {
-    //            if coordinatesEqual(waypoint.coordinate, other: coordinate) {
-    //                return true
-    //            }
-    //        }
-    //
-    //        return false
-    //    }
+    func pinIsDuplicate(pin: MGLAnnotation) -> Bool {
+        let coordinate = pin.coordinate
+        
+        for waypoint in self.waypoints {
+            if coordinatesEqual(waypoint.coordinate, other: coordinate) {
+                return true
+            }
+        }
+        
+        return false
+    }
     
     func containsWaypoint(waypoint: ATAnnotation) -> Bool {
         if waypoints.contains({ $0.title! == waypoint.title! }) {
@@ -564,32 +554,30 @@ extension ATMapViewController {
     }
     
     func clearMapView() {
-        removeOriginAndDestination()
+        if let annotationsToRemove = mapView.annotations {
+            mapView.removeAnnotations(annotationsToRemove)
+        }
+        origin = nil
+        destination = nil
+        
         removePath()
         removeUnusedWaypoints()
         removeWaypoints()
     }
     
-    func removeOriginAndDestination() {
-        guard let origin = origin, destination = destination else {
-            return
-        }
-        mapView.removeAnnotations([origin, destination])
-    }
     
     func removePath() {
         if let routeLine = routeLine {
             mapView.removeAnnotation(routeLine)
         }
+        routeLine = nil
     }
     
     func removeWaypoints() {
-        mapView.removeAnnotations(waypoints)
         waypoints.removeAll()
     }
     
     func removeUnusedWaypoints() {
-        mapView.removeAnnotations(pointsOfInterest)
         pointsOfInterest.removeAll()
     }
     
