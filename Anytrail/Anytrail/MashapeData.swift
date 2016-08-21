@@ -37,7 +37,6 @@ class MashapeData {
             }
         }
         
-        
         placeLatitude = latitude
         placeLongitude = longitude
         placeName = name

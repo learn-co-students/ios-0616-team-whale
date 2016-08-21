@@ -12,10 +12,11 @@ import Alamofire
 import SwiftyJSON
 
 class MashapeAPIClient {
-    class func getTrails(completion: (JSON?) -> ()){
+    class func getTrails(completion: (JSON?, ErrorType?) -> ()){
         let clientID = Keys.mashapeKey
         let parameter = ["mashape-key" : clientID]
         let url = "https://trailapi-trailapi.p.mashape.com"
+        
         Alamofire.request(.GET, url, parameters: parameter, headers: nil).responseJSON { (response) in
             if response.result.isSuccess {
                 if let data = response.data {
@@ -30,11 +31,10 @@ class MashapeAPIClient {
                             }
                         }
                     }
-                    completion(jsonData)
+                    completion(jsonData, nil)
                 }
-                
             } else {
-                print("\(response.result.error)")
+                completion(nil, response.result.error)
             }
         }
     }

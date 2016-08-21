@@ -491,13 +491,10 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         if !InternetStatus.shared.hasInternet {
             print("\n\nthere is no internet connection\n\n")
             ATAlertView.alertWithTitle(self, type: ATAlertView.ATAlertViewType.Error, title: "Oops!", text: "Something went wrong, check the Internet connection", callback: {})
         }
-        
-        
         
         geocoder = Geocoder(accessToken: Keys.mapBoxToken)
         
@@ -523,26 +520,19 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
-        
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ATMapViewController.reachabilityChanged(_:)), name: ReachabilityChangedNotification, object: nil)
-        
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(true)
-        
         NSNotificationCenter.defaultCenter().removeObserver(self, name: ReachabilityChangedNotification, object: nil)
-        
-        
     }
     
     func reachabilityChanged(notification: NSNotification) {
-        
         guard let reachability = notification.object as? Reachability else {return}
         if !reachability.isReachable() {
             ATAlertView.alertWithTitle(self, type: ATAlertView.ATAlertViewType.Error, title: "Oops!", text: "Something went wrong, check the Internet connection", callback: {})
         }
-        
     }
     
     override func didReceiveMemoryWarning() {

@@ -30,7 +30,6 @@ class FoursquareAPIClient {
                          "ne" : ne,
                          "sw": sw]
         
-        
         Alamofire.request(.GET, "https://api.foursquare.com/v2/venues/explore", parameters: parameter, headers: nil).responseJSON { (response) in
             if response.result.isSuccess {
                 if let data = response.data {
@@ -42,11 +41,9 @@ class FoursquareAPIClient {
                     //                }
                     completion(jsonData, nil)
                 }
-                
             } else {
                 completion(nil, response.result.error)
             }
         }
     }
-    
 }
