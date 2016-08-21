@@ -17,10 +17,15 @@ class ApisDataStore {
     
     
     var foursquareData:[FoursquareData] = []
-    func getDataWithCompletion(completion: () -> ()) {
-        FoursquareAPIClient.getQueryForSearchLandmarks { (json) in
+    func getDataWithCompletion(completion: (success: Bool) -> ()) {
+        FoursquareAPIClient.getQueryForSearchLandmarks { (json, error) in
             self.foursquareData.removeAll()
-            guard let json = json else { print("error: no data recieved from API Client"); return}
+            guard let json = json else {
+                print("error: no data recieved from API Client \(error)")
+                completion(success: false)
+                return
+            }
+            
             for object in json {
                 if let dataFS = object.1["groups"][0]["items"].array {
                     
@@ -33,8 +38,8 @@ class ApisDataStore {
                 }
                 
             }
-            completion()
-
+            completion(success: true)
+            
         }
         
     }
@@ -52,12 +57,12 @@ class ApisDataStore {
                         self.mashapeData.append(MashapeData(json: trailData[i]))
                         print("@@@@@@@@@@@@@@\(trailData[i])")
                     }
-
+                    
                 }
                 
             }
             completion()
-
+            
         }
         
         

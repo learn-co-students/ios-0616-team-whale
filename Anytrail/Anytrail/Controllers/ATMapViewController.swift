@@ -322,17 +322,21 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
         
         locationStore.settingRectangleForFoursquare()
         
-        ApisDataStore.sharedInstance.getDataWithCompletion {
-            for location in self.store.foursquareData {
-                let pin = ATAnnotation()
-                
-                pin.coordinate = CLLocationCoordinate2D(latitude: location.placeLatitude, longitude: location.placeLongitude)
-                pin.title = location.placeName
-                pin.subtitle = location.placeAddress
-                pin.type = .PointOfInterest
-                
-                self.pointsOfInterest.append(pin)
-                self.mapView.addAnnotation(pin)
+        ApisDataStore.sharedInstance.getDataWithCompletion { success in
+            if success {
+                for location in self.store.foursquareData {
+                    let pin = ATAnnotation()
+                    
+                    pin.coordinate = CLLocationCoordinate2D(latitude: location.placeLatitude, longitude: location.placeLongitude)
+                    pin.title = location.placeName
+                    pin.subtitle = location.placeAddress
+                    pin.type = .PointOfInterest
+                    
+                    self.pointsOfInterest.append(pin)
+                    self.mapView.addAnnotation(pin)
+                }
+            } else {
+                ATAlertView.alertWithTitle(self, type: ATAlertView.ATAlertViewType.Error, title: "Ooops!", text: "Server not responded, try again later", callback: {})
             }
         }
     }
@@ -490,7 +494,7 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
         
         if !InternetStatus.shared.hasInternet {
             print("\n\nthere is no internet connection\n\n")
-            ATAlertView.alertWithTitle(self, type: ATAlertView.ATAlertViewType.Error, title: "Whoops!", text: "No Internet", callback: {})
+            ATAlertView.alertWithTitle(self, type: ATAlertView.ATAlertViewType.Error, title: "Oops!", text: "Something went wrong, check the Internet connection", callback: {})
         }
         
         
@@ -536,9 +540,9 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
         
         guard let reachability = notification.object as? Reachability else {return}
         if !reachability.isReachable() {
-            ATAlertView.alertWithTitle(self, type: ATAlertView.ATAlertViewType.Error, title: "Whoops!", text: "No Internet", callback: {})
+            ATAlertView.alertWithTitle(self, type: ATAlertView.ATAlertViewType.Error, title: "Oops!", text: "Something went wrong, check the Internet connection", callback: {})
         }
-
+        
     }
     
     override func didReceiveMemoryWarning() {

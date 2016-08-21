@@ -16,23 +16,25 @@ class MashapeAPIClient {
         let clientID = Keys.mashapeKey
         let parameter = ["mashape-key" : clientID]
         let url = "https://trailapi-trailapi.p.mashape.com"
-        
-        
         Alamofire.request(.GET, url, parameters: parameter, headers: nil).responseJSON { (response) in
-            if let data = response.data {
-                let jsonData = JSON(data : data)
-                if let places = jsonData["places"].array{
-                    for place in places {
-                        if let activities = place["activities"].array {
-                            for activity in activities {
-                                print("##########\(activity["activity_type_name"].string)")
+            if response.result.isSuccess {
+                if let data = response.data {
+                    let jsonData = JSON(data : data)
+                    if let places = jsonData["places"].array{
+                        for place in places {
+                            if let activities = place["activities"].array {
+                                for activity in activities {
+                                    print("##########\(activity["activity_type_name"].string)")
+                                }
+                                print(place)
                             }
-                            print(place)
                         }
                     }
-                    
+                    completion(jsonData)
                 }
-                completion(jsonData)
+                
+            } else {
+                print("\(response.result.error)")
             }
         }
     }
