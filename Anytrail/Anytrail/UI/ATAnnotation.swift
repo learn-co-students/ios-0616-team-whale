@@ -16,6 +16,7 @@ class ATAnnotation: MGLPointAnnotation {
         case PointOfInterest
         case Waypoint
         case Destination
+        case Error
     }
     
     var type: ATAnnotationType
@@ -35,6 +36,8 @@ class ATAnnotation: MGLPointAnnotation {
             return ATConstants.Colors.GREEN
         case .PointOfInterest:
             return ATConstants.Colors.ORANGE
+        default:
+            return ATConstants.Colors.GRAY
         }
     }
 }

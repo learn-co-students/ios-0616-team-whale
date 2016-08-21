@@ -21,9 +21,6 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
     
     var geocoder = Geocoder(accessToken: Keys.mapBoxToken)
     
-    var originString = ""
-    var destinationString = ""
-    
     var origin: ATAnnotation?
     var destination: ATAnnotation?
     var routeLine: MGLPolyline?
@@ -38,11 +35,6 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
     var navigationRoutes: [Route] = []
     var navigationLegs: [RouteLeg] = []
     
-    // This is used to track the 'stage' in the path lifecycle
-    // 1 => Default, setting origin and destination
-    // 2 => Waypoints, selecting waypoints
-    // 3 => Route, creating final route
-    
     enum ATCurrentStage: Int {
         case Default
         case Waypoints
@@ -53,27 +45,21 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
     
     // MARK: - ATDropdownView
     
-    func dropdownDidUpdateOrigin(location: String) {
-        if originString != location {
-            originString = location
-            if let origin = origin {
-                mapView.removeAnnotation(origin)
-            }
-            geocodeWithQuery(location, type: .Origin) { originAnnotation in
-                self.assignOrigin(originAnnotation)
-            }
+    func dropdownDidUpdateOrigin(location: String?) {
+        guard let locationString = location else {
+            return
+        }
+        geocodeWithQuery(locationString, type: .Origin) { originGeocoded in
+            self.assignOrigin(originGeocoded)
         }
     }
     
-    func dropdownDidUpdateDestination(location: String) {
-        if destinationString != location {
-            destinationString = location
-            if let destination = destination {
-                mapView.removeAnnotation(destination)
-            }
-            geocodeWithQuery(location, type: .Destination) { destinationAnnotation in
-                self.assignDestination(destinationAnnotation)
-            }
+    func dropdownDidUpdateDestination(location: String?) {
+        guard let locationString = location else {
+            return
+        }
+        geocodeWithQuery(locationString, type: .Destination) { destinationGeocoded in
+            self.assignDestination(destinationGeocoded)
         }
     }
     
@@ -310,32 +296,6 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
         annotationView?.backgroundColor = (annotation as? ATAnnotation)?.backgroundColor
         return annotationView
     }
-
-
-    
-    
-//    func mapView(mapView: MGLMapView, viewForAnnotation annotation: MGLAnnotation) -> MGLAnnotationView? {
-//        guard annotation is MGLPointAnnotation else {
-//            return nil
-//        }
-//        
-//        let reuseIdentifier = "AnnotationId"
-//        var annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseIdentifier)
-//        
-//        if annotationView == nil {
-//            
-//            //            let extantPins = mapView.annotations?.filter{ $0.coordinate.latitude == annotation.coordinate.latitude && $0.coordinate.longitude == annotation.coordinate.longitude} ?? []
-//            guard let pin = annotation as? ATAnnotation else {
-//                return nil
-//            }
-//            
-//            annotationView = ATAnnotationView(reuseIdentifier: reuseIdentifier)
-//            annotationView?.frame = CGRectMake(0, 0, 25, 25)
-//            annotationView?.backgroundColor = pin.backgroundColor
-//        }
-//        
-//        return annotationView
-//    }
     
     func geocodeWithQuery(query: String, type: ATAnnotation.ATAnnotationType, completion: ATAnnotation -> ()) {
         let options = ForwardGeocodeOptions(query: query)
@@ -397,6 +357,10 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
     // MARK: - Paths
     
     func assignOrigin(originPoint: ATAnnotation) {
+        if let origin = origin {
+            mapView.removeAnnotation(origin)
+        }
+        
         origin = originPoint
         mapView.addAnnotation(originPoint)
         mapView.setCenterCoordinate(originPoint.coordinate, animated: true)
@@ -404,6 +368,10 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
     }
     
     func assignDestination(destinationPoint: ATAnnotation) {
+        if let destination = destination {
+            mapView.removeAnnotation(destination)
+        }
+        
         destination = destinationPoint
         mapView.addAnnotation(destinationPoint)
         mapView.setCenterCoordinate(destinationPoint.coordinate, animated: true)
