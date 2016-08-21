@@ -26,13 +26,14 @@ class ATAnnotation: MGLPointAnnotation {
     
     
     var backgroundColor: UIColor {
-        if type == .Origin {
+        switch type {
+        case .Origin:
             return ATConstants.Colors.BLUE
-        } else if type == .Destination {
+        case .Destination:
             return ATConstants.Colors.RED
-        } else if type == .Waypoint {
+        case .Waypoint:
             return ATConstants.Colors.GREEN
-        } else {
+        case .PointOfInterest:
             return ATConstants.Colors.ORANGE
         }
     }

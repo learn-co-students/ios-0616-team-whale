@@ -25,18 +25,18 @@ class ATAlertView {
     }
     
     class func alertWithTitle(controller: UIViewController, type: ATAlertViewType, title: String, text: String, callback: () -> Void) {
-        let color: UIColor
+        let alertColor: UIColor
         
         if type == .Normal {
-            color = ATConstants.Colors.GRAY
+            alertColor = ATConstants.Colors.GRAY
         } else if type == .Error {
-            color = ATConstants.Colors.RED
+            alertColor = ATConstants.Colors.RED
         } else if type == .Success {
-            color = ATConstants.Colors.GREEN
+            alertColor = ATConstants.Colors.GREEN
         } else if type == .PointOfInterest {
-            color = ATConstants.Colors.ORANGE
+            alertColor = ATConstants.Colors.ORANGE
         } else {
-            color = ATConstants.Colors.BLUE
+            alertColor = ATConstants.Colors.BLUE
         }
         
         let alert = JSSAlertView().show(
@@ -44,7 +44,7 @@ class ATAlertView {
             title: title,
             text: text,
             buttonText: "Dismiss",
-            color: color
+            color: alertColor
         )
         
         alert.addAction(callback)
