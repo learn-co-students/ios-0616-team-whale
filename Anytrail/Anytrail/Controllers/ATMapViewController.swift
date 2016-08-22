@@ -273,8 +273,6 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
         }
     }
     
-    
-    
     func mapView(mapView: MGLMapView, annotationCanShowCallout annotation: MGLAnnotation) -> Bool {
         return true
     }
@@ -287,7 +285,7 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
         var annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseIdentifier)
         if annotationView == nil {
             annotationView = ATAnnotationView(reuseIdentifier: reuseIdentifier)
-            annotationView?.frame = CGRectMake(0, 0, 30, 30)
+            annotationView?.frame = CGRectMake(0, 0, 25, 25)
         }
         annotationView?.backgroundColor = (annotation as? ATAnnotation)?.backgroundColor
         return annotationView
