@@ -5,7 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
-        <!--Profile-->
+        <!--My Stats-->
         <scene sceneID="wXg-YR-Xwt">
             <objects>
                 <viewController title="My Stats" id="fwV-at-Xh2" customClass="ProfileTableViewController" customModule="Anytrail" customModuleProvider="target" sceneMemberID="viewController">
@@ -88,7 +88,7 @@
             </objects>
             <point key="canvasLocation" x="5829" y="449"/>
         </scene>
-        <!--My Stats-->
+        <!--Profile-->
         <scene sceneID="wOp-jp-qgQ">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="QKL-im-93S" sceneMemberID="viewController">

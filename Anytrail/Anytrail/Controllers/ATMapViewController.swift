@@ -12,12 +12,13 @@ import MapboxGeocoder
 import ReachabilitySwift
 import TGLParallaxCarousel
 
+
 import UIKit
 
 class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewDelegate {
     
     @IBOutlet weak var carouselView: TGLParallaxCarousel!
-
+    
     
     @IBOutlet var mapView: MGLMapView!
     @IBOutlet weak var addButton: UIButton!
@@ -39,6 +40,10 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
     var dropdownDisplayed = false
     var navigationRoutes: [Route] = []
     var navigationLegs: [RouteLeg] = []
+    var numberOfSteps: Int = 0
+    
+    var directionArray : [(RouteLeg, RouteStep, [CLLocationCoordinate2D]?)] = []
+    
     
     enum ATCurrentStage: Int {
         case Default
@@ -173,21 +178,24 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
         }
     }
     
-    
-    @IBAction func navigateTapped(sender: AnyObject) {
-        var waypointString = ""
-        
-        for pin in waypoints {
-            waypointString = waypointString + "\(pin.coordinate.latitude)," + "\(pin.coordinate.longitude)&"
+    func giveScrollerPages()->Int{
+        var count = 0
+        for leg in navigationLegs{
+            for step in leg.steps{
+             count += 1
+            }
         }
-        
-        print(waypointString)
+        return count
     }
+    func directionsArray(){
+        for leg in navigationLegs{
+            for step in leg.steps{
+                directionArray.append((leg, step, step.coordinates))
+            }
+        }
+    }
+//        DirectionView.init(frame: CGRectMake(0, 0, 300 * ratio, 150 * ratio), leg: <#T##String#>, step: String)
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        let destinationTableView = segue.destinationViewController as? NavigationTableViewController
-        destinationTableView?.legs = navigationLegs
-    }
     
     // MARK: - Mapbox
     
@@ -419,9 +427,12 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
             
             if let route = routes?.first, let leg = route.legs.first {
                 print("Route via \(leg)")
-                
                 self.navigationLegs = route.legs
+                self.giveScrollerPages()
+                self.carouselView.hidden = false
                 
+                self.directionsArray()
+                self.carouselView.type = .ThreeDimensional
                 let distanceFormatter = NSLengthFormatter()
                 let formattedDistance = distanceFormatter.stringFromMeters(route.distance)
                 
@@ -430,7 +441,6 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
                 let formattedTravelTime = travelTimeFormatter.stringFromTimeInterval(route.expectedTravelTime)
                 
                 print("Distance: \(formattedDistance); ETA: \(formattedTravelTime!)")
-                
                 completion(time: formattedTravelTime!)
                 
                 if route.coordinateCount > 0 {
@@ -442,6 +452,9 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
                         self.mapView.setVisibleCoordinates(&routeCoordinates, count: route.coordinateCount, edgePadding: UIEdgeInsetsZero, animated: true)
                     }
                 }
+                else {
+                    self.carouselView.hidden = true
+            }
             }
         }
     }
@@ -466,13 +479,11 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
         
         currentStage = .Default
         drawRouteButton.enabled = false
-        setupCarousel()
-    }
-    
-    func setupCarousel() {
         carouselView.delegate = self
         carouselView.datasource = self
-        carouselView.itemMargin = 10
+        self.carouselView.reloadInputViews()
+        self.carouselView.itemMargin = 10
+
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -586,21 +597,31 @@ extension ATMapViewController {
 
 extension ATMapViewController: TGLParallaxCarouselDatasource {
     func numberOfItemsInCarousel(carousel: TGLParallaxCarousel) ->Int {
-        return 5
+        return self.giveScrollerPages()
     }
     
     func viewForItemAtIndex(index: Int, carousel: TGLParallaxCarousel) -> TGLParallaxCarouselItem {
         let ratio: CGFloat = view.frame.width / 375.0
-        return DirectionView(frame: CGRectMake(0, 0, 300 * ratio, 150 * ratio), leg: "\(index + 1)", step: "this is my stepppppp")
+        
+        return DirectionView(frame: CGRectMake(0, 0, 300 * ratio, 150 * ratio), leg: "\(directionArray[index].0)", step: "\(directionArray[index].1.instructions)")
     }
 }
 
 extension ATMapViewController: TGLParallaxCarouselDelegate {
     func didTapOnItemAtIndex(index: Int, carousel: TGLParallaxCarousel) {
         print("Tap on item at index \(index)")
+        
     }
     
     func didMovetoPageAtIndex(index: Int) {
         print("Did move to index \(index)")
+        if let coordinatesInArray = directionArray[index].2{
+            if let last = coordinatesInArray.last{
+                print("should be moving")
+                
+                mapView.setCenterCoordinate(last, animated: true)
+            }
+        }
+
     }
 }

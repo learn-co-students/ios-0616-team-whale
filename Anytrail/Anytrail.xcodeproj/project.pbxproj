@@ -429,6 +429,7 @@
 				TargetAttributes = {
 					9424A76B1D53D5DA00CE8D42 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = KXY9EDFTF5;
 						SystemCapabilities = {
 							com.apple.HealthKit = {
 								enabled = 0;
@@ -774,7 +775,7 @@
 			baseConfigurationReference = F4AC6E6A90B2DC273C8971C2 /* Pods-Anytrail.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Flatiron School, Inc (KXY9EDFTF5)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Flatiron School, Inc (KXY9EDFTF5)";
 				INFOPLIST_FILE = Anytrail/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -789,7 +790,7 @@
 			baseConfigurationReference = 3417C12B1559CD326FE9F852 /* Pods-Anytrail.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Flatiron School, Inc (KXY9EDFTF5)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Flatiron School, Inc (KXY9EDFTF5)";
 				INFOPLIST_FILE = Anytrail/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
