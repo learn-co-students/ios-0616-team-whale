@@ -26,6 +26,7 @@ class ATConstants {
         static let GREEN = UIColor(red: 39/255, green: 174/255, blue: 96/255, alpha: 0.9)
         static let BLUE = UIColor(red: 77/255, green: 122/255, blue: 255/255, alpha: 0.9)
         static let GRAY = UIColor(red: 227/255, green: 231/255, blue: 234/255, alpha: 0.9)
+        static let PURPLE = UIColor(red: 74/255, green: 16/255, blue: 126/255, alpha: 0.9)
     }
 
 }

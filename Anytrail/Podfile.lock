@@ -45,14 +45,15 @@ PODS:
   - GoogleSymbolUtilities (1.1.1)
   - GoogleUtilities (1.3.1):
     - GoogleSymbolUtilities (~> 1.0)
-  - Mapbox-iOS-SDK (3.3.3)
+  - Mapbox-iOS-SDK (3.3.4)
   - MapboxDirections.swift (0.6.0):
     - Polyline (~> 3.2)
   - MapboxGeocoder.swift (0.5.0)
-  - Polyline (3.2.1)
+  - Polyline (3.2.2)
   - ReachabilitySwift (2.3.3)
   - SnapKit (0.30.0.beta2)
   - SwiftyJSON (2.3.2)
+  - TGLParallaxCarousel (0.2.1)
 
 DEPENDENCIES:
   - Alamofire
@@ -66,6 +67,7 @@ DEPENDENCIES:
   - ReachabilitySwift
   - SnapKit (= 0.30.0.beta2)
   - SwiftyJSON
+  - TGLParallaxCarousel
 
 EXTERNAL SOURCES:
   MapboxDirections.swift:
@@ -98,14 +100,15 @@ SPEC CHECKSUMS:
   GoogleParsingUtilities: 30b3896f9ee167dc78747f013d3de157ced1cadf
   GoogleSymbolUtilities: 33117db1b5f290c6fbf259585e4885b4c84b98d7
   GoogleUtilities: 56c5ac05b7aa5dc417a1bb85221a9516e04d7032
-  Mapbox-iOS-SDK: 13cd4d7e118acae2782a1bdc5947164d8f6d80fd
+  Mapbox-iOS-SDK: b22da0d9703fcfb0a8b592b6a7f6a21264fe44b0
   MapboxDirections.swift: 144cefb4386d419f916ce27928834c28bbaafb4f
   MapboxGeocoder.swift: 4fbe12e42458db895ff73739c69743c943d0824e
-  Polyline: 4579e57a62a5e876944c41884194e24ab7021d89
+  Polyline: 4968bf16ceddd579e1e60820edc74a2271ec9c59
   ReachabilitySwift: e0f6b6f280effb47731acfaaa2d5ffe223703793
   SnapKit: c4bb32b1d3c5d18ff63bf95ffcbc599d2bab964c
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
+  TGLParallaxCarousel: 7736edf9e26a3f08f32d0a24fcb0c93edc8253ad
 
-PODFILE CHECKSUM: 0cfad4d8aba6e1c4807537de7e924bd1a6ecc23e
+PODFILE CHECKSUM: a0c42ad5d7b874ad65f4f0b6c9dbbab179259258
 
 COCOAPODS: 1.0.1

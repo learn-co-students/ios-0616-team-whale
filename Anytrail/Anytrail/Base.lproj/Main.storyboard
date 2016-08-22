@@ -4,6 +4,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--Delegate-->
@@ -18,23 +19,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" alpha="0.90000000000000002" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iId-Zs-P1A">
-                                <rect key="frame" x="270" y="481" width="61" height="30"/>
-                                <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Navigate">
-                                    <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="navigateTapped:" destination="9pv-A4-QxB" eventType="touchUpInside" id="v8L-Rh-xsn"/>
-                                    <segue destination="ryO-lX-Alm" kind="show" identifier="routeSelected" id="EkF-GK-Xkb"/>
-                                </connections>
-                            </button>
+                            <view alpha="0.90000000000000002" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YrG-hj-CVj" customClass="TGLParallaxCarousel" customModule="TGLParallaxCarousel">
+                                <rect key="frame" x="0.0" y="333" width="600" height="210"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <color key="tintColor" red="0.90823972225189209" green="0.92638683319091797" blue="0.9317171573638916" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="iId-Zs-P1A" firstAttribute="centerX" secondItem="tsR-hK-woN" secondAttribute="centerX" id="daD-MH-d9C"/>
-                            <constraint firstItem="4ug-Mw-9AY" firstAttribute="top" secondItem="iId-Zs-P1A" secondAttribute="bottom" constant="40" id="nPq-9X-muL"/>
+                            <constraint firstItem="4ug-Mw-9AY" firstAttribute="top" secondItem="YrG-hj-CVj" secondAttribute="bottom" constant="10" id="Rpb-hB-KHa"/>
+                            <constraint firstItem="YrG-hj-CVj" firstAttribute="width" secondItem="tsR-hK-woN" secondAttribute="width" id="W0d-Ep-euP"/>
+                            <constraint firstItem="YrG-hj-CVj" firstAttribute="centerX" secondItem="tsR-hK-woN" secondAttribute="centerX" id="cKT-DL-1lQ"/>
+                            <constraint firstItem="YrG-hj-CVj" firstAttribute="height" secondItem="tsR-hK-woN" secondAttribute="height" multiplier="0.35" id="oGJ-OQ-YZM"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="string" keyPath="styleURL__" value="mapbox://styles/imryan/cirhys2ik000igjnoz92eencj"/>
@@ -68,6 +63,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="carouselView" destination="YrG-hj-CVj" id="b5q-9K-pku"/>
                         <outlet property="drawRouteButton" destination="Ast-MD-UW1" id="awa-sW-6FF"/>
                         <outlet property="dropdownBarButton" destination="pb9-GC-3bW" id="97i-np-gAJ"/>
                         <outlet property="mapView" destination="tsR-hK-woN" id="RVf-Kl-XDz"/>
@@ -87,7 +83,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="directionCell" textLabel="JMb-2R-n8o" detailTextLabel="Y8s-Jn-AP4" style="IBUITableViewCellStyleValue1" id="gMH-TJ-WFz">
-                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gMH-TJ-WFz" id="fKQ-w6-9ui">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -620,7 +616,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="stepCell" textLabel="gSE-ZT-pxp" detailTextLabel="xqe-ZY-fCK" style="IBUITableViewCellStyleValue1" id="49j-e8-IlY">
-                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="49j-e8-IlY" id="Ns5-4l-UB1">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>

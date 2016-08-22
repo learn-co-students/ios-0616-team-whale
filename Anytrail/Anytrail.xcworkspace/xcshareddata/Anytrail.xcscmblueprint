@@ -5,11 +5,13 @@
   },
   "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
     "5A29B29B9B8CFBCA28F072170B70F021754525D7" : 0,
+    "C57501CD85560235FBC98B1C93A9E9F6B6D5D967" : 0,
     "F980FC3913E592CE8ED4CBE0687C21439C2F3CC9" : 0
   },
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "0593A8DD-C935-4D80-AAEC-7F3588743624",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
     "5A29B29B9B8CFBCA28F072170B70F021754525D7" : "..",
+    "C57501CD85560235FBC98B1C93A9E9F6B6D5D967" : "TGLParallaxCarousel\/",
     "F980FC3913E592CE8ED4CBE0687C21439C2F3CC9" : "ios-0616-team-whale\/"
   },
   "DVTSourceControlWorkspaceBlueprintNameKey" : "Anytrail",
@@ -20,6 +22,11 @@
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/Uskinn\/Uber-SplashScreen-Tutorial.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "5A29B29B9B8CFBCA28F072170B70F021754525D7"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:ellscha\/TGLParallaxCarousel.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "C57501CD85560235FBC98B1C93A9E9F6B6D5D967"
     },
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/learn-co-students\/ios-0616-team-whale.git",

@@ -15,6 +15,8 @@
 		2E8AC7851D67C3E80012AE98 /* Paths.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2E8AC7831D67C3E80012AE98 /* Paths.xcdatamodeld */; };
 		2EAC23641D677B3900572541 /* NavigationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EAC23631D677B3900572541 /* NavigationTableViewController.swift */; };
 		2EAC23661D67829600572541 /* DetailNavigationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EAC23651D67829600572541 /* DetailNavigationTableViewController.swift */; };
+		2EBCDDFD1D6BA4E900E8B6BC /* DirectionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBCDDFB1D6BA4E900E8B6BC /* DirectionsView.swift */; };
+		2EBCDDFE1D6BA4E900E8B6BC /* DirectionsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2EBCDDFC1D6BA4E900E8B6BC /* DirectionsView.xib */; };
 		2EFB62981D6B9589003DF7F8 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EFB62971D6B9589003DF7F8 /* HealthKit.framework */; };
 		4D225C1B1D5A0FF600360AB8 /* MashapeAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D225C1A1D5A0FF600360AB8 /* MashapeAPIClient.swift */; };
 		4D225C1F1D5A100800360AB8 /* MashapeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D225C1E1D5A100800360AB8 /* MashapeData.swift */; };
@@ -93,6 +95,8 @@
 		2E8AC7841D67C3E80012AE98 /* Paths.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Paths.xcdatamodel; sourceTree = "<group>"; };
 		2EAC23631D677B3900572541 /* NavigationTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NavigationTableViewController.swift; path = Controllers/NavigationTableViewController.swift; sourceTree = "<group>"; };
 		2EAC23651D67829600572541 /* DetailNavigationTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DetailNavigationTableViewController.swift; path = Controllers/DetailNavigationTableViewController.swift; sourceTree = "<group>"; };
+		2EBCDDFB1D6BA4E900E8B6BC /* DirectionsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DirectionsView.swift; sourceTree = "<group>"; };
+		2EBCDDFC1D6BA4E900E8B6BC /* DirectionsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DirectionsView.xib; sourceTree = "<group>"; };
 		2EDDFE291D5A868900B36853 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2EFB62971D6B9589003DF7F8 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		3417C12B1559CD326FE9F852 /* Pods-Anytrail.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Anytrail.release.xcconfig"; path = "Pods/Target Support Files/Pods-Anytrail/Pods-Anytrail.release.xcconfig"; sourceTree = "<group>"; };
@@ -185,6 +189,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4D8FE91B1D6B6DBF00FC3339 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				2EBCDDFB1D6BA4E900E8B6BC /* DirectionsView.swift */,
+				2EBCDDFC1D6BA4E900E8B6BC /* DirectionsView.xib */,
+			);
+			name = Navigation;
+			sourceTree = "<group>";
+		};
 		4DF1FD201D65104400692309 /* FactsFromGovernment */ = {
 			isa = PBXGroup;
 			children = (
@@ -233,6 +246,7 @@
 				4DEE998D1D64A1BC004BC91C /* LocationDataStore.swift */,
 				949370341D62515900C696AE /* ATConstants.swift */,
 				9437CADE1D663C660060E9CF /* AnytrailKit.swift */,
+				4D8FE91B1D6B6DBF00FC3339 /* Navigation */,
 				9437CAE51D664B8D0060E9CF /* Model */,
 				9437CADD1D66063F0060E9CF /* API */,
 				945F35EE1D5A306A002F9C1E /* UI */,
@@ -464,6 +478,7 @@
 			files = (
 				9424A77C1D53D5DA00CE8D42 /* LaunchScreen.storyboard in Resources */,
 				8A39490B1D637C4E004A4B94 /* SplashScreen.storyboard in Resources */,
+				2EBCDDFE1D6BA4E900E8B6BC /* DirectionsView.xib in Resources */,
 				2E1DA87F1D5E0DEB00F83DFD /* ActivityTracker.storyboard in Resources */,
 				4DFDBC161D634806006616D0 /* ProfileMapHeader.xib in Resources */,
 				4DFDBC121D6262E2006616D0 /* UserProfileCell.xib in Resources */,
@@ -607,6 +622,7 @@
 				4DE1D0AB1D60D61F00911AA8 /* ProfileTableViewController.swift in Sources */,
 				9437CAEF1D678AFE0060E9CF /* Path.swift in Sources */,
 				9458E8D91D5CF44B007CDD47 /* ATDropdownView.swift in Sources */,
+				2EBCDDFD1D6BA4E900E8B6BC /* DirectionsView.swift in Sources */,
 				9437CAE41D664B8A0060E9CF /* ATPath.swift in Sources */,
 				945F35E21D58F390002F9C1E /* ATLoginViewController.swift in Sources */,
 				8A53F2F11D594E3E00F244BE /* TrailApiClient.swift in Sources */,
@@ -763,9 +779,8 @@
 			baseConfigurationReference = F4AC6E6A90B2DC273C8971C2 /* Pods-Anytrail.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = Anytrail/Anytrail.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Flatiron School, Inc (KXY9EDFTF5)";
 				INFOPLIST_FILE = Anytrail/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.flatironschool.team-whale";
@@ -779,9 +794,8 @@
 			baseConfigurationReference = 3417C12B1559CD326FE9F852 /* Pods-Anytrail.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = Anytrail/Anytrail.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Flatiron School, Inc (KXY9EDFTF5)";
 				INFOPLIST_FILE = Anytrail/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.flatironschool.team-whale";
