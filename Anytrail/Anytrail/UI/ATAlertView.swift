@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ATAlertView {
+class ATAlertView: JSSAlertView {
     
 //    struct ATAlertViewColor {
 //        static let GREY = UIColorFromHex(0xE3E7EA, alpha: 0.9)
@@ -17,11 +17,11 @@ class ATAlertView {
 //    }
     
     enum ATAlertViewType: Int {
-        case Normal = 1
-        case Error = 2
-        case Success = 3
-        case Origin = 4
-        case PointOfInterest = 5
+        case Normal
+        case Error
+        case Success
+        case Origin
+        case PointOfInterest
     }
     
     class func alertWithTitle(controller: UIViewController, type: ATAlertViewType, title: String, text: String, callback: () -> Void) {
@@ -55,7 +55,7 @@ class ATAlertView {
         let color: UIColor
         
         if action == "Add" {
-            color = ATConstants.Colors.ORANGE
+            color = ATConstants.Colors.GREEN
         } else {
             color = ATConstants.Colors.RED
         }
