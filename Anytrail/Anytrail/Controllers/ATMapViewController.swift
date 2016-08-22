@@ -9,6 +9,7 @@
 import Mapbox
 import MapboxDirections
 import MapboxGeocoder
+import ReachabilitySwift
 
 import UIKit
 
@@ -330,14 +331,16 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
         LocationDataStore.sharedInstance.origin = CLLocation(latitude: origin.coordinate.latitude, longitude:  origin.coordinate.longitude)
         LocationDataStore.sharedInstance.destination = CLLocation(latitude: destination.coordinate.latitude, longitude:  destination.coordinate.longitude)
         
-        ApisDataStore.sharedInstance.pointOfInterestEpicenterQuery {
-            for location in ApisDataStore.sharedInstance.foursquareData {
-                let pin = ATAnnotation(typeSelected: .PointOfInterest)
-                
-                pin.coordinate = CLLocationCoordinate2D(latitude: location.placeLatitude, longitude: location.placeLongitude)
-                pin.title = location.placeName
-                pin.subtitle = location.placeAddress
-                self.pointsOfInterest.append(pin)
+        ApisDataStore.sharedInstance.pointOfInterestEpicenterQuery { success in
+            if success {
+                for location in ApisDataStore.sharedInstance.foursquareData {
+                    let pin = ATAnnotation(typeSelected: .PointOfInterest)
+                    
+                    pin.coordinate = CLLocationCoordinate2D(latitude: location.placeLatitude, longitude: location.placeLongitude)
+                    pin.title = location.placeName
+                    pin.subtitle = location.placeAddress
+                    self.pointsOfInterest.append(pin)}
+            } else { ATAlertView.alertWithTitle(self, type: ATAlertView.ATAlertViewType.Error, title: "Oops...", text: "Server not responded, try again later", callback: {})
             }
             completion(count: self.pointsOfInterest.count)
         }
@@ -441,6 +444,10 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if !InternetStatus.shared.hasInternet {
+            print("\n\nthere is no internet connection\n\n")
+            ATAlertView.alertWithTitle(self, type: ATAlertView.ATAlertViewType.Error, title: "Oops...", text: "Something went wrong, check the Internet connection", callback: {})
+        }
         
         geocoder = Geocoder(accessToken: Keys.mapBoxToken)
         
@@ -456,11 +463,30 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
         drawRouteButton.enabled = false
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(true)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ATMapViewController.reachabilityChanged(_:)), name: ReachabilityChangedNotification, object: nil)
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(true)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: ReachabilityChangedNotification, object: nil)
+    }
+    
+    func reachabilityChanged(notification: NSNotification) {
+        guard let reachability = notification.object as? Reachability else {return}
+        if !reachability.isReachable() {
+            ATAlertView.alertWithTitle(self, type: ATAlertView.ATAlertViewType.Error, title: "Oops...", text: "Something went wrong, check the Internet connection", callback: {})
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
 }
+
+
 
 extension ATMapViewController {
     
@@ -543,28 +569,5 @@ extension ATMapViewController {
         let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay * Double(NSEC_PER_SEC)))
         dispatch_after(time, dispatch_get_main_queue(), block)
     }
-}
-
-extension UITabBarController {
     
-    func setTabBarVisible(visible: Bool, animated: Bool) {
-        if (tabBarIsVisible() == visible) {
-            return
-        }
-        
-        let frame = self.tabBar.frame
-        let height = frame.size.height
-        let offsetY = (visible ? -height : height)
-        
-        UIView.animateWithDuration(animated ? 0.3 : 0.0) {
-            self.tabBar.frame = CGRectOffset(frame, 0, offsetY)
-            self.view.frame = CGRectMake(0, 0, self.view.frame.width, self.view.frame.height + offsetY)
-            self.view.setNeedsDisplay()
-            self.view.layoutIfNeeded()
-        }
-    }
-    
-    func tabBarIsVisible() -> Bool {
-        return self.tabBar.frame.origin.y < CGRectGetMaxY(self.view.frame)
-    }
 }

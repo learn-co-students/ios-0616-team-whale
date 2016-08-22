@@ -19,14 +19,14 @@ struct FoursquareConstants {
 
 class FoursquareAPIClient {
     
-    class func getQueryForSearchLandmarks(parameter: [String: String], completion: [JSON]? -> ()) {
+    class func getQueryForSearchLandmarks(parameter: [String: String], completion: ([JSON]?, ErrorType?) -> ()) {
         
         Alamofire.request(.GET, ATConstants.Endpoints.FOURSQUARE_GET_VENUES, parameters: parameter, headers: nil).responseJSON { response in
             guard let data = response.data, responseJSON = JSON(data: data).dictionary?["response"], groupsJSON =  responseJSON["groups"].array, itemsJSON = groupsJSON[0]["items"].array else {
-                completion(nil)
+                completion(nil,response.result.error)
                 return
             }
-            completion(itemsJSON)
+            completion(itemsJSON, nil)
         }
     }
 }

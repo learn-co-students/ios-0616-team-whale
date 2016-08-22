@@ -30,34 +30,37 @@ class ApisDataStore {
         return parameter
     }
     
-    func getDataWithCompletion(queryLocation: CLLocation, completion: () -> ()) {
+    func getDataWithCompletion(queryLocation: CLLocation, completion: Bool -> ()) {
         let foursquareParameters = prepareForLandmarksQuery(queryLocation)
         
         FoursquareAPIClient.getQueryForSearchLandmarks(foursquareParameters) { itemsJSON in
-            guard let itemsArray = itemsJSON else {
+            guard let itemsArray = itemsJSON.0 else {
                 print("error: no data recieved from API Client")
+                completion(false)
                 return
             }
             
             for venue in itemsArray {
                 self.foursquareData.insert(FoursquareData(json: venue))
             }
-            completion()
+            completion(true)
         }
     }
     
-    func pointOfInterestEpicenterQuery(completion: () -> ()) {
+    func pointOfInterestEpicenterQuery(completion: Bool -> ()) {
         guard let pointOfInterestEpicenters = LocationDataStore.sharedInstance.returningLongLatArray() else {
+            completion(false)
             return
         }
         foursquareData.removeAll()
         let group = dispatch_group_create()
         for pointOfInterest in pointOfInterestEpicenters {
             dispatch_group_enter(group)
-            getDataWithCompletion(CLLocation(latitude: pointOfInterest.latitude, longitude:  pointOfInterest.longitude)) {dispatch_group_leave(group)}
+            getDataWithCompletion(CLLocation(latitude: pointOfInterest.latitude, longitude:  pointOfInterest.longitude)) {_ in dispatch_group_leave(group)}
         }
         dispatch_group_notify(group, dispatch_get_main_queue()) {
-            completion()
+            completion(true)
+
         }
     }
 }

@@ -15,6 +15,7 @@ target 'Anytrail' do
   pod 'Mapbox-iOS-SDK', '~> 3.3.3'
   pod 'MapboxDirections.swift', :git => 'https://github.com/mapbox/MapboxDirections.swift.git', :tag => 'v0.6.0'
   pod 'MapboxGeocoder.swift', :git => 'https://github.com/mapbox/MapboxGeocoder.swift.git', :tag => 'v0.5.0'
+  pod 'ReachabilitySwift'
 
   target 'AnytrailTests' do
     inherit! :search_paths
