@@ -56,46 +56,41 @@ class ProfileTableViewController: UIViewController, UITableViewDelegate, UITable
             }
         }
         
-            if let authentification = FIRAuth.auth(){
-                if let currentUser = authentification.currentUser{
-                    if let currentUserDisplay = currentUser.displayName{
-                header.userNameLabel?.text = "\(currentUserDisplay)"
-                    }
+        if let authentification = FIRAuth.auth(){
+            if let currentUser = authentification.currentUser{
+                if let currentUserDisplay = currentUser.displayName{
+                    header.userNameLabel?.text = "\(currentUserDisplay)"
                 }
+            }
         }
         
-            self.edgesForExtendedLayout = UIRectEdge.All
-            self.tableView.contentInset = UIEdgeInsetsMake(0.0, 0.0, CGRectGetHeight((self.tabBarController?.tabBar.frame)!), 0.0)
-            
-            self.tableView.backgroundColor = UIColor.whiteColor()
-            self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
-            
-            HealthKitDataStore.sharedInstance.authorizeHealthKit { error in
-                print(error)
-            }
-            
-            HealthKitDataStore.sharedInstance.getUserTodayHealthKitData {
-                self.healthDummy = HealthKitDataStore.sharedInstance.healthKitUserData
-                dispatch_async(dispatch_get_main_queue()) {
-                    self.tableView.reloadData()
-                }
-            }
+        self.edgesForExtendedLayout = UIRectEdge.All
+        self.tableView.contentInset = UIEdgeInsetsMake(0.0, 0.0, CGRectGetHeight((self.tabBarController?.tabBar.frame)!), 0.0)
         
-        self.title = "About Me"
-    }
-    
-    override func viewDidAppear(animated: Bool) {
+        self.tableView.backgroundColor = UIColor.whiteColor()
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
+        
+        HealthKitDataStore.sharedInstance.authorizeHealthKit { error in
+            print(error)
+        }
+        
         HealthKitDataStore.sharedInstance.getUserTodayHealthKitData {
             self.healthDummy = HealthKitDataStore.sharedInstance.healthKitUserData
             dispatch_async(dispatch_get_main_queue()) {
                 self.tableView.reloadData()
             }
         }
+        
+        self.title = "About Me"
     }
-     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    
+    override func viewDidAppear(animated: Bool) {
+        self.tableView.reloadData()
+    }
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 80.0
     }
-     func numberOfSectionsInTableView(tableView: UITableView) -> Int{
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int{
         return 1
     }
     
