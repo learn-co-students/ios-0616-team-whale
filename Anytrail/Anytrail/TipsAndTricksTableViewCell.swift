@@ -16,7 +16,10 @@ class TipsAndTricksTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        
+        dataLabel.textColor = UIColor(red: 80/225, green: 80/225, blue: 80/255, alpha: 1)
+        self.userCellBackgroundView.backgroundColor = UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1)
+        self.backgroundColor = UIColor.whiteColor()
+        self.dataLabel.backgroundColor = UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1)
 
     }
     

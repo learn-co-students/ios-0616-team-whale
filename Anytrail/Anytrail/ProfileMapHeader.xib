@@ -24,19 +24,19 @@
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="center" semanticContentAttribute="spatial" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="User Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N7f-i7-DA7">
                     <rect key="frame" x="-1" y="119" width="365" height="24"/>
-                    <fontDescription key="fontDescription" name="Verdana-Bold" family="Verdana" pointSize="19"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="19"/>
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="center" semanticContentAttribute="spatial" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="## paths" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LIY-v1-x21">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="center" semanticContentAttribute="spatial" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="paths" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LIY-v1-x21">
                     <rect key="frame" x="0.0" y="146" width="364" height="21"/>
-                    <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="17"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="17"/>
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="center" semanticContentAttribute="spatial" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="## steps" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nnd-fu-Lhd">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="center" semanticContentAttribute="spatial" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="steps" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nnd-fu-Lhd">
                     <rect key="frame" x="0.0" y="165" width="364" height="21"/>
-                    <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="17"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="17"/>
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -54,6 +54,7 @@
                 <constraint firstItem="hsO-jN-zET" firstAttribute="width" secondItem="SNi-tg-PjH" secondAttribute="width" multiplier="0.3" id="Jtb-Ca-j94"/>
                 <constraint firstItem="LIY-v1-x21" firstAttribute="centerX" secondItem="N7f-i7-DA7" secondAttribute="centerX" id="QlS-tE-bDk"/>
                 <constraint firstItem="LIY-v1-x21" firstAttribute="width" secondItem="SNi-tg-PjH" secondAttribute="width" id="Rvg-1K-aGa"/>
+                <constraint firstItem="SNi-tg-PjH" firstAttribute="top" secondItem="iAA-m8-rIx" secondAttribute="top" id="WZV-EZ-YYd"/>
                 <constraint firstAttribute="bottom" secondItem="LIY-v1-x21" secondAttribute="bottom" constant="38" id="c9i-eK-eTx"/>
                 <constraint firstItem="SNi-tg-PjH" firstAttribute="width" secondItem="iAA-m8-rIx" secondAttribute="width" id="fX7-Nw-GKq"/>
                 <constraint firstItem="hsO-jN-zET" firstAttribute="centerX" secondItem="SNi-tg-PjH" secondAttribute="centerX" id="kQz-60-4DA"/>
@@ -72,6 +73,6 @@
     </objects>
     <resources>
         <image name="ProfileCover" width="213" height="105"/>
-        <image name="profile-image" width="400" height="400"/>
+        <image name="profile-image" width="45" height="45"/>
     </resources>
 </document>

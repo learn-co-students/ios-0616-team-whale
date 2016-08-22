@@ -8,7 +8,7 @@
         <!--Profile-->
         <scene sceneID="wXg-YR-Xwt">
             <objects>
-                <viewController id="fwV-at-Xh2" customClass="ProfileTableViewController" customModule="Anytrail" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="My Stats" id="fwV-at-Xh2" customClass="ProfileTableViewController" customModule="Anytrail" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Z8Z-hr-Wto"/>
                         <viewControllerLayoutGuide type="bottom" id="ud8-P1-E0A"/>
@@ -26,7 +26,8 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Profile" image="tab-profile" selectedImage="tab-profile" id="lNs-fb-hYR"/>
                     <navigationItem key="navigationItem" id="V3e-a8-G7N">
-                        <barButtonItem key="rightBarButtonItem" title="Item" id="CZk-4B-L7J">
+                        <barButtonItem key="rightBarButtonItem" systemItem="bookmarks" id="CZk-4B-L7J">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <segue destination="rc4-CE-W5e" kind="show" id="YT3-he-QtF"/>
                             </connections>
@@ -38,10 +39,10 @@
             </objects>
             <point key="canvasLocation" x="4374" y="455"/>
         </scene>
-        <!--Surgeon General Table View Controller-->
+        <!--Surgeon General's Advice-->
         <scene sceneID="dV9-iw-Fjw">
             <objects>
-                <tableViewController id="rc4-CE-W5e" customClass="SurgeonGeneralTableViewController" customModule="Anytrail" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Surgeon General's Advice" id="rc4-CE-W5e" customClass="SurgeonGeneralTableViewController" customModule="Anytrail" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="USE-nn-x7y">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -87,7 +88,7 @@
             </objects>
             <point key="canvasLocation" x="5829" y="449"/>
         </scene>
-        <!--Profile-->
+        <!--My Stats-->
         <scene sceneID="wOp-jp-qgQ">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="QKL-im-93S" sceneMemberID="viewController">

@@ -17,7 +17,7 @@ class SurgeonGeneralTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+                
         tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
         
         tableView.registerNib(UINib(nibName: "UserProfileCell", bundle: nil), forCellReuseIdentifier: "userProfileCellData")
@@ -59,22 +59,18 @@ class SurgeonGeneralTableViewController: UITableViewController {
         switch indexPath.row {
         case 0:
             cell.giveCellData(activityIcon, dataLabel: "Active Living")
-            cell.dataLabel.textColor = UIColor.whiteColor()
 //            cell.userCellBackgroundView.backgroundColor = UIColor.redColor()
             return cell
         case 1:
             cell.giveCellData(mentalHealthIcon, dataLabel: "Emotional and Mental Well-Being")
-            cell.dataLabel.textColor = UIColor.whiteColor()
 //            cell.userCellBackgroundView.backgroundColor = UIColor.blueColor()
             return cell
         case 2:
             cell.giveCellData(tobaccoFreeIcon, dataLabel: "Tobacco Free Living")
-            cell.dataLabel.textColor = UIColor.whiteColor()
 //            cell.userCellBackgroundView.backgroundColor = UIColor.brownColor()
             return cell
         case 3:
             cell.giveCellData(nutritionIcon, dataLabel: "Healthy Eating")
-            cell.dataLabel.textColor = UIColor.whiteColor()
 //            cell.userCellBackgroundView.backgroundColor = UIColor.greenColor()
             return cell
         default:

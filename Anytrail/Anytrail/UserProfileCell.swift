@@ -11,7 +11,7 @@ import UIKit
 class UserProfileCell: UITableViewCell {
     
     @IBOutlet weak var dataIconView: UIImageView!
-    @IBOutlet weak var dataLabel: UILabel!
+    @IBOutlet weak var dataLabel: UITextView!
     @IBOutlet weak var userCellBackgroundView: UIView!
     
     override func awakeFromNib() {
@@ -32,6 +32,7 @@ class UserProfileCell: UITableViewCell {
     func configureCell(){
         self.userCellBackgroundView?.layer.cornerRadius = 8.0
         self.userCellBackgroundView.backgroundColor = UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1)
+        self.dataLabel.backgroundColor = UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1)
     }
     
     func giveCellData(dataIconStringName: UIImage, dataLabel: String) {

@@ -8,10 +8,12 @@
 
 import UIKit
 import Mapbox
+import Firebase
+import FBSDKLoginKit
 
 class ProfileTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    var tableView: UITableView = UITableView()
+    var tableView :UITableView = UITableView()
     var healthDummy: [(String, String)] = []
     let stepsIcon : UIImage = UIImage(named: "steps-taken")!
     let flightsIcon : UIImage = UIImage(named: "flights-climbed")!
@@ -28,36 +30,58 @@ class ProfileTableViewController: UIViewController, UITableViewDelegate, UITable
         super.viewDidLoad()
         
         self.tableView = UITableView(frame: UIScreen.mainScreen().bounds, style: UITableViewStyle.Grouped)
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
+        self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
         self.view.addSubview(self.tableView)
         
-        tableView.registerNib(UINib(nibName: "UserProfileCell", bundle: nil), forCellReuseIdentifier: "userProfileCellData")
+        self.tableView.registerNib(UINib(nibName: "UserProfileCell", bundle: nil), forCellReuseIdentifier: "userProfileCellData")
         
         let header:ProfileMapHeader = UINib(nibName: "ProfileMapHeader", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! ProfileMapHeader
         self.tableView.tableHeaderView = header
-        
-        header.pathsTakenLabel?.text = "12 paths"
-        header.stepsWalkedLabel?.text = "10,000 steps"
-        header.userNameLabel?.text = "Elli Scharlin"
-        
-        self.edgesForExtendedLayout = UIRectEdge.All
-        self.tableView.contentInset = UIEdgeInsetsMake(0.0, 0.0, CGRectGetHeight((self.tabBarController?.tabBar.frame)!), 0.0)
-        
-        self.tableView.backgroundColor = UIColor.whiteColor()
-        self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
-        
-        HealthKitDataStore.sharedInstance.authorizeHealthKit { error in
-            print(error)
-        }
-        
-        HealthKitDataStore.sharedInstance.getUserTodayHealthKitData {
-            self.healthDummy = HealthKitDataStore.sharedInstance.healthKitUserData
-            dispatch_async(dispatch_get_main_queue()) {
-                self.tableView.reloadData()
+        for healthData in self.healthDummy {
+            if healthData.1 == "steps" {
+                header.stepsWalkedLabel.hidden = false
+                header.stepsWalkedLabel?.text = "\(healthData.0) steps taken"
+            }
+            else{
+                header.stepsWalkedLabel.hidden = true
+            }
+            if healthData.1 == "workout" {
+                header.pathsTakenLabel.hidden = false
+                header.pathsTakenLabel?.text = "\(healthData.0) workouts had"
+            }
+            else {
+                header.pathsTakenLabel.hidden = true
             }
         }
+        
+            if let authentification = FIRAuth.auth(){
+                if let currentUser = authentification.currentUser{
+                    if let currentUserDisplay = currentUser.displayName{
+                header.userNameLabel?.text = "\(currentUserDisplay)"
+                    }
+                }
+        }
+        
+            self.edgesForExtendedLayout = UIRectEdge.All
+            self.tableView.contentInset = UIEdgeInsetsMake(0.0, 0.0, CGRectGetHeight((self.tabBarController?.tabBar.frame)!), 0.0)
+            
+            self.tableView.backgroundColor = UIColor.whiteColor()
+            self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
+            
+            HealthKitDataStore.sharedInstance.authorizeHealthKit { error in
+                print(error)
+            }
+            
+            HealthKitDataStore.sharedInstance.getUserTodayHealthKitData {
+                self.healthDummy = HealthKitDataStore.sharedInstance.healthKitUserData
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.tableView.reloadData()
+                }
+            }
+        
+        self.title = "About Me"
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -68,10 +92,10 @@ class ProfileTableViewController: UIViewController, UITableViewDelegate, UITable
             }
         }
     }
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 80.0
     }
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int{
+     func numberOfSectionsInTableView(tableView: UITableView) -> Int{
         return 1
     }
     
@@ -127,3 +151,4 @@ class ProfileTableViewController: UIViewController, UITableViewDelegate, UITable
         return "Today"
     }
 }
+
