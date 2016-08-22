@@ -294,13 +294,12 @@ public class JSSAlertView: UIViewController {
 		self.iconImage = iconImage
 		if self.iconImage != nil {
             
-            // TODO: Add into project
-            self.iconImageView = UIImageView(frame: CGRectMake(self.containerView.center.x, self.containerView.center.y, 150, 150))
-            self.iconImageView.image = self.iconImage
-            self.iconImageView.layer.masksToBounds = true
-            self.iconImageView.layer.cornerRadius = self.iconImageView.frame.size.width / 2
+//            self.iconImageView = UIImageView(frame: CGRectMake(self.containerView.center.x, self.containerView.center.y, 150, 150))
+//            self.iconImageView.image = self.iconImage
+//            self.iconImageView.layer.masksToBounds = true
+//            self.iconImageView.layer.cornerRadius = self.iconImageView.frame.size.width / 2
             
-            // self.iconImageView = UIImageView(image: self.iconImage)
+            self.iconImageView = UIImageView(image: self.iconImage)
 			self.containerView.addSubview(iconImageView)
 		}
 		
