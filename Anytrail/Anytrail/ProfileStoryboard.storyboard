@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="QKL-im-93S">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="QKL-im-93S">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
-        <!--Profile Table View Controller-->
+        <!--Profile-->
         <scene sceneID="wXg-YR-Xwt">
             <objects>
                 <viewController id="fwV-at-Xh2" customClass="ProfileTableViewController" customModule="Anytrail" customModuleProvider="target" sceneMemberID="viewController">
@@ -24,6 +24,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Profile" image="tab-profile" selectedImage="tab-profile" id="lNs-fb-hYR"/>
                     <navigationItem key="navigationItem" id="V3e-a8-G7N">
                         <barButtonItem key="rightBarButtonItem" title="Item" id="CZk-4B-L7J">
                             <connections>
@@ -50,7 +51,7 @@
                                 <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8uK-Zk-uBN" id="Ho8-Ih-cJR">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -90,7 +91,7 @@
         <scene sceneID="wOp-jp-qgQ">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="QKL-im-93S" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Profile" image="first" id="loI-1a-aEg"/>
+                    <tabBarItem key="tabBarItem" title="Profile" image="tab-profile" selectedImage="tab-profile" id="loI-1a-aEg"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="I9x-nZ-bzx">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -107,6 +108,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="first" width="30" height="30"/>
+        <image name="tab-profile" width="30" height="30"/>
     </resources>
 </document>
