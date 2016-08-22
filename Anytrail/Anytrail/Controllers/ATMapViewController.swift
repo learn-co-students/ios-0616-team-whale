@@ -336,7 +336,7 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
                     self.mapView.addAnnotation(pin)
                 }
             } else {
-                ATAlertView.alertWithTitle(self, type: ATAlertView.ATAlertViewType.Error, title: "Ooops!", text: "Server not responded, try again later", callback: {})
+                ATAlertView.alertWithTitle(self, type: ATAlertView.ATAlertViewType.Error, title: "Oops...", text: "Server not responded, try again later", callback: {})
             }
         }
     }
@@ -493,7 +493,7 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
         super.viewDidLoad()
         if !InternetStatus.shared.hasInternet {
             print("\n\nthere is no internet connection\n\n")
-            ATAlertView.alertWithTitle(self, type: ATAlertView.ATAlertViewType.Error, title: "Oops!", text: "Something went wrong, check the Internet connection", callback: {})
+            ATAlertView.alertWithTitle(self, type: ATAlertView.ATAlertViewType.Error, title: "Oops...", text: "Something went wrong, check the Internet connection", callback: {})
         }
         
         geocoder = Geocoder(accessToken: Keys.mapBoxToken)
@@ -531,7 +531,7 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
     func reachabilityChanged(notification: NSNotification) {
         guard let reachability = notification.object as? Reachability else {return}
         if !reachability.isReachable() {
-            ATAlertView.alertWithTitle(self, type: ATAlertView.ATAlertViewType.Error, title: "Oops!", text: "Something went wrong, check the Internet connection", callback: {})
+            ATAlertView.alertWithTitle(self, type: ATAlertView.ATAlertViewType.Error, title: "Oops...", text: "Something went wrong, check the Internet connection", callback: {})
         }
     }
     

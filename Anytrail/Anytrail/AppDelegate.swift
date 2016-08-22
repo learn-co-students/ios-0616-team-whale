@@ -12,6 +12,7 @@ import Mapbox
 import UIKit
 import ReachabilitySwift
 
+
 var reachability: Reachability?
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -22,9 +23,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     static var activeWorkout = false
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+       reachabilitySetup()
         
-        reachabilitySetup()
-
         UINavigationBar.appearance().setBackgroundImage(UIImage(), forBarMetrics: .Default)
         UINavigationBar.appearance().backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.0)
         UINavigationBar.appearance().translucent = false
@@ -51,29 +51,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func reachabilitySetup() {
-        
-        // Set up reachability class
         do {
             reachability = try Reachability.reachabilityForInternetConnection()
         } catch let error as NSError {
             print("ERROR: Unable to start reachability \(error.localizedDescription)")
         }
         
-        // Add observer to app delegate
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(reachabilityChanged)
             ,name: ReachabilityChangedNotification,object: reachability)
         
-        // Tell reachability class to start notifications
         do {
             try reachability?.startNotifier()
         } catch let error as NSError {
             print("ERROR: couldn't start notifier \(error.localizedDescription)")
         }
-        
     }
     
     func reachabilityChanged() {
-        
         guard let reachability = reachability else { return }
         
         let status = InternetStatus.shared
@@ -89,11 +83,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } else {
             status.hasInternet = false
             print("Network not reachable")
-            
-            
         }
     }
-    
     
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
         return FBSDKApplicationDelegate.sharedInstance().application(application, openURL: url,
@@ -113,9 +104,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func applicationWillEnterForeground(application: UIApplication) {
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-        
         print("\n\nApplication WILL ENTER FOREGROUND\n\n")
-        
     }
     
     func applicationDidBecomeActive(application: UIApplication) {
@@ -128,10 +117,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 WalkTrackerViewController.walkTrackerSession.startWalk()
             }
         }
-        
-        
         print("\n\nApplication DID BECOME ACTIVE\n\n")
-        
     }
     
     func applicationWillTerminate(application: UIApplication) {

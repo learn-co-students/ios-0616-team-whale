@@ -9,10 +9,11 @@
 import Foundation
 
 class InternetStatus {
-    
     var hasInternet: Bool = false
     
     static let shared = InternetStatus()
     private init() {}
-    
 }
+
+
+
