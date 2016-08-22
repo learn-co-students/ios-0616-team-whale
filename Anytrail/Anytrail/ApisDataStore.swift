@@ -18,13 +18,20 @@ class ApisDataStore {
     var foursquareIDs: [String] = []
     var foursquareParameters: [String: String] = [:]
     
-    
-    func getDataWithCompletion(completion: () -> ()) {
+    func prepareForLandmarksQuery(queryLocation: CLLocation) -> [String: String] {
+        let parameter = ["client_id": Keys.fourSquareClientID,
+                         "client_secret": Keys.fourSquareClientSecret,
+                         "v": FoursquareConstants.v,
+                         "intent": "browse",
+                         "ll": "\(queryLocation.coordinate.latitude), \(queryLocation.coordinate.longitude)",
+                         "query": FoursquareConstants.query,
+                         "radius": "\(LocationDataStore.sharedInstance.pointOfInterestDistancePadding() ?? 0)"]
         
-        if let originLocation = LocationDataStore.sharedInstance.origin,
-            destinationLocation = LocationDataStore.sharedInstance.destination {
-            foursquareParameters = prepareForLandmarksQuery(originLocation, destinationLocation: destinationLocation)
-        }
+        return parameter
+    }
+    
+    func getDataWithCompletion(queryLocation: CLLocation, completion: () -> ()) {
+        let foursquareParameters = prepareForLandmarksQuery(queryLocation)
         
         FoursquareAPIClient.getQueryForSearchLandmarks(foursquareParameters) { itemsJSON in
             guard let itemsArray = itemsJSON else {
@@ -32,30 +39,26 @@ class ApisDataStore {
                 return
             }
             
-            self.foursquareData.removeAll()
-            
             for venue in itemsArray {
                 self.foursquareData.insert(FoursquareData(json: venue))
             }
-            
             completion()
         }
     }
     
-    func prepareForLandmarksQuery(originLocation: CLLocationCoordinate2D, destinationLocation: CLLocationCoordinate2D) -> [String: String] {
-        
-        let startLocation = CLLocation(latitude: originLocation.latitude, longitude: originLocation.longitude)
-        let endLocation = CLLocation(latitude: destinationLocation.latitude, longitude: destinationLocation.longitude)
-        let midPoint = startLocation.distanceFromLocation(endLocation) / 2
-        let origin = "\(startLocation.coordinate.latitude), \(endLocation.coordinate.longitude)"
-        let parameter = ["client_id": Keys.fourSquareClientID,
-                         "client_secret": Keys.fourSquareClientSecret,
-                         "v": FoursquareConstants.v,
-                         "ll": origin,
-                         "query": FoursquareConstants.query,
-                         "radius": midPoint.description]
-        
-        return parameter
+    func pointOfInterestEpicenterQuery(completion: () -> ()) {
+        guard let pointOfInterestEpicenters = LocationDataStore.sharedInstance.returningLongLatArray() else {
+            return
+        }
+        foursquareData.removeAll()
+        let group = dispatch_group_create()
+        for pointOfInterest in pointOfInterestEpicenters {
+            dispatch_group_enter(group)
+            getDataWithCompletion(CLLocation(latitude: pointOfInterest.latitude, longitude:  pointOfInterest.longitude)) {dispatch_group_leave(group)}
+        }
+        dispatch_group_notify(group, dispatch_get_main_queue()) {
+            completion()
+        }
     }
 }
 
