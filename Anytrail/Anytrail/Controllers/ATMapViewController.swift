@@ -10,10 +10,14 @@ import Mapbox
 import MapboxDirections
 import MapboxGeocoder
 import ReachabilitySwift
+import TGLParallaxCarousel
 
 import UIKit
 
 class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewDelegate {
+    
+    @IBOutlet weak var carouselView: TGLParallaxCarousel!
+
     
     @IBOutlet var mapView: MGLMapView!
     @IBOutlet weak var addButton: UIButton!
@@ -462,6 +466,13 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
         
         currentStage = .Default
         drawRouteButton.enabled = false
+        setupCarousel()
+    }
+    
+    func setupCarousel() {
+        carouselView.delegate = self
+        carouselView.datasource = self
+        carouselView.itemMargin = 10
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -571,4 +582,25 @@ extension ATMapViewController {
         dispatch_after(time, dispatch_get_main_queue(), block)
     }
     
+}
+
+extension ATMapViewController: TGLParallaxCarouselDatasource {
+    func numberOfItemsInCarousel(carousel: TGLParallaxCarousel) ->Int {
+        return 5
+    }
+    
+    func viewForItemAtIndex(index: Int, carousel: TGLParallaxCarousel) -> TGLParallaxCarouselItem {
+        let ratio: CGFloat = view.frame.width / 375.0
+        return DirectionView(frame: CGRectMake(0, 0, 300 * ratio, 150 * ratio), leg: "\(index + 1)", step: "this is my stepppppp")
+    }
+}
+
+extension ATMapViewController: TGLParallaxCarouselDelegate {
+    func didTapOnItemAtIndex(index: Int, carousel: TGLParallaxCarousel) {
+        print("Tap on item at index \(index)")
+    }
+    
+    func didMovetoPageAtIndex(index: Int) {
+        print("Did move to index \(index)")
+    }
 }

@@ -21,6 +21,8 @@
 		4D5244741D660AE60066C01B /* TipsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D5244731D660AE60066C01B /* TipsCell.xib */; };
 		4D5244761D6615000066C01B /* TipsAndTricksHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D5244751D6615000066C01B /* TipsAndTricksHeader.xib */; };
 		4D5244781D6615280066C01B /* TipsAndTricksHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5244771D6615280066C01B /* TipsAndTricksHeader.swift */; };
+		4D8FE91E1D6B6DF600FC3339 /* DirectionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8FE91C1D6B6DF600FC3339 /* DirectionsView.swift */; };
+		4D8FE91F1D6B6DF600FC3339 /* DirectionsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D8FE91D1D6B6DF600FC3339 /* DirectionsView.xib */; };
 		4DB2D9611D58DEBA007BD4A5 /* FoursquareAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB2D9601D58DEBA007BD4A5 /* FoursquareAPIClient.swift */; };
 		4DB2D9631D58DF04007BD4A5 /* ApisDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB2D9621D58DF04007BD4A5 /* ApisDataStore.swift */; };
 		4DB2D9651D58DF18007BD4A5 /* FoursquareData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB2D9641D58DF18007BD4A5 /* FoursquareData.swift */; };
@@ -100,6 +102,8 @@
 		4D5244731D660AE60066C01B /* TipsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TipsCell.xib; sourceTree = "<group>"; };
 		4D5244751D6615000066C01B /* TipsAndTricksHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TipsAndTricksHeader.xib; sourceTree = "<group>"; };
 		4D5244771D6615280066C01B /* TipsAndTricksHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TipsAndTricksHeader.swift; sourceTree = "<group>"; };
+		4D8FE91C1D6B6DF600FC3339 /* DirectionsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DirectionsView.swift; path = ../../../TGLParallaxCarousel/Example/TGLParallaxCarousel/DirectionsView.swift; sourceTree = "<group>"; };
+		4D8FE91D1D6B6DF600FC3339 /* DirectionsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DirectionsView.xib; path = ../../../TGLParallaxCarousel/Example/TGLParallaxCarousel/DirectionsView.xib; sourceTree = "<group>"; };
 		4DB2D9601D58DEBA007BD4A5 /* FoursquareAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoursquareAPIClient.swift; sourceTree = "<group>"; };
 		4DB2D9621D58DF04007BD4A5 /* ApisDataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApisDataStore.swift; sourceTree = "<group>"; };
 		4DB2D9641D58DF18007BD4A5 /* FoursquareData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoursquareData.swift; sourceTree = "<group>"; };
@@ -182,6 +186,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4D8FE91B1D6B6DBF00FC3339 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				4D8FE91C1D6B6DF600FC3339 /* DirectionsView.swift */,
+				4D8FE91D1D6B6DF600FC3339 /* DirectionsView.xib */,
+			);
+			name = Navigation;
+			sourceTree = "<group>";
+		};
 		4DF1FD201D65104400692309 /* FactsFromGovernment */ = {
 			isa = PBXGroup;
 			children = (
@@ -230,6 +243,7 @@
 				4DEE998D1D64A1BC004BC91C /* LocationDataStore.swift */,
 				949370341D62515900C696AE /* ATConstants.swift */,
 				9437CADE1D663C660060E9CF /* AnytrailKit.swift */,
+				4D8FE91B1D6B6DBF00FC3339 /* Navigation */,
 				9437CAE51D664B8D0060E9CF /* Model */,
 				9437CADD1D66063F0060E9CF /* API */,
 				945F35EE1D5A306A002F9C1E /* UI */,
@@ -342,7 +356,6 @@
 			isa = PBXGroup;
 			children = (
 				8AC2741E1D6505F800F4D4E1 /* SystemConfiguration.framework */,
-				2E1C757B1D638AB100D412FB /* HealthKit.framework */,
 				599CF5E42324548824DD0368 /* Pods_Anytrail.framework */,
 				DB2E3A25BA33F309140861F9 /* Pods_AnytrailTests.framework */,
 			);
@@ -467,6 +480,7 @@
 				9424A7791D53D5DA00CE8D42 /* Assets.xcassets in Resources */,
 				8A39490F1D637CF7004A4B94 /* SplashScreen.xcassets in Resources */,
 				4D5244761D6615000066C01B /* TipsAndTricksHeader.xib in Resources */,
+				4D8FE91F1D6B6DF600FC3339 /* DirectionsView.xib in Resources */,
 				8A3948FD1D623972004A4B94 /* Paths.xcassets in Resources */,
 				9424A7771D53D5DA00CE8D42 /* Main.storyboard in Resources */,
 				4D5244741D660AE60066C01B /* TipsCell.xib in Resources */,
@@ -584,6 +598,7 @@
 			files = (
 				945F35F01D5A45A6002F9C1E /* ATErrorTranslator.swift in Sources */,
 				4DFDBC111D6262E2006616D0 /* UserProfileCell.swift in Sources */,
+				4D8FE91E1D6B6DF600FC3339 /* DirectionsView.swift in Sources */,
 				945F35F21D5A45B0002F9C1E /* UIViewController+Keyboard.swift in Sources */,
 				9437CAEC1D678AFE0060E9CF /* Coordinate+CoreDataProperties.swift in Sources */,
 				94B1ABEB1D5E4AD800D3DA8E /* ATAnnotationView.swift in Sources */,
