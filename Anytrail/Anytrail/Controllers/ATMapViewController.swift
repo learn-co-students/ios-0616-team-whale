@@ -43,7 +43,7 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
     
     var currentStage: ATCurrentStage?
     
-    // MARK: - ATDropdownView
+    // MARK: - Origin/Destination Annotations
     
     func dropdownDidUpdateOrigin(location: String?) {
         guard let locationString = location else {
@@ -87,39 +87,32 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
         
         switch currentStageOfDropdown {
         case .Default:
-            if dropdownDisplayed {
-                dropdownBarButton.image = UIImage(named: "dropdown")
-                
-                dropdownView.hide()
-                dropdownDisplayed = false
-            } else {
-                dropdownBarButton.image = UIImage(named: "dropdown-up")
-                
-                dropdownView.show()
-                dropdownDisplayed = true
-            }
+            configureDropdownButtonForState(dropdownDisplayed)
         case .Waypoints:
             currentStage = .Default
             reshowDropdown(withView: .Default, hintText: "")
             UIView.animateWithDuration(0.3) {
                 self.dropdownBarButton.image = UIImage(named: "dropdown")
             }
+            drawRouteButton.enabled = false
             clearMapView()
-        default:
-            print("Encountered an unexpected button state")
+        case .Route:
+            clearMapView()
+            reshowDropdown(withView: .Default, hintText: "")
         }
     }
     
-    func setToRoutes() {
-        if waypoints.count > 0 {
-            currentStage = .Route
-            createPath() { time in
-                self.reshowDropdown(withView: .Label, hintText: "Your walk will take about \(time).\nEnjoy your walk to \(self.destination?.title)!")
-            }
-            
+    func configureDropdownButtonForState(isDisplaying: Bool) {
+        let buttonImage: UIImage?
+        if isDisplaying {
+            buttonImage = UIImage(named: "dropdown-up")
+            dropdownView.hide()
         } else {
-            ATAlertView.alertWithTitle(self, type: .Error, title: "Whoops", text: "Select at least one point to pass") { }
+            buttonImage = UIImage(named: "dropdown")
+            dropdownView.show()
         }
+        dropdownBarButton.image = buttonImage
+        dropdownDisplayed = !isDisplaying
     }
     
     @IBAction func create() {
@@ -128,24 +121,34 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
         }
         
         switch currentStage {
-        case .Route:
-            print("Routes")
+        case .Default:
+            setToWaypoints()
         case .Waypoints:
-            setToRoutes()
-        default:
-            setToDefaultToWaypoints()
+            setToRoute()
+        case .Route:
+            setToWaypoints()
         }
     }
     
-    func setToDefaultToWaypoints() {
-        getWaypoints()
-        
-        //createMode = true
+    func setToWaypoints() {
+        createMode = true
         currentStage = .Waypoints
-        dispatch_async(dispatch_get_main_queue()) {
-            UIView.animateWithDuration(0.3) {
-                self.dropdownBarButton.image = UIImage(named: "back-arrow")
+        getWaypoints()
+        UIView.animateWithDuration(0.3) {
+            self.dropdownBarButton.image = UIImage(named: "back-arrow")
+        }
+    }
+    
+    
+    func setToRoute() {
+        if waypoints.count > 0 {
+            currentStage = .Route
+            mapView.removeAnnotations(pointsOfInterest)
+            createPath() { time in
+                self.reshowDropdown(withView: .Label, hintText: "Your walk will take about \(time).\nEnjoy your walk to \(self.destination?.title ?? "")!")
             }
+        } else {
+            ATAlertView.alertWithTitle(self, type: .Error, title: "Whoops", text: "Select at least one point to pass") { }
         }
     }
     
@@ -156,7 +159,6 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
                     self.mapView.addAnnotation(pin)
                 }
             }
-            //            self.reshowDropdown(withView: .Label, hintText: "Awesome! We found \(count) places to visit on your way.\nStart by selecting some!")
         }
     }
     
@@ -175,15 +177,6 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
         }
         
         print(waypointString)
-        
-        //        if (UIApplication.sharedApplication().canOpenURL(NSURL(string:"comgooglemaps://")!)) {
-        //            UIApplication.sharedApplication().openURL(NSURL(string:
-        //                "comgooglemaps://?saddr=&daddr=\(place.latitude),\(place.longitude)&directionsmode=driving")!)
-        //
-        //        } else {
-        //            NSLog("Can't use comgooglemaps://");
-        //        }
-        
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -326,30 +319,26 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
     // MARK: - Foursquare API
     
     func addFoursquareAnnotations(completion: (count: Int) -> ()) {
+        guard let origin = origin, destination = destination else {
+            completion(count: 0)
+            return
+        }
         
         pointsOfInterest.removeAll()
         waypoints.removeAll()
         
-        guard let origin = origin, destination = destination else {
-            return
-        }
+        LocationDataStore.sharedInstance.origin = CLLocation(latitude: origin.coordinate.latitude, longitude:  origin.coordinate.longitude)
+        LocationDataStore.sharedInstance.destination = CLLocation(latitude: destination.coordinate.latitude, longitude:  destination.coordinate.longitude)
         
-        LocationDataStore.sharedInstance.origin = origin.coordinate
-        LocationDataStore.sharedInstance.destination = destination.coordinate
-        
-        ApisDataStore.sharedInstance.getDataWithCompletion {
-            
+        ApisDataStore.sharedInstance.pointOfInterestEpicenterQuery {
             for location in ApisDataStore.sharedInstance.foursquareData {
                 let pin = ATAnnotation(typeSelected: .PointOfInterest)
                 
                 pin.coordinate = CLLocationCoordinate2D(latitude: location.placeLatitude, longitude: location.placeLongitude)
                 pin.title = location.placeName
                 pin.subtitle = location.placeAddress
-                //pin.type = .PointOfInterest
-                
                 self.pointsOfInterest.append(pin)
             }
-            
             completion(count: self.pointsOfInterest.count)
         }
     }
@@ -527,7 +516,6 @@ extension ATMapViewController {
         }
         origin = nil
         destination = nil
-        
         removePath()
         removeUnusedWaypoints()
         removeWaypoints()
