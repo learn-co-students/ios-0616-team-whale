@@ -22,25 +22,10 @@ class FoursquareAPIClient {
     class func getQueryForSearchLandmarks(parameter: [String: String], completion: [JSON]? -> ()) {
         
         Alamofire.request(.GET, ATConstants.Endpoints.FOURSQUARE_GET_VENUES, parameters: parameter, headers: nil).responseJSON { response in
-            
-            guard let data = response.data where response.result.error == nil else {
-                print(response.result.error)
+            guard let data = response.data, responseJSON = JSON(data: data).dictionary?["response"], groupsJSON =  responseJSON["groups"].array, itemsJSON = groupsJSON[0]["items"].array else {
+                completion(nil)
                 return
             }
-            
-            guard let responseJSON = JSON(data: data).dictionaryValue["response"]?.dictionaryValue else {
-                print("No venue's found")
-                return
-            }
-            
-            guard let groupsJSON = JSON(responseJSON).dictionaryValue["groups"]?.arrayValue else {
-                return
-            }
-            
-            guard let itemsJSON = JSON(groupsJSON).arrayValue.first?["items"].array else {
-                return
-            }
-            
             completion(itemsJSON)
         }
     }
