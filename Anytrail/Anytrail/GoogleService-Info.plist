@@ -7,21 +7,21 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>776826722422-0r1rjfa7icd4eba1r13f6jhom764ovag.apps.googleusercontent.com</string>
+	<string>722089250439-2ljccmpvmmto055v8nan3p6c72q999t7.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.776826722422-0r1rjfa7icd4eba1r13f6jhom764ovag</string>
+	<string>com.googleusercontent.apps.722089250439-2ljccmpvmmto055v8nan3p6c72q999t7</string>
 	<key>API_KEY</key>
-	<string>AIzaSyAqiHGA8nZsNoFZxU-Tn7jvDr2hT7giY8Q</string>
+	<string>AIzaSyDDoWNeZueTcGKk1RZPoJjNjFkSuppM1os</string>
 	<key>GCM_SENDER_ID</key>
-	<string>776826722422</string>
+	<string>722089250439</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.flatironschool.Anytrail</string>
+	<string>com.flatironschool.team-whale</string>
 	<key>PROJECT_ID</key>
-	<string>anytrail-cb676</string>
+	<string>compound-1c752</string>
 	<key>STORAGE_BUCKET</key>
-	<string>anytrail-cb676.appspot.com</string>
+	<string>compound-1c752.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<true/>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -33,8 +33,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true/>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:776826722422:ios:b0d75a9393623bdb</string>
+	<string>1:722089250439:ios:b73416658be329b0</string>
 	<key>DATABASE_URL</key>
-	<string>https://anytrail-cb676.firebaseio.com</string>
+	<string>https://compound-1c752.firebaseio.com</string>
 </dict>
 </plist>
