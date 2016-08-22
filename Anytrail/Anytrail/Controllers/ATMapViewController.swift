@@ -30,6 +30,7 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
     var origin: ATAnnotation?
     var destination: ATAnnotation?
     var routeLine: MGLPolyline?
+    var pathPin: ATAnnotation?
     
     var createMode = false
     var waypoints: [ATAnnotation] = []
@@ -337,6 +338,8 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
             return
         }
         
+        
+        
         pointsOfInterest.removeAll()
         waypoints.removeAll()
         
@@ -592,6 +595,17 @@ extension ATMapViewController {
         let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay * Double(NSEC_PER_SEC)))
         dispatch_after(time, dispatch_get_main_queue(), block)
     }
+    func assignPathPin(pathPoint: ATAnnotation) {
+        if let path = pathPin {
+            mapView.removeAnnotation(path)
+        }
+        
+        pathPin = pathPoint
+        mapView.addAnnotation(pathPoint)
+        mapView.setCenterCoordinate(pathPoint.coordinate, animated: true)
+        checkOriginAndDestinationAssigned()
+    }
+
     
 }
 
@@ -610,18 +624,24 @@ extension ATMapViewController: TGLParallaxCarouselDatasource {
 extension ATMapViewController: TGLParallaxCarouselDelegate {
     func didTapOnItemAtIndex(index: Int, carousel: TGLParallaxCarousel) {
         print("Tap on item at index \(index)")
-        
+
+
     }
     
     func didMovetoPageAtIndex(index: Int) {
+        
         print("Did move to index \(index)")
+        
         if let coordinatesInArray = directionArray[index].2{
             if let last = coordinatesInArray.last{
-                print("should be moving")
                 
+                print("should be moving")
+                if let pathPin = pathPin{
+                pathPin.coordinate = last
+                self.assignPathPin(pathPin)
                 mapView.setCenterCoordinate(last, animated: true)
+                }
             }
         }
-
     }
 }
