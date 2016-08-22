@@ -432,7 +432,8 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
                 print("Route via \(leg)")
                 self.navigationLegs = route.legs
                 self.giveScrollerPages()
-                self.carouselView.hidden = false
+                self.carouselView.userInteractionEnabled = true
+                
                 
                 self.directionsArray()
                 self.carouselView.type = .ThreeDimensional
@@ -456,7 +457,7 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
                     }
                 }
                 else {
-                    self.carouselView.hidden = true
+                    self.carouselView.userInteractionEnabled = false
             }
             }
         }
@@ -486,6 +487,8 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
         carouselView.datasource = self
         self.carouselView.reloadInputViews()
         self.carouselView.itemMargin = 10
+        self.carouselView.userInteractionEnabled = false
+        
 
     }
     
