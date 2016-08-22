@@ -216,62 +216,64 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
                 mapView.deselectAnnotation(annotation, animated: true)
             }
         default:
-            if createMode && currentStage == .Waypoints {
-                
-                let pin = selectedAnnotation
-                pin.type = .Waypoint
-                
-                if self.containsWaypoint(pin) {
-                    ATAlertView.alertWithConfirmationForVenue(self, image: UIImage(named: "venue")!, title: annotation.title!!, text: "You are about to remove this place as a waypoint.", action: "Remove", callback: {
-                        self.pointsOfInterest.append(pin)
-                        
-                        if let index = self.waypoints.indexOf({ $0.title! == pin.title! }) {
-                            self.waypoints.removeAtIndex(index)
-                        }
-                        
-                        let pin = annotation as! ATAnnotation
-                        pin.type = .PointOfInterest
-                        
-                        let annotationView = mapView.viewForAnnotation(annotation)
-                        annotationView?.backgroundColor = pin.backgroundColor
-                        
-                        if let index = self.pointsOfInterest.indexOf(pin) {
-                            self.pointsOfInterest.removeAtIndex(index)
-                        }
-                        
-                        mapView.deselectAnnotation(annotation, animated: true)
-                        return
-                        
-                        }, cancelCallback: {
-                            mapView.deselectAnnotation(annotation, animated: true)
-                            return
-                    })
-                } else {
-                    ATAlertView.alertWithConfirmationForVenue(self, image: UIImage(named: "venue")!, title: annotation.title!!, text: "You are about to add this place as a waypoint.", action: "Add", callback: {
-                        
-                        let pin = annotation as! ATAnnotation
-                        pin.type = .Waypoint
-                        
-                        self.waypoints.append(pin)
-                        
-                        let annotationView = mapView.viewForAnnotation(annotation)
-                        annotationView?.backgroundColor = pin.backgroundColor
-                        
-                        if let index = self.pointsOfInterest.indexOf(pin) {
-                            self.pointsOfInterest.removeAtIndex(index)
-                        }
-                        
-                        mapView.deselectAnnotation(annotation, animated: true)
-                        return
-                        
-                        }, cancelCallback: {
-                            mapView.deselectAnnotation(annotation, animated: true)
-                            return
-                    })
+            print("Something happened when selected")
+        }
+    }
+    
+    func mapView(mapView: MGLMapView, rightCalloutAccessoryViewForAnnotation annotation: MGLAnnotation) -> UIView? {
+        guard let annotationSelected = annotation as? ATAnnotation else {
+            return nil
+        }
+        
+        switch annotationSelected.type {
+        case .Waypoint:
+            let removeButton = UIButton(type: .System)
+            let myAttributes = [NSFontAttributeName: UIFont.systemFontOfSize(22, weight: UIFontWeightLight)]
+            let buttonIcon = NSAttributedString(string: "ⓧ", attributes: myAttributes)
+            removeButton.frame = CGRect(x: 0, y: 0, width: 22, height: 22)
+            removeButton.setAttributedTitle(buttonIcon, forState: .Normal)
+            removeButton.tintColor = ATConstants.Colors.RED
+            return removeButton
+        case .PointOfInterest:
+            let addButton = UIButton(type: .ContactAdd)
+            addButton.tintColor = ATConstants.Colors.GREEN
+            return addButton
+        default:
+            return nil
+        }
+    }
+    
+    func mapView(mapView: MGLMapView, annotation: MGLAnnotation, calloutAccessoryControlTapped control: UIControl) {
+        // Hide the callout view.
+        mapView.deselectAnnotation(annotation, animated: false)
+        
+        guard let selectedAnnotation = annotation as? ATAnnotation else {
+            return
+        }
+        
+        if createMode && currentStage == .Waypoints {
+            
+            if containsWaypoint(selectedAnnotation) {
+                if let index = waypoints.indexOf({ $0.title! == selectedAnnotation.title! }) {
+                    waypoints.removeAtIndex(index)
                 }
+                selectedAnnotation.type = .PointOfInterest
+                pointsOfInterest.append(selectedAnnotation)
+                let annotationView = mapView.viewForAnnotation(annotation)
+                annotationView?.backgroundColor = selectedAnnotation.backgroundColor
+            } else {
+                if let index = self.pointsOfInterest.indexOf(selectedAnnotation) {
+                    self.pointsOfInterest.removeAtIndex(index)
+                }
+                selectedAnnotation.type = .Waypoint
+                waypoints.append(selectedAnnotation)
+                let annotationView = mapView.viewForAnnotation(annotation)
+                annotationView?.backgroundColor = selectedAnnotation.backgroundColor
             }
         }
     }
+    
+    
     
     func mapView(mapView: MGLMapView, annotationCanShowCallout annotation: MGLAnnotation) -> Bool {
         return true
