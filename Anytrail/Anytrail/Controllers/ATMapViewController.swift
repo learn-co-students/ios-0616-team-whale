@@ -171,17 +171,17 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
     
     
     @IBAction func navigateTapped(sender: AnyObject) {
-        UIApplication.sharedApplication().canOpenURL(
-            NSURL(string: "comgooglemaps://")!)
-        
-        if (UIApplication.sharedApplication().canOpenURL(NSURL(string:"comgooglemaps://")!)) {
-            UIApplication.sharedApplication().openURL(NSURL(string:
-                "comgooglemaps://?saddr=2025+Garcia+Ave,+Mountain+View,+CA,+USA&daddr=Google,+1600+Amphitheatre+Parkway,+Mountain+View,+CA,+United+States&waypoints=+Charlestown,+MA|Lexington,+MA&key&center=37.423725,-122.0877&directionsmode=walking&zoom=17")!)
-        } else {
-            print("Can't use comgooglemaps://");
-        }
-        let navigationOriginDestinationString = waypoints
-        waypoints.removeFirst()
+//        UIApplication.sharedApplication().canOpenURL(
+//            NSURL(string: "comgooglemaps://")!)
+//        
+//        if (UIApplication.sharedApplication().canOpenURL(NSURL(string:"comgooglemaps://")!)) {
+//            UIApplication.sharedApplication().openURL(NSURL(string:
+//                "comgooglemaps://?saddr=2025+Garcia+Ave,+Mountain+View,+CA,+USA&daddr=Google,+1600+Amphitheatre+Parkway,+Mountain+View,+CA,+United+States&waypoints=+Charlestown,+MA|Lexington,+MA&key&center=37.423725,-122.0877&directionsmode=walking&zoom=17")!)
+//        } else {
+//            print("Can't use comgooglemaps://");
+//        }
+//        let navigationOriginDestinationString = waypoints
+//        waypoints.removeFirst()
         
 //        var waypointString = ""
 //        
