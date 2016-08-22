@@ -11,13 +11,21 @@ import CoreLocation
 import SnapKit
 
 protocol ATDropdownViewDelegate {
-    func dropdownDidUpdateOrigin(location: String)
-    func dropdownDidUpdateDestination(location: String)
+    func dropdownDidUpdateOrigin(location: String?)
+    func dropdownDidUpdateDestination(location: String?)
 }
 
 class ATDropdownView: UIView, UITextFieldDelegate {
     
     var delegate: ATDropdownViewDelegate?
+    var originString: String {
+        return originTextField.text ?? ""
+    }
+    
+    var destinationString: String {
+        return originTextField.text ?? ""
+    }
+    
     
     private let view: UIView!
     
@@ -52,17 +60,17 @@ class ATDropdownView: UIView, UITextFieldDelegate {
     func show() {
         view.addSubview(self)
         
-        UIView.animateWithDuration(0.2, animations: {
+        UIView.animateWithDuration(0.2) {
             self.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y - 75, self.view.frame.size.width, 85)
-        })
+        }
     }
     
     func hide() {
         UIView.animateWithDuration(0.2, animations: {
             self.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y - 170, self.view.frame.size.width, 85)
-        }) { (completed) in
+        }, completion: { _ in
             self.removeFromSuperview()
-        }
+        })
     }
     
     func changeDropdownView(type: ATDropownViewType) {
@@ -75,20 +83,27 @@ class ATDropdownView: UIView, UITextFieldDelegate {
     
     // MARK: - Textfields
     
-    func updateOriginTextField(location: String) {
-        originTextField.text = location
-    }
-    
-    func updateDestinationTextField(location: String) {
-        destinationTextField.text = location
-    }
-    
-    func textFieldDidEndEditing(textField: UITextField) {
+    func textFieldShouldEndEditing(textField: UITextField) -> Bool {
         if textField == originTextField {
-            delegate?.dropdownDidUpdateOrigin(originTextField.text!)
-        } else {
-            delegate?.dropdownDidUpdateDestination(destinationTextField.text!)
+            updateOrigin(textField.text)
+        } else if textField == destinationTextField {
+            updateDestination(textField.text)
         }
+        return true
+    }
+    
+    func updateOrigin(originString: String?) {
+        guard let text = originString where text.characters.count > 2 else {
+            return
+        }
+        delegate?.dropdownDidUpdateOrigin(text)
+    }
+    
+    func updateDestination(destinationString: String?) {
+        guard let text = destinationString where text.characters.count > 2 else {
+            return
+        }
+        delegate?.dropdownDidUpdateDestination(text)
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
@@ -177,8 +192,8 @@ class ATDropdownView: UIView, UITextFieldDelegate {
     }
     
     func clearView() {
-        for component in self.subviews {
-            component.removeFromSuperview()
+        for subview in self.subviews {
+            subview.removeFromSuperview()
         }
     }
     

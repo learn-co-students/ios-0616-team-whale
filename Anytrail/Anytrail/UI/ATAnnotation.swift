@@ -16,22 +16,28 @@ class ATAnnotation: MGLPointAnnotation {
         case PointOfInterest
         case Waypoint
         case Destination
+        case Error
     }
     
-    var type: ATAnnotationType?
+    var type: ATAnnotationType
+    
+    init(typeSelected: ATAnnotationType) {
+        self.type = typeSelected
+    }
+    
     
     var backgroundColor: UIColor {
-        if type == .Origin {
+        switch type {
+        case .Origin:
             return ATConstants.Colors.BLUE
-            
-        } else if type == .PointOfInterest {
-            return ATConstants.Colors.ORANGE
-            
-        } else if type == .Waypoint {
-            return ATConstants.Colors.GREEN
-            
-        } else {
+        case .Destination:
             return ATConstants.Colors.RED
+        case .Waypoint:
+            return ATConstants.Colors.GREEN
+        case .PointOfInterest:
+            return ATConstants.Colors.ORANGE
+        default:
+            return ATConstants.Colors.GRAY
         }
     }
 }

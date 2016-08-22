@@ -11,14 +11,6 @@ import Mapbox
 
 class ATAnnotationView: MGLAnnotationView {
     
-    enum ATAnnotationType: Int {
-        case Origin
-        case PointOfInterest
-        case Destination
-    }
-    
-    var type: ATAnnotationType?
-    
     override func layoutSubviews() {
         super.layoutSubviews()
         
