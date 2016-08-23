@@ -11,7 +11,6 @@ import MapboxDirections
 import MapboxGeocoder
 import ReachabilitySwift
 import TGLParallaxCarousel
-import SnapKit
 
 import UIKit
 
