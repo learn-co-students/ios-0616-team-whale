@@ -29,7 +29,7 @@ class ProfileTableViewController: UIViewController, UITableViewDelegate, UITable
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.tableView = UITableView(frame: UIScreen.mainScreen().bounds, style: UITableViewStyle.Grouped)
+        self.tableView = UITableView(frame: (CGRectMake(0, -30, self.view.bounds.size.width, self.view.bounds.size.height)), style: UITableViewStyle.Grouped)
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")

@@ -23,7 +23,7 @@ class TipsAndTricksViewController: UIViewController, UITableViewDataSource, UITa
         informationData = [FactsForTipsAndTricks.activityTips, FactsForTipsAndTricks.wellBeingTips, FactsForTipsAndTricks.tobaccoTips, FactsForTipsAndTricks.healthyEatingTips]
         arraySentFromSegue = informationData[categoryNumber!]
         
-        self.tableView = UITableView(frame: UIScreen.mainScreen().bounds, style: UITableViewStyle.Grouped)
+        self.tableView = UITableView(frame: (CGRectMake(0, -30, self.view.bounds.size.width, self.view.bounds.size.height)), style: UITableViewStyle.Grouped)
         tableView.delegate = self
         tableView.dataSource = self
         
