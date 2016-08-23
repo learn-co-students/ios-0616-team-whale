@@ -18,28 +18,29 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="6Ty-dA-Uwk">
-                    <rect key="frame" x="0.0" y="38" width="402" height="112"/>
-                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                    <color key="textColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    <rect key="frame" x="20" y="38" width="362" height="112"/>
+                    <color key="backgroundColor" red="0.90588235294117647" green="0.90588235294117647" blue="0.90588235294117647" alpha="1" colorSpace="calibratedRGB"/>
+                    <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
+                    <color key="textColor" red="0.31372549019607843" green="0.31372549019607843" blue="0.31372549019607843" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fXY-gI-Mpa">
-                    <rect key="frame" x="0.0" y="0.0" width="402" height="38"/>
-                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <rect key="frame" x="20" y="0.0" width="362" height="38"/>
+                    <color key="backgroundColor" red="0.90588235294117647" green="0.90588235294117647" blue="0.90588235294117647" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="17"/>
+                    <color key="textColor" red="0.31372549019607843" green="0.31372549019607843" blue="0.31372549019607843" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
             <constraints>
-                <constraint firstItem="fXY-gI-Mpa" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="7GT-oS-QMv"/>
+                <constraint firstItem="fXY-gI-Mpa" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.9" id="7GT-oS-QMv"/>
                 <constraint firstItem="6Ty-dA-Uwk" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="9mX-Jz-4yJ"/>
                 <constraint firstAttribute="bottom" secondItem="6Ty-dA-Uwk" secondAttribute="bottom" id="H7L-yF-Ys1"/>
                 <constraint firstItem="fXY-gI-Mpa" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="lSO-SL-c3L"/>
                 <constraint firstItem="fXY-gI-Mpa" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="uMB-TY-ouF"/>
                 <constraint firstItem="6Ty-dA-Uwk" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="vFN-E0-rsM"/>
-                <constraint firstItem="6Ty-dA-Uwk" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="vhl-wt-yG7"/>
+                <constraint firstItem="6Ty-dA-Uwk" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.9" id="vhl-wt-yG7"/>
                 <constraint firstItem="fXY-gI-Mpa" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="0.25" id="xAG-W8-8AB"/>
                 <constraint firstItem="6Ty-dA-Uwk" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="0.75" id="znR-3o-dJi"/>
             </constraints>

@@ -37,7 +37,6 @@
 		4DFDBC121D6262E2006616D0 /* UserProfileCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4DFDBC101D6262E2006616D0 /* UserProfileCell.xib */; };
 		4DFDBC151D634806006616D0 /* ProfileMapHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFDBC131D634806006616D0 /* ProfileMapHeader.swift */; };
 		4DFDBC161D634806006616D0 /* ProfileMapHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4DFDBC141D634806006616D0 /* ProfileMapHeader.xib */; };
-		681BF710713DEB89F836003E /* Pods_AnytrailTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB2E3A25BA33F309140861F9 /* Pods_AnytrailTests.framework */; };
 		8A3948F71D620BC1004A4B94 /* Path.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A3948F61D620BC1004A4B94 /* Path.storyboard */; };
 		8A3948F91D621C23004A4B94 /* ATPathViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3948F81D621C23004A4B94 /* ATPathViewController.swift */; };
 		8A3948FB1D623743004A4B94 /* ATPathCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3948FA1D623743004A4B94 /* ATPathCell.swift */; };
@@ -164,7 +163,6 @@
 		949370341D62515900C696AE /* ATConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ATConstants.swift; sourceTree = "<group>"; };
 		94B1ABEA1D5E4AD800D3DA8E /* ATAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ATAnnotationView.swift; path = UI/ATAnnotationView.swift; sourceTree = "<group>"; };
 		DAD2C8D70B6029D7314DD479 /* Pods-AnytrailTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnytrailTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AnytrailTests/Pods-AnytrailTests.debug.xcconfig"; sourceTree = "<group>"; };
-		DB2E3A25BA33F309140861F9 /* Pods_AnytrailTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AnytrailTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4AC6E6A90B2DC273C8971C2 /* Pods-Anytrail.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Anytrail.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Anytrail/Pods-Anytrail.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -182,7 +180,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				681BF710713DEB89F836003E /* Pods_AnytrailTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -361,7 +358,6 @@
 				2EFB62971D6B9589003DF7F8 /* HealthKit.framework */,
 				8AC2741E1D6505F800F4D4E1 /* SystemConfiguration.framework */,
 				599CF5E42324548824DD0368 /* Pods_Anytrail.framework */,
-				DB2E3A25BA33F309140861F9 /* Pods_AnytrailTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -779,8 +775,9 @@
 			baseConfigurationReference = F4AC6E6A90B2DC273C8971C2 /* Pods-Anytrail.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Anytrail/Anytrail.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Flatiron School, Inc (KXY9EDFTF5)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Anytrail/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.flatironschool.team-whale";
@@ -794,8 +791,9 @@
 			baseConfigurationReference = 3417C12B1559CD326FE9F852 /* Pods-Anytrail.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Anytrail/Anytrail.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Flatiron School, Inc (KXY9EDFTF5)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Anytrail/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.flatironschool.team-whale";
