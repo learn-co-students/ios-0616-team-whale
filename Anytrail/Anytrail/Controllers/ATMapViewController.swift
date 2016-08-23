@@ -144,6 +144,7 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
             setToWaypoints()
         case .Waypoints:
             setToRoute()
+            mapView.scrollEnabled = false
             
             // TODO: Change to start
             
@@ -610,7 +611,7 @@ extension ATMapViewController {
         origin = nil
         destination = nil
         carouselView.hidden = true
-        
+        mapView.scrollEnabled = true
         removePath()
         removeUnusedWaypoints()
         removeWaypoints()
@@ -665,7 +666,7 @@ extension ATMapViewController: TGLParallaxCarouselDatasource {
         let maneuverGeocode =  ReverseGeocodeOptions.init(coordinate: maneuverCoordinates)
         var directView = DirectionView(frame: CGRectMake(self.carouselView.bounds.minX, self.carouselView.bounds.minY, self.carouselView.bounds.size.width, self.carouselView.bounds.size.height * 0.35), leg: "\(directionArray[index].0)", step: "\(instruction)")
         
-    
+        
         
         return directView
     }
