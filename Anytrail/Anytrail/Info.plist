@@ -75,7 +75,7 @@
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>We need your location to track your paths and show you cool places around you.</string>
 	<key>UILaunchStoryboardName</key>
-	<string>Main</string>
+	<string>SplashScreen</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
 	<key>UIRequiredDeviceCapabilities</key>
