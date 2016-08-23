@@ -54,10 +54,8 @@ class DirectionView: TGLParallaxCarouselItem {
     }
     
     func setupUI() {
-        layer.masksToBounds = false
-        layer.shadowRadius = 30
-        layer.shadowColor = UIColor.blackColor().CGColor
-        layer.shadowOpacity = 0.0
+        layer.masksToBounds = true
+        currentLegLabel.numberOfLines = 0
 
     }
 }

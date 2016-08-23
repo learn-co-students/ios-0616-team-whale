@@ -11,12 +11,13 @@ import MapboxDirections
 import MapboxGeocoder
 import ReachabilitySwift
 import TGLParallaxCarousel
-
+import SnapKit
 
 import UIKit
 
 class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewDelegate {
     
+    @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var carouselView: TGLParallaxCarousel!
     @IBOutlet var mapView: MGLMapView!
     @IBOutlet weak var addButton: UIButton!
@@ -492,13 +493,18 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
             self.dropdownDisplayed = true
         }
         
+        
+        
         currentStage = .Default
         drawRouteButton.enabled = false
         carouselView.delegate = self
         carouselView.datasource = self
         carouselView.reloadInputViews()
-        carouselView.itemMargin = 10
+        carouselView.bounceMargin = 1.0
+        carouselView.itemMargin = 30.0
         carouselView.hidden = true
+        pageControl.hidden = true
+        
         
         
     }
@@ -627,13 +633,21 @@ extension ATMapViewController {
 
 extension ATMapViewController: TGLParallaxCarouselDatasource {
     func numberOfItemsInCarousel(carousel: TGLParallaxCarousel) ->Int {
+        
         return self.giveScrollerPages()
     }
     
     func viewForItemAtIndex(index: Int, carousel: TGLParallaxCarousel) -> TGLParallaxCarouselItem {
         let ratio: CGFloat = view.frame.width / 375.0
         
-        return DirectionView(frame: CGRectMake(0, 0, 300 * ratio, 150 * ratio), leg: "\(directionArray[index].0)", step: "\(directionArray[index].1.instructions)")
+        let instruction = directionArray[index].1.instructions
+        let maneuverCoordinates = directionArray[index].1.maneuverLocation
+        let maneuverGeocode =  ReverseGeocodeOptions.init(coordinate: maneuverCoordinates)
+        var directView = DirectionView(frame: CGRectMake(self.carouselView.bounds.minX, -10, self.carouselView.bounds.size.width, self.carouselView.bounds.size.height), leg: "\(directionArray[index].0)", step: "\(instruction)")
+        
+    
+        
+        return directView
     }
 }
 
@@ -642,6 +656,10 @@ extension ATMapViewController: TGLParallaxCarouselDelegate {
         print("Tap on item at index \(index)")
         
         
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        self.pageControl.hidden = true
     }
     
     func didMovetoPageAtIndex(index: Int) {
@@ -655,6 +673,7 @@ extension ATMapViewController: TGLParallaxCarouselDelegate {
                 //                    pathPin.coordinate = last
                 //                    self.assignPathPin(pathPin)
                 mapView.setCenterCoordinate(last, zoomLevel: 15, animated: true)
+                
                 
             }
         }

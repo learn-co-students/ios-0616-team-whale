@@ -19,9 +19,8 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kg9-yN-9Kn">
                         <rect key="frame" x="19" y="7" width="338" height="130"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PTD-ge-w22" userLabel="Data Label">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PTD-ge-w22" userLabel="Data Label">
                                 <rect key="frame" x="116" y="30" width="175" height="69"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <attributedString key="attributedText">
                                     <fragment content="Lorem ipsum dolor ">
                                         <attributes>
@@ -60,7 +59,6 @@
                     </mask>
                 </variation>
             </tableViewCellContentView>
-            <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
             <connections>
                 <outlet property="dataIconView" destination="uLI-sE-Xv3" id="85F-tJ-KaG"/>
                 <outlet property="dataLabel" destination="PTD-ge-w22" id="F1w-Ay-MLK"/>
