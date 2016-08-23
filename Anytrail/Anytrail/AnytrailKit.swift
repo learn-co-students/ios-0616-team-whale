@@ -14,18 +14,27 @@ class AnytrailKit {
     
     static let sharedInstance = AnytrailKit()
     
-    var paths = []
+    var paths: [FullPath] = []
     
     // MARK: - Functions
     
-    class func savePath(waypoints: [Waypoint]) {
-        var coordinates: [(Double, Double)] = []
+    func savePath(waypoints: [Waypoint], duration: String) {
+        var coordinates: [Coordinate] = []
         
         for waypoint in waypoints {
-            coordinates.append((Double(waypoint.coordinate.latitude), (Double(waypoint.coordinate.longitude))))
+            let coordinate: Coordinate = insertNewCoordinateObject()
+            coordinate.latitude = Double(waypoint.coordinate.latitude)
+            coordinate.longitude = Double(waypoint.coordinate.longitude)
+            
+            coordinates.append(coordinate)
         }
         
-        print("Coordinates: \(coordinates)")
+        let path: FullPath = insertNewPathObject()
+        path.createdAt = NSDate()
+        path.duration = duration
+        path.waypoints = Set(coordinates)
+        
+        saveContext()
     }
     
     func saveContext() {
@@ -42,26 +51,28 @@ class AnytrailKit {
     }
     
     func fetchData() {
-//        let pirateRequest = NSFetchRequest(entityName: "Pirate")
-//        
-//        do {
-//            pirates = try managedObjectContext.executeFetchRequest(pirateRequest) as! [Pirate]
-//        } catch let error as NSError {
-//            print("Error: \(error): \(error.userInfo)")
-//            pirates = []
-//        }
-//        
-//        if pirates.count == 0 {
-//            buildShip()
-//        }
+        let pathRequest = NSFetchRequest(entityName: "FullPath")
+        
+        do {
+            paths = try managedObjectContext.executeFetchRequest(pathRequest) as! [FullPath]
+        } catch let error as NSError {
+            print("Error: \(error): \(error.userInfo)")
+            paths = []
+        }
     }
     
     // MARK: - Helpers
     
-    func insertNewShipObject() -> Void {
-//        let ship: Ship = NSEntityDescription.insertNewObjectForEntityForName("Ship", inManagedObjectContext: managedObjectContext) as! Ship
-//        
-//        return ship
+    func insertNewCoordinateObject() -> Coordinate {
+        let coordinate: Coordinate = NSEntityDescription.insertNewObjectForEntityForName("Coordinate", inManagedObjectContext: managedObjectContext) as! Coordinate
+        
+        return coordinate
+    }
+    
+    func insertNewPathObject() -> FullPath {
+        let path: FullPath = NSEntityDescription.insertNewObjectForEntityForName("FullPath", inManagedObjectContext: managedObjectContext) as! FullPath
+        
+        return path
     }
     
     // MARK: - Core Data stack

@@ -12,12 +12,12 @@ import Mapbox
 import UIKit
 import ReachabilitySwift
 
-
-var reachability: Reachability?
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
+    var reachability: Reachability?
     var window: UIWindow?
+    
     static let userDefaultWalkData = NSUserDefaults.standardUserDefaults()
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
@@ -28,6 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().translucent = false
         
         UITabBar.appearance().translucent = false
+        
         
         // Set Mapbox token
         MGLAccountManager.setAccessToken(Keys.mapBoxToken)

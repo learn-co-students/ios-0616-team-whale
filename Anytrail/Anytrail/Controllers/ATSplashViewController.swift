@@ -42,6 +42,7 @@ class ATSplashViewController: UIViewController {
                                     }
                                 })
                             }
+                            
                             self.performSegueWithIdentifier("ToMap", sender: self)
                             
                         } else {

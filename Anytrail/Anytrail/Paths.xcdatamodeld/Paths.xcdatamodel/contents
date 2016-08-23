@@ -3,12 +3,15 @@
     <entity name="Coordinate" representedClassName=".Coordinate" syncable="YES">
         <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <relationship name="path" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="FullPath" inverseName="waypoints" inverseEntity="FullPath" syncable="YES"/>
     </entity>
-    <entity name="Path" representedClassName=".Path" syncable="YES">
-        <relationship name="waypoints" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Coordinate" syncable="YES"/>
+    <entity name="FullPath" representedClassName=".FullPath" syncable="YES">
+        <attribute name="createdAt" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="duration" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="waypoints" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Coordinate" inverseName="path" inverseEntity="Coordinate" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Coordinate" positionX="-63" positionY="-18" width="128" height="73"/>
-        <element name="Path" positionX="214" positionY="-9" width="128" height="58"/>
+        <element name="Coordinate" positionX="-63" positionY="-18" width="128" height="90"/>
+        <element name="FullPath" positionX="214" positionY="-9" width="128" height="90"/>
     </elements>
 </model>

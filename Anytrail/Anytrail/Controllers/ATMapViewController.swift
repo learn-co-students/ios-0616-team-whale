@@ -11,7 +11,7 @@ import MapboxDirections
 import MapboxGeocoder
 import ReachabilitySwift
 import TGLParallaxCarousel
-
+import Firebase
 
 import UIKit
 
@@ -22,6 +22,8 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
     @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var dropdownBarButton: UIBarButtonItem!
     @IBOutlet weak var drawRouteButton: UIBarButtonItem!
+    
+    let kit = AnytrailKit.sharedInstance
     
     var geocoder = Geocoder(accessToken: Keys.mapBoxToken)
     
@@ -86,7 +88,6 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
         }
     }
     
-    
     // MARK: - Actions
     
     @IBAction func dropdown() {
@@ -107,6 +108,8 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
             clearMapView()
         case .Route:
             currentStage = .Default
+            clearMapView()
+            configureDropdownButtonForState(dropdownDisplayed)
             reshowDropdown(withView: .Default, hintText: "")
             UIView.animateWithDuration(0.3) {
                 self.dropdownBarButton.image = UIImage(named: "dropdown")
@@ -139,6 +142,9 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
             setToWaypoints()
         case .Waypoints:
             setToRoute()
+            
+            // TODO: Change to start
+            
         case .Route:
             print("Route Phase")
         }
@@ -147,19 +153,12 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
     func setToWaypoints() {
         createMode = true
         currentStage = .Waypoints
+        
+        disableControlsForBuffer(true)
         getWaypoints()
+        
         UIView.animateWithDuration(0.3) {
             self.dropdownBarButton.image = UIImage(named: "back-arrow")
-        }
-    }
-    
-    func getWaypoints() {
-        addFoursquareAnnotations() { count in
-            dispatch_async(dispatch_get_main_queue()) {
-                for pin in self.pointsOfInterest {
-                    self.mapView.addAnnotation(pin)
-                }
-            }
         }
     }
     
@@ -175,12 +174,30 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
         }
     }
     
+    func getWaypoints() {
+        addFoursquareAnnotations() { count in
+            dispatch_async(dispatch_get_main_queue()) {
+                for pin in self.pointsOfInterest {
+                    self.mapView.addAnnotation(pin)
+                }
+                
+                self.disableControlsForBuffer(false)
+            }
+        }
+    }
+    
     func checkOriginAndDestinationAssigned() {
         if destination != nil && origin != nil {
             drawRouteButton.enabled = true
         }
     }
     
+    func disableControlsForBuffer(disable: Bool) {
+        dropdownBarButton.enabled = !disable
+        drawRouteButton.enabled = !disable
+        
+        dropdownView.userInteractionEnabled = !disable
+    }
     
     @IBAction func navigateTapped(sender: AnyObject) {
         //        UIApplication.sharedApplication().canOpenURL(
@@ -461,6 +478,10 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
                 print("Distance: \(formattedDistance); ETA: \(formattedTravelTime!)")
                 completion(time: formattedTravelTime!)
                 
+                // TODO: Remove testing data stuff
+                // Call this function when user saves path
+                self.kit.savePath(waypoints!, duration: formattedTravelTime!)
+                
                 if route.coordinateCount > 0 {
                     var routeCoordinates = route.coordinates!
                     self.routeLine = MGLPolyline(coordinates: &routeCoordinates, count: route.coordinateCount)
@@ -473,12 +494,12 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
             }
         }
     }
+    
     // MARK: - View
     
     override func viewDidLoad() {
         super.viewDidLoad()
         if !InternetStatus.shared.hasInternet {
-            print("\n\nthere is no internet connection\n\n")
             ATAlertView.alertNetworkLoss(self, callback: {})
         }
         
@@ -525,8 +546,6 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
         // Dispose of any resources that can be recreated.
     }
 }
-
-
 
 extension ATMapViewController {
     
