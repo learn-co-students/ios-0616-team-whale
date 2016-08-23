@@ -24,11 +24,11 @@ class SurgeonGeneralTableViewController: UITableViewController {
         
         
         tableView.registerNib(UINib(nibName: "TipsCell", bundle: nil), forCellReuseIdentifier: "TipsCell")
+//        
+//        let header:TipsAndTricksHeader = UINib(nibName: "TipsAndTricksHeader", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! TipsAndTricksHeader
+//       header.headerPhoto.image = UIImage(named: "surgeon-general")
         
-        let header:TipsAndTricksHeader = UINib(nibName: "TipsAndTricksHeader", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! TipsAndTricksHeader
-       header.headerPhoto.image = UIImage(named: "surgeon-general")
-        
-        self.tableView.tableHeaderView = header
+//        self.tableView.tableHeaderView = header
 
         
         self.tableView.backgroundColor = UIColor.whiteColor()
