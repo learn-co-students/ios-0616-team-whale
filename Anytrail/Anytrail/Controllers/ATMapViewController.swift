@@ -664,7 +664,7 @@ extension ATMapViewController: TGLParallaxCarouselDatasource {
         let instruction = directionArray[index].1.instructions
         let maneuverCoordinates = directionArray[index].1.maneuverLocation
         let maneuverGeocode =  ReverseGeocodeOptions.init(coordinate: maneuverCoordinates)
-        var directView = DirectionView(frame: CGRectMake(self.carouselView.bounds.minX, self.carouselView.bounds.minY, self.carouselView.bounds.size.width, self.carouselView.bounds.size.height * 0.8), leg: "\(directionArray[index].0)", step: "\(instruction)")
+        var directView = DirectionView(frame: CGRectMake(self.carouselView.bounds.minX, self.carouselView.bounds.minY, self.carouselView.bounds.size.width, self.carouselView.bounds.size.height * 0.35), leg: "\(directionArray[index].0)", step: "\(instruction)")
         
         
         
