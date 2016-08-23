@@ -138,13 +138,13 @@ class ATDropdownView: UIView, UITextFieldDelegate {
         originTextField = UITextField(frame: CGRectMake(self.view.frame.origin.x + 10, self.view.center.y - 265, self.frame.size.width - 20, 30))
         originTextField = configureTextField(originTextField)
         originTextField.returnKeyType = .Next
-        originTextField.placeholder = "Current location"
-        originTextField.becomeFirstResponder()
+        originTextField.placeholder = "123 West 42nd St"
+        //originTextField.becomeFirstResponder()
         
         destinationTextField = UITextField(frame: CGRectMake(self.view.frame.origin.x + 10, self.view.center.y - 230, self.frame.size.width - 20, 30))
         destinationTextField = configureTextField(destinationTextField)
         destinationTextField.returnKeyType = .Done
-        destinationTextField.placeholder = "123 West 42nd St"
+        destinationTextField.placeholder = "Central Park"
         
         addSubview(originPinImageView)
         addSubview(destinationPinImageView)
