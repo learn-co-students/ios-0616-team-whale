@@ -18,6 +18,7 @@
 		2EBCDDFD1D6BA4E900E8B6BC /* DirectionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBCDDFB1D6BA4E900E8B6BC /* DirectionsView.swift */; };
 		2EBCDDFE1D6BA4E900E8B6BC /* DirectionsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2EBCDDFC1D6BA4E900E8B6BC /* DirectionsView.xib */; };
 		2EFB62981D6B9589003DF7F8 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EFB62971D6B9589003DF7F8 /* HealthKit.framework */; };
+		4D07799A1D6CCA1100B21593 /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0779991D6CCA1100B21593 /* Keys.swift */; };
 		4D225C1B1D5A0FF600360AB8 /* MashapeAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D225C1A1D5A0FF600360AB8 /* MashapeAPIClient.swift */; };
 		4D225C1F1D5A100800360AB8 /* MashapeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D225C1E1D5A100800360AB8 /* MashapeData.swift */; };
 		4D5244721D66084F0066C01B /* TipsAndTricksTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5244711D66084F0066C01B /* TipsAndTricksTableViewCell.swift */; };
@@ -46,7 +47,6 @@
 		8A39490D1D637CC6004A4B94 /* ATSplashScreenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A39490C1D637CC6004A4B94 /* ATSplashScreenController.swift */; };
 		8A39490F1D637CF7004A4B94 /* SplashScreen.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8A39490E1D637CF7004A4B94 /* SplashScreen.xcassets */; };
 		8A4827971D677B0700C53A71 /* InternetStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A4827961D677B0700C53A71 /* InternetStatus.swift */; };
-		8A53F2EC1D594A4A00F244BE /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A53F2EB1D594A4A00F244BE /* Keys.swift */; };
 		8A53F2F11D594E3E00F244BE /* TrailApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A53F2F01D594E3E00F244BE /* TrailApiClient.swift */; };
 		8A6624311D5A8DCB009760DA /* HealthKitDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A66242E1D5A8DCB009760DA /* HealthKitDataStore.swift */; };
 		9424A7701D53D5DA00CE8D42 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9424A76F1D53D5DA00CE8D42 /* AppDelegate.swift */; };
@@ -100,6 +100,7 @@
 		2EDDFE291D5A868900B36853 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2EFB62971D6B9589003DF7F8 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		3417C12B1559CD326FE9F852 /* Pods-Anytrail.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Anytrail.release.xcconfig"; path = "Pods/Target Support Files/Pods-Anytrail/Pods-Anytrail.release.xcconfig"; sourceTree = "<group>"; };
+		4D0779991D6CCA1100B21593 /* Keys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Keys.swift; path = ../../../../Downloads/Keys.swift; sourceTree = "<group>"; };
 		4D225C1A1D5A0FF600360AB8 /* MashapeAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MashapeAPIClient.swift; sourceTree = "<group>"; };
 		4D225C1E1D5A100800360AB8 /* MashapeData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MashapeData.swift; sourceTree = "<group>"; };
 		4D5244711D66084F0066C01B /* TipsAndTricksTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TipsAndTricksTableViewCell.swift; sourceTree = "<group>"; };
@@ -131,7 +132,6 @@
 		8A39490C1D637CC6004A4B94 /* ATSplashScreenController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ATSplashScreenController.swift; sourceTree = "<group>"; };
 		8A39490E1D637CF7004A4B94 /* SplashScreen.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = SplashScreen.xcassets; sourceTree = "<group>"; };
 		8A4827961D677B0700C53A71 /* InternetStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InternetStatus.swift; sourceTree = "<group>"; };
-		8A53F2EB1D594A4A00F244BE /* Keys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		8A53F2F01D594E3E00F244BE /* TrailApiClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TrailApiClient.swift; path = ../TrailData/TrailApiClient.swift; sourceTree = "<group>"; };
 		8A66242E1D5A8DCB009760DA /* HealthKitDataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthKitDataStore.swift; sourceTree = "<group>"; };
 		8AC2741E1D6505F800F4D4E1 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -231,7 +231,7 @@
 			children = (
 				2E8AC7831D67C3E80012AE98 /* Paths.xcdatamodeld */,
 				4DF1FD171D64E3F800692309 /* Anytrail.entitlements */,
-				8A53F2EB1D594A4A00F244BE /* Keys.swift */,
+				4D0779991D6CCA1100B21593 /* Keys.swift */,
 				9424A76F1D53D5DA00CE8D42 /* AppDelegate.swift */,
 				8A4827961D677B0700C53A71 /* InternetStatus.swift */,
 				8A66242E1D5A8DCB009760DA /* HealthKitDataStore.swift */,
@@ -642,7 +642,6 @@
 				8A6624311D5A8DCB009760DA /* HealthKitDataStore.swift in Sources */,
 				2E1DA8831D5E3B5B00F83DFD /* WalkTrackerViewController.swift in Sources */,
 				4DB2D9611D58DEBA007BD4A5 /* FoursquareAPIClient.swift in Sources */,
-				8A53F2EC1D594A4A00F244BE /* Keys.swift in Sources */,
 				8A3948FB1D623743004A4B94 /* ATPathCell.swift in Sources */,
 				4DF1FD1D1D64FC4900692309 /* SurgeonGeneralTableViewController.swift in Sources */,
 				4DB2D9631D58DF04007BD4A5 /* ApisDataStore.swift in Sources */,
@@ -650,6 +649,7 @@
 				4D5244781D6615280066C01B /* TipsAndTricksHeader.swift in Sources */,
 				8A3949091D62549E004A4B94 /* ATPathDetailedController.swift in Sources */,
 				8A4827971D677B0700C53A71 /* InternetStatus.swift in Sources */,
+				4D07799A1D6CCA1100B21593 /* Keys.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
