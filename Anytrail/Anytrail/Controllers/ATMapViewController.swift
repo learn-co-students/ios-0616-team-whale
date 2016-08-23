@@ -17,6 +17,7 @@ import UIKit
 
 class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewDelegate {
     
+    @IBOutlet weak var loadingSpinner: UIActivityIndicatorView!
     @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var carouselView: TGLParallaxCarousel!
     @IBOutlet var mapView: MGLMapView!
@@ -163,6 +164,19 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
         }
     }
     
+    func getWaypoints() {
+        self.loadingSpinner.startAnimating()
+        addFoursquareAnnotations() { count in
+            dispatch_async(dispatch_get_main_queue()) {
+                self.loadingSpinner.stopAnimating()
+                for pin in self.pointsOfInterest {
+                    self.mapView.addAnnotation(pin)
+                }
+                self.disableControlsForBuffer(false)
+            }
+        }
+    }
+    
     func setToRoute() {
         if waypoints.count > 0 {
             currentStage = .Route
@@ -172,18 +186,6 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
             }
         } else {
             ATAlertView.alertWithTitle(self, type: .Error, title: "Whoops", text: "Select at least one point to pass") { }
-        }
-    }
-    
-    func getWaypoints() {
-        addFoursquareAnnotations() { count in
-            dispatch_async(dispatch_get_main_queue()) {
-                for pin in self.pointsOfInterest {
-                    self.mapView.addAnnotation(pin)
-                }
-                
-                self.disableControlsForBuffer(false)
-            }
         }
     }
     
@@ -525,8 +527,8 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
         carouselView.itemMargin = 30.0
         carouselView.hidden = true
         pageControl.hidden = true
-        
-        
+        self.loadingSpinner.color = UIColor.darkGrayColor()
+        self.loadingSpinner.hidesWhenStopped = true
         
     }
     

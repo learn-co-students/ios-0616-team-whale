@@ -17,7 +17,7 @@ class UserProfileCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         self.userCellBackgroundView.backgroundColor = ATConstants.Colors.GRAY
-
+        self.userCellBackgroundView.layer.cornerRadius = 10.0
         dataLabel.textColor = UIColor(red: 80/225, green: 80/225, blue: 80/255, alpha: 1)
     }
     

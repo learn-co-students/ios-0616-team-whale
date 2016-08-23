@@ -29,14 +29,19 @@
                                     <outlet property="pageControl" destination="h5G-3u-Z64" id="f6q-fS-d2M"/>
                                 </connections>
                             </view>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="rEA-6W-4hJ">
+                                <rect key="frame" x="303" y="281" width="37" height="37"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <color key="tintColor" red="0.90823972225189209" green="0.92638683319091797" blue="0.9317171573638916" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="rEA-6W-4hJ" firstAttribute="centerX" secondItem="tsR-hK-woN" secondAttribute="centerX" id="L39-nP-lXP"/>
                             <constraint firstItem="4ug-Mw-9AY" firstAttribute="top" secondItem="YrG-hj-CVj" secondAttribute="bottomMargin" constant="-50" id="Rpb-hB-KHa"/>
                             <constraint firstItem="YrG-hj-CVj" firstAttribute="width" secondItem="tsR-hK-woN" secondAttribute="width" id="W0d-Ep-euP"/>
                             <constraint firstItem="YrG-hj-CVj" firstAttribute="centerX" secondItem="tsR-hK-woN" secondAttribute="centerX" id="cKT-DL-1lQ"/>
                             <constraint firstItem="YrG-hj-CVj" firstAttribute="height" secondItem="tsR-hK-woN" secondAttribute="height" multiplier="0.3" id="oGJ-OQ-YZM"/>
+                            <constraint firstItem="rEA-6W-4hJ" firstAttribute="centerY" secondItem="tsR-hK-woN" secondAttribute="centerY" id="uI9-i7-s9X"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="string" keyPath="styleURL__" value="mapbox://styles/imryan/cirhys2ik000igjnoz92eencj"/>
@@ -73,6 +78,7 @@
                         <outlet property="carouselView" destination="YrG-hj-CVj" id="b5q-9K-pku"/>
                         <outlet property="drawRouteButton" destination="Ast-MD-UW1" id="awa-sW-6FF"/>
                         <outlet property="dropdownBarButton" destination="pb9-GC-3bW" id="97i-np-gAJ"/>
+                        <outlet property="loadingSpinner" destination="rEA-6W-4hJ" id="St5-4O-eZo"/>
                         <outlet property="mapView" destination="tsR-hK-woN" id="RVf-Kl-XDz"/>
                         <outlet property="pageControl" destination="h5G-3u-Z64" id="IhI-D3-IU2"/>
                     </connections>
