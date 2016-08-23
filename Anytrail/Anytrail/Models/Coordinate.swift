@@ -2,7 +2,7 @@
 //  Coordinate.swift
 //  Anytrail
 //
-//  Created by Ryan Cohen on 8/19/16.
+//  Created by Ryan Cohen on 8/22/16.
 //  Copyright © 2016 Flatiron School. All rights reserved.
 //
 

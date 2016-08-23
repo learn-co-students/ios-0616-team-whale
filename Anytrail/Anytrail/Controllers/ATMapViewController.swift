@@ -20,6 +20,8 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
     @IBOutlet weak var dropdownBarButton: UIBarButtonItem!
     @IBOutlet weak var drawRouteButton: UIBarButtonItem!
     
+    let kit = AnytrailKit.sharedInstance
+    
     var geocoder = Geocoder(accessToken: Keys.mapBoxToken)
     
     var origin: ATAnnotation?
@@ -77,7 +79,6 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
             self.dropdownDisplayed = true
         }
     }
-    
     
     // MARK: - Actions
     
@@ -139,7 +140,6 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
             self.dropdownBarButton.image = UIImage(named: "back-arrow")
         }
     }
-    
     
     func setToRoute() {
         if waypoints.count > 0 {
@@ -429,6 +429,10 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
                 
                 completion(time: formattedTravelTime!)
                 
+                // TODO: Remove testing data stuff
+                // Call this function when user saves path
+                self.kit.savePath(waypoints!, duration: formattedTravelTime!)
+                
                 if route.coordinateCount > 0 {
                     var routeCoordinates = route.coordinates!
                     self.routeLine = MGLPolyline(coordinates: &routeCoordinates, count: route.coordinateCount)
@@ -441,12 +445,12 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
             }
         }
     }
+    
     // MARK: - View
     
     override func viewDidLoad() {
         super.viewDidLoad()
         if !InternetStatus.shared.hasInternet {
-            print("\n\nthere is no internet connection\n\n")
             ATAlertView.alertNetworkLoss(self, callback: {})
         }
         
@@ -486,8 +490,6 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
         // Dispose of any resources that can be recreated.
     }
 }
-
-
 
 extension ATMapViewController {
     
@@ -570,5 +572,4 @@ extension ATMapViewController {
         let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay * Double(NSEC_PER_SEC)))
         dispatch_after(time, dispatch_get_main_queue(), block)
     }
-    
 }

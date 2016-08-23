@@ -9,21 +9,21 @@
 import UIKit
 
 class ATPathCell: UITableViewCell {
+    
+    @IBOutlet weak var baseView: UIView!
     @IBOutlet weak var mapImage: UIImageView!
     @IBOutlet weak var dateLabel: UILabel!
-    @IBOutlet weak var locationLabel: UILabel!
-    @IBOutlet weak var distanceLabel: UILabel!
-    @IBOutlet weak var stepsLabel: UILabel!
+    @IBOutlet weak var durationLabel: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
+        baseView.layer.masksToBounds = true
+        baseView.layer.cornerRadius = 6
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
         // Configure the view for the selected state
     }
-
 }

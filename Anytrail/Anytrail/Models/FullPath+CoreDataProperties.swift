@@ -1,8 +1,8 @@
 //
-//  Path+CoreDataProperties.swift
+//  FullPath+CoreDataProperties.swift
 //  Anytrail
 //
-//  Created by Ryan Cohen on 8/19/16.
+//  Created by Ryan Cohen on 8/22/16.
 //  Copyright © 2016 Flatiron School. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -12,8 +12,10 @@
 import Foundation
 import CoreData
 
-extension Path {
+extension FullPath {
 
-    @NSManaged var waypoints: NSSet?
+    @NSManaged var createdAt: NSDate?
+    @NSManaged var duration: String?
+    @NSManaged var waypoints: Set<Coordinate>?
 
 }

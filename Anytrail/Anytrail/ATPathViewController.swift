@@ -7,98 +7,127 @@
 //
 
 import UIKit
+import MapboxStatic
 
 class ATPathViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    @IBOutlet weak var controller: UISegmentedControl!
     @IBOutlet weak var tableView: UITableView!
+    var refreshControl: UIRefreshControl!
     
-    var images = [UIImage(named: "path1"), UIImage(named: "path2"), UIImage(named: "path3"), UIImage(named: "path4"), UIImage(named: "path5")]
-    var date = ["June 12, 2016", "July 8, 2016", "August 2, 2016", "August 19, 2016", "August 23, 2016"]
-    var location = ["New York", "Boston", "Bennington", "Cape May", "Chicago"]
-    var distance = ["2.5 mi", "4.8 mi", "9.3 mi", "6.1 mi", "12.4"]
-    var steps = ["5.934", "12.372", "24.153", "14.942", "28.337"]
+    let store = AnytrailKit.sharedInstance
+    var routes: [FullPath] = []
+    
+    // MARK: - Mapbox Static
+    
+    func getMapSnapshot(route: FullPath, size: CGSize, completion: (UIImage?) -> ()) {
+        var waypoints: [CLLocationCoordinate2D] = []
+        
+        for point in (route.waypoints?.enumerate())! {
+            waypoints.append(CLLocationCoordinate2DMake(Double(point.element.latitude!), Double(point.element.longitude!)))
+        }
+        
+        let options = SnapshotOptions(
+            mapIdentifiers: [Keys.mapBoxMapId],
+            centerCoordinate: waypoints[1],
+            zoomLevel: 12,
+            size: size)
+        
+        let path = Path(coordinates: waypoints)
+        path.fillColor = UIColor.darkGrayColor()
+        path.strokeWidth = 4
+        
+        options.overlays = [path]
+        
+        let snapshot = Snapshot(
+            options: options,
+            accessToken: Keys.mapBoxToken)
+        
+        snapshot.image { (image, error) in
+            if error == nil {
+                completion(image)
+            } else {
+                print("Error fetching static map: \(error)")
+                completion(nil)
+            }
+        }
+    }
+    
+    // MARK: - Table
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return routes.count
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = self.tableView.dequeueReusableCellWithIdentifier("CellId", forIndexPath: indexPath) as! ATPathCell
+        
+        let path = routes[indexPath.row]
+        
+        cell.dateLabel.text = formatDate(path.createdAt!)
+        cell.durationLabel.text = "\(path.duration!)"
+        
+        getMapSnapshot(path, size: cell.mapImage.frame.size) { (image) in
+            cell.mapImage.image = image
+        }
+        
+        return cell
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    }
+    
+    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+        let shareAction = UITableViewRowAction(style: .Normal, title: "Share") { (action: UITableViewRowAction, indexPath: NSIndexPath!) in
+            // let firstActivityItem = self.date[indexPath.row]
+            // let activityViewController = UIActivityViewController(activityItems: [firstActivityItem], applicationActivities: nil)
+            // self.presentViewController(activityViewController, animated: true, completion: nil)
+        }
+        
+        shareAction.backgroundColor = UIColor.blueColor()
+        
+        return [shareAction]
+    }
+    
+    // MARK: - View
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Do any additional setup after loading the view.
+        reload()
+        
+        refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(reload), forControlEvents: .ValueChanged)
+        tableView.addSubview(refreshControl)
+        
+        tableView.contentInset = UIEdgeInsetsMake(-36, 0, 0, 0)
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+}
+
+extension ATPathViewController {
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.date.count
+    // MARK: - Date
+    
+    func formatDate(date: NSDate) -> String {
+        let formatter = NSDateFormatter()
+        formatter.dateStyle = .MediumStyle
+        
+        return formatter.stringFromDate(date)
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func reload() {
+        store.fetchData()
+        routes = store.paths
         
-        let cell = self.tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! ATPathCell
+        tableView.reloadData()
         
-        cell.mapImage.image = images[indexPath.row]
-        cell.dateLabel.text = date[indexPath.row]
-        cell.locationLabel.text = location[indexPath.row]
-        cell.distanceLabel.text = distance[indexPath.row]
-        cell.stepsLabel.text = steps[indexPath.row]
-        
-        return cell
-    }
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
-        if segue.identifier == "detailVC" {
-            if let destinationVC = segue.destinationViewController as? ATPathDetailedController {
-                
-                let path = tableView.indexPathForSelectedRow
-                guard let cell = tableView.cellForRowAtIndexPath(path!) as? ATPathCell else { return }
-                destinationVC.imageDetail = (cell.mapImage.image)!
-                
-            }
+        if refreshControl != nil && refreshControl.refreshing {
+            refreshControl.endRefreshing()
         }
-    }
-    
-//    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-//        
-//        _ = tableView.indexPathForSelectedRow
-//        if let _ = tableView.cellForRowAtIndexPath(indexPath) {
-//            self.performSegueWithIdentifier("detailVC", sender: self)
-//        }
-    //}
-    
-    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-    }
-    
-    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
-        let shareAction = UITableViewRowAction(style: .Normal, title: "Share") { (action: UITableViewRowAction, indexPath: NSIndexPath!) in
-            let firstActivityItem = self.date[indexPath.row]
-            let activityViewController = UIActivityViewController(activityItems: [firstActivityItem], applicationActivities: nil)
-            self.presentViewController(activityViewController, animated: true, completion: nil)
-        }
-        shareAction.backgroundColor = UIColor.blueColor()
-        
-        return [shareAction]
-    }
-    @IBAction func refreshButtonTapped(sender: AnyObject) {
-        
-        
-        
-    }
-    
-    
-    
-    @IBAction func controllerTapped(sender: AnyObject) {
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
     }
 }

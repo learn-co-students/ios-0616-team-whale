@@ -2,7 +2,7 @@
 //  Coordinate+CoreDataProperties.swift
 //  Anytrail
 //
-//  Created by Ryan Cohen on 8/19/16.
+//  Created by Ryan Cohen on 8/22/16.
 //  Copyright © 2016 Flatiron School. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -16,5 +16,6 @@ extension Coordinate {
 
     @NSManaged var latitude: NSNumber?
     @NSManaged var longitude: NSNumber?
+    @NSManaged var path: FullPath?
 
 }
