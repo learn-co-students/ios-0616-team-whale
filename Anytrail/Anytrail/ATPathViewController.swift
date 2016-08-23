@@ -77,18 +77,6 @@ class ATPathViewController: UIViewController, UITableViewDataSource, UITableView
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     
-    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
-        let shareAction = UITableViewRowAction(style: .Normal, title: "Share") { (action: UITableViewRowAction, indexPath: NSIndexPath!) in
-            // let firstActivityItem = self.date[indexPath.row]
-            // let activityViewController = UIActivityViewController(activityItems: [firstActivityItem], applicationActivities: nil)
-            // self.presentViewController(activityViewController, animated: true, completion: nil)
-        }
-        
-        shareAction.backgroundColor = UIColor.blueColor()
-        
-        return [shareAction]
-    }
-    
     // MARK: - View
     
     override func viewDidLoad() {
@@ -100,7 +88,7 @@ class ATPathViewController: UIViewController, UITableViewDataSource, UITableView
         refreshControl.addTarget(self, action: #selector(reload), forControlEvents: .ValueChanged)
         tableView.addSubview(refreshControl)
         
-        tableView.contentInset = UIEdgeInsetsMake(-36, 0, 0, 0)
+        tableView.contentInset = UIEdgeInsetsMake(-15, 0, 0, 0)
     }
     
     override func didReceiveMemoryWarning() {

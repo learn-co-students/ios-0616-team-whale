@@ -9,14 +9,7 @@
 import UIKit
 import Firebase
 
-// TODO: Subclass signup controller
-
 class ATLoginViewController: ATSignupViewController {
-    
-//    var cells: [ATInputCell] = []
-//    
-//    @IBOutlet weak var nextButton: UIBarButtonItem!
-//    @IBOutlet weak var tableView: UITableView!
     
     // MARK: - Actions
     
@@ -124,11 +117,5 @@ class ATLoginViewController: ATSignupViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    // MARK: - Navigation
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        //
     }
 }

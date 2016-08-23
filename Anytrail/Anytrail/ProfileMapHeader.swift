@@ -8,12 +8,19 @@
 
 import UIKit
 class ProfileMapHeader: UIView {
+    
+    @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var stepsWalkedLabel: UILabel!
     @IBOutlet weak var pathsTakenLabel: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
+        profileImageView.layer.masksToBounds = true
+        profileImageView.layer.cornerRadius = profileImageView.frame.size.height / 2
+        
+        profileImageView.layer.borderWidth = 2
+        profileImageView.layer.borderColor = UIColor.whiteColor().CGColor
     }
 }

@@ -34,8 +34,6 @@ class AnytrailKit {
         path.duration = duration
         path.waypoints = Set(coordinates)
         
-        print("Saved path: \(path)")
-        
         saveContext()
     }
     

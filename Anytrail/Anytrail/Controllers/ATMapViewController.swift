@@ -10,6 +10,7 @@ import Mapbox
 import MapboxDirections
 import MapboxGeocoder
 import ReachabilitySwift
+import Firebase
 
 import UIKit
 
@@ -100,6 +101,7 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
             clearMapView()
         case .Route:
             clearMapView()
+            configureDropdownButtonForState(dropdownDisplayed)
             reshowDropdown(withView: .Default, hintText: "")
         }
     }
@@ -127,6 +129,9 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
             setToWaypoints()
         case .Waypoints:
             setToRoute()
+            
+            // TODO: Change to start
+            
         case .Route:
             setToWaypoints()
         }
@@ -135,7 +140,10 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
     func setToWaypoints() {
         createMode = true
         currentStage = .Waypoints
+        
+        disableControlsForBuffer(true)
         getWaypoints()
+        
         UIView.animateWithDuration(0.3) {
             self.dropdownBarButton.image = UIImage(named: "back-arrow")
         }
@@ -159,6 +167,8 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
                 for pin in self.pointsOfInterest {
                     self.mapView.addAnnotation(pin)
                 }
+                
+                self.disableControlsForBuffer(false)
             }
         }
     }
@@ -169,6 +179,12 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
         }
     }
     
+    func disableControlsForBuffer(disable: Bool) {
+        dropdownBarButton.enabled = !disable
+        drawRouteButton.enabled = !disable
+        
+        dropdownView.userInteractionEnabled = !disable
+    }
     
     @IBAction func navigateTapped(sender: AnyObject) {
         var waypointString = ""

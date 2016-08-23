@@ -67,6 +67,7 @@
 		947B6AB31D6B6F01009D5268 /* FullPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947B6AAF1D6B6F01009D5268 /* FullPath.swift */; };
 		947B6AB41D6B6F01009D5268 /* Coordinate+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947B6AB01D6B6F01009D5268 /* Coordinate+CoreDataProperties.swift */; };
 		947B6AB51D6B6F01009D5268 /* Coordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947B6AB11D6B6F01009D5268 /* Coordinate.swift */; };
+		947B6AB91D6C96F4009D5268 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947B6AB81D6C96F4009D5268 /* User.swift */; };
 		949370331D62412200C696AE /* ATAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949370321D62412200C696AE /* ATAnnotation.swift */; };
 		949370351D62515900C696AE /* ATConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949370341D62515900C696AE /* ATConstants.swift */; };
 		94B1ABEB1D5E4AD800D3DA8E /* ATAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B1ABEA1D5E4AD800D3DA8E /* ATAnnotationView.swift */; };
@@ -150,6 +151,7 @@
 		947B6AAF1D6B6F01009D5268 /* FullPath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FullPath.swift; path = Models/FullPath.swift; sourceTree = "<group>"; };
 		947B6AB01D6B6F01009D5268 /* Coordinate+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Coordinate+CoreDataProperties.swift"; path = "Models/Coordinate+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		947B6AB11D6B6F01009D5268 /* Coordinate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Coordinate.swift; path = Models/Coordinate.swift; sourceTree = "<group>"; };
+		947B6AB81D6C96F4009D5268 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = Models/User.swift; sourceTree = "<group>"; };
 		949370321D62412200C696AE /* ATAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ATAnnotation.swift; path = UI/ATAnnotation.swift; sourceTree = "<group>"; };
 		949370341D62515900C696AE /* ATConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ATConstants.swift; sourceTree = "<group>"; };
 		94B1ABEA1D5E4AD800D3DA8E /* ATAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ATAnnotationView.swift; path = UI/ATAnnotationView.swift; sourceTree = "<group>"; };
@@ -279,6 +281,7 @@
 			isa = PBXGroup;
 			children = (
 				947B6AAF1D6B6F01009D5268 /* FullPath.swift */,
+				947B6AB81D6C96F4009D5268 /* User.swift */,
 				947B6AB11D6B6F01009D5268 /* Coordinate.swift */,
 				947B6AAE1D6B6F01009D5268 /* FullPath+CoreDataProperties.swift */,
 				947B6AB01D6B6F01009D5268 /* Coordinate+CoreDataProperties.swift */,
@@ -569,6 +572,7 @@
 			files = (
 				945F35F01D5A45A6002F9C1E /* ATErrorTranslator.swift in Sources */,
 				4DFDBC111D6262E2006616D0 /* UserProfileCell.swift in Sources */,
+				947B6AB91D6C96F4009D5268 /* User.swift in Sources */,
 				945F35F21D5A45B0002F9C1E /* UIViewController+Keyboard.swift in Sources */,
 				94B1ABEB1D5E4AD800D3DA8E /* ATAnnotationView.swift in Sources */,
 				947B6AB21D6B6F01009D5268 /* FullPath+CoreDataProperties.swift in Sources */,
