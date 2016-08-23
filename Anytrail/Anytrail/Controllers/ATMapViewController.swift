@@ -17,6 +17,7 @@ import UIKit
 
 class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewDelegate {
     
+    @IBOutlet weak var loadingSpinner: UIActivityIndicatorView!
     @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var carouselView: TGLParallaxCarousel!
     @IBOutlet var mapView: MGLMapView!
@@ -155,8 +156,10 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
     }
     
     func getWaypoints() {
+        self.loadingSpinner.startAnimating()
         addFoursquareAnnotations() { count in
             dispatch_async(dispatch_get_main_queue()) {
+                self.loadingSpinner.stopAnimating()
                 for pin in self.pointsOfInterest {
                     self.mapView.addAnnotation(pin)
                 }
@@ -504,8 +507,8 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
         carouselView.itemMargin = 30.0
         carouselView.hidden = true
         pageControl.hidden = true
-        
-        
+        self.loadingSpinner.color = UIColor.darkGrayColor()
+        self.loadingSpinner.hidesWhenStopped = true
         
     }
     
