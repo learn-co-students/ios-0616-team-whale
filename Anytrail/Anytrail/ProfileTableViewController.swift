@@ -47,7 +47,7 @@ class ProfileTableViewController: UIViewController, UITableViewDelegate, UITable
                 }
             }
         }
-                
+        
         self.tableView.backgroundColor = UIColor.whiteColor()
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
         
@@ -67,9 +67,9 @@ class ProfileTableViewController: UIViewController, UITableViewDelegate, UITable
     override func viewDidAppear(animated: Bool) {
         self.tableView.reloadData()
     }
-//    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-//        return 80.0
-//    }
+    //    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    //        return 80.0
+    //    }
     func numberOfSectionsInTableView(tableView: UITableView) -> Int{
         return 1
     }
@@ -88,30 +88,26 @@ class ProfileTableViewController: UIViewController, UITableViewDelegate, UITable
         
         switch(singleHealth.1) {
         case "steps":
-            cell.giveCellData(stepsIcon, dataLabel: singleHealth.0)
+            cell.giveCellData(stepsIcon, dataLabel: "\(singleHealth.0) steps taken")
             return cell
         case "flight":
-            cell.giveCellData(flightsIcon, dataLabel: singleHealth.0)
+            cell.giveCellData(flightsIcon, dataLabel: "\(singleHealth.0) flights climbed")
             return cell
         case "distance":
-            cell.giveCellData(distanceIcon, dataLabel: singleHealth.0)
+            cell.giveCellData(distanceIcon, dataLabel: "\(singleHealth.0) miles travelled")
             return cell
-        case "workout":
-            cell.giveCellData(workoutIcon, dataLabel: singleHealth.0)
+        case "energy-burn":
+            cell.giveCellData(energyIcon, dataLabel: "\(singleHealth.0) active calories")
             return cell
-        case "energy-burn", "resting-burn":
-            cell.giveCellData(energyIcon, dataLabel: singleHealth.0)
+        case "resting-burn":
+            cell.giveCellData(energyIcon, dataLabel: "\(singleHealth.0) resting calories")
             return cell
         case "water":
-            cell.giveCellData(waterIcon, dataLabel: singleHealth.0)
+            cell.giveCellData(waterIcon, dataLabel: "\(singleHealth.0) water consumed")
             return cell
         case "exercise-time":
-            cell.giveCellData(exerciseTimeIcon, dataLabel: singleHealth.0)
+            cell.giveCellData(exerciseTimeIcon, dataLabel: "\(singleHealth.0) exercise minutes")
             return cell
-        case "heartrate":
-            cell.giveCellData(heartrateIcon, dataLabel: singleHealth.0)
-            return cell
-            
         default:
             cell.dataLabel?.text = "default cell returning"
             print("default case")
