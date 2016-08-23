@@ -29,7 +29,7 @@ class ProfileTableViewController: UIViewController, UITableViewDelegate, UITable
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.tableView = UITableView(frame: UIScreen.mainScreen().bounds, style: UITableViewStyle.Grouped)
+        self.tableView = UITableView(frame: (CGRectMake(0, -30, self.view.bounds.size.width, self.view.bounds.size.height)), style: UITableViewStyle.Grouped)
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
@@ -39,28 +39,12 @@ class ProfileTableViewController: UIViewController, UITableViewDelegate, UITable
         
         let header:ProfileMapHeader = UINib(nibName: "ProfileMapHeader", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! ProfileMapHeader
         self.tableView.tableHeaderView = header
-        for healthData in self.healthDummy {
-            if healthData.1 == "steps" {
-                header.stepsWalkedLabel.hidden = false
-                header.stepsWalkedLabel?.text = "\(healthData.0) steps taken"
-            }
-            else{
-                header.stepsWalkedLabel.hidden = true
-            }
-            if healthData.1 == "workout" {
-                header.pathsTakenLabel.hidden = false
-                header.pathsTakenLabel?.text = "\(healthData.0) workouts had"
-            }
-            else {
-                header.pathsTakenLabel.hidden = true
-            }
-        }
         
         if let authentification = FIRAuth.auth() {
             if let currentUser = authentification.currentUser {
                 currentUser.fetchUserProfileImage({ (image) in
                     if let image = image {
-                        header.profileImageView.image = image
+                        header.profileImageView?.image = image
                     } else {
                         // Remain empty state
                     }
@@ -71,9 +55,6 @@ class ProfileTableViewController: UIViewController, UITableViewDelegate, UITable
                 }
             }
         }
-        
-        self.edgesForExtendedLayout = UIRectEdge.All
-        self.tableView.contentInset = UIEdgeInsetsMake(0.0, 0.0, CGRectGetHeight((self.tabBarController?.tabBar.frame)!), 0.0)
         
         self.tableView.backgroundColor = UIColor.whiteColor()
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
@@ -89,19 +70,7 @@ class ProfileTableViewController: UIViewController, UITableViewDelegate, UITable
             }
         }
     }
-    
-    override func viewDidAppear(animated: Bool) {
-        HealthKitDataStore.sharedInstance.getUserTodayHealthKitData {
-            self.healthDummy = HealthKitDataStore.sharedInstance.healthKitUserData
-            dispatch_async(dispatch_get_main_queue()) {
-                self.tableView.reloadData()
-            }
-        }
-    }
-    
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 80.0
-    }
+
     func numberOfSectionsInTableView(tableView: UITableView) -> Int{
         return 1
     }
@@ -120,30 +89,26 @@ class ProfileTableViewController: UIViewController, UITableViewDelegate, UITable
         
         switch(singleHealth.1) {
         case "steps":
-            cell.giveCellData(stepsIcon, dataLabel: singleHealth.0)
+            cell.giveCellData(stepsIcon, dataLabel: "\(singleHealth.0) steps taken")
             return cell
         case "flight":
-            cell.giveCellData(flightsIcon, dataLabel: singleHealth.0)
+            cell.giveCellData(flightsIcon, dataLabel: "\(singleHealth.0) flights climbed")
             return cell
         case "distance":
-            cell.giveCellData(distanceIcon, dataLabel: singleHealth.0)
+            cell.giveCellData(distanceIcon, dataLabel: "\(singleHealth.0) miles travelled")
             return cell
-        case "workout":
-            cell.giveCellData(workoutIcon, dataLabel: singleHealth.0)
+        case "energy-burn":
+            cell.giveCellData(energyIcon, dataLabel: "\(singleHealth.0) active calories")
             return cell
-        case "energy-burn", "resting-burn":
-            cell.giveCellData(energyIcon, dataLabel: singleHealth.0)
+        case "resting-burn":
+            cell.giveCellData(energyIcon, dataLabel: "\(singleHealth.0) resting calories")
             return cell
         case "water":
-            cell.giveCellData(waterIcon, dataLabel: singleHealth.0)
+            cell.giveCellData(waterIcon, dataLabel: "\(singleHealth.0) water consumed")
             return cell
         case "exercise-time":
-            cell.giveCellData(exerciseTimeIcon, dataLabel: singleHealth.0)
+            cell.giveCellData(exerciseTimeIcon, dataLabel: "\(singleHealth.0) exercise minutes")
             return cell
-        case "heartrate":
-            cell.giveCellData(heartrateIcon, dataLabel: singleHealth.0)
-            return cell
-            
         default:
             cell.dataLabel?.text = "default cell returning"
             print("default case")

@@ -73,7 +73,7 @@
 		949370331D62412200C696AE /* ATAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949370321D62412200C696AE /* ATAnnotation.swift */; };
 		949370351D62515900C696AE /* ATConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949370341D62515900C696AE /* ATConstants.swift */; };
 		94B1ABEB1D5E4AD800D3DA8E /* ATAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B1ABEA1D5E4AD800D3DA8E /* ATAnnotationView.swift */; };
-		B9F1B612018B5801AFED434C /* Pods_AnytrailTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23334A6FAEB7353D0F17B764 /* Pods_AnytrailTests.framework */; };
+		C6F13EAEADB81648B00617C6 /* Pods_AnytrailTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C268E151DD10F8DFBAF931E3 /* Pods_AnytrailTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -162,6 +162,7 @@
 		949370321D62412200C696AE /* ATAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ATAnnotation.swift; path = UI/ATAnnotation.swift; sourceTree = "<group>"; };
 		949370341D62515900C696AE /* ATConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ATConstants.swift; sourceTree = "<group>"; };
 		94B1ABEA1D5E4AD800D3DA8E /* ATAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ATAnnotationView.swift; path = UI/ATAnnotationView.swift; sourceTree = "<group>"; };
+		C268E151DD10F8DFBAF931E3 /* Pods_AnytrailTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AnytrailTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAD2C8D70B6029D7314DD479 /* Pods-AnytrailTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnytrailTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AnytrailTests/Pods-AnytrailTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F4AC6E6A90B2DC273C8971C2 /* Pods-Anytrail.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Anytrail.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Anytrail/Pods-Anytrail.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -180,7 +181,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B9F1B612018B5801AFED434C /* Pods_AnytrailTests.framework in Frameworks */,
+				C6F13EAEADB81648B00617C6 /* Pods_AnytrailTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -350,7 +351,7 @@
 				2EFB62971D6B9589003DF7F8 /* HealthKit.framework */,
 				8AC2741E1D6505F800F4D4E1 /* SystemConfiguration.framework */,
 				599CF5E42324548824DD0368 /* Pods_Anytrail.framework */,
-				23334A6FAEB7353D0F17B764 /* Pods_AnytrailTests.framework */,
+				C268E151DD10F8DFBAF931E3 /* Pods_AnytrailTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
