@@ -47,7 +47,6 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="userNameLabel" destination="N7f-i7-DA7" id="A7Z-ct-rg6"/>
-                <outlet property="userPhoto" destination="hsO-jN-zET" id="LR5-ez-zje"/>
             </connections>
             <point key="canvasLocation" x="553" y="502.5"/>
         </view>

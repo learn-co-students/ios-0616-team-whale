@@ -11,7 +11,7 @@ import UIKit
 class UserProfileCell: UITableViewCell {
     
     @IBOutlet weak var dataIconView: UIImageView!
-    @IBOutlet weak var dataLabel: UITextView!
+    @IBOutlet weak var dataLabel: UILabel!
     @IBOutlet weak var userCellBackgroundView: UIView!
     
     override func awakeFromNib() {

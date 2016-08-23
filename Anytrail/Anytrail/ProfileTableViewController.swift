@@ -39,22 +39,6 @@ class ProfileTableViewController: UIViewController, UITableViewDelegate, UITable
         
         let header:ProfileMapHeader = UINib(nibName: "ProfileMapHeader", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! ProfileMapHeader
         self.tableView.tableHeaderView = header
-        for healthData in self.healthDummy {
-            if healthData.1 == "steps" {
-                header.stepsWalkedLabel.hidden = false
-                header.stepsWalkedLabel?.text = "\(healthData.0) steps taken"
-            }
-            else{
-                header.stepsWalkedLabel.hidden = true
-            }
-            if healthData.1 == "workout" {
-                header.pathsTakenLabel.hidden = false
-                header.pathsTakenLabel?.text = "\(healthData.0) workouts had"
-            }
-            else {
-                header.pathsTakenLabel.hidden = true
-            }
-        }
         
         if let authentification = FIRAuth.auth(){
             if let currentUser = authentification.currentUser{
@@ -63,10 +47,7 @@ class ProfileTableViewController: UIViewController, UITableViewDelegate, UITable
                 }
             }
         }
-        
-        self.edgesForExtendedLayout = UIRectEdge.All
-        self.tableView.contentInset = UIEdgeInsetsMake(0.0, 0.0, CGRectGetHeight((self.tabBarController?.tabBar.frame)!), 0.0)
-        
+                
         self.tableView.backgroundColor = UIColor.whiteColor()
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
         
@@ -81,15 +62,14 @@ class ProfileTableViewController: UIViewController, UITableViewDelegate, UITable
             }
         }
         
-        self.title = "About Me"
     }
     
     override func viewDidAppear(animated: Bool) {
         self.tableView.reloadData()
     }
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 80.0
-    }
+//    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+//        return 80.0
+//    }
     func numberOfSectionsInTableView(tableView: UITableView) -> Int{
         return 1
     }

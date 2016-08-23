@@ -62,7 +62,7 @@ class SurgeonGeneralTableViewController: UITableViewController {
 //            cell.userCellBackgroundView.backgroundColor = UIColor.redColor()
             return cell
         case 1:
-            cell.giveCellData(mentalHealthIcon, dataLabel: "Emotional and Mental Well-Being")
+            cell.giveCellData(mentalHealthIcon, dataLabel: "Well-Being")
 //            cell.userCellBackgroundView.backgroundColor = UIColor.blueColor()
             return cell
         case 2:
