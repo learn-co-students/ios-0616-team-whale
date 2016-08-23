@@ -26,8 +26,8 @@
                             <constraint firstAttribute="width" secondItem="uLI-sE-Xv3" secondAttribute="height" multiplier="1:1" id="4R4-Uh-wSD"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I9o-fH-KdU">
-                        <rect key="frame" x="166" y="61" width="44" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I9o-fH-KdU">
+                        <rect key="frame" x="128" y="61" width="44" height="21"/>
                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
@@ -38,6 +38,7 @@
                     <constraint firstAttribute="trailing" secondItem="Kg9-yN-9Kn" secondAttribute="trailing" id="FYv-1m-UjA"/>
                     <constraint firstItem="Kg9-yN-9Kn" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="OQK-Wq-TIo"/>
                     <constraint firstItem="Kg9-yN-9Kn" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.9" id="WCf-HU-151"/>
+                    <constraint firstItem="I9o-fH-KdU" firstAttribute="leading" secondItem="uLI-sE-Xv3" secondAttribute="trailing" constant="8" id="WFC-mL-plh"/>
                     <constraint firstItem="Kg9-yN-9Kn" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Wfp-l3-bc0"/>
                     <constraint firstItem="I9o-fH-KdU" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="XIj-sI-LIH"/>
                     <constraint firstItem="uLI-sE-Xv3" firstAttribute="leading" secondItem="Kg9-yN-9Kn" secondAttribute="leading" constant="10" id="Yhb-IV-lhp"/>
@@ -51,13 +52,15 @@
                     <mask key="constraints">
                         <exclude reference="FYv-1m-UjA"/>
                         <exclude reference="Wfp-l3-bc0"/>
+                        <exclude reference="XIj-sI-LIH"/>
                     </mask>
                 </variation>
             </tableViewCellContentView>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-            <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <connections>
                 <outlet property="dataIconView" destination="uLI-sE-Xv3" id="85F-tJ-KaG"/>
+                <outlet property="dataLabel" destination="I9o-fH-KdU" id="JAI-0v-37R"/>
                 <outlet property="userCellBackgroundView" destination="Kg9-yN-9Kn" id="dxQ-29-ZvM"/>
             </connections>
             <point key="canvasLocation" x="700.5" y="390.5"/>
