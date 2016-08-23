@@ -18,8 +18,6 @@ import UIKit
 class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewDelegate {
     
     @IBOutlet weak var carouselView: TGLParallaxCarousel!
-    
-    
     @IBOutlet var mapView: MGLMapView!
     @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var dropdownBarButton: UIBarButtonItem!
@@ -108,8 +106,13 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
             drawRouteButton.enabled = false
             clearMapView()
         case .Route:
-            clearMapView()
+            currentStage = .Default
             reshowDropdown(withView: .Default, hintText: "")
+            UIView.animateWithDuration(0.3) {
+                self.dropdownBarButton.image = UIImage(named: "dropdown")
+            }
+            drawRouteButton.enabled = false
+            clearMapView()
         }
     }
     
@@ -137,7 +140,7 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
         case .Waypoints:
             setToRoute()
         case .Route:
-            setToWaypoints()
+            print("Route Phase")
         }
     }
     
@@ -150,6 +153,15 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
         }
     }
     
+    func getWaypoints() {
+        addFoursquareAnnotations() { count in
+            dispatch_async(dispatch_get_main_queue()) {
+                for pin in self.pointsOfInterest {
+                    self.mapView.addAnnotation(pin)
+                }
+            }
+        }
+    }
     
     func setToRoute() {
         if waypoints.count > 0 {
@@ -160,16 +172,6 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
             }
         } else {
             ATAlertView.alertWithTitle(self, type: .Error, title: "Whoops", text: "Select at least one point to pass") { }
-        }
-    }
-    
-    func getWaypoints() {
-        addFoursquareAnnotations() { count in
-            dispatch_async(dispatch_get_main_queue()) {
-                for pin in self.pointsOfInterest {
-                    self.mapView.addAnnotation(pin)
-                }
-            }
         }
     }
     
@@ -201,6 +203,7 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
         //
         //        print(waypointString)
     }
+    
     func giveScrollerPages()->Int{
         var count = 0
         for leg in navigationLegs{
@@ -216,16 +219,6 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
             for step in leg.steps{
                 directionArray.append((leg, step, step.coordinates))
             }
-        }
-    }
-    //        DirectionView.init(frame: CGRectMake(0, 0, 300 * ratio, 150 * ratio), leg: <#T##String#>, step: String)
-    
-    
-    // MARK: - Mapbox
-    
-    func mapView(mapView: MGLMapView, didUpdateUserLocation userLocation: MGLUserLocation?) {
-        if let location = mapView.userLocation {
-            mapView.setCenterCoordinate(location.coordinate, animated: true)
         }
     }
     
@@ -455,11 +448,9 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
                 print("Route via \(leg)")
                 self.navigationLegs = route.legs
                 self.giveScrollerPages()
-                self.carouselView.userInteractionEnabled = true
-                
-                
                 self.directionsArray()
-                self.carouselView.type = .ThreeDimensional
+                self.carouselView.type = .Normal
+                self.carouselView.hidden = false
                 let distanceFormatter = NSLengthFormatter()
                 let formattedDistance = distanceFormatter.stringFromMeters(route.distance)
                 
@@ -478,9 +469,6 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
                         self.mapView.addAnnotation(routeLine)
                         self.mapView.setVisibleCoordinates(&routeCoordinates, count: route.coordinateCount, edgePadding: UIEdgeInsetsZero, animated: true)
                     }
-                }
-                else {
-                    self.carouselView.userInteractionEnabled = false
                 }
             }
         }
@@ -508,9 +496,9 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
         drawRouteButton.enabled = false
         carouselView.delegate = self
         carouselView.datasource = self
-        self.carouselView.reloadInputViews()
-        self.carouselView.itemMargin = 10
-        self.carouselView.userInteractionEnabled = false
+        carouselView.reloadInputViews()
+        carouselView.itemMargin = 10
+        carouselView.hidden = true
         
         
     }
@@ -594,11 +582,12 @@ extension ATMapViewController {
         }
         origin = nil
         destination = nil
+        carouselView.hidden = true
+        
         removePath()
         removeUnusedWaypoints()
         removeWaypoints()
     }
-    
     
     func removePath() {
         if let routeLine = routeLine {
@@ -622,16 +611,16 @@ extension ATMapViewController {
         dispatch_after(time, dispatch_get_main_queue(), block)
     }
     
-//    func assignPathPin(pathPoint: ATAnnotation) {
-//        if let path = pathPin {
-//            mapView.removeAnnotation(path)
-//        }
-//        
-//        pathPin = pathPoint
-//        mapView.addAnnotation(pathPoint)
-//        mapView.setCenterCoordinate(pathPoint.coordinate, animated: true)
-//        checkOriginAndDestinationAssigned()
-//    }
+    //    func assignPathPin(pathPoint: ATAnnotation) {
+    //        if let path = pathPin {
+    //            mapView.removeAnnotation(path)
+    //        }
+    //
+    //        pathPin = pathPoint
+    //        mapView.addAnnotation(pathPoint)
+    //        mapView.setCenterCoordinate(pathPoint.coordinate, animated: true)
+    //        checkOriginAndDestinationAssigned()
+    //    }
     
     
 }
@@ -663,9 +652,9 @@ extension ATMapViewController: TGLParallaxCarouselDelegate {
             if let last = coordinatesInArray.last{
                 
                 print("should be moving")
-//                    pathPin.coordinate = last
-//                    self.assignPathPin(pathPin)
-                    mapView.setCenterCoordinate(last, zoomLevel: 15, animated: true)
+                //                    pathPin.coordinate = last
+                //                    self.assignPathPin(pathPin)
+                mapView.setCenterCoordinate(last, zoomLevel: 15, animated: true)
                 
             }
         }
