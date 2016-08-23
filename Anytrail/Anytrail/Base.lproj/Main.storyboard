@@ -24,7 +24,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="39" height="37"/>
                             </pageControl>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YrG-hj-CVj" customClass="TGLParallaxCarousel" customModule="TGLParallaxCarousel">
-                                <rect key="frame" x="0.0" y="429" width="600" height="180"/>
+                                <rect key="frame" x="0.0" y="159" width="600" height="450"/>
                                 <connections>
                                     <outlet property="pageControl" destination="h5G-3u-Z64" id="f6q-fS-d2M"/>
                                 </connections>
@@ -40,7 +40,7 @@
                             <constraint firstItem="4ug-Mw-9AY" firstAttribute="top" secondItem="YrG-hj-CVj" secondAttribute="bottomMargin" constant="-50" id="Rpb-hB-KHa"/>
                             <constraint firstItem="YrG-hj-CVj" firstAttribute="width" secondItem="tsR-hK-woN" secondAttribute="width" id="W0d-Ep-euP"/>
                             <constraint firstItem="YrG-hj-CVj" firstAttribute="centerX" secondItem="tsR-hK-woN" secondAttribute="centerX" id="cKT-DL-1lQ"/>
-                            <constraint firstItem="YrG-hj-CVj" firstAttribute="height" secondItem="tsR-hK-woN" secondAttribute="height" multiplier="0.3" id="oGJ-OQ-YZM"/>
+                            <constraint firstItem="YrG-hj-CVj" firstAttribute="height" secondItem="tsR-hK-woN" secondAttribute="height" multiplier="0.75" id="oGJ-OQ-YZM"/>
                             <constraint firstItem="rEA-6W-4hJ" firstAttribute="centerY" secondItem="tsR-hK-woN" secondAttribute="centerY" id="uI9-i7-s9X"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
