@@ -153,7 +153,6 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
                 self.dropdownBarButton.image = UIImage(named: "dropdown")
             }
             drawRouteButton.enabled = false
-            clearMapView()
         }
     }
     
@@ -502,17 +501,13 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
             if let route = routes?.first, let leg = route.legs.first {
                 print("Route via \(leg)")
                 self.navigationLegs = route.legs
-                self.giveScrollerPages()
-                self.directionsArray()
                 self.carouselView.type = .Normal
                 self.carouselView.hidden = false
                 let distanceFormatter = NSLengthFormatter()
                 let formattedDistance = distanceFormatter.stringFromMeters(route.distance)
-                
                 let travelTimeFormatter = NSDateComponentsFormatter()
                 travelTimeFormatter.unitsStyle = .Short
                 let formattedTravelTime = travelTimeFormatter.stringFromTimeInterval(route.expectedTravelTime)
-                
                 print("Distance: \(formattedDistance); ETA: \(formattedTravelTime!)")
                 completion(time: formattedTravelTime!)
                 
@@ -642,9 +637,14 @@ extension ATMapViewController {
         if let annotationsToRemove = mapView.annotations {
             mapView.removeAnnotations(annotationsToRemove)
         }
+        carouselView.hidden = true
         origin = nil
         destination = nil
-        carouselView.hidden = true
+        directionArray = []
+        navigationLegs = []
+        navigationRoutes = []
+        carouselView.carouselItems = []
+        numberOfSteps = 0
         mapView.scrollEnabled = true
         removePath()
         removeUnusedWaypoints()
@@ -672,34 +672,21 @@ extension ATMapViewController {
         let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay * Double(NSEC_PER_SEC)))
         dispatch_after(time, dispatch_get_main_queue(), block)
     }
-    
-    //    func assignPathPin(pathPoint: ATAnnotation) {
-    //        if let path = pathPin {
-    //            mapView.removeAnnotation(path)
-    //        }
-    //
-    //        pathPin = pathPoint
-    //        mapView.addAnnotation(pathPoint)
-    //        mapView.setCenterCoordinate(pathPoint.coordinate, animated: true)
-    //        checkOriginAndDestinationAssigned()
-    //    }
-    
-    
 }
 
 extension ATMapViewController: TGLParallaxCarouselDatasource {
-    func numberOfItemsInCarousel(carousel: TGLParallaxCarousel) ->Int {
+    func numberOfItemsInCarousel(carousel: TGLParallaxCarousel) -> Int {
         
         return self.giveScrollerPages()
     }
     
     func viewForItemAtIndex(index: Int, carousel: TGLParallaxCarousel) -> TGLParallaxCarouselItem {
-        
+        directionsArray()
         let instruction = directionArray[index].1.instructions
-        let directView = DirectionView(frame: CGRectMake(self.carouselView.bounds.minX, self.carouselView.bounds.minY, self.carouselView.bounds.size.width, self.carouselView.bounds.size.height * 0.35), leg: "\(directionArray[index].0)", step: "\(instruction)")
-        
+        let directView = DirectionView(frame: CGRectMake(carousel.bounds.minX, carousel.bounds.minY, carousel.bounds.size.width, carousel.bounds.size.height * 0.35), leg: "\(directionArray[index].0)", step: "\(instruction)")
         return directView
     }
+    
 }
 
 extension ATMapViewController: TGLParallaxCarouselDelegate {
@@ -718,6 +705,8 @@ extension ATMapViewController: TGLParallaxCarouselDelegate {
         print("Did move to index \(index)")
         
         if let coordinatesInArray = directionArray[index].2{
+            
+            
             if let first = coordinatesInArray.first{
                 
                 print("should be moving")
