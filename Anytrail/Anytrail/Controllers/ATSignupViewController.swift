@@ -39,7 +39,7 @@ class ATSignupViewController: UIViewController, UITableViewDelegate, UITableView
                 let fullName = name.componentsSeparatedByString(" ")
                 let first = fullName.first!
                 
-                ATAlertView.alertWithTitle(self, type: ATAlertView.ATAlertViewType.Success, title: "Welcome!", text: "Welcome to Anytrail, \(first)!", callback: {
+                ATAlertView.alertWithTitle(self, type: ATAlertView.ATAlertViewType.Success, title: "Welcome!", text: "Welcome to Walkmore, \(first)!", callback: {
                     self.dismiss()
                 })
                 
