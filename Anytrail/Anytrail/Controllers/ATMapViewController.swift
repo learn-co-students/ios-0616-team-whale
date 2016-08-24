@@ -47,6 +47,8 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
     
     var directionArray : [(RouteLeg, RouteStep, [CLLocationCoordinate2D]?)] = []
     
+    var workOutTimer = NSTimer()
+    
     
     enum ATCurrentStage: Int {
         case Default
@@ -77,14 +79,38 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
     }
     
     func dropdownDidStartRoute() {
-        // Started route
-        
-        dropdownView.updateActivityTimeLabel("2:34:05")
-        dropdownView.updateActivityDistanceLabel("12.6 miles")
+        WalkTracker.sharedInstance.startWalk()
+        workOutTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(updateLabels(_:)), userInfo: nil, repeats: true)
+        workOutTimer.fire()
     }
     
     func dropdownDidEndRoute() {
-        // Ended route
+        dropdownView.updateActivityDistanceLabel("0.0")
+        dropdownView.updateActivityTimeLabel("0:0:0")
+        workOutTimer.invalidate()
+        workOutTimer = NSTimer()
+        WalkTracker.sharedInstance.stopWalk { saveResult in
+            if saveResult {
+                dispatch_async(dispatch_get_main_queue()) {
+                    ATAlertView.alertWithTitle(self, type: ATAlertView.ATAlertViewType.Success, title: "Saved", text: "Your workout session was saved to HealthKit.") {}
+                }
+            } else {
+                dispatch_async(dispatch_get_main_queue()) {
+                    ATAlertView.alertWithTitle(self, type: ATAlertView.ATAlertViewType.Success, title: "Error", text: "There was an error trying to save your workout session to HealthKit.") {}
+                }
+            }
+        }
+    }
+    
+    func updateLabels(timer: NSTimer) {
+        let timePassed = secondsToHoursMinutesSeconds(Int(WalkTracker.sharedInstance.currentWalkTime))
+        let distanceTravel = round((WalkTracker.sharedInstance.walkDistance / 1609.344) * 100) / 100
+        dropdownView.updateActivityTimeLabel("\(timePassed.0):\(timePassed.1):\(timePassed.2)")
+        dropdownView.updateActivityDistanceLabel("\(distanceTravel) miles")
+    }
+    
+    func secondsToHoursMinutesSeconds (seconds : Int) -> (Int, Int, Int) {
+        return (seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)
     }
     
     func reshowDropdown(withView view: ATDropdownView.ATDropownViewType, hintText: String) {
