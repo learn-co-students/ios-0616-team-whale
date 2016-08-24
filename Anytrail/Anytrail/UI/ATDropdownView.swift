@@ -13,6 +13,9 @@ import SnapKit
 protocol ATDropdownViewDelegate {
     func dropdownDidUpdateOrigin(location: String?)
     func dropdownDidUpdateDestination(location: String?)
+    
+    func dropdownDidStartRoute()
+    func dropdownDidEndRoute()
 }
 
 class ATDropdownView: UIView, UITextFieldDelegate {
@@ -37,9 +40,13 @@ class ATDropdownView: UIView, UITextFieldDelegate {
     
     private var hintLabel: UILabel!
     
+    private var startButton: UIButton!
+    private var stopButton: UIButton!
+    
     enum ATDropownViewType: Int {
         case Default
         case Label
+        case Activity
     }
     
     // MARK: - Initialization
@@ -76,9 +83,25 @@ class ATDropdownView: UIView, UITextFieldDelegate {
     func changeDropdownView(type: ATDropownViewType) {
         if type == .Default {
             configureDefaultView()
-        } else {
+        } else if type == .Label {
             configureHintsView()
+        } else {
+            configureActivityView()
         }
+    }
+    
+    func dropdownDidStartRoute() {
+        stopButton.enabled = true
+        startButton.enabled = false
+        
+        delegate?.dropdownDidStartRoute()
+    }
+    
+    func dropdownDidEndRoute() {
+        stopButton.enabled = false
+        startButton.enabled = true
+        
+        delegate?.dropdownDidEndRoute()
     }
     
     // MARK: - Textfields
@@ -120,6 +143,14 @@ class ATDropdownView: UIView, UITextFieldDelegate {
     
     func updateHintLabel(text: String) {
         hintLabel.text = text
+    }
+    
+    func updateActivityDistanceLabel(text: String) {
+        originTextField.text = text
+    }
+    
+    func updateActivityTimeLabel(text: String) {
+        destinationTextField.text = text
     }
     
     // MARK: - Configuration
@@ -182,6 +213,41 @@ class ATDropdownView: UIView, UITextFieldDelegate {
         return textField
     }
     
+    func configureActivityView() {
+        configureDefaultView()
+        
+        originPinImageView.image = UIImage(named: "activity-time")
+        destinationPinImageView.image = UIImage(named: "activity-distance")
+        
+        originTextField.backgroundColor = UIColor.clearColor()
+        originTextField.font = UIFont(name: "HelveticaNeue-Medium", size: 15)
+        originTextField.placeholder = ""
+        originTextField.text = "2:34:05"
+        originTextField.userInteractionEnabled = false
+        
+        destinationTextField.backgroundColor = UIColor.clearColor()
+        destinationTextField.font = UIFont(name: "HelveticaNeue-Medium", size: 15)
+        destinationTextField.placeholder = ""
+        destinationTextField.text = "12.6 mi"
+        destinationTextField.userInteractionEnabled = false
+        
+        startButton = UIButton(type: .Custom)
+        startButton.setTitle("Start", forState: .Normal)
+        startButton.setTitleColor(ATConstants.Colors.BLUE, forState: .Normal)
+        startButton.addTarget(self, action: #selector(dropdownDidStartRoute), forControlEvents: .TouchUpInside)
+        startButton.showsTouchWhenHighlighted = true
+        
+        stopButton = UIButton(type: .Custom)
+        stopButton.setTitle("Stop", forState: .Normal)
+        stopButton.setTitleColor(ATConstants.Colors.RED, forState: .Normal)
+        stopButton.addTarget(self, action: #selector(dropdownDidEndRoute), forControlEvents: .TouchUpInside)
+        
+        addSubview(startButton)
+        addSubview(stopButton)
+        
+        makeActivityViewConstraints()
+    }
+    
     func configureHintLabel(label: UILabel) -> UILabel {
         label.textColor = UIColor(red: 80/255, green: 80/255, blue: 80/255, alpha: 1)
         label.textAlignment = .Center
@@ -233,6 +299,32 @@ class ATDropdownView: UIView, UITextFieldDelegate {
         hintLabel.snp.makeConstraints { (make) in
             make.centerX.equalTo(self.snp.centerX)
             make.centerY.equalTo(self.snp.centerY).offset(7)
+        }
+    }
+    
+    func makeActivityViewConstraints() {
+        originTextField.snp.makeConstraints { (make) in
+            make.left.equalTo(self.snp.left).offset(30)
+            make.right.equalTo(self.snp.right).offset(-60)
+            make.top.equalTo(self.snp.top).offset(15)
+            make.height.equalTo(30)
+        }
+        
+        destinationTextField.snp.makeConstraints { (make) in
+            make.left.equalTo(self.snp.left).offset(30)
+            make.right.equalTo(self.snp.right).offset(-60)
+            make.bottom.equalTo(self.snp.bottom).offset(-5)
+            make.height.equalTo(30)
+        }
+        
+        startButton.snp.makeConstraints { (make) in
+            make.right.equalTo(self.snp.right).offset(-10)
+            make.top.equalTo(originTextField.snp.top)
+        }
+        
+        stopButton.snp.makeConstraints { (make) in
+            make.right.equalTo(self.snp.right).offset(-10)
+            make.top.equalTo(destinationTextField.snp.top)
         }
     }
 }

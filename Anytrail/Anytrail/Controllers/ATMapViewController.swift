@@ -76,9 +76,20 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
         }
     }
     
+    func dropdownDidStartRoute() {
+        // Started route
+        
+        dropdownView.updateActivityTimeLabel("2:34:05")
+        dropdownView.updateActivityDistanceLabel("12.6 miles")
+    }
+    
+    func dropdownDidEndRoute() {
+        // Ended route
+    }
+    
     func reshowDropdown(withView view: ATDropdownView.ATDropownViewType, hintText: String) {
         dropdownView.hide()
-        dropdownView.changeDropdownView(view)
+        self.dropdownView.changeDropdownView(view)
         
         if view == .Label {
             dropdownView.updateHintLabel(hintText)
@@ -143,6 +154,8 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
             
         case .Route:
             print("Route Phase")
+            
+            reshowDropdown(withView: .Activity, hintText: "")
         }
     }
     
@@ -233,6 +246,10 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
     
     func mapView(mapView: MGLMapView, strokeColorForShapeAnnotation annotation: MGLShape) -> UIColor {
         return UIColor.darkGrayColor()
+    }
+    
+    func mapView(mapView: MGLMapView, lineWidthForPolylineAnnotation annotation: MGLPolyline) -> CGFloat {
+        return 4
     }
     
     func mapView(mapView: MGLMapView, didSelectAnnotation annotation: MGLAnnotation) {

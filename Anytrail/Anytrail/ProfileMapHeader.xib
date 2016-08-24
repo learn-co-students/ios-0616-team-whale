@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -13,13 +13,13 @@
             <rect key="frame" x="0.0" y="0.0" width="364" height="205"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ProfileCover" translatesAutoresizingMaskIntoConstraints="NO" id="SNi-tg-PjH">
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ProfileCover" translatesAutoresizingMaskIntoConstraints="NO" id="SNi-tg-PjH">
                     <rect key="frame" x="0.0" y="0.0" width="364" height="205"/>
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile-image" translatesAutoresizingMaskIntoConstraints="NO" id="hsO-jN-zET">
                     <rect key="frame" x="127" y="40" width="110" height="110"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="90" id="XYv-TC-uJg"/>
+                        <constraint firstAttribute="width" constant="110" id="62V-tJ-JWs"/>
                     </constraints>
                     <variation key="default">
                         <mask key="constraints">
@@ -36,24 +36,23 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="SNi-tg-PjH" firstAttribute="top" secondItem="hsO-jN-zET" secondAttribute="top" constant="-40" id="2rv-M4-p5l"/>
-                <constraint firstItem="SNi-tg-PjH" firstAttribute="centerX" secondItem="iAA-m8-rIx" secondAttribute="centerX" id="9hY-nh-P8T"/>
-                <constraint firstItem="SNi-tg-PjH" firstAttribute="height" secondItem="iAA-m8-rIx" secondAttribute="height" id="FBs-Te-MMP"/>
-                <constraint firstItem="hsO-jN-zET" firstAttribute="width" secondItem="hsO-jN-zET" secondAttribute="height" multiplier="1:1" id="Hia-ly-PDe"/>
-                <constraint firstItem="hsO-jN-zET" firstAttribute="width" secondItem="SNi-tg-PjH" secondAttribute="width" multiplier="0.3" id="Jtb-Ca-j94"/>
-                <constraint firstItem="SNi-tg-PjH" firstAttribute="top" secondItem="iAA-m8-rIx" secondAttribute="top" id="WZV-EZ-YYd"/>
-                <constraint firstItem="N7f-i7-DA7" firstAttribute="centerX" secondItem="SNi-tg-PjH" secondAttribute="centerX" id="eLY-Th-khX"/>
-                <constraint firstItem="SNi-tg-PjH" firstAttribute="width" secondItem="iAA-m8-rIx" secondAttribute="width" id="fX7-Nw-GKq"/>
-                <constraint firstItem="hsO-jN-zET" firstAttribute="centerX" secondItem="SNi-tg-PjH" secondAttribute="centerX" id="kQz-60-4DA"/>
-                <constraint firstItem="SNi-tg-PjH" firstAttribute="centerY" secondItem="iAA-m8-rIx" secondAttribute="centerY" id="n7h-8n-geY"/>
-                <constraint firstItem="N7f-i7-DA7" firstAttribute="width" secondItem="SNi-tg-PjH" secondAttribute="width" id="tSq-sh-cYH"/>
-                <constraint firstItem="N7f-i7-DA7" firstAttribute="top" secondItem="hsO-jN-zET" secondAttribute="bottom" constant="17" id="ugl-Wf-M6A"/>
+                <constraint firstItem="SNi-tg-PjH" firstAttribute="leading" secondItem="N7f-i7-DA7" secondAttribute="leading" id="1Cq-RT-yzO"/>
+                <constraint firstAttribute="bottom" secondItem="SNi-tg-PjH" secondAttribute="bottom" id="HWe-K4-6MS"/>
+                <constraint firstItem="SNi-tg-PjH" firstAttribute="centerX" secondItem="N7f-i7-DA7" secondAttribute="centerX" id="IqH-pH-xG2"/>
+                <constraint firstItem="hsO-jN-zET" firstAttribute="top" secondItem="iAA-m8-rIx" secondAttribute="top" constant="40" id="Ljb-WH-9DV"/>
+                <constraint firstItem="N7f-i7-DA7" firstAttribute="top" secondItem="hsO-jN-zET" secondAttribute="bottom" constant="17" id="RQ3-91-EQf"/>
+                <constraint firstItem="SNi-tg-PjH" firstAttribute="leading" secondItem="iAA-m8-rIx" secondAttribute="leading" id="UyO-AR-LCW"/>
+                <constraint firstAttribute="bottom" secondItem="N7f-i7-DA7" secondAttribute="bottom" constant="15" id="k1L-nW-bAx"/>
+                <constraint firstItem="SNi-tg-PjH" firstAttribute="top" secondItem="iAA-m8-rIx" secondAttribute="top" id="lB0-il-gUo"/>
+                <constraint firstAttribute="trailing" secondItem="SNi-tg-PjH" secondAttribute="trailing" id="lTh-SQ-key"/>
+                <constraint firstItem="hsO-jN-zET" firstAttribute="centerX" secondItem="N7f-i7-DA7" secondAttribute="centerX" id="o8z-EY-OLX"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="profileImageView" destination="hsO-jN-zET" id="KJ6-qV-Chl"/>
                 <outlet property="userNameLabel" destination="N7f-i7-DA7" id="A7Z-ct-rg6"/>
             </connections>
-            <point key="canvasLocation" x="524" y="479.5"/>
+            <point key="canvasLocation" x="351" y="435.5"/>
         </view>
     </objects>
     <resources>

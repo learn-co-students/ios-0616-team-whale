@@ -50,7 +50,7 @@ PODS:
     - Polyline (~> 3.2)
   - MapboxGeocoder.swift (0.5.0)
   - MapboxStatic.swift (0.6.0)
-  - Polyline (3.2.1)
+  - Polyline (3.2.2)
   - ReachabilitySwift (2.3.3)
   - SnapKit (0.30.0.beta2)
   - SwiftyJSON (2.3.2)
@@ -112,7 +112,7 @@ SPEC CHECKSUMS:
   MapboxDirections.swift: 144cefb4386d419f916ce27928834c28bbaafb4f
   MapboxGeocoder.swift: 4fbe12e42458db895ff73739c69743c943d0824e
   MapboxStatic.swift: 3185804edec6bea74be7d74fb3ca9a666009f7a2
-  Polyline: 4579e57a62a5e876944c41884194e24ab7021d89
+  Polyline: 4968bf16ceddd579e1e60820edc74a2271ec9c59
   ReachabilitySwift: e0f6b6f280effb47731acfaaa2d5ffe223703793
   SnapKit: c4bb32b1d3c5d18ff63bf95ffcbc599d2bab964c
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
