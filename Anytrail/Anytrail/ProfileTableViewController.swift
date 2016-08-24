@@ -63,14 +63,26 @@ class ProfileTableViewController: UIViewController, UITableViewDelegate, UITable
             print(error)
         }
         
-        HealthKitDataStore.sharedInstance.getUserTodayHealthKitData {
-            self.healthDummy = HealthKitDataStore.sharedInstance.healthKitUserData
-            dispatch_async(dispatch_get_main_queue()) {
-                self.tableView.reloadData()
+        HealthKitDataStore.sharedInstance.getUserTodayHealthKitData { success in
+            if success {
+                self.reloadHealthKitData()
+            } else {
+                print("Problem getting healthkit data")
             }
         }
     }
-
+    
+    func reloadHealthKitData() {
+        healthDummy = HealthKitDataStore.sharedInstance.healthKitUserData
+        dispatch_async(dispatch_get_main_queue()) {
+            self.tableView.reloadData()
+        }
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        reloadHealthKitData()
+    }
+    
     func numberOfSectionsInTableView(tableView: UITableView) -> Int{
         return 1
     }

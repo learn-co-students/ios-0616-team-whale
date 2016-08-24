@@ -97,57 +97,58 @@ class HealthKitDataStore {
         }
     }
     
-    func getUserTodayHealthKitData(completion: () ->()) {
+    func getUserTodayHealthKitData(completion: Bool ->()) {
         let user = HealthKitUserData()
         
         user.getDistanceForToday { distanceSum in
             if let distanceSum = distanceSum {
                 let distance = round(distanceSum * 100) / 100
                 self.healthKitUserData.append((distance.description, "distance"))
+                completion(true)
             }
-            completion()
         }
         
         user.getExerciseForToday { exerciseTimeSum in
             if let exerciseTimeSum = exerciseTimeSum {
                 self.healthKitUserData.append((exerciseTimeSum.description, "exercise-time"))
+                completion(true)
             }
-            completion()
         }
         
         user.getFlightCountForToday { flightClimbedSum in
             if let flightClimbedSum = flightClimbedSum {
                 self.healthKitUserData.append((flightClimbedSum.description, "flight"))
+                completion(true)
             }
-            completion()
         }
         
         user.getStepCountForToday { stepCountSum in
             if let stepCountSum = stepCountSum {
                 self.healthKitUserData.append((stepCountSum.description, "steps"))
+                completion(true)
             }
-            completion()
         }
         
         user.getActiveEnergyForToday { activeEnergySum in
             if let activeEnergySum = activeEnergySum {
                 self.healthKitUserData.append((activeEnergySum.description, "energy-burn"))
+                completion(true)
             }
-            completion()
         }
+        
         user.getBasalEnergyForToday { basalEnergySum in
             if let basalEnergySum = basalEnergySum {
                 self.healthKitUserData.append((basalEnergySum.description, "resting-burn"))
+                completion(true)
             }
-            completion()
         }
         
         user.getWaterConsumptionToday { waterConsumptionSum in
             if let waterConsumptionSum = waterConsumptionSum {
                 let waterConsumed = round(waterConsumptionSum * 10) / 10
                 self.healthKitUserData.append((waterConsumed.description, "water"))
+                completion(true)
             }
-            completion()
         }
     }
 }
