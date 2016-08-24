@@ -29,7 +29,6 @@
 		4DB2D9651D58DF18007BD4A5 /* FoursquareData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB2D9641D58DF18007BD4A5 /* FoursquareData.swift */; };
 		4DE1D0A91D60D5F500911AA8 /* ProfileStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4DE1D0A81D60D5F500911AA8 /* ProfileStoryboard.storyboard */; };
 		4DE1D0AB1D60D61F00911AA8 /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE1D0AA1D60D61F00911AA8 /* ProfileTableViewController.swift */; };
-		4DEAC9CD1D6CDFA900055466 /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEAC9CC1D6CDFA900055466 /* Keys.swift */; };
 		4DEE998E1D64A1BC004BC91C /* LocationDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEE998D1D64A1BC004BC91C /* LocationDataStore.swift */; };
 		4DF1FD1D1D64FC4900692309 /* SurgeonGeneralTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF1FD1C1D64FC4900692309 /* SurgeonGeneralTableViewController.swift */; };
 		4DF1FD1F1D6508C500692309 /* TipsAndTricksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF1FD1E1D6508C500692309 /* TipsAndTricksViewController.swift */; };
@@ -38,6 +37,7 @@
 		4DFDBC121D6262E2006616D0 /* UserProfileCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4DFDBC101D6262E2006616D0 /* UserProfileCell.xib */; };
 		4DFDBC151D634806006616D0 /* ProfileMapHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFDBC131D634806006616D0 /* ProfileMapHeader.swift */; };
 		4DFDBC161D634806006616D0 /* ProfileMapHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4DFDBC141D634806006616D0 /* ProfileMapHeader.xib */; };
+		8A311FBE1D6CE682008026DA /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A311FBD1D6CE682008026DA /* Keys.swift */; };
 		8A3948F71D620BC1004A4B94 /* Path.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A3948F61D620BC1004A4B94 /* Path.storyboard */; };
 		8A3948F91D621C23004A4B94 /* ATPathViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3948F81D621C23004A4B94 /* ATPathViewController.swift */; };
 		8A3948FB1D623743004A4B94 /* ATPathCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3948FA1D623743004A4B94 /* ATPathCell.swift */; };
@@ -110,7 +110,6 @@
 		4DB2D9641D58DF18007BD4A5 /* FoursquareData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoursquareData.swift; sourceTree = "<group>"; };
 		4DE1D0A81D60D5F500911AA8 /* ProfileStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ProfileStoryboard.storyboard; sourceTree = "<group>"; };
 		4DE1D0AA1D60D61F00911AA8 /* ProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
-		4DEAC9CC1D6CDFA900055466 /* Keys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Keys.swift; path = ../../../../Downloads/Keys.swift; sourceTree = "<group>"; };
 		4DEE998D1D64A1BC004BC91C /* LocationDataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationDataStore.swift; sourceTree = "<group>"; };
 		4DF1FD171D64E3F800692309 /* Anytrail.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Anytrail.entitlements; sourceTree = "<group>"; };
 		4DF1FD1C1D64FC4900692309 /* SurgeonGeneralTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurgeonGeneralTableViewController.swift; sourceTree = "<group>"; };
@@ -122,6 +121,7 @@
 		4DFDBC141D634806006616D0 /* ProfileMapHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileMapHeader.xib; sourceTree = "<group>"; };
 		5661F119B27C682B7C9BCB04 /* Pods-AnytrailTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnytrailTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-AnytrailTests/Pods-AnytrailTests.release.xcconfig"; sourceTree = "<group>"; };
 		599CF5E42324548824DD0368 /* Pods_Anytrail.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Anytrail.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8A311FBD1D6CE682008026DA /* Keys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		8A3948F61D620BC1004A4B94 /* Path.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Path.storyboard; sourceTree = "<group>"; };
 		8A3948F81D621C23004A4B94 /* ATPathViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ATPathViewController.swift; sourceTree = "<group>"; };
 		8A3948FA1D623743004A4B94 /* ATPathCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ATPathCell.swift; sourceTree = "<group>"; };
@@ -229,7 +229,7 @@
 			children = (
 				2E8AC7831D67C3E80012AE98 /* Paths.xcdatamodeld */,
 				4DF1FD171D64E3F800692309 /* Anytrail.entitlements */,
-				4DEAC9CC1D6CDFA900055466 /* Keys.swift */,
+				8A311FBD1D6CE682008026DA /* Keys.swift */,
 				9424A76F1D53D5DA00CE8D42 /* AppDelegate.swift */,
 				8A4827961D677B0700C53A71 /* InternetStatus.swift */,
 				8A66242E1D5A8DCB009760DA /* HealthKitDataStore.swift */,
@@ -591,7 +591,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				945F35F01D5A45A6002F9C1E /* ATErrorTranslator.swift in Sources */,
-				4DEAC9CB1D6CDD0E00055466 /* Keys.swift in Sources */,
+				8A311FBE1D6CE682008026DA /* Keys.swift in Sources */,
 				4DFDBC111D6262E2006616D0 /* UserProfileCell.swift in Sources */,
 				947B6AB91D6C96F4009D5268 /* User.swift in Sources */,
 				945F35F21D5A45B0002F9C1E /* UIViewController+Keyboard.swift in Sources */,
@@ -616,7 +616,6 @@
 				945F35E21D58F390002F9C1E /* ATLoginViewController.swift in Sources */,
 				8A53F2F11D594E3E00F244BE /* TrailApiClient.swift in Sources */,
 				2EAC23661D67829600572541 /* DetailNavigationTableViewController.swift in Sources */,
-				4DEAC9CD1D6CDFA900055466 /* Keys.swift in Sources */,
 				949370351D62515900C696AE /* ATConstants.swift in Sources */,
 				4D225C1B1D5A0FF600360AB8 /* MashapeAPIClient.swift in Sources */,
 				8A3948F91D621C23004A4B94 /* ATPathViewController.swift in Sources */,

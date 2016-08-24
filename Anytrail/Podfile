@@ -5,6 +5,7 @@ target 'Anytrail' do
   use_frameworks!
 
   # Pods for Anytrail
+  pod ’RevealingSplashView'
   pod 'Alamofire'
   pod 'SwiftyJSON'
   pod 'Firebase'

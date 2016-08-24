@@ -52,6 +52,7 @@ PODS:
   - MapboxStatic.swift (0.6.0)
   - Polyline (3.2.1)
   - ReachabilitySwift (2.3.3)
+  - RevealingSplashView (0.0.7)
   - SnapKit (0.30.0.beta2)
   - SwiftyJSON (2.3.2)
   - TGLParallaxCarousel (0.2.1)
@@ -67,6 +68,7 @@ DEPENDENCIES:
   - MapboxGeocoder.swift (from `https://github.com/mapbox/MapboxGeocoder.swift.git`, tag `v0.5.0`)
   - MapboxStatic.swift (from `https://github.com/mapbox/MapboxStatic.swift.git`, tag `v0.6.0`)
   - ReachabilitySwift
+  - RevealingSplashView
   - SnapKit (= 0.30.0.beta2)
   - SwiftyJSON
   - TGLParallaxCarousel
@@ -114,10 +116,11 @@ SPEC CHECKSUMS:
   MapboxStatic.swift: 3185804edec6bea74be7d74fb3ca9a666009f7a2
   Polyline: 4579e57a62a5e876944c41884194e24ab7021d89
   ReachabilitySwift: e0f6b6f280effb47731acfaaa2d5ffe223703793
+  RevealingSplashView: 0f37233f24906e555a649d861d1e7c3c4838f884
   SnapKit: c4bb32b1d3c5d18ff63bf95ffcbc599d2bab964c
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
   TGLParallaxCarousel: 7736edf9e26a3f08f32d0a24fcb0c93edc8253ad
 
-PODFILE CHECKSUM: 4a0b209a3eeb11780ed5af626fcd461a3cd108c7
+PODFILE CHECKSUM: 4e2f8998f09b3a492358d3c001b78b14545662ff
 
 COCOAPODS: 1.0.1

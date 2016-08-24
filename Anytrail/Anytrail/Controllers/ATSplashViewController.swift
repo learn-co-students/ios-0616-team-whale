@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import FBSDKLoginKit
+import RevealingSplashView
 
 class ATSplashViewController: UIViewController {
     
@@ -64,11 +65,29 @@ class ATSplashViewController: UIViewController {
         
         facebookSignUpButton.layer.cornerRadius = 4
         emailSignUpButton.layer.cornerRadius = 4
+        
     }
     
     override func viewDidAppear(animated: Bool) {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(0.3 * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) { () -> Void in
             if FIRAuth.auth()?.currentUser != nil {
+                
+                //Initialize a revealing Splash with with the iconImage, the initial size and the background color
+                let revealingSplashView = RevealingSplashView(iconImage: UIImage(named: "liberty")!,iconInitialSize: CGSizeMake(130, 130), backgroundColor: UIColor(red: 89/255.0, green: 90/255.0, blue: 92/255.0, alpha: 0.9))
+                
+                revealingSplashView.useCustomIconColor = true
+                revealingSplashView.iconColor = UIColor.whiteColor()
+                
+                revealingSplashView.animationType = SplashAnimationType.SwingAndZoomOut
+                
+                //Adds the revealing splash view as a sub view
+                self.view.addSubview(revealingSplashView)
+                
+                //Starts animation
+                revealingSplashView.startAnimation(){
+                    print("Completed")
+                }
+                
                 print("Welcome back, \(FIRAuth.auth()?.currentUser?.displayName)")
                 print("Photo URL, \(FIRAuth.auth()?.currentUser?.photoURL?.absoluteString)")
                 
@@ -79,6 +98,7 @@ class ATSplashViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         UIApplication.sharedApplication().statusBarHidden = true
+        
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -90,7 +110,7 @@ class ATSplashViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-     // MARK: - Navigation
+    // MARK: - Navigation
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // TODO: Animate segues from this controller since the
@@ -105,3 +125,4 @@ class ATSplashViewController: UIViewController {
         }
     }
 }
+

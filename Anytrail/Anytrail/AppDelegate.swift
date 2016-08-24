@@ -29,12 +29,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         UITabBar.appearance().translucent = false
         
-        
         // Set Mapbox token
         MGLAccountManager.setAccessToken(Keys.mapBoxToken)
         
         // Setup Firebase
         FIRApp.configure()
+        
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//        
+//        if FIRAuth.auth()?.currentUser != nil {
+//            print("Current use")
+//            window?.rootViewController = storyboard.instantiateViewControllerWithIdentifier("Map")
+//            
+//        } else {
+//            // not logged in
+//        }
         
         WalkTracker.sharedInstance.activeWalk = AppDelegate.userDefaultWalkData.valueForKey("workoutActive") as? Bool ?? false
         if WalkTracker.sharedInstance.activeWalk == true {
