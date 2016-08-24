@@ -60,14 +60,12 @@ class ProfileTableViewController: UIViewController, UITableViewDelegate, UITable
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
         
         HealthKitDataStore.sharedInstance.authorizeHealthKit { error in
-            print(error)
-        }
-        
-        HealthKitDataStore.sharedInstance.getUserTodayHealthKitData { success in
-            if success {
-                self.reloadHealthKitData()
-            } else {
-                print("Problem getting healthkit data")
+            HealthKitDataStore.sharedInstance.getUserTodayHealthKitData { success in
+                if success {
+                    self.reloadHealthKitData()
+                } else {
+                    print("Problem getting healthkit data")
+                }
             }
         }
     }
