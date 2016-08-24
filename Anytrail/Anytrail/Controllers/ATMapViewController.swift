@@ -144,7 +144,6 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
             setToWaypoints()
         case .Waypoints:
             setToRoute()
-            mapView.scrollEnabled = false
             
             // TODO: Change to start
             
@@ -180,6 +179,7 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
     
     func setToRoute() {
         if waypoints.count > 0 {
+            mapView.scrollEnabled = false
             currentStage = .Route
             mapView.removeAnnotations(pointsOfInterest)
             createPath() { time in
@@ -324,7 +324,20 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
     }
     
     func mapView(mapView: MGLMapView, annotationCanShowCallout annotation: MGLAnnotation) -> Bool {
-        return true
+        guard let selectedAnnotation = annotation as? ATAnnotation else {
+            return false
+        }
+        
+        switch selectedAnnotation.type {
+        case .Waypoint:
+            return false
+        case .Destination:
+            return false
+        case .Origin:
+            return false
+        default:
+            return true
+        }
     }
     
     func mapView(mapView: MGLMapView, viewForAnnotation annotation: MGLAnnotation) -> MGLAnnotationView? {
