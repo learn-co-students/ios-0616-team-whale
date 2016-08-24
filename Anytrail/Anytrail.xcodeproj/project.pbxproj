@@ -11,6 +11,7 @@
 		2E1DA87D1D5E057500F83DFD /* WalkTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E1DA87B1D5E057500F83DFD /* WalkTracker.swift */; };
 		2E1DA87F1D5E0DEB00F83DFD /* ActivityTracker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E1DA87E1D5E0DEB00F83DFD /* ActivityTracker.storyboard */; };
 		2E1DA8831D5E3B5B00F83DFD /* WalkTrackerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E1DA8821D5E3B5B00F83DFD /* WalkTrackerViewController.swift */; };
+		2E2312D41D6CFCE000696D89 /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2312D31D6CFCE000696D89 /* Keys.swift */; };
 		2E7B02845A404C04E0D92E5E /* Pods_Anytrail.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 599CF5E42324548824DD0368 /* Pods_Anytrail.framework */; };
 		2E8AC7851D67C3E80012AE98 /* Paths.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2E8AC7831D67C3E80012AE98 /* Paths.xcdatamodeld */; };
 		2EAC23641D677B3900572541 /* NavigationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EAC23631D677B3900572541 /* NavigationTableViewController.swift */; };
@@ -29,7 +30,6 @@
 		4DB2D9651D58DF18007BD4A5 /* FoursquareData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB2D9641D58DF18007BD4A5 /* FoursquareData.swift */; };
 		4DE1D0A91D60D5F500911AA8 /* ProfileStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4DE1D0A81D60D5F500911AA8 /* ProfileStoryboard.storyboard */; };
 		4DE1D0AB1D60D61F00911AA8 /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE1D0AA1D60D61F00911AA8 /* ProfileTableViewController.swift */; };
-		4DEAC9CD1D6CDFA900055466 /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEAC9CC1D6CDFA900055466 /* Keys.swift */; };
 		4DEE998E1D64A1BC004BC91C /* LocationDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEE998D1D64A1BC004BC91C /* LocationDataStore.swift */; };
 		4DF1FD1D1D64FC4900692309 /* SurgeonGeneralTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF1FD1C1D64FC4900692309 /* SurgeonGeneralTableViewController.swift */; };
 		4DF1FD1F1D6508C500692309 /* TipsAndTricksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF1FD1E1D6508C500692309 /* TipsAndTricksViewController.swift */; };
@@ -91,6 +91,7 @@
 		2E1DA87B1D5E057500F83DFD /* WalkTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalkTracker.swift; sourceTree = "<group>"; };
 		2E1DA87E1D5E0DEB00F83DFD /* ActivityTracker.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ActivityTracker.storyboard; sourceTree = "<group>"; };
 		2E1DA8821D5E3B5B00F83DFD /* WalkTrackerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WalkTrackerViewController.swift; path = Controllers/WalkTrackerViewController.swift; sourceTree = "<group>"; };
+		2E2312D31D6CFCE000696D89 /* Keys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		2E8AC7841D67C3E80012AE98 /* Paths.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Paths.xcdatamodel; sourceTree = "<group>"; };
 		2EAC23631D677B3900572541 /* NavigationTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NavigationTableViewController.swift; path = Controllers/NavigationTableViewController.swift; sourceTree = "<group>"; };
 		2EAC23651D67829600572541 /* DetailNavigationTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DetailNavigationTableViewController.swift; path = Controllers/DetailNavigationTableViewController.swift; sourceTree = "<group>"; };
@@ -110,7 +111,6 @@
 		4DB2D9641D58DF18007BD4A5 /* FoursquareData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoursquareData.swift; sourceTree = "<group>"; };
 		4DE1D0A81D60D5F500911AA8 /* ProfileStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ProfileStoryboard.storyboard; sourceTree = "<group>"; };
 		4DE1D0AA1D60D61F00911AA8 /* ProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
-		4DEAC9CC1D6CDFA900055466 /* Keys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Keys.swift; path = ../../../../Downloads/Keys.swift; sourceTree = "<group>"; };
 		4DEE998D1D64A1BC004BC91C /* LocationDataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationDataStore.swift; sourceTree = "<group>"; };
 		4DF1FD171D64E3F800692309 /* Anytrail.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Anytrail.entitlements; sourceTree = "<group>"; };
 		4DF1FD1C1D64FC4900692309 /* SurgeonGeneralTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurgeonGeneralTableViewController.swift; sourceTree = "<group>"; };
@@ -227,9 +227,9 @@
 		9424A76E1D53D5DA00CE8D42 /* Anytrail */ = {
 			isa = PBXGroup;
 			children = (
+				2E2312D31D6CFCE000696D89 /* Keys.swift */,
 				2E8AC7831D67C3E80012AE98 /* Paths.xcdatamodeld */,
 				4DF1FD171D64E3F800692309 /* Anytrail.entitlements */,
-				4DEAC9CC1D6CDFA900055466 /* Keys.swift */,
 				9424A76F1D53D5DA00CE8D42 /* AppDelegate.swift */,
 				8A4827961D677B0700C53A71 /* InternetStatus.swift */,
 				8A66242E1D5A8DCB009760DA /* HealthKitDataStore.swift */,
@@ -591,7 +591,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				945F35F01D5A45A6002F9C1E /* ATErrorTranslator.swift in Sources */,
-				4DEAC9CB1D6CDD0E00055466 /* Keys.swift in Sources */,
 				4DFDBC111D6262E2006616D0 /* UserProfileCell.swift in Sources */,
 				947B6AB91D6C96F4009D5268 /* User.swift in Sources */,
 				945F35F21D5A45B0002F9C1E /* UIViewController+Keyboard.swift in Sources */,
@@ -616,7 +615,7 @@
 				945F35E21D58F390002F9C1E /* ATLoginViewController.swift in Sources */,
 				8A53F2F11D594E3E00F244BE /* TrailApiClient.swift in Sources */,
 				2EAC23661D67829600572541 /* DetailNavigationTableViewController.swift in Sources */,
-				4DEAC9CD1D6CDFA900055466 /* Keys.swift in Sources */,
+				2E2312D41D6CFCE000696D89 /* Keys.swift in Sources */,
 				949370351D62515900C696AE /* ATConstants.swift in Sources */,
 				4D225C1B1D5A0FF600360AB8 /* MashapeAPIClient.swift in Sources */,
 				8A3948F91D621C23004A4B94 /* ATPathViewController.swift in Sources */,
