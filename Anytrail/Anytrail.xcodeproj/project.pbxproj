@@ -14,8 +14,6 @@
 		2E2312D41D6CFCE000696D89 /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2312D31D6CFCE000696D89 /* Keys.swift */; };
 		2E7B02845A404C04E0D92E5E /* Pods_Anytrail.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 599CF5E42324548824DD0368 /* Pods_Anytrail.framework */; };
 		2E8AC7851D67C3E80012AE98 /* Paths.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2E8AC7831D67C3E80012AE98 /* Paths.xcdatamodeld */; };
-		2EAC23641D677B3900572541 /* NavigationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EAC23631D677B3900572541 /* NavigationTableViewController.swift */; };
-		2EAC23661D67829600572541 /* DetailNavigationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EAC23651D67829600572541 /* DetailNavigationTableViewController.swift */; };
 		2EBCDDFD1D6BA4E900E8B6BC /* DirectionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBCDDFB1D6BA4E900E8B6BC /* DirectionsView.swift */; };
 		2EBCDDFE1D6BA4E900E8B6BC /* DirectionsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2EBCDDFC1D6BA4E900E8B6BC /* DirectionsView.xib */; };
 		2EFB62981D6B9589003DF7F8 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EFB62971D6B9589003DF7F8 /* HealthKit.framework */; };
@@ -93,8 +91,6 @@
 		2E1DA8821D5E3B5B00F83DFD /* WalkTrackerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WalkTrackerViewController.swift; path = Controllers/WalkTrackerViewController.swift; sourceTree = "<group>"; };
 		2E2312D31D6CFCE000696D89 /* Keys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		2E8AC7841D67C3E80012AE98 /* Paths.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Paths.xcdatamodel; sourceTree = "<group>"; };
-		2EAC23631D677B3900572541 /* NavigationTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NavigationTableViewController.swift; path = Controllers/NavigationTableViewController.swift; sourceTree = "<group>"; };
-		2EAC23651D67829600572541 /* DetailNavigationTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DetailNavigationTableViewController.swift; path = Controllers/DetailNavigationTableViewController.swift; sourceTree = "<group>"; };
 		2EBCDDFB1D6BA4E900E8B6BC /* DirectionsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DirectionsView.swift; sourceTree = "<group>"; };
 		2EBCDDFC1D6BA4E900E8B6BC /* DirectionsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DirectionsView.xib; sourceTree = "<group>"; };
 		2EDDFE291D5A868900B36853 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -288,8 +284,6 @@
 				945F35DF1D58F381002F9C1E /* ATMapViewController.swift */,
 				2E1DA8821D5E3B5B00F83DFD /* WalkTrackerViewController.swift */,
 				4DE1D0AA1D60D61F00911AA8 /* ProfileTableViewController.swift */,
-				2EAC23631D677B3900572541 /* NavigationTableViewController.swift */,
-				2EAC23651D67829600572541 /* DetailNavigationTableViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -614,7 +608,6 @@
 				2EBCDDFD1D6BA4E900E8B6BC /* DirectionsView.swift in Sources */,
 				945F35E21D58F390002F9C1E /* ATLoginViewController.swift in Sources */,
 				8A53F2F11D594E3E00F244BE /* TrailApiClient.swift in Sources */,
-				2EAC23661D67829600572541 /* DetailNavigationTableViewController.swift in Sources */,
 				2E2312D41D6CFCE000696D89 /* Keys.swift in Sources */,
 				949370351D62515900C696AE /* ATConstants.swift in Sources */,
 				4D225C1B1D5A0FF600360AB8 /* MashapeAPIClient.swift in Sources */,
@@ -635,7 +628,6 @@
 				8A3948FB1D623743004A4B94 /* ATPathCell.swift in Sources */,
 				4DF1FD1D1D64FC4900692309 /* SurgeonGeneralTableViewController.swift in Sources */,
 				4DB2D9631D58DF04007BD4A5 /* ApisDataStore.swift in Sources */,
-				2EAC23641D677B3900572541 /* NavigationTableViewController.swift in Sources */,
 				4D5244781D6615280066C01B /* TipsAndTricksHeader.swift in Sources */,
 				8A4827971D677B0700C53A71 /* InternetStatus.swift in Sources */,
 			);
