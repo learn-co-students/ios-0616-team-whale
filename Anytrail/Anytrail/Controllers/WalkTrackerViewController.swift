@@ -37,9 +37,14 @@ class WalkTrackerViewController: UIViewController {
     }
     
     func updateLabels(timer: NSTimer) {
-        timeLabel.text = "\(WalkTracker.sharedInstance.currentWalkTime)"
-        distanceLabel.text = "\(WalkTracker.sharedInstance.walkDistance)"
-        paceLabel.text = "\(WalkTracker.sharedInstance.pace)"
+        let timePassed = secondsToHoursMinutesSeconds(Int(WalkTracker.sharedInstance.currentWalkTime))
+        let distanceTravel = round((WalkTracker.sharedInstance.walkDistance / 1609.344) * 100) / 100
+        timeLabel.text = "\(timePassed.0):\(timePassed.1):\(timePassed.2)"
+        distanceLabel.text = "\(distanceTravel) miles"
+    }
+    
+    func secondsToHoursMinutesSeconds (seconds : Int) -> (Int, Int, Int) {
+        return (seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)
     }
     
     @IBAction func startTapped(sender: AnyObject) {
