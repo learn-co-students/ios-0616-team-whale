@@ -69,7 +69,7 @@ class ProfileTableViewController: UIViewController, UITableViewDelegate, UITable
             }
         }
     }
-    
+
     func reloadHealthKitData() {
         healthDummy = HealthKitDataStore.sharedInstance.healthKitUserData
         dispatch_async(dispatch_get_main_queue()) {
