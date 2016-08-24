@@ -662,9 +662,7 @@ extension ATMapViewController: TGLParallaxCarouselDatasource {
     func viewForItemAtIndex(index: Int, carousel: TGLParallaxCarousel) -> TGLParallaxCarouselItem {
         
         let instruction = directionArray[index].1.instructions
-        let maneuverCoordinates = directionArray[index].1.maneuverLocation
-        let maneuverGeocode =  ReverseGeocodeOptions.init(coordinate: maneuverCoordinates)
-        var directView = DirectionView(frame: CGRectMake(self.carouselView.bounds.minX, self.carouselView.bounds.minY, self.carouselView.bounds.size.width, self.carouselView.bounds.size.height * 0.35), leg: "\(directionArray[index].0)", step: "\(instruction)")
+        let directView = DirectionView(frame: CGRectMake(self.carouselView.bounds.minX, self.carouselView.bounds.minY, self.carouselView.bounds.size.width, self.carouselView.bounds.size.height * 0.35), leg: "\(directionArray[index].0)", step: "\(instruction)")
         
         
         
@@ -688,12 +686,12 @@ extension ATMapViewController: TGLParallaxCarouselDelegate {
         print("Did move to index \(index)")
         
         if let coordinatesInArray = directionArray[index].2{
-            if let last = coordinatesInArray.last{
+            if let first = coordinatesInArray.first{
                 
                 print("should be moving")
                 //                    pathPin.coordinate = last
                 //                    self.assignPathPin(pathPin)
-                mapView.setCenterCoordinate(last, zoomLevel: 15, animated: true)
+                mapView.setCenterCoordinate(first, zoomLevel: 15, animated: true)
                 
                 
             }
