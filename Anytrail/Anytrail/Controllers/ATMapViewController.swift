@@ -684,12 +684,12 @@ extension ATMapViewController: TGLParallaxCarouselDelegate {
         print("Did move to index \(index)")
         
         if let coordinatesInArray = directionArray[index].2{
-            if let last = coordinatesInArray.last{
+            if let first = coordinatesInArray.first{
                 
                 print("should be moving")
                 //                    pathPin.coordinate = last
                 //                    self.assignPathPin(pathPin)
-                mapView.setCenterCoordinate(last, zoomLevel: 15, animated: true)
+                mapView.setCenterCoordinate(first, zoomLevel: 15, animated: true)
                 
                 
             }
