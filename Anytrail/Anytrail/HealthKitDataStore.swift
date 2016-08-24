@@ -110,35 +110,40 @@ class HealthKitDataStore {
         
         user.getExerciseForToday { exerciseTimeSum in
             if let exerciseTimeSum = exerciseTimeSum {
-                self.healthKitUserData.append((exerciseTimeSum.description, "exercise-time"))
+                let exerciseTime = Int(exerciseTimeSum)
+                self.healthKitUserData.append((exerciseTime.description, "exercise-time"))
                 completion(true)
             }
         }
         
         user.getFlightCountForToday { flightClimbedSum in
             if let flightClimbedSum = flightClimbedSum {
-                self.healthKitUserData.append((flightClimbedSum.description, "flight"))
+                let flightsClimbed = Int(flightClimbedSum)
+                self.healthKitUserData.append((flightsClimbed.description, "flight"))
                 completion(true)
             }
         }
         
         user.getStepCountForToday { stepCountSum in
             if let stepCountSum = stepCountSum {
-                self.healthKitUserData.append((stepCountSum.description, "steps"))
+                let stepcount = Int(stepCountSum)
+                self.healthKitUserData.append((stepcount.description, "steps"))
                 completion(true)
             }
         }
         
         user.getActiveEnergyForToday { activeEnergySum in
             if let activeEnergySum = activeEnergySum {
-                self.healthKitUserData.append((activeEnergySum.description, "energy-burn"))
+                let activeEnergy = Int(activeEnergySum)
+                self.healthKitUserData.append((activeEnergy.description, "energy-burn"))
                 completion(true)
             }
         }
         
         user.getBasalEnergyForToday { basalEnergySum in
             if let basalEnergySum = basalEnergySum {
-                self.healthKitUserData.append((basalEnergySum.description, "resting-burn"))
+                let basalEnergy = Int(basalEnergySum)
+                self.healthKitUserData.append((basalEnergy.description, "resting-burn"))
                 completion(true)
             }
         }
