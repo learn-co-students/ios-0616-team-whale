@@ -34,6 +34,7 @@ class WalkTracker: NSObject {
         currentWalkTime = 0.0
         walkDistance = 0.0
         pace = 0.0
+        walkTimer = NSTimer()
     }
     
     func secondsBetweenDates(startDate: NSDate, endDate: NSDate) -> Double {
@@ -88,15 +89,15 @@ class WalkTracker: NSObject {
     
     func stopWalk(completion: Bool -> Void) {
         walkEndDate = NSDate()
-        pedometer.stopPedometerUpdates()
         activeWalk = false
-        walkTimer.invalidate()
         
         if let walkEndDate = walkEndDate {
             HealthKitDataStore.sharedInstance.saveWalk(walkDistance, timeRecorded: currentWalkTime, startDate: walkStartDate, endDate: walkEndDate) { saveResult, error in
                 completion(saveResult)
             }
         }
+        walkTimer.invalidate()
+        pedometer.stopPedometerUpdates()
         resetWalk()
     }
 }
