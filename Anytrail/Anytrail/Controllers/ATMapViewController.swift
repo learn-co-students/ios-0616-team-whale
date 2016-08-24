@@ -101,13 +101,7 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
         case .Default:
             configureDropdownButtonForState(dropdownDisplayed)
         case .Waypoints:
-            currentStage = .Default
-            reshowDropdown(withView: .Default, hintText: "")
-            UIView.animateWithDuration(0.3) {
-                self.dropdownBarButton.image = UIImage(named: "dropdown")
-            }
-            drawRouteButton.enabled = false
-            clearMapView()
+            resetToDefaultStage()
         case .Route:
             currentStage = .Default
             clearMapView()
@@ -152,6 +146,16 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
         }
     }
     
+    func resetToDefaultStage() {
+        currentStage = .Default
+        reshowDropdown(withView: .Default, hintText: "")
+        UIView.animateWithDuration(0.3) {
+            self.dropdownBarButton.image = UIImage(named: "dropdown")
+        }
+        drawRouteButton.enabled = false
+        clearMapView()
+    }
+    
     func setToWaypoints() {
         createMode = true
         currentStage = .Waypoints
@@ -169,10 +173,16 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
         addFoursquareAnnotations() { count in
             dispatch_async(dispatch_get_main_queue()) {
                 self.loadingSpinner.stopAnimating()
-                for pin in self.pointsOfInterest {
-                    self.mapView.addAnnotation(pin)
-                }
                 self.disableControlsForBuffer(false)
+                if self.pointsOfInterest.isEmpty {
+                    ATAlertView.alertWithTitle(self, type: .Error, title: "Whoops", text: "There was no points of interest found. Please try a different set of addresses.") {
+                        self.resetToDefaultStage()
+                    }
+                } else {
+                    for pin in self.pointsOfInterest {
+                        self.mapView.addAnnotation(pin)
+                    }
+                }
             }
         }
     }
@@ -201,28 +211,6 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
         drawRouteButton.enabled = !disable
         
         dropdownView.userInteractionEnabled = !disable
-    }
-    
-    @IBAction func navigateTapped(sender: AnyObject) {
-        //        UIApplication.sharedApplication().canOpenURL(
-        //            NSURL(string: "comgooglemaps://")!)
-        //
-        //        if (UIApplication.sharedApplication().canOpenURL(NSURL(string:"comgooglemaps://")!)) {
-        //            UIApplication.sharedApplication().openURL(NSURL(string:
-        //                "comgooglemaps://?saddr=2025+Garcia+Ave,+Mountain+View,+CA,+USA&daddr=Google,+1600+Amphitheatre+Parkway,+Mountain+View,+CA,+United+States&waypoints=+Charlestown,+MA|Lexington,+MA&key&center=37.423725,-122.0877&directionsmode=walking&zoom=17")!)
-        //        } else {
-        //            print("Can't use comgooglemaps://");
-        //        }
-        //        let navigationOriginDestinationString = waypoints
-        //        waypoints.removeFirst()
-        
-        //        var waypointString = ""
-        //
-        //        for pin in waypoints {
-        //            waypointString = waypointString + "\(pin.coordinate.latitude)," + "\(pin.coordinate.longitude)&"
-        //        }
-        //
-        //        print(waypointString)
     }
     
     func giveScrollerPages()->Int{
