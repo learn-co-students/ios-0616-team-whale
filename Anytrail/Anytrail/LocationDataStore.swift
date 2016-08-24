@@ -65,6 +65,7 @@ extension LocationDataStore {
             counter += 1.0
         }
         earlierDestinations.appendContentsOf(laterDestinations)
+        earlierDestinations.append(calculatedMidpoint)
         return earlierDestinations
     }
 }
