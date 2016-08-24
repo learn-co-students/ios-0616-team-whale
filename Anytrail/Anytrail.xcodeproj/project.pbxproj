@@ -15,6 +15,7 @@
 		2E8AC7851D67C3E80012AE98 /* Paths.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2E8AC7831D67C3E80012AE98 /* Paths.xcdatamodeld */; };
 		2EBCDDFD1D6BA4E900E8B6BC /* DirectionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBCDDFB1D6BA4E900E8B6BC /* DirectionsView.swift */; };
 		2EBCDDFE1D6BA4E900E8B6BC /* DirectionsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2EBCDDFC1D6BA4E900E8B6BC /* DirectionsView.xib */; };
+		2EC3F1221D6E055800CD33E6 /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC3F1211D6E055800CD33E6 /* Keys.swift */; };
 		2EFB62981D6B9589003DF7F8 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EFB62971D6B9589003DF7F8 /* HealthKit.framework */; };
 		4D225C1B1D5A0FF600360AB8 /* MashapeAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D225C1A1D5A0FF600360AB8 /* MashapeAPIClient.swift */; };
 		4D225C1F1D5A100800360AB8 /* MashapeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D225C1E1D5A100800360AB8 /* MashapeData.swift */; };
@@ -25,7 +26,6 @@
 		4DB2D9611D58DEBA007BD4A5 /* FoursquareAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB2D9601D58DEBA007BD4A5 /* FoursquareAPIClient.swift */; };
 		4DB2D9631D58DF04007BD4A5 /* ApisDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB2D9621D58DF04007BD4A5 /* ApisDataStore.swift */; };
 		4DB2D9651D58DF18007BD4A5 /* FoursquareData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB2D9641D58DF18007BD4A5 /* FoursquareData.swift */; };
-		4DD87FED1D6DD5BB00190270 /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD87FEC1D6DD5BB00190270 /* Keys.swift */; };
 		4DE1D0A91D60D5F500911AA8 /* ProfileStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4DE1D0A81D60D5F500911AA8 /* ProfileStoryboard.storyboard */; };
 		4DE1D0AB1D60D61F00911AA8 /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE1D0AA1D60D61F00911AA8 /* ProfileTableViewController.swift */; };
 		4DEE998E1D64A1BC004BC91C /* LocationDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEE998D1D64A1BC004BC91C /* LocationDataStore.swift */; };
@@ -92,6 +92,7 @@
 		2E8AC7841D67C3E80012AE98 /* Paths.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Paths.xcdatamodel; sourceTree = "<group>"; };
 		2EBCDDFB1D6BA4E900E8B6BC /* DirectionsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DirectionsView.swift; sourceTree = "<group>"; };
 		2EBCDDFC1D6BA4E900E8B6BC /* DirectionsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DirectionsView.xib; sourceTree = "<group>"; };
+		2EC3F1211D6E055800CD33E6 /* Keys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		2EDDFE291D5A868900B36853 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2EFB62971D6B9589003DF7F8 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		3417C12B1559CD326FE9F852 /* Pods-Anytrail.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Anytrail.release.xcconfig"; path = "Pods/Target Support Files/Pods-Anytrail/Pods-Anytrail.release.xcconfig"; sourceTree = "<group>"; };
@@ -104,7 +105,6 @@
 		4DB2D9601D58DEBA007BD4A5 /* FoursquareAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoursquareAPIClient.swift; sourceTree = "<group>"; };
 		4DB2D9621D58DF04007BD4A5 /* ApisDataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApisDataStore.swift; sourceTree = "<group>"; };
 		4DB2D9641D58DF18007BD4A5 /* FoursquareData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoursquareData.swift; sourceTree = "<group>"; };
-		4DD87FEC1D6DD5BB00190270 /* Keys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Keys.swift; path = ../../../../Downloads/Keys.swift; sourceTree = "<group>"; };
 		4DE1D0A81D60D5F500911AA8 /* ProfileStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ProfileStoryboard.storyboard; sourceTree = "<group>"; };
 		4DE1D0AA1D60D61F00911AA8 /* ProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
 		4DEE998D1D64A1BC004BC91C /* LocationDataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationDataStore.swift; sourceTree = "<group>"; };
@@ -223,7 +223,7 @@
 		9424A76E1D53D5DA00CE8D42 /* Anytrail */ = {
 			isa = PBXGroup;
 			children = (
-				4DD87FEC1D6DD5BB00190270 /* Keys.swift */,
+				2EC3F1211D6E055800CD33E6 /* Keys.swift */,
 				2E8AC7831D67C3E80012AE98 /* Paths.xcdatamodeld */,
 				4DF1FD171D64E3F800692309 /* Anytrail.entitlements */,
 				9424A76F1D53D5DA00CE8D42 /* AppDelegate.swift */,
@@ -611,12 +611,12 @@
 				949370351D62515900C696AE /* ATConstants.swift in Sources */,
 				4D225C1B1D5A0FF600360AB8 /* MashapeAPIClient.swift in Sources */,
 				8A3948F91D621C23004A4B94 /* ATPathViewController.swift in Sources */,
+				2EC3F1221D6E055800CD33E6 /* Keys.swift in Sources */,
 				4DF1FD1F1D6508C500692309 /* TipsAndTricksViewController.swift in Sources */,
 				947B6AB51D6B6F01009D5268 /* Coordinate.swift in Sources */,
 				4DFDBC151D634806006616D0 /* ProfileMapHeader.swift in Sources */,
 				9437CAE71D6755130060E9CF /* JSSAlertView.swift in Sources */,
 				2E1DA87D1D5E057500F83DFD /* WalkTracker.swift in Sources */,
-				4DD87FED1D6DD5BB00190270 /* Keys.swift in Sources */,
 				9424A7701D53D5DA00CE8D42 /* AppDelegate.swift in Sources */,
 				4DF1FD221D65106100692309 /* FactsForTipsAndTricks.swift in Sources */,
 				4D225C1F1D5A100800360AB8 /* MashapeData.swift in Sources */,
