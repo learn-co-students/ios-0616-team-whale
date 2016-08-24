@@ -17,19 +17,19 @@ class SurgeonGeneralTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-                
+        
         tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
         
         tableView.registerNib(UINib(nibName: "UserProfileCell", bundle: nil), forCellReuseIdentifier: "userProfileCellData")
         
         
         tableView.registerNib(UINib(nibName: "TipsCell", bundle: nil), forCellReuseIdentifier: "TipsCell")
-//        
-//        let header:TipsAndTricksHeader = UINib(nibName: "TipsAndTricksHeader", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! TipsAndTricksHeader
-//       header.headerPhoto.image = UIImage(named: "surgeon-general")
+        //
+        //        let header:TipsAndTricksHeader = UINib(nibName: "TipsAndTricksHeader", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! TipsAndTricksHeader
+        //       header.headerPhoto.image = UIImage(named: "surgeon-general")
         
-//        self.tableView.tableHeaderView = header
-
+        //        self.tableView.tableHeaderView = header
+        
         
         self.tableView.backgroundColor = UIColor.whiteColor()
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
@@ -54,46 +54,36 @@ class SurgeonGeneralTableViewController: UITableViewController {
         
         let cell: UserProfileCell = self.tableView.dequeueReusableCellWithIdentifier("userProfileCellData", forIndexPath: indexPath) as! UserProfileCell
         cell.userInteractionEnabled = true
-//        cell.userCellBackgroundView?.layer.cornerRadius = 10.0
-
+        cell.selectionStyle = .None
+        
         switch indexPath.row {
         case 0:
             cell.giveCellData(activityIcon, dataLabel: "Active Living")
-//            cell.userCellBackgroundView.backgroundColor = UIColor.redColor()
             return cell
         case 1:
             cell.giveCellData(mentalHealthIcon, dataLabel: "Well-Being")
-//            cell.userCellBackgroundView.backgroundColor = UIColor.blueColor()
             return cell
         case 2:
             cell.giveCellData(tobaccoFreeIcon, dataLabel: "Tobacco Free Living")
-//            cell.userCellBackgroundView.backgroundColor = UIColor.brownColor()
             return cell
         case 3:
             cell.giveCellData(nutritionIcon, dataLabel: "Healthy Eating")
-//            cell.userCellBackgroundView.backgroundColor = UIColor.greenColor()
             return cell
         default:
-            cell.dataLabel?.text = "default cell returning"
             print("default case")
             return cell
         }
     }
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-       performSegueWithIdentifier("TipsVC", sender: self)
+        performSegueWithIdentifier("TipsVC", sender: self)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        print("line 81")
         if segue.identifier == "TipsVC" {
-            print("if segue id")
             if let destinationVC = segue.destinationViewController as? TipsAndTricksViewController {
-                print("after declaring destination")
-                let path = tableView.indexPathForSelectedRow                
+                let path = tableView.indexPathForSelectedRow
                 destinationVC.categoryNumber = (path?.row)!
-                
             }
         }
     }
-
 }

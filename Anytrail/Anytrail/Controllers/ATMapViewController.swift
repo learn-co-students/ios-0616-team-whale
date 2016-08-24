@@ -87,8 +87,12 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
     func dropdownDidEndRoute() {
         dropdownView.updateActivityDistanceLabel("0.0")
         dropdownView.updateActivityTimeLabel("0:0:0")
+        
         workOutTimer.invalidate()
         workOutTimer = NSTimer()
+        
+        dropdownBarButton.enabled = true
+        
         WalkTracker.sharedInstance.stopWalk { saveResult in
             if saveResult {
                 dispatch_async(dispatch_get_main_queue()) {
@@ -105,6 +109,7 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
     func updateLabels(timer: NSTimer) {
         let timePassed = secondsToHoursMinutesSeconds(Int(WalkTracker.sharedInstance.currentWalkTime))
         let distanceTravel = round((WalkTracker.sharedInstance.walkDistance / 1609.344) * 100) / 100
+        
         dropdownView.updateActivityTimeLabel("\(timePassed.0):\(timePassed.1):\(timePassed.2)")
         dropdownView.updateActivityDistanceLabel("\(distanceTravel) miles")
     }
@@ -175,13 +180,10 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
             setToWaypoints()
         case .Waypoints:
             setToRoute()
-            
-            // TODO: Change to start
-            
         case .Route:
-            print("Route Phase")
-            
             reshowDropdown(withView: .Activity, hintText: "")
+            drawRouteButton.enabled = false
+            dropdownBarButton.enabled = false
         }
     }
     
@@ -213,8 +215,9 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
             dispatch_async(dispatch_get_main_queue()) {
                 self.loadingSpinner.stopAnimating()
                 self.disableControlsForBuffer(false)
+                
                 if self.pointsOfInterest.isEmpty {
-                    ATAlertView.alertWithTitle(self, type: .Error, title: "Whoops", text: "There was no points of interest found. Please try a different set of addresses.") {
+                    ATAlertView.alertWithTitle(self, type: .Error, title: "Whoops", text: "There were no points of interest found. Please try a different set of addresses.") {
                         self.resetToDefaultStage()
                     }
                 } else {
@@ -355,20 +358,7 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
     }
     
     func mapView(mapView: MGLMapView, annotationCanShowCallout annotation: MGLAnnotation) -> Bool {
-        guard let selectedAnnotation = annotation as? ATAnnotation else {
-            return false
-        }
-        
-        switch selectedAnnotation.type {
-        case .Waypoint:
-            return false
-        case .Destination:
-            return false
-        case .Origin:
-            return false
-        default:
-            return true
-        }
+        return true
     }
     
     func mapView(mapView: MGLMapView, viewForAnnotation annotation: MGLAnnotation) -> MGLAnnotationView? {

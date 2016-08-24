@@ -99,6 +99,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="tab-profile" width="30" height="30"/>
+        <image name="tab-profile" width="25" height="25"/>
     </resources>
 </document>

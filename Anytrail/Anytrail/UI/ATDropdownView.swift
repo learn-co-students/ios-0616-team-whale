@@ -75,8 +75,8 @@ class ATDropdownView: UIView, UITextFieldDelegate {
     func hide() {
         UIView.animateWithDuration(0.2, animations: {
             self.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y - 170, self.view.frame.size.width, 85)
-        }, completion: { _ in
-            self.removeFromSuperview()
+            }, completion: { _ in
+                self.removeFromSuperview()
         })
     }
     
@@ -169,12 +169,14 @@ class ATDropdownView: UIView, UITextFieldDelegate {
         originTextField = UITextField(frame: CGRectMake(self.view.frame.origin.x + 10, self.view.center.y - 265, self.frame.size.width - 20, 30))
         originTextField = configureTextField(originTextField)
         originTextField.returnKeyType = .Next
+        originTextField.text = ""
         originTextField.placeholder = "123 West 42nd St"
         //originTextField.becomeFirstResponder()
         
         destinationTextField = UITextField(frame: CGRectMake(self.view.frame.origin.x + 10, self.view.center.y - 230, self.frame.size.width - 20, 30))
         destinationTextField = configureTextField(destinationTextField)
         destinationTextField.returnKeyType = .Done
+        destinationTextField.text = ""
         destinationTextField.placeholder = "Central Park"
         
         addSubview(originPinImageView)
@@ -222,25 +224,29 @@ class ATDropdownView: UIView, UITextFieldDelegate {
         originTextField.backgroundColor = UIColor.clearColor()
         originTextField.font = UIFont(name: "HelveticaNeue-Medium", size: 15)
         originTextField.placeholder = ""
-        originTextField.text = "2:34:05"
+        originTextField.text = "00:00:00"
         originTextField.userInteractionEnabled = false
         
         destinationTextField.backgroundColor = UIColor.clearColor()
         destinationTextField.font = UIFont(name: "HelveticaNeue-Medium", size: 15)
         destinationTextField.placeholder = ""
-        destinationTextField.text = "12.6 mi"
+        destinationTextField.text = "0 mi"
         destinationTextField.userInteractionEnabled = false
         
         startButton = UIButton(type: .Custom)
         startButton.setTitle("Start", forState: .Normal)
         startButton.setTitleColor(ATConstants.Colors.BLUE, forState: .Normal)
+        startButton.setTitleColor(ATConstants.Colors.GRAY, forState: .Disabled)
         startButton.addTarget(self, action: #selector(dropdownDidStartRoute), forControlEvents: .TouchUpInside)
         startButton.showsTouchWhenHighlighted = true
         
         stopButton = UIButton(type: .Custom)
         stopButton.setTitle("Stop", forState: .Normal)
         stopButton.setTitleColor(ATConstants.Colors.RED, forState: .Normal)
+        stopButton.setTitleColor(ATConstants.Colors.GRAY, forState: .Disabled)
         stopButton.addTarget(self, action: #selector(dropdownDidEndRoute), forControlEvents: .TouchUpInside)
+        stopButton.showsTouchWhenHighlighted = true
+        stopButton.enabled = false
         
         addSubview(startButton)
         addSubview(stopButton)

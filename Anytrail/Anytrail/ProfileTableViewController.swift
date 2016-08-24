@@ -24,10 +24,10 @@ class ProfileTableViewController: UIViewController, UITableViewDelegate, UITable
     let heartrateIcon : UIImage = UIImage(named: "heart-rate")!
     let energyIcon  : UIImage = UIImage(named: "energy-burn")!
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.title = "Profile"
         
         self.tableView = UITableView(frame: (CGRectMake(0, -30, self.view.bounds.size.width, self.view.bounds.size.height)), style: UITableViewStyle.Grouped)
         self.tableView.delegate = self
@@ -123,8 +123,6 @@ class ProfileTableViewController: UIViewController, UITableViewDelegate, UITable
             print("default case")
             return cell
         }
-        
-        
         
     }
     
