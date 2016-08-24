@@ -6,6 +6,8 @@
 	<string>Anytrail</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en_US</string>
+	<key>CFBundleDisplayName</key>
+	<string>Walkmore</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -81,7 +83,6 @@
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
-		<string>healthkit</string>
 	</array>
 	<key>UIStatusBarStyle</key>
 	<string>UIStatusBarStyleDefault</string>
@@ -101,7 +102,5 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	<key>CFBundleDisplayName</key>
-	<string>Walkmore</string>
 </dict>
 </plist>

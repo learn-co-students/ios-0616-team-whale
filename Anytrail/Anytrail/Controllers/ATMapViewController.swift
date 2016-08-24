@@ -100,7 +100,7 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
                 }
             } else {
                 dispatch_async(dispatch_get_main_queue()) {
-                    ATAlertView.alertWithTitle(self, type: ATAlertView.ATAlertViewType.Success, title: "Error", text: "There was an error trying to save your workout session to HealthKit.") {}
+                    ATAlertView.alertWithTitle(self, type: ATAlertView.ATAlertViewType.Error, title: "Error", text: "There was an error trying to save your workout session to HealthKit.") {}
                 }
             }
         }

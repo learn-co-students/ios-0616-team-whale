@@ -51,61 +51,61 @@ class ATAlertView: JSSAlertView {
         alert.setTextTheme(.Light)
     }
     
-    class func alertWithConfirmationForVenue(controller: UIViewController, image: UIImage, title: String, text: String, action: String, callback: () -> Void, cancelCallback: () -> Void) {
-        let color: UIColor
-        
-        if action == "Add" {
-            color = ATConstants.Colors.GREEN
-        } else {
-            color = ATConstants.Colors.RED
-        }
-        
-        let size = CGSizeApplyAffineTransform(image.size, CGAffineTransformMakeScale(0.5, 0.5))
-        let scale: CGFloat = 0.0
-        
-        UIGraphicsBeginImageContextWithOptions(size, false, scale)
-        image.drawInRect(CGRect(origin: CGPointZero, size: size))
-        
-        let scaledImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        
-        let alert = JSSAlertView().show(
-            controller,
-            title: title,
-            iconImage: scaledImage,
-            text: text,
-            buttonText: action,
-            cancelButtonText: "Cancel",
-            color: color
-        )
-        
-        alert.addAction(callback)
-        alert.addCancelAction(cancelCallback)
-        alert.setTextTheme(.Light)
-    }
+//    class func alertWithConfirmationForVenue(controller: UIViewController, image: UIImage, title: String, text: String, action: String, callback: () -> Void, cancelCallback: () -> Void) {
+//        let color: UIColor
+//        
+//        if action == "Add" {
+//            color = ATConstants.Colors.GREEN
+//        } else {
+//            color = ATConstants.Colors.RED
+//        }
+//        
+//        let size = CGSizeApplyAffineTransform(image.size, CGAffineTransformMakeScale(0.5, 0.5))
+//        let scale: CGFloat = 0.0
+//        
+//        UIGraphicsBeginImageContextWithOptions(size, false, scale)
+//        image.drawInRect(CGRect(origin: CGPointZero, size: size))
+//        
+//        let scaledImage = UIGraphicsGetImageFromCurrentImageContext()
+//        UIGraphicsEndImageContext()
+//        
+//        let alert = JSSAlertView().show(
+//            controller,
+//            title: title,
+//            iconImage: scaledImage,
+//            text: text,
+//            buttonText: action,
+//            cancelButtonText: "Cancel",
+//            color: color
+//        )
+//        
+//        alert.addAction(callback)
+//        alert.addCancelAction(cancelCallback)
+//        alert.setTextTheme(.Light)
+//    }
     
-    class func alertWithConfirmation(controller: UIViewController, title: String, text: String, action: String, callback: () -> Void, cancelCallback: () -> Void) {
-        let color: UIColor
-
-        if action == "Add" {
-            color = ATConstants.Colors.GREEN
-        } else {
-            color = ATConstants.Colors.RED
-        }
-        
-        let alert = JSSAlertView().show(
-            controller,
-            title: title,
-            text: text,
-            buttonText: action,
-            cancelButtonText: "Cancel",
-            color: color
-        )
-        
-        alert.addAction(callback)
-        alert.addCancelAction(cancelCallback)
-        alert.setTextTheme(.Light)
-    }
+//    class func alertWithConfirmation(controller: UIViewController, title: String, text: String, action: String, callback: () -> Void, cancelCallback: () -> Void) {
+//        let color: UIColor
+//
+//        if action == "Add" {
+//            color = ATConstants.Colors.GREEN
+//        } else {
+//            color = ATConstants.Colors.RED
+//        }
+//        
+//        let alert = JSSAlertView().show(
+//            controller,
+//            title: title,
+//            text: text,
+//            buttonText: action,
+//            cancelButtonText: "Cancel",
+//            color: color
+//        )
+//        
+//        alert.addAction(callback)
+//        alert.addCancelAction(cancelCallback)
+//        alert.setTextTheme(.Light)
+//    }
     
     class func alertNetworkLoss(controller: UIViewController, callback: () -> Void) {
         let alert = JSSAlertView().show(
