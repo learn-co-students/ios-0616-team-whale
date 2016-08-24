@@ -228,7 +228,7 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
     func giveScrollerPages()->Int{
         var count = 0
         for leg in navigationLegs{
-            for step in leg.steps{
+            for _ in leg.steps{
                 count += 1
             }
         }
@@ -662,11 +662,7 @@ extension ATMapViewController: TGLParallaxCarouselDatasource {
     func viewForItemAtIndex(index: Int, carousel: TGLParallaxCarousel) -> TGLParallaxCarouselItem {
         
         let instruction = directionArray[index].1.instructions
-        let maneuverCoordinates = directionArray[index].1.maneuverLocation
-        let maneuverGeocode =  ReverseGeocodeOptions.init(coordinate: maneuverCoordinates)
-        var directView = DirectionView(frame: CGRectMake(self.carouselView.bounds.minX, self.carouselView.bounds.minY, self.carouselView.bounds.size.width, self.carouselView.bounds.size.height * 0.35), leg: "\(directionArray[index].0)", step: "\(instruction)")
-        
-        
+        let directView = DirectionView(frame: CGRectMake(self.carouselView.bounds.minX, self.carouselView.bounds.minY, self.carouselView.bounds.size.width, self.carouselView.bounds.size.height * 0.35), leg: "\(directionArray[index].0)", step: "\(instruction)")
         
         return directView
     }
