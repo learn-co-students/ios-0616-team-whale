@@ -82,6 +82,9 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
         WalkTracker.sharedInstance.startWalk()
         workOutTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(updateLabels(_:)), userInfo: nil, repeats: true)
         workOutTimer.fire()
+        
+        dropdownBarButton.enabled = false
+        drawRouteButton.enabled = false
     }
     
     func dropdownDidEndRoute() {
@@ -182,7 +185,6 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
         case .Route:
             reshowDropdown(withView: .Activity, hintText: "")
             drawRouteButton.enabled = false
-            dropdownBarButton.enabled = false
         }
     }
     

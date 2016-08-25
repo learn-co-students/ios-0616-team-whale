@@ -8,24 +8,21 @@
 
 import Quick
 import Nimble
-
 @testable import Anytrail
 
 class SplashViewControllerSpec: QuickSpec {
     
     override func spec() {
-        var launchController: ATSplashViewController!
+        // var launchController: ATSplashViewController!
         
         beforeEach {
-            launchController = ATSplashViewController()
-            
-            expect(launchController.view).toNot(beNil())
+            // launchController = ATSplashViewController()
         }
         
         describe("User login functionality") {
             
             it("should automatically login users") {
-                //
+                
             }
         }
     }
