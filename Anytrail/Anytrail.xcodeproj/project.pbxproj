@@ -50,7 +50,6 @@
 		9424A7771D53D5DA00CE8D42 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9424A7751D53D5DA00CE8D42 /* Main.storyboard */; };
 		9424A7791D53D5DA00CE8D42 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9424A7781D53D5DA00CE8D42 /* Assets.xcassets */; };
 		9424A77C1D53D5DA00CE8D42 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9424A77A1D53D5DA00CE8D42 /* LaunchScreen.storyboard */; };
-		9424A7871D53D5DA00CE8D42 /* AnytrailTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9424A7861D53D5DA00CE8D42 /* AnytrailTests.swift */; };
 		9437CADF1D663C660060E9CF /* AnytrailKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9437CADE1D663C660060E9CF /* AnytrailKit.swift */; };
 		9437CAE71D6755130060E9CF /* JSSAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9437CAE61D6755130060E9CF /* JSSAlertView.swift */; };
 		9458E8D91D5CF44B007CDD47 /* ATDropdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9458E8D81D5CF44B007CDD47 /* ATDropdownView.swift */; };
@@ -70,6 +69,7 @@
 		947B6AB91D6C96F4009D5268 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947B6AB81D6C96F4009D5268 /* User.swift */; };
 		949370331D62412200C696AE /* ATAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949370321D62412200C696AE /* ATAnnotation.swift */; };
 		949370351D62515900C696AE /* ATConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949370341D62515900C696AE /* ATConstants.swift */; };
+		949C271F1D6F44A600D0B888 /* AnytrailTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949C271E1D6F44A600D0B888 /* AnytrailTests.swift */; };
 		94B1ABEB1D5E4AD800D3DA8E /* ATAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B1ABEA1D5E4AD800D3DA8E /* ATAnnotationView.swift */; };
 		C6F13EAEADB81648B00617C6 /* Pods_AnytrailTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C268E151DD10F8DFBAF931E3 /* Pods_AnytrailTests.framework */; };
 /* End PBXBuildFile section */
@@ -135,7 +135,6 @@
 		9424A7781D53D5DA00CE8D42 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9424A77B1D53D5DA00CE8D42 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9424A7821D53D5DA00CE8D42 /* AnytrailTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AnytrailTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		9424A7861D53D5DA00CE8D42 /* AnytrailTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnytrailTests.swift; sourceTree = "<group>"; };
 		9424A7881D53D5DA00CE8D42 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9437CADE1D663C660060E9CF /* AnytrailKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnytrailKit.swift; sourceTree = "<group>"; };
 		9437CAE61D6755130060E9CF /* JSSAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSSAlertView.swift; sourceTree = "<group>"; };
@@ -156,6 +155,8 @@
 		947B6AB81D6C96F4009D5268 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = Models/User.swift; sourceTree = "<group>"; };
 		949370321D62412200C696AE /* ATAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ATAnnotation.swift; path = UI/ATAnnotation.swift; sourceTree = "<group>"; };
 		949370341D62515900C696AE /* ATConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ATConstants.swift; sourceTree = "<group>"; };
+		949C271D1D6F44A500D0B888 /* AnytrailTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AnytrailTests-Bridging-Header.h"; sourceTree = "<group>"; };
+		949C271E1D6F44A600D0B888 /* AnytrailTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnytrailTests.swift; sourceTree = "<group>"; };
 		94B1ABEA1D5E4AD800D3DA8E /* ATAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ATAnnotationView.swift; path = UI/ATAnnotationView.swift; sourceTree = "<group>"; };
 		C268E151DD10F8DFBAF931E3 /* Pods_AnytrailTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AnytrailTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAD2C8D70B6029D7314DD479 /* Pods-AnytrailTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnytrailTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AnytrailTests/Pods-AnytrailTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -265,8 +266,9 @@
 		9424A7851D53D5DA00CE8D42 /* AnytrailTests */ = {
 			isa = PBXGroup;
 			children = (
-				9424A7861D53D5DA00CE8D42 /* AnytrailTests.swift */,
 				9424A7881D53D5DA00CE8D42 /* Info.plist */,
+				949C271E1D6F44A600D0B888 /* AnytrailTests.swift */,
+				949C271D1D6F44A500D0B888 /* AnytrailTests-Bridging-Header.h */,
 			);
 			path = AnytrailTests;
 			sourceTree = "<group>";
@@ -640,7 +642,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9424A7871D53D5DA00CE8D42 /* AnytrailTests.swift in Sources */,
+				949C271F1D6F44A600D0B888 /* AnytrailTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -798,12 +800,15 @@
 			baseConfigurationReference = DAD2C8D70B6029D7314DD479 /* Pods-AnytrailTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Flatiron School, Inc (KXY9EDFTF5)";
 				INFOPLIST_FILE = AnytrailTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.flatironschool.AnytrailTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "ccba23f8-b13a-41f1-8530-ee2b4c861616";
+				SWIFT_OBJC_BRIDGING_HEADER = "AnytrailTests/AnytrailTests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Anytrail.app/Anytrail";
 			};
 			name = Debug;
@@ -813,6 +818,7 @@
 			baseConfigurationReference = 5661F119B27C682B7C9BCB04 /* Pods-AnytrailTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Flatiron School, Inc (KXY9EDFTF5)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Flatiron School, Inc (KXY9EDFTF5)";
 				INFOPLIST_FILE = AnytrailTests/Info.plist;
@@ -820,6 +826,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.flatironschool.AnytrailTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "ccba23f8-b13a-41f1-8530-ee2b4c861616";
+				SWIFT_OBJC_BRIDGING_HEADER = "AnytrailTests/AnytrailTests-Bridging-Header.h";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Anytrail.app/Anytrail";
 			};
 			name = Release;
