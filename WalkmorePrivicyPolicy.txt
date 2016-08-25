@@ -1,0 +1,28 @@
+PRIVACY
+
+This Policy sets out how Walkmore ("we" / "our") may obtain and use certain personal and non-personal information which we may acquire when you download and interact with the “Walkmore ”App (the "App"). You should carefully review this policy prior to downloading and using the App.
+
+1. Data
+1.1    We may ask you for and / or you may submit certain personal and non-personal information and / or data to it through the App (such as your name, email address, password, steps, walking distance, energy burn, exercise time, workouts, anonymous unique device identifier number, Facebook ID) and information concerning your use of the App when you use the App or any of its related services.
+
+1.2    We will never collect sensitive information about you without your explicit consent.
+
+1.3	Please note that no health related or motion data is stored on our servers. HealthKit data is only displayed within the App and health related data is only written to the HealthKit app. 
+
+1.4    If you believe we have information about you that you do not want us to have or that is incorrect please contact us as described below and we shall correct or remove the data as you request as soon as is reasonably practicable and/or provide details to you of how you can update the data.
+
+1.5    When you use your Facebook ID to login into the App, please note that you will be sharing additional information with us from your Facebook profile. We shall set out the information you will share with us when you use those login methods, and such personal data shall be used in accordance with the Facebook policies and this privacy policy.
+
+1.6    Please note that if you are below the age of 16 you should not provide any personal data to us. If you older than 16 years of age, but below 18 years of age you should obtain the consent of your parent or guardian before you submit personal data to us.
+
+3. Profiles
+3.1    As part of the App, you may create your own profile showing your information within the app, and also your walks and other data (including personal data) which you have submitted to us. The App will not share this information with other users of the App or the general public.
+
+4. Location Data
+4.1    By using the App, you will share with us your actual physical location. We use this location information to show your current location on a map however this information will remain only accessible in app. This data with not be shared.
+
+5. Marketing Communications
+5.1    We will not share or use your health data for marketing purposes.
+
+6. Privacy
+6.1    If you have any other concerns over privacy, this privacy policy or the App please contact us by email to michael.amundsen@flatiron.com. We will endeavor to respond to any query or questions in a timely manner.
