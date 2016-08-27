@@ -180,9 +180,10 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
         case .Waypoints:
             setToRoute()
         case .Route:
-            reshowDropdown(withView: .Activity, hintText: "")
-            drawRouteButton.enabled = false
-            dropdownBarButton.enabled = false
+            break
+            //            reshowDropdown(withView: .Activity, hintText: "")
+            //            drawRouteButton.enabled = false
+            //            dropdownBarButton.enabled = false
         }
     }
     
@@ -199,6 +200,7 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
     func setToWaypoints() {
         createMode = true
         currentStage = .Waypoints
+        dropdownView.hide()
         
         disableControlsForBuffer(true)
         getWaypoints()
@@ -237,6 +239,7 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
             createPath() { time in
                 ATAlertView.alertWithTitle(self, type: .Success, title: "Path Saved", text: "Estimated Time:\n \(time).\nEnjoy your walk!") {
                     self.reshowDropdown(withView: .Activity, hintText: "")
+                    self.drawRouteButton.enabled = false
                 }
             }
         } else {
