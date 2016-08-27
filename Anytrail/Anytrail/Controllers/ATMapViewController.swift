@@ -223,6 +223,7 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
                     for pin in self.pointsOfInterest {
                         self.mapView.addAnnotation(pin)
                     }
+                    ATAlertView.alertWithTitle(self, type: .Success, title: "Success", text: "Please select some points of interest to add to your route.") { }
                 }
             }
         }
@@ -243,7 +244,9 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
     
     func checkOriginAndDestinationAssigned() {
         if destination != nil && origin != nil {
-            drawRouteButton.enabled = true
+            delay(1.0) {
+            self.setToWaypoints()
+            }
         }
     }
     
