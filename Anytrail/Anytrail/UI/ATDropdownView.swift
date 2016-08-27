@@ -311,14 +311,12 @@ class ATDropdownView: UIView, UITextFieldDelegate {
     func makeActivityViewConstraints() {
         originTextField.snp.makeConstraints { (make) in
             make.left.equalTo(self.snp.left).offset(30)
-            make.right.equalTo(self.snp.right).offset(-60)
             make.top.equalTo(self.snp.top).offset(15)
             make.height.equalTo(30)
         }
         
         destinationTextField.snp.makeConstraints { (make) in
             make.left.equalTo(self.snp.left).offset(30)
-            make.right.equalTo(self.snp.right).offset(-60)
             make.bottom.equalTo(self.snp.bottom).offset(-5)
             make.height.equalTo(30)
         }
