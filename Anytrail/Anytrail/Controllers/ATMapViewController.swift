@@ -82,6 +82,7 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
         WalkTracker.sharedInstance.startWalk()
         workOutTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(updateLabels(_:)), userInfo: nil, repeats: true)
         workOutTimer.fire()
+        dropdownBarButton.enabled = false
     }
     
     func dropdownDidEndRoute() {
