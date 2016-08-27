@@ -13,7 +13,9 @@ import CoreLocation
 
 struct FoursquareConstants {
     static let v = "20160808"
-    static let query = "Historic/Landmarks/Sculptures/Arts/Monuments/Memorial/Landmark/Sculpture/Monument/Art"
+    //static let query =
+    
+    //"Historic/Landmarks/Sculptures/Arts/Monuments/Memorial/Landmark/Sculpture/Monument"
     //"HISTORIC/MONUMENTS/LANDMARKS/STATUES/MUSEUM/POI/HIKING/PARK/FUN/MEMORIAL"
 }
 

@@ -19,6 +19,7 @@ class FoursquareData: NSObject {
     var placeName: String
     var placeAddress: String
     var placePhotoURL: String
+    var categoryName : String
 
     init(json: JSON) {
         guard let
@@ -27,7 +28,11 @@ class FoursquareData: NSObject {
             longitude = venue["location"]!["lng"].double,
             latitude = venue["location"]!["lat"].double,
             address = venue["location"]!["formattedAddress"].array,
-            name = venue["name"]!.string
+            name = venue["name"]!.string,
+            category = venue["categories"]!.array,
+            categoryDictionary = category[0].dictionary,
+            categoryNameString = categoryDictionary["name"]!.string
+        
 
             else {
                 fatalError("There was an error retrieving the information from FourSquare")
@@ -38,7 +43,7 @@ class FoursquareData: NSObject {
         for i in 0..<address.count {
             addressStringConverter.appendContentsOf(address[i].stringValue)
         }
-
+        categoryName = categoryNameString
         placeVenue = venue
         placeLatitude = (latitude)
         placeLongitude = (longitude)

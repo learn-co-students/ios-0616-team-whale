@@ -419,12 +419,16 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
         ApisDataStore.sharedInstance.pointOfInterestEpicenterQuery { success in
             if success {
                 for location in ApisDataStore.sharedInstance.foursquareData {
-                    let pin = ATAnnotation(typeSelected: .PointOfInterest)
+                    let category = location.categoryName
+                    if category == "Outdoor Sculpture" || category == "City Hall" || category == "Monument / Landmark" || category == "Bridge" || category == "Government Building" || category == "Historic Site" || category == "Neighborhood" || category == "Museum" || category == "Park" || category == "Garden" {// || category.containsString("") {
+                        let pin = ATAnnotation(typeSelected: .PointOfInterest)
                     
-                    pin.coordinate = CLLocationCoordinate2D(latitude: location.placeLatitude, longitude: location.placeLongitude)
-                    pin.title = location.placeName
-                    pin.subtitle = location.placeAddress
-                    self.pointsOfInterest.append(pin)}
+                        pin.coordinate = CLLocationCoordinate2D(latitude: location.placeLatitude, longitude: location.placeLongitude)
+                        pin.title = location.placeName
+                        pin.subtitle = location.placeAddress
+                            print(pin.title)
+                        self.pointsOfInterest.append(pin)}
+                }
             } else {
                 ATAlertView.alertNetworkLoss(self, callback: {})
             }

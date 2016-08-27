@@ -24,7 +24,7 @@ class ApisDataStore {
                          "v": FoursquareConstants.v,
                          "intent": "browse",
                          "ll": "\(queryLocation.coordinate.latitude), \(queryLocation.coordinate.longitude)",
-                         "query": FoursquareConstants.query,
+                         //"query": FoursquareConstants.query,
                          "radius": "\(LocationDataStore.sharedInstance.pointOfInterestDistancePadding() ?? 0)"]
         
         return parameter
