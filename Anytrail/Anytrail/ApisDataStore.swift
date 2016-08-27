@@ -23,7 +23,7 @@ class ApisDataStore {
                          "client_secret": Keys.fourSquareClientSecret,
                          "v": FoursquareConstants.v,
                          "ll": "\(queryLocation.coordinate.latitude), \(queryLocation.coordinate.longitude)",
-                         //"query": FoursquareConstants.query,
+                         "query": FoursquareConstants.query,
                          "radius": "\(LocationDataStore.sharedInstance.pointOfInterestDistancePadding() ?? 0)"]
         
         return parameter
