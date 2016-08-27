@@ -22,7 +22,6 @@ class ApisDataStore {
         let parameter = ["client_id": Keys.fourSquareClientID,
                          "client_secret": Keys.fourSquareClientSecret,
                          "v": FoursquareConstants.v,
-                         "intent": "browse",
                          "ll": "\(queryLocation.coordinate.latitude), \(queryLocation.coordinate.longitude)",
                          //"query": FoursquareConstants.query,
                          "radius": "\(LocationDataStore.sharedInstance.pointOfInterestDistancePadding() ?? 0)"]
@@ -60,7 +59,7 @@ class ApisDataStore {
         }
         dispatch_group_notify(group, dispatch_get_main_queue()) {
             completion(true)
-
+            
         }
     }
 }

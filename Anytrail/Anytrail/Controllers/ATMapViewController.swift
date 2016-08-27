@@ -82,6 +82,7 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
         WalkTracker.sharedInstance.startWalk()
         workOutTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(updateLabels(_:)), userInfo: nil, repeats: true)
         workOutTimer.fire()
+        dropdownBarButton.enabled = false
     }
     
     func dropdownDidEndRoute() {
@@ -180,9 +181,7 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
         case .Waypoints:
             setToRoute()
         case .Route:
-            reshowDropdown(withView: .Activity, hintText: "")
-            drawRouteButton.enabled = false
-            dropdownBarButton.enabled = false
+            break
         }
     }
     
@@ -199,12 +198,13 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
     func setToWaypoints() {
         createMode = true
         currentStage = .Waypoints
+        dropdownView.hide()
         
         disableControlsForBuffer(true)
         getWaypoints()
         
         UIView.animateWithDuration(0.3) {
-            self.dropdownBarButton.image = UIImage(named: "back-arrow")
+            self.dropdownBarButton.image = UIImage(named: "cancel")
         }
     }
     
@@ -223,6 +223,7 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
                     for pin in self.pointsOfInterest {
                         self.mapView.addAnnotation(pin)
                     }
+                    ATAlertView.alertWithTitle(self, type: .Success, title: "Great", text: "Please select some points of interest to add to your route.") { }
                 }
             }
         }
@@ -234,7 +235,11 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
             currentStage = .Route
             mapView.removeAnnotations(pointsOfInterest)
             createPath() { time in
-                self.reshowDropdown(withView: .Label, hintText: "Your walk will take about \(time).\nEnjoy your walk to \(self.destination?.title ?? "")!")
+                ATAlertView.alertWithTitle(self, type: .Success, title: "Path Saved", text: "Estimated Time:\n \(time).\nEnjoy your walk!") {
+                    self.dropdownView.changeDropdownView(.Activity)
+                    self.dropdownView.show()
+                    self.drawRouteButton.enabled = false
+                }
             }
         } else {
             ATAlertView.alertWithTitle(self, type: .Error, title: "Whoops", text: "Select at least one point to pass") { }
@@ -243,7 +248,9 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
     
     func checkOriginAndDestinationAssigned() {
         if destination != nil && origin != nil {
-            drawRouteButton.enabled = true
+            delay(1.0) {
+                self.setToWaypoints()
+            }
         }
     }
     
@@ -299,7 +306,7 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
                 mapView.deselectAnnotation(annotation, animated: true)
             }
         default:
-            print("Something happened when selected")
+            break
         }
     }
     
@@ -461,14 +468,14 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
     }
     
     func createPath(completion: (time: String) -> ()) {
-        //removeUnusedWaypoints()
-        
         var waypoints: [Waypoint] = []
         
         for waypoint in self.waypoints {
             let waypoint = Waypoint(coordinate: waypoint.coordinate)
             waypoints.append(waypoint)
         }
+        
+        sortWaypoints(waypoints)
         
         guard let origin = origin, let destination = destination else {
             return
@@ -480,10 +487,6 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
         waypoints.insert(originWaypoint, atIndex: 0)
         waypoints.append(destinationWaypoint)
         
-        print("Waypoints (sorted)")
-        for point in waypoints {
-            print(point.coordinate)
-        }
         
         // Directions
         
@@ -502,17 +505,13 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
                 self.navigationRoutes = routes
             }
             
-            if let route = routes?.first, let leg = route.legs.first {
-                print("Route via \(leg)")
+            if let route = routes?.first {
                 self.navigationLegs = route.legs
                 self.carouselView.type = .Normal
                 self.carouselView.hidden = false
-                let distanceFormatter = NSLengthFormatter()
-                let formattedDistance = distanceFormatter.stringFromMeters(route.distance)
                 let travelTimeFormatter = NSDateComponentsFormatter()
                 travelTimeFormatter.unitsStyle = .Short
                 let formattedTravelTime = travelTimeFormatter.stringFromTimeInterval(route.expectedTravelTime)
-                print("Distance: \(formattedDistance); ETA: \(formattedTravelTime!)")
                 completion(time: formattedTravelTime!)
                 
                 // TODO: Remove testing data stuff
@@ -549,8 +548,6 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
             self.dropdownView.show()
             self.dropdownDisplayed = true
         }
-        
-        
         
         currentStage = .Default
         drawRouteButton.enabled = false
@@ -694,31 +691,21 @@ extension ATMapViewController: TGLParallaxCarouselDatasource {
 }
 
 extension ATMapViewController: TGLParallaxCarouselDelegate {
-    func didTapOnItemAtIndex(index: Int, carousel: TGLParallaxCarousel) {
-        print("Tap on item at index \(index)")
-        
-        
-    }
-    
     override func viewDidAppear(animated: Bool) {
         self.pageControl.hidden = true
     }
     
-    func didMovetoPageAtIndex(index: Int) {
+    func didTapOnItemAtIndex(index: Int, carousel: TGLParallaxCarousel) {
         
-        print("Did move to index \(index)")
+    }
+    
+    func didMovetoPageAtIndex(index: Int) {
         
         if let coordinatesInArray = directionArray[index].2{
             
             
             if let first = coordinatesInArray.first{
-                
-                print("should be moving")
-                //                    pathPin.coordinate = last
-                //                    self.assignPathPin(pathPin)
                 mapView.setCenterCoordinate(first, zoomLevel: 15, animated: true)
-                
-                
             }
         }
     }
