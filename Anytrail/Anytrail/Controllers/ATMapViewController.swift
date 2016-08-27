@@ -235,7 +235,9 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
             currentStage = .Route
             mapView.removeAnnotations(pointsOfInterest)
             createPath() { time in
-                self.reshowDropdown(withView: .Label, hintText: "Your walk will take about \(time).\nEnjoy your walk to \(self.destination?.title ?? "")!")
+                ATAlertView.alertWithTitle(self, type: .Success, title: "Success", text: "Your walk will take about \(time).\nEnjoy your walk to \(self.destination?.title ?? "")!") {
+                    self.reshowDropdown(withView: .Activity, hintText: "")
+                }
             }
         } else {
             ATAlertView.alertWithTitle(self, type: .Error, title: "Whoops", text: "Select at least one point to pass") { }
@@ -245,7 +247,7 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
     func checkOriginAndDestinationAssigned() {
         if destination != nil && origin != nil {
             delay(1.0) {
-            self.setToWaypoints()
+                self.setToWaypoints()
             }
         }
     }
@@ -460,14 +462,14 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
     }
     
     func createPath(completion: (time: String) -> ()) {
-        //removeUnusedWaypoints()
-        
         var waypoints: [Waypoint] = []
         
         for waypoint in self.waypoints {
             let waypoint = Waypoint(coordinate: waypoint.coordinate)
             waypoints.append(waypoint)
         }
+        
+        sortWaypoints(waypoints)
         
         guard let origin = origin, let destination = destination else {
             return
@@ -479,10 +481,6 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
         waypoints.insert(originWaypoint, atIndex: 0)
         waypoints.append(destinationWaypoint)
         
-        print("Waypoints (sorted)")
-        for point in waypoints {
-            print(point.coordinate)
-        }
         
         // Directions
         
@@ -548,8 +546,6 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
             self.dropdownView.show()
             self.dropdownDisplayed = true
         }
-        
-        
         
         currentStage = .Default
         drawRouteButton.enabled = false
