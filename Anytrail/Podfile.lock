@@ -10,19 +10,19 @@ PODS:
     - Bolts (~> 1.7)
   - FBSDKLoginKit (4.14.0):
     - FBSDKCoreKit
-  - Firebase (3.4.0):
-    - Firebase/Core (= 3.4.0)
-  - Firebase/Analytics (3.4.0):
-    - FirebaseAnalytics (~> 3.3)
-  - Firebase/Auth (3.4.0):
+  - Firebase (3.5.1):
+    - Firebase/Core (= 3.5.1)
+  - Firebase/Analytics (3.5.1):
+    - FirebaseAnalytics (~> 3.3.1)
+  - Firebase/Auth (3.5.1):
     - Firebase/Analytics
     - FirebaseAuth (= 3.0.4)
-  - Firebase/Core (3.4.0):
+  - Firebase/Core (3.5.1):
     - Firebase/Analytics
-  - Firebase/Database (3.4.0):
+  - Firebase/Database (3.5.1):
     - Firebase/Analytics
     - FirebaseDatabase (= 3.0.2)
-  - FirebaseAnalytics (3.3.0):
+  - FirebaseAnalytics (3.3.1):
     - FirebaseInstanceID (~> 1.0)
     - GoogleInterchangeUtilities (~> 1.2)
     - GoogleSymbolUtilities (~> 1.1)
@@ -50,7 +50,9 @@ PODS:
     - Polyline (~> 3.2)
   - MapboxGeocoder.swift (0.5.0)
   - MapboxStatic.swift (0.6.0)
+  - Nimble (4.1.0)
   - Polyline (3.2.2)
+  - Quick (0.9.3)
   - ReachabilitySwift (2.3.3)
   - SnapKit (0.30.0.beta2)
   - SwiftyJSON (2.3.2)
@@ -66,6 +68,8 @@ DEPENDENCIES:
   - MapboxDirections.swift (from `https://github.com/mapbox/MapboxDirections.swift.git`, tag `v0.6.0`)
   - MapboxGeocoder.swift (from `https://github.com/mapbox/MapboxGeocoder.swift.git`, tag `v0.5.0`)
   - MapboxStatic.swift (from `https://github.com/mapbox/MapboxStatic.swift.git`, tag `v0.6.0`)
+  - Nimble
+  - Quick
   - ReachabilitySwift
   - SnapKit (= 0.30.0.beta2)
   - SwiftyJSON
@@ -98,8 +102,8 @@ SPEC CHECKSUMS:
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
   FBSDKCoreKit: 6e020b5db0b5bd1e01f5fb0902131befd129a502
   FBSDKLoginKit: da563567a108050ef83739c8c8c001ee9e25fa13
-  Firebase: 754562547af419cc2f4b15247fee419081924bc2
-  FirebaseAnalytics: 228be2991cb28efb96cdafc4d62f64680e615c69
+  Firebase: 9b3edeffaf60d56e377dc5281e91c4ba935a5ad9
+  FirebaseAnalytics: d968d4d5f6aeb795cd64144337bcd233e530efc6
   FirebaseAuth: 26fd291c3b552fc9658420b867520d5ae080421c
   FirebaseDatabase: 59bea2e7dfd81b3b8b2f8e396caf1a52c2ced6f7
   FirebaseInstanceID: ba1e640935235e5fac39dfa816fe7660e72e1a8a
@@ -112,12 +116,14 @@ SPEC CHECKSUMS:
   MapboxDirections.swift: 144cefb4386d419f916ce27928834c28bbaafb4f
   MapboxGeocoder.swift: 4fbe12e42458db895ff73739c69743c943d0824e
   MapboxStatic.swift: 3185804edec6bea74be7d74fb3ca9a666009f7a2
+  Nimble: 97a0a4cae5124c117115634b2d055d8c97d0af19
   Polyline: 4968bf16ceddd579e1e60820edc74a2271ec9c59
+  Quick: 13a2a2b19a5d8e3ed4fd0c36ee46597fd77ebf71
   ReachabilitySwift: e0f6b6f280effb47731acfaaa2d5ffe223703793
   SnapKit: c4bb32b1d3c5d18ff63bf95ffcbc599d2bab964c
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
   TGLParallaxCarousel: 7736edf9e26a3f08f32d0a24fcb0c93edc8253ad
 
-PODFILE CHECKSUM: 4a0b209a3eeb11780ed5af626fcd461a3cd108c7
+PODFILE CHECKSUM: 0222fe63c9fe396c72ee9d31e6bc8f1ff179959d
 
 COCOAPODS: 1.0.1

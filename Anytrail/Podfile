@@ -1,28 +1,37 @@
 # Uncomment this line to define a global platform for your project
 # platform :ios, '9.0'
 
+def shared_pods
+    pod 'Alamofire'
+    pod 'SwiftyJSON'
+    pod 'Firebase'
+    pod 'Firebase/Auth'
+    pod 'Firebase/Database'
+    pod 'FBSDKLoginKit'
+    pod 'SnapKit', '0.30.0.beta2'
+    pod 'Mapbox-iOS-SDK', '~> 3.3.3'
+    pod 'MapboxDirections.swift', :git => 'https://github.com/mapbox/MapboxDirections.swift.git', :tag => 'v0.6.0'
+    pod 'MapboxGeocoder.swift', :git => 'https://github.com/mapbox/MapboxGeocoder.swift.git', :tag => 'v0.5.0'
+    pod 'MapboxStatic.swift', :git => 'https://github.com/mapbox/MapboxStatic.swift.git', :tag => 'v0.6.0'
+    pod 'ReachabilitySwift'
+end
+
 target 'Anytrail' do
   use_frameworks!
 
   # Pods for Anytrail
-  pod 'Alamofire'
-  pod 'SwiftyJSON'
-  pod 'Firebase'
-  pod 'Firebase/Auth'
-  pod 'Firebase/Database'
-  pod 'FBSDKLoginKit'
-  pod 'SnapKit', '0.30.0.beta2'
-  pod 'Mapbox-iOS-SDK', '~> 3.3.3'
-  pod 'MapboxDirections.swift', :git => 'https://github.com/mapbox/MapboxDirections.swift.git', :tag => 'v0.6.0'
-  pod 'MapboxGeocoder.swift', :git => 'https://github.com/mapbox/MapboxGeocoder.swift.git', :tag => 'v0.5.0'
-  pod 'MapboxStatic.swift', :git => 'https://github.com/mapbox/MapboxStatic.swift.git', :tag => 'v0.6.0'
-  pod 'ReachabilitySwift'
-
-  pod "TGLParallaxCarousel"
+  shared_pods
+  pod 'TGLParallaxCarousel'
 
   target 'AnytrailTests' do
     inherit! :search_paths
     # Pods for testing
+    shared_pods
+    
+    pod 'Quick'
+    pod 'Nimble'
+    
+    pod 'Firebase'
   end
   
 end
