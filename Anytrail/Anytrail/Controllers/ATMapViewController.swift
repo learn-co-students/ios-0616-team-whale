@@ -223,7 +223,7 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
                     for pin in self.pointsOfInterest {
                         self.mapView.addAnnotation(pin)
                     }
-                    ATAlertView.alertWithTitle(self, type: .Success, title: "Success", text: "Please select some points of interest to add to your route.") { }
+                    ATAlertView.alertWithTitle(self, type: .Success, title: "Great", text: "Please select some points of interest to add to your route.") { }
                 }
             }
         }
@@ -235,7 +235,7 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
             currentStage = .Route
             mapView.removeAnnotations(pointsOfInterest)
             createPath() { time in
-                ATAlertView.alertWithTitle(self, type: .Success, title: "Success", text: "Your walk will take about \(time).\nEnjoy your walk to \(self.destination?.title ?? "")!") {
+                ATAlertView.alertWithTitle(self, type: .Success, title: "Ready", text: "Estimated Time:\n \(time).\nEnjoy your walk!") {
                     self.reshowDropdown(withView: .Activity, hintText: "")
                 }
             }
@@ -509,6 +509,7 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
                 let travelTimeFormatter = NSDateComponentsFormatter()
                 travelTimeFormatter.unitsStyle = .Short
                 let formattedTravelTime = travelTimeFormatter.stringFromTimeInterval(route.expectedTravelTime)
+                
                 print("Distance: \(formattedDistance); ETA: \(formattedTravelTime!)")
                 completion(time: formattedTravelTime!)
                 
