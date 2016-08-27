@@ -235,7 +235,7 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
             currentStage = .Route
             mapView.removeAnnotations(pointsOfInterest)
             createPath() { time in
-                ATAlertView.alertWithTitle(self, type: .Success, title: "Ready", text: "Estimated Time:\n \(time).\nEnjoy your walk!") {
+                ATAlertView.alertWithTitle(self, type: .Success, title: "Path Saved", text: "Estimated Time:\n \(time).\nEnjoy your walk!") {
                     self.reshowDropdown(withView: .Activity, hintText: "")
                 }
             }
