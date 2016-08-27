@@ -181,9 +181,6 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
             setToRoute()
         case .Route:
             break
-            //            reshowDropdown(withView: .Activity, hintText: "")
-            //            drawRouteButton.enabled = false
-            //            dropdownBarButton.enabled = false
         }
     }
     
@@ -206,7 +203,7 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
         getWaypoints()
         
         UIView.animateWithDuration(0.3) {
-            self.dropdownBarButton.image = UIImage(named: "back-arrow")
+            self.dropdownBarButton.image = UIImage(named: "cancel")
         }
     }
     
@@ -238,7 +235,8 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
             mapView.removeAnnotations(pointsOfInterest)
             createPath() { time in
                 ATAlertView.alertWithTitle(self, type: .Success, title: "Path Saved", text: "Estimated Time:\n \(time).\nEnjoy your walk!") {
-                    self.reshowDropdown(withView: .Activity, hintText: "")
+                    self.dropdownView.changeDropdownView(.Activity)
+                    self.dropdownView.show()
                     self.drawRouteButton.enabled = false
                 }
             }
@@ -307,7 +305,7 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
                 mapView.deselectAnnotation(annotation, animated: true)
             }
         default:
-            print("Something happened when selected")
+            break
         }
     }
     
@@ -502,18 +500,13 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
                 self.navigationRoutes = routes
             }
             
-            if let route = routes?.first, let leg = route.legs.first {
-                print("Route via \(leg)")
+            if let route = routes?.first {
                 self.navigationLegs = route.legs
                 self.carouselView.type = .Normal
                 self.carouselView.hidden = false
-                let distanceFormatter = NSLengthFormatter()
-                let formattedDistance = distanceFormatter.stringFromMeters(route.distance)
                 let travelTimeFormatter = NSDateComponentsFormatter()
                 travelTimeFormatter.unitsStyle = .Short
                 let formattedTravelTime = travelTimeFormatter.stringFromTimeInterval(route.expectedTravelTime)
-                
-                print("Distance: \(formattedDistance); ETA: \(formattedTravelTime!)")
                 completion(time: formattedTravelTime!)
                 
                 // TODO: Remove testing data stuff
@@ -693,31 +686,17 @@ extension ATMapViewController: TGLParallaxCarouselDatasource {
 }
 
 extension ATMapViewController: TGLParallaxCarouselDelegate {
-    func didTapOnItemAtIndex(index: Int, carousel: TGLParallaxCarousel) {
-        print("Tap on item at index \(index)")
-        
-        
-    }
-    
     override func viewDidAppear(animated: Bool) {
         self.pageControl.hidden = true
     }
     
     func didMovetoPageAtIndex(index: Int) {
         
-        print("Did move to index \(index)")
-        
         if let coordinatesInArray = directionArray[index].2{
             
             
             if let first = coordinatesInArray.first{
-                
-                print("should be moving")
-                //                    pathPin.coordinate = last
-                //                    self.assignPathPin(pathPin)
                 mapView.setCenterCoordinate(first, zoomLevel: 15, animated: true)
-                
-                
             }
         }
     }
