@@ -690,6 +690,10 @@ extension ATMapViewController: TGLParallaxCarouselDelegate {
         self.pageControl.hidden = true
     }
     
+    func didTapOnItemAtIndex(index: Int, carousel: TGLParallaxCarousel) {
+        
+    }
+    
     func didMovetoPageAtIndex(index: Int) {
         
         if let coordinatesInArray = directionArray[index].2{
