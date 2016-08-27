@@ -24,8 +24,7 @@ class ApisDataStore {
                          "v": FoursquareConstants.v,
                          "ll": "\(queryLocation.coordinate.latitude), \(queryLocation.coordinate.longitude)",
                          "query": FoursquareConstants.query,
-                         "limit": "15",
-                         "sortByDistance": "1"]
+                         "radius": "\(LocationDataStore.sharedInstance.pointOfInterestDistancePadding() ?? 0)"]
         
         return parameter
     }
@@ -60,7 +59,7 @@ class ApisDataStore {
         }
         dispatch_group_notify(group, dispatch_get_main_queue()) {
             completion(true)
-
+            
         }
     }
 }
