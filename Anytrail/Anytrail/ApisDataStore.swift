@@ -24,7 +24,8 @@ class ApisDataStore {
                          "v": "20160826",
                          "intent": "browse",
                          "ll": "\(queryLocation.coordinate.latitude), \(queryLocation.coordinate.longitude)",
-                         "radius": "\(LocationDataStore.sharedInstance.totalDistance() / 2.0)"]
+                         "radius": "\(LocationDataStore.sharedInstance.totalDistance() / 2.0)",
+                         "categoryId": "\(ATConstants.Endpoints.monumentLandmarkID),\(ATConstants.Endpoints.trialID),\(ATConstants.Endpoints.waterfrontID),\(ATConstants.Endpoints.sculptureGardenID),\(ATConstants.Endpoints.scenicLookoutID),\(ATConstants.Endpoints.pedestrianPlaza),\(ATConstants.Endpoints.parkID),\(ATConstants.Endpoints.nationalParkID),\(ATConstants.Endpoints.gardenID),\(ATConstants.Endpoints.bridgeID),\(ATConstants.Endpoints.botanticalGardenID),\(ATConstants.Endpoints.breweryID),\(ATConstants.Endpoints.streetFairID),\(ATConstants.Endpoints.publicArtID),\(ATConstants.Endpoints.museumID),\(ATConstants.Endpoints.historicSiteID)"]
         
         return parameter
     }
