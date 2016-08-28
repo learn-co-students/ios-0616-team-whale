@@ -423,6 +423,9 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
         LocationDataStore.sharedInstance.origin = CLLocation(latitude: origin.coordinate.latitude, longitude:  origin.coordinate.longitude)
         LocationDataStore.sharedInstance.destination = CLLocation(latitude: destination.coordinate.latitude, longitude:  destination.coordinate.longitude)
         
+        
+        ApisDataStore.sharedInstance
+        
         ApisDataStore.sharedInstance.pointOfInterestEpicenterQuery { success in
             if success {
                 for location in ApisDataStore.sharedInstance.foursquareData {

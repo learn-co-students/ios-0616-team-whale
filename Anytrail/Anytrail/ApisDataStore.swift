@@ -21,10 +21,10 @@ class ApisDataStore {
     func prepareForLandmarksQuery(queryLocation: CLLocation) -> [String: String] {
         let parameter = ["client_id": Keys.fourSquareClientID,
                          "client_secret": Keys.fourSquareClientSecret,
-                         "v": FoursquareConstants.v,
+                         "v": "20160826",
+                         "intent": "browse",
                          "ll": "\(queryLocation.coordinate.latitude), \(queryLocation.coordinate.longitude)",
-                         "query": FoursquareConstants.query,
-                         "radius": "\(LocationDataStore.sharedInstance.pointOfInterestDistancePadding() ?? 0)"]
+                         "radius": "\(LocationDataStore.sharedInstance.totalDistance() / 2.0)"]
         
         return parameter
     }
@@ -33,7 +33,7 @@ class ApisDataStore {
         let foursquareParameters = prepareForLandmarksQuery(queryLocation)
         
         FoursquareAPIClient.getQueryForSearchLandmarks(foursquareParameters) { itemsJSON in
-            guard let itemsArray = itemsJSON.0 else {
+            guard let itemsArray = itemsJSON.0?.dictionary!["venues"]?.array else {
                 print("error: no data recieved from API Client")
                 completion(false)
                 return

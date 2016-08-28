@@ -16,7 +16,7 @@ class ATConstants {
     }
     
     struct Endpoints {
-        static let FOURSQUARE_GET_VENUES = "https://api.foursquare.com/v2/venues/explore"
+        static let FOURSQUARE_GET_VENUES = "https://api.foursquare.com/v2/venues/search"
         static let FOURSQUARE_GET_PHOTO = "https://api.foursquare.com/v2/venues/%@/photos?limit=1"
     }
     
