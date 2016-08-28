@@ -24,7 +24,6 @@
 		4D5244761D6615000066C01B /* TipsAndTricksHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D5244751D6615000066C01B /* TipsAndTricksHeader.xib */; };
 		4D5244781D6615280066C01B /* TipsAndTricksHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5244771D6615280066C01B /* TipsAndTricksHeader.swift */; };
 		4DB2D9611D58DEBA007BD4A5 /* FoursquareAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB2D9601D58DEBA007BD4A5 /* FoursquareAPIClient.swift */; };
-		4DB2D9631D58DF04007BD4A5 /* ApisDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB2D9621D58DF04007BD4A5 /* ApisDataStore.swift */; };
 		4DB2D9651D58DF18007BD4A5 /* FoursquareData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB2D9641D58DF18007BD4A5 /* FoursquareData.swift */; };
 		4DE1D0A91D60D5F500911AA8 /* ProfileStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4DE1D0A81D60D5F500911AA8 /* ProfileStoryboard.storyboard */; };
 		4DE1D0AB1D60D61F00911AA8 /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE1D0AA1D60D61F00911AA8 /* ProfileTableViewController.swift */; };
@@ -103,7 +102,6 @@
 		4D5244751D6615000066C01B /* TipsAndTricksHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TipsAndTricksHeader.xib; sourceTree = "<group>"; };
 		4D5244771D6615280066C01B /* TipsAndTricksHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TipsAndTricksHeader.swift; sourceTree = "<group>"; };
 		4DB2D9601D58DEBA007BD4A5 /* FoursquareAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoursquareAPIClient.swift; sourceTree = "<group>"; };
-		4DB2D9621D58DF04007BD4A5 /* ApisDataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApisDataStore.swift; sourceTree = "<group>"; };
 		4DB2D9641D58DF18007BD4A5 /* FoursquareData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoursquareData.swift; sourceTree = "<group>"; };
 		4DE1D0A81D60D5F500911AA8 /* ProfileStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ProfileStoryboard.storyboard; sourceTree = "<group>"; };
 		4DE1D0AA1D60D61F00911AA8 /* ProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
@@ -236,7 +234,6 @@
 				4DB2D9601D58DEBA007BD4A5 /* FoursquareAPIClient.swift */,
 				2E1DA87B1D5E057500F83DFD /* WalkTracker.swift */,
 				8A53F2F01D594E3E00F244BE /* TrailApiClient.swift */,
-				4DB2D9621D58DF04007BD4A5 /* ApisDataStore.swift */,
 				4DB2D9641D58DF18007BD4A5 /* FoursquareData.swift */,
 				4DEE998D1D64A1BC004BC91C /* LocationDataStore.swift */,
 				949370341D62515900C696AE /* ATConstants.swift */,
@@ -632,7 +629,6 @@
 				4DB2D9611D58DEBA007BD4A5 /* FoursquareAPIClient.swift in Sources */,
 				8A3948FB1D623743004A4B94 /* ATPathCell.swift in Sources */,
 				4DF1FD1D1D64FC4900692309 /* SurgeonGeneralTableViewController.swift in Sources */,
-				4DB2D9631D58DF04007BD4A5 /* ApisDataStore.swift in Sources */,
 				4D5244781D6615280066C01B /* TipsAndTricksHeader.swift in Sources */,
 				8A4827971D677B0700C53A71 /* InternetStatus.swift in Sources */,
 			);
