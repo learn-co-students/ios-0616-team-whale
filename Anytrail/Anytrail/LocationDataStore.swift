@@ -27,6 +27,13 @@ extension LocationDataStore {
         return origin.distanceFromLocation(destination)
     }
     
+    func totalDistance() -> Double {
+        guard let destination = destination, origin = origin else {
+            return 0
+        }
+        return origin.distanceFromLocation(destination)
+    }
+    
     func pointOfInterestDistancePadding() -> Double? {
         guard let destination = destination, origin = origin else {
             return nil
@@ -45,27 +52,28 @@ extension LocationDataStore {
         guard let destination = destination, origin = origin else {
             return nil
         }
-        var counter = 0.0
-        var earlierDestinations = [CLLocationCoordinate2D]()
-        var laterDestinations = [CLLocationCoordinate2D]()
-        let distance = findDistance(origin, destination: destination)
-        let paddingDistance = pointOfInterestDistancePadding() ?? 1.0
+        
+//        var counter = 0.0
+//        var earlierDestinations = [CLLocationCoordinate2D]()
+//        var laterDestinations = [CLLocationCoordinate2D]()
+//        let distance = findDistance(origin, destination: destination)
+//        let paddingDistance = pointOfInterestDistancePadding() ?? 1.0
         let calculatedMidpoint = midpointCoordinates(origin, toLocation: destination)
         
-        var currentStartCenterMidpoint = CLLocation(latitude: calculatedMidpoint.latitude, longitude: calculatedMidpoint.longitude)
-        var currentCenterEndMidpoint = CLLocation(latitude: calculatedMidpoint.latitude, longitude: calculatedMidpoint.longitude)
-        
-        while counter < distance / (paddingDistance * 2) {
-            let startCenterMidpoint = midpointCoordinates(origin, toLocation: currentStartCenterMidpoint)
-            earlierDestinations.append(startCenterMidpoint)
-            let centerEndMidpoint = midpointCoordinates(currentCenterEndMidpoint, toLocation: destination)
-            laterDestinations.append(centerEndMidpoint)
-            currentStartCenterMidpoint = CLLocation(latitude: startCenterMidpoint.latitude, longitude: startCenterMidpoint.longitude)
-            currentCenterEndMidpoint = CLLocation(latitude: centerEndMidpoint.latitude, longitude: centerEndMidpoint.longitude)
-            counter += 1.0
-        }
-        earlierDestinations.appendContentsOf(laterDestinations)
-        earlierDestinations.append(calculatedMidpoint)
-        return earlierDestinations
+//        var currentStartCenterMidpoint = CLLocation(latitude: calculatedMidpoint.latitude, longitude: calculatedMidpoint.longitude)
+//        var currentCenterEndMidpoint = CLLocation(latitude: calculatedMidpoint.latitude, longitude: calculatedMidpoint.longitude)
+//        
+//        while counter < distance / (paddingDistance * 2) {
+//            let startCenterMidpoint = midpointCoordinates(origin, toLocation: currentStartCenterMidpoint)
+//            earlierDestinations.append(startCenterMidpoint)
+//            let centerEndMidpoint = midpointCoordinates(currentCenterEndMidpoint, toLocation: destination)
+//            laterDestinations.append(centerEndMidpoint)
+//            currentStartCenterMidpoint = CLLocation(latitude: startCenterMidpoint.latitude, longitude: startCenterMidpoint.longitude)
+//            currentCenterEndMidpoint = CLLocation(latitude: centerEndMidpoint.latitude, longitude: centerEndMidpoint.longitude)
+//            counter += 1.0
+//        }
+//        earlierDestinations.appendContentsOf(laterDestinations)
+//        earlierDestinations.append(calculatedMidpoint)
+        return [calculatedMidpoint]
     }
 }
