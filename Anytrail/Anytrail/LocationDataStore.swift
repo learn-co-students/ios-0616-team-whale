@@ -7,7 +7,6 @@
 //
 
 import CoreLocation
-import MapKit
 
 class LocationDataStore {
         
