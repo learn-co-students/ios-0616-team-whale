@@ -50,7 +50,6 @@ class LocationDataStore {
         return totalDistance/2
     }
     
-    
     func midpointCoordinates() -> CLLocation {
         let centerLatitidue = (origin.coordinate.latitude + destination.coordinate.latitude) / 2
         let centerLongitude = (origin.coordinate.longitude + destination.coordinate.longitude) / 2
