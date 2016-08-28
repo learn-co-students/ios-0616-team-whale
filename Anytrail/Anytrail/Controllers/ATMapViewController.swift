@@ -427,22 +427,28 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
             if success {
                 for location in ApisDataStore.sharedInstance.foursquareData {
                     let category = location.categoryName
-                    if category == "Outdoor Sculpture" || category == "City Hall" || category == "Monument / Landmark" || category == "Bridge" || category == "Government Building" || category == "Historic Site" || category == "Neighborhood" || category == "Museum" || category == "Park" || category == "Garden" || category == "Music Venue" || category == "Pedestrian Plaza" || category == "Pier" || category == "Trail" || category == "Harbor / Marina" || category == "Bookstore" || category == "Playground" || category == "History Museum" || category == "Plaza" || category == "Beach" || category == "Dog Run" || category == "Lighthouse" || category == "Resort" || category == "Mountain"{
-                // || category.containsString("") {
-                        let pin = ATAnnotation(typeSelected: .PointOfInterest)
-                        print("***\(location.categoryName) category \n \(location.placeName)***")
-                        pin.coordinate = CLLocationCoordinate2D(latitude: location.placeLatitude, longitude: location.placeLongitude)
-                        pin.title = location.placeName
-                        pin.subtitle = location.placeAddress
+                    for categoryType in CategoryConstants.unfilteredCategory{
+                        if category == categoryType {
+                            let pin = ATAnnotation(typeSelected: .PointOfInterest)
+                            print("***\(location.categoryName) category \n \(location.placeName)***")
+                            pin.coordinate = CLLocationCoordinate2D(latitude: location.placeLatitude, longitude: location.placeLongitude)
+                            pin.title = location.placeName
+                            pin.subtitle = location.placeAddress
                             print(pin.title)
-                        self.pointsOfInterest.append(pin)}
+                            self.pointsOfInterest.append(pin)}
+                    }
+                    
                 }
-            } else {
+            }else {
                 ATAlertView.alertNetworkLoss(self, callback: {})
             }
+            print (self.pointsOfInterest.description)
+            print(self.pointsOfInterest.count)
             completion(count: self.pointsOfInterest.count)
+
         }
     }
+    
     
     // MARK: - Paths
     

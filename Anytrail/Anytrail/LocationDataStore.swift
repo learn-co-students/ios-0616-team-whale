@@ -29,7 +29,7 @@ extension LocationDataStore {
     
     func pointOfInterestDistancePadding() -> Double? {
         guard let destination = destination, origin = origin else {
-            return nil
+            return 1.0
         }
         return findDistance(origin, destination: destination) / 5
     }

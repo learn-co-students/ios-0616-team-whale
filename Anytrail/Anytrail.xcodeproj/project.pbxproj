@@ -19,6 +19,7 @@
 		2EC3F1221D6E055800CD33E6 /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC3F1211D6E055800CD33E6 /* Keys.swift */; };
 		4D225C1B1D5A0FF600360AB8 /* MashapeAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D225C1A1D5A0FF600360AB8 /* MashapeAPIClient.swift */; };
 		4D225C1F1D5A100800360AB8 /* MashapeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D225C1E1D5A100800360AB8 /* MashapeData.swift */; };
+		4D3053AC1D724EDA008C6832 /* CategoryConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3053AB1D724EDA008C6832 /* CategoryConstants.swift */; };
 		4D5244721D66084F0066C01B /* TipsAndTricksTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5244711D66084F0066C01B /* TipsAndTricksTableViewCell.swift */; };
 		4D5244741D660AE60066C01B /* TipsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D5244731D660AE60066C01B /* TipsCell.xib */; };
 		4D5244761D6615000066C01B /* TipsAndTricksHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D5244751D6615000066C01B /* TipsAndTricksHeader.xib */; };
@@ -98,6 +99,7 @@
 		3417C12B1559CD326FE9F852 /* Pods-Anytrail.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Anytrail.release.xcconfig"; path = "Pods/Target Support Files/Pods-Anytrail/Pods-Anytrail.release.xcconfig"; sourceTree = "<group>"; };
 		4D225C1A1D5A0FF600360AB8 /* MashapeAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MashapeAPIClient.swift; sourceTree = "<group>"; };
 		4D225C1E1D5A100800360AB8 /* MashapeData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MashapeData.swift; sourceTree = "<group>"; };
+		4D3053AB1D724EDA008C6832 /* CategoryConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryConstants.swift; sourceTree = "<group>"; };
 		4D5244711D66084F0066C01B /* TipsAndTricksTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TipsAndTricksTableViewCell.swift; sourceTree = "<group>"; };
 		4D5244731D660AE60066C01B /* TipsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TipsCell.xib; sourceTree = "<group>"; };
 		4D5244751D6615000066C01B /* TipsAndTricksHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TipsAndTricksHeader.xib; sourceTree = "<group>"; };
@@ -184,6 +186,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4D3053AA1D724EC4008C6832 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				4D3053AB1D724EDA008C6832 /* CategoryConstants.swift */,
+			);
+			name = Constants;
+			sourceTree = "<group>";
+		};
 		4D8FE91B1D6B6DBF00FC3339 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
@@ -204,6 +214,7 @@
 		9424A7631D53D5DA00CE8D42 = {
 			isa = PBXGroup;
 			children = (
+				4D3053AA1D724EC4008C6832 /* Constants */,
 				9424A76E1D53D5DA00CE8D42 /* Anytrail */,
 				9424A7851D53D5DA00CE8D42 /* AnytrailTests */,
 				9424A76D1D53D5DA00CE8D42 /* Products */,
@@ -596,6 +607,7 @@
 				94B1ABEB1D5E4AD800D3DA8E /* ATAnnotationView.swift in Sources */,
 				947B6AB21D6B6F01009D5268 /* FullPath+CoreDataProperties.swift in Sources */,
 				949370331D62412200C696AE /* ATAnnotation.swift in Sources */,
+				4D3053AC1D724EDA008C6832 /* CategoryConstants.swift in Sources */,
 				4DEE998E1D64A1BC004BC91C /* LocationDataStore.swift in Sources */,
 				9437CADF1D663C660060E9CF /* AnytrailKit.swift in Sources */,
 				947B6AB41D6B6F01009D5268 /* Coordinate+CoreDataProperties.swift in Sources */,
