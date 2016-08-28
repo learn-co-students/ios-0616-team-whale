@@ -46,9 +46,9 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
     var numberOfSteps: Int = 0
     
     var directionArray : [(RouteLeg, RouteStep, [CLLocationCoordinate2D]?)] = []
-    
     var workOutTimer = NSTimer()
     
+    var foursquareDataSource: LocationDataStore?
     
     enum ATCurrentStage: Int {
         case Default
@@ -415,22 +415,23 @@ class ATMapViewController: UIViewController, MGLMapViewDelegate, ATDropdownViewD
             return
         }
         
-        
-        
         pointsOfInterest.removeAll()
         waypoints.removeAll()
         
-        LocationDataStore.sharedInstance.origin = CLLocation(latitude: origin.coordinate.latitude, longitude:  origin.coordinate.longitude)
-        LocationDataStore.sharedInstance.destination = CLLocation(latitude: destination.coordinate.latitude, longitude:  destination.coordinate.longitude)
+        let originLocation = CLLocation(latitude: origin.coordinate.latitude, longitude: origin.coordinate.longitude)
+        let destinationLocation = CLLocation(latitude: destination.coordinate.latitude, longitude: destination.coordinate.longitude)
+        foursquareDataSource = LocationDataStore(origin: originLocation, destination: destinationLocation)
         
+        guard let foursquareDataSource = foursquareDataSource else {
+            return
+        }
         
-        ApisDataStore.sharedInstance
+        let centerPointLocation = foursquareDataSource.midpointCoordinates()
         
-        ApisDataStore.sharedInstance.pointOfInterestEpicenterQuery { success in
+        foursquareDataSource.fetchLocationsFromFoursquareWithCompletion(centerPointLocation) { success in
             if success {
-                for location in ApisDataStore.sharedInstance.foursquareData {
+                for location in foursquareDataSource.foursquareData {
                     let pin = ATAnnotation(typeSelected: .PointOfInterest)
-                    
                     pin.coordinate = CLLocationCoordinate2D(latitude: location.placeLatitude, longitude: location.placeLongitude)
                     pin.title = location.placeName
                     pin.subtitle = location.placeAddress

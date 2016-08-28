@@ -10,13 +10,15 @@ import CoreLocation
 import MapKit
 
 class LocationDataStore {
-    
-    static let sharedInstance = LocationDataStore()
-    
-    var origin: CLLocation?
-    var destination: CLLocation?
+        
+    var origin: CLLocation
+    var destination: CLLocation
     var foursquareData: Set<FoursquareData> = []
     
+    init(origin: CLLocation, destination: CLLocation) {
+        self.origin = origin
+        self.destination = destination
+    }
     
     func fetchLocationsFromFoursquareWithCompletion(centerPoint: CLLocation, completion: Bool -> ()) {
         let parameter = ["client_id": Keys.fourSquareClientID,
@@ -42,9 +44,6 @@ class LocationDataStore {
     }
     
     var totalDistance: Double {
-        guard let destination = destination, origin = origin else {
-            return 0
-        }
         return origin.distanceFromLocation(destination)
     }
     
@@ -53,11 +52,7 @@ class LocationDataStore {
     }
     
     
-    func midpointCoordinates() -> CLLocation? {
-        guard let destination = destination, origin = origin else {
-            return nil
-        }
-        
+    func midpointCoordinates() -> CLLocation {
         let centerLatitidue = (origin.coordinate.latitude + destination.coordinate.latitude) / 2
         let centerLongitude = (origin.coordinate.longitude + destination.coordinate.longitude) / 2
         return CLLocation(latitude: centerLatitidue, longitude: centerLongitude)
