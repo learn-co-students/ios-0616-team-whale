@@ -7,65 +7,53 @@
 //
 
 import CoreLocation
-import MapKit
 
 class LocationDataStore {
+        
+    var origin: CLLocation
+    var destination: CLLocation
+    var foursquareData: Set<FoursquareData> = []
     
-    static let sharedInstance = LocationDataStore()
+    init(origin: CLLocation, destination: CLLocation) {
+        self.origin = origin
+        self.destination = destination
+    }
     
-    var origin: CLLocation?
-    var destination: CLLocation?
-    var originString: String?
-    var destinationString: String?
-    var longLatArray: [Double]?
+    func fetchLocationsFromFoursquareWithCompletion(centerPoint: CLLocation, completion: Bool -> ()) {
+        let parameter = ["client_id": Keys.fourSquareClientID,
+                         "client_secret": Keys.fourSquareClientSecret,
+                         "v": "20160826",
+                         "intent": "browse",
+                         "ll": "\(centerPoint.coordinate.latitude), \(centerPoint.coordinate.longitude)",
+                         "radius": "\(searchRadius)",
+                         "categoryId": "\(ATConstants.Endpoints.monumentLandmarkID),\(ATConstants.Endpoints.trialID),\(ATConstants.Endpoints.waterfrontID),\(ATConstants.Endpoints.sculptureGardenID),\(ATConstants.Endpoints.scenicLookoutID),\(ATConstants.Endpoints.pedestrianPlaza),\(ATConstants.Endpoints.parkID),\(ATConstants.Endpoints.nationalParkID),\(ATConstants.Endpoints.gardenID),\(ATConstants.Endpoints.bridgeID),\(ATConstants.Endpoints.botanticalGardenID),\(ATConstants.Endpoints.breweryID),\(ATConstants.Endpoints.streetFairID),\(ATConstants.Endpoints.publicArtID),\(ATConstants.Endpoints.museumID),\(ATConstants.Endpoints.historicSiteID)"]
+        
+        FoursquareAPIClient.getQueryForSearchLandmarks(parameter) { itemsJSON in
+            guard let itemsArray = itemsJSON.0?.dictionary!["venues"]?.array else {
+                print("error: no data recieved from API Client")
+                completion(false)
+                return
+            }
+            
+            for venue in itemsArray {
+                self.foursquareData.insert(FoursquareData(json: venue))
+            }
+            completion(true)
+        }
+    }
     
-}
-
-extension LocationDataStore {
-    
-    func findDistance(origin: CLLocation, destination: CLLocation) -> Double {
+    var totalDistance: Double {
         return origin.distanceFromLocation(destination)
     }
     
-    func pointOfInterestDistancePadding() -> Double? {
-        guard let destination = destination, origin = origin else {
-            return nil
-        }
-        return findDistance(origin, destination: destination) / 5
+    var searchRadius: Double {
+        return totalDistance/2
     }
     
-    func midpointCoordinates(fromLocation: CLLocation, toLocation: CLLocation) -> CLLocationCoordinate2D {
-        guard (fromLocation.coordinate.latitude, fromLocation.coordinate.longitude) != (toLocation.coordinate.latitude, toLocation.coordinate.latitude) else {
-            return fromLocation.coordinate
-        }
-        return CLLocationCoordinate2D(latitude: (fromLocation.coordinate.latitude + toLocation.coordinate.latitude) / 2, longitude: (fromLocation.coordinate.longitude + toLocation.coordinate.longitude) / 2)
+    func midpointCoordinates() -> CLLocation {
+        let centerLatitidue = (origin.coordinate.latitude + destination.coordinate.latitude) / 2
+        let centerLongitude = (origin.coordinate.longitude + destination.coordinate.longitude) / 2
+        return CLLocation(latitude: centerLatitidue, longitude: centerLongitude)
     }
     
-    func returningLongLatArray() -> [CLLocationCoordinate2D]? {
-        guard let destination = destination, origin = origin else {
-            return nil
-        }
-        var counter = 0.0
-        var earlierDestinations = [CLLocationCoordinate2D]()
-        var laterDestinations = [CLLocationCoordinate2D]()
-        let distance = findDistance(origin, destination: destination)
-        let paddingDistance = pointOfInterestDistancePadding() ?? 1.0
-        let calculatedMidpoint = midpointCoordinates(origin, toLocation: destination)
-        
-        var currentStartCenterMidpoint = CLLocation(latitude: calculatedMidpoint.latitude, longitude: calculatedMidpoint.longitude)
-        var currentCenterEndMidpoint = CLLocation(latitude: calculatedMidpoint.latitude, longitude: calculatedMidpoint.longitude)
-        
-        while counter < distance / (paddingDistance * 2) {
-            let startCenterMidpoint = midpointCoordinates(origin, toLocation: currentStartCenterMidpoint)
-            earlierDestinations.append(startCenterMidpoint)
-            let centerEndMidpoint = midpointCoordinates(currentCenterEndMidpoint, toLocation: destination)
-            laterDestinations.append(centerEndMidpoint)
-            currentStartCenterMidpoint = CLLocation(latitude: startCenterMidpoint.latitude, longitude: startCenterMidpoint.longitude)
-            currentCenterEndMidpoint = CLLocation(latitude: centerEndMidpoint.latitude, longitude: centerEndMidpoint.longitude)
-            counter += 1.0
-        }
-        earlierDestinations.appendContentsOf(laterDestinations)
-        earlierDestinations.append(calculatedMidpoint)
-        return earlierDestinations
-    }
 }

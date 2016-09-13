@@ -8,7 +8,6 @@
 
 import Foundation
 import SwiftyJSON
-import UIKit
 
 class FoursquareData: NSObject {
 
@@ -22,7 +21,7 @@ class FoursquareData: NSObject {
 
     init(json: JSON) {
         guard let
-            venue = json["venue"].dictionary,
+            venue = json.dictionary,
             identifier = venue["id"]!.string,
             longitude = venue["location"]!["lng"].double,
             latitude = venue["location"]!["lat"].double,
