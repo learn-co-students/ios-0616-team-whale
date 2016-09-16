@@ -7,6 +7,7 @@
 //
 
 struct CategoryConstants {
+    
 //    static let animalCategory = []
 //    static let artCategory = []
 //    static let religiousCategory = []
